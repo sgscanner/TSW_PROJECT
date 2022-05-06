@@ -5,7 +5,7 @@
 <style><%@include file="Register.css"%></style>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Register</title>
 </head>
 <body>
 		
