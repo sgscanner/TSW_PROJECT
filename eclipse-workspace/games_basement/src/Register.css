@@ -1,7 +1,0 @@
-@charset "UTF-8";
-.content{
-	display:grid;
-	background-color:bisque;
-	height:100vh;
-	place-items:center;
-}
