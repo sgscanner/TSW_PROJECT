@@ -1,0 +1,17 @@
+@charset "UTF-8";
+.container{
+	height: auto;
+	place-items:center;
+	text-align:center
+}
+
+.form-group {
+	margin: auto;
+	width: 50%;
+	border: 3px solid white;
+	padding: 10px;
+}
+
+footer{
+	text-align:center;
+}

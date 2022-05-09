@@ -5,19 +5,33 @@
 <head>
 <meta charset="UTF-8">
 <title>Login</title>
-<style><%@include file="Login.css"%></style>
+<style><%@include file="css/Login.css"%></style>
 </head>
 <body>
-	<div class="content">
-	<form id="form_login">
-	<fieldset>
-	<legend>Information about you</legend>
-		<label>Username</label>&nbsp;<input type="text" name="username" placeholder="Enter username"><br>
-		<label>Password</label>&nbsp;<input type="password" name="password" placeholder="Enter password"><br>
-	</fieldset>
-		<button type="button" formmethod="POST" formaction="#">Login</button>
-		<button type="button" formmethod="POST" formaction="#">Clear Fields</button>
-	</form>
+	<div class="container">
+		<form class="form_login">
+			<h4>Inserisci le tue informazioni</h4>
+				<!-- Username -->
+				<div class="form-group"> 
+					<label>Username</label>&nbsp;
+					<input type="text" name="username" placeholder="Inserisci username"><br>
+				</div>
+				
+				<!-- Password -->
+				<div class="form-group">
+					<label>Password</label>&nbsp;<input type="password" name="password" placeholder="Inserisci password"><br>
+				</div>
+				
+				<!-- Buttons -->
+				<div class="form-group">
+					<input type="submit" value="Login">&nbsp;
+					<input type="reset" value="Clear">&nbsp;
+					Non ancora un utente?<a href="Register.jsp">Registrati!</a>
+				</div>
+		</form>
 	</div>
+	<footer>
+		<a href="HomePage.html" >Home</a>
+	</footer>
 </body>
 </html>
