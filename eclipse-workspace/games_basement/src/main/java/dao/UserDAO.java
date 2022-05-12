@@ -1,6 +1,6 @@
 package dao;
 import java.util.ArrayList;
-
+import db.Connection;
 import bean.User;
 
 public class UserDAO {
