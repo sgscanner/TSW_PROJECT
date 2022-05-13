@@ -12,7 +12,7 @@
 <body>
 	<div class="container">
 
-		<form class="register_form" action=" " method="post" id="contact_form">
+		<form class="register_form" action="HomePage.html" method="post" id="contact_form" name="regForm">
 			<h4>Dati Personali</h4><br>
 
 				<!-- Nome-->
@@ -61,7 +61,7 @@
 
 				<div class="form-group">
 					<label >Numero di Telefono</label><br>
-					<input type="text" placeholder="Inserisci il tuo numero di telefono">
+					<input type="text" id="phone" onchange="checkPhone(this.value)" placeholder="Inserisci numero telefono">
 				</div> 
 
 				<!-- BDay -->
@@ -90,9 +90,21 @@
 				</div>
 		</form>
 	</div><br>
-	<!-- /.container -->
 	<footer>
 		<a href="HomePage.html" >Home</a>
 	</footer>
+<script type="text/javascript">
+	function checkPhone(phone){
+		var reg = "/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im";
+		var result=phone.match(reg);
+		if (result) {
+			console.log("(true)phone  "+phone);
+			return (true)
+		} else {
+			console.log("(error)phone "+phone);
+
+		}
+	}
+</script>
 </body>
 </html>

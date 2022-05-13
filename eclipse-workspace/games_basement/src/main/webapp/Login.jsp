@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div class="container">
-		<form class="form_login">
+		<form class="form_login" action="HomePage.html" method="POST">
 			<h4>Inserisci le tue informazioni</h4>
 				<!-- Username -->
 				<div class="form-group"> 
