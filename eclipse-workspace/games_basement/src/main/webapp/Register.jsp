@@ -61,7 +61,7 @@
 
 				<div class="form-group">
 					<label >Numero di Telefono</label><br>
-					<input type="text" id="phone" onchange="checkPhone(this.value)" placeholder="Inserisci numero telefono">
+					<input type="tel" id="phone" onchange="checkPhone(this.value)" placeholder="Inserisci numero telefono">
 				</div> 
 
 				<!-- BDay -->
@@ -95,15 +95,15 @@
 	</footer>
 <script type="text/javascript">
 	function checkPhone(phone){
-		var reg = "/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im";
-		var result=phone.match(reg);
-		if (result) {
-			console.log("(true)phone  "+phone);
-			return (true)
-		} else {
-			console.log("(error)phone "+phone);
+		var reg = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+	    var result=phone.match(reg);
+	    if (result) {
+	        console.log("(true)phone  "+phone);
+	        return (true)
+	    } else {
+	        console.log("(error)phone "+phone);
 
-		}
+	    }
 	}
 </script>
 </body>
