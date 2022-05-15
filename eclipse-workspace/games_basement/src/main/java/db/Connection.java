@@ -16,6 +16,7 @@ public class Connection {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println();
 		}  
 		return null;
 	}
