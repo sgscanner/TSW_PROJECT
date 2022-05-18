@@ -1,11 +1,11 @@
 package bean;
 
-public class Fornitore {
+public class FornitoreBean {
 	private String iva,nome,indirizzo;
 	
-	public Fornitore() {}
+	public FornitoreBean() {}
 
-	public Fornitore(String iva,String nome,String indirizzo) {
+	public FornitoreBean(String iva,String nome,String indirizzo) {
 		this.iva=iva;
 		this.nome=nome;
 		this.indirizzo=indirizzo;
