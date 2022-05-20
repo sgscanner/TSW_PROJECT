@@ -92,7 +92,7 @@
 	</div><br>
 	<footer>
 		<a href="HomePage.html">
-			<img src="img/logo.jpeg" alt="Logo failed to load" style="width:150px;hiehgt:150px;">
+			<img src="img/logo.jpeg" alt="Logo failed to load" style="width:150px;heihgt:150px;">
 		</a>
 	</footer>
 <script type="text/javascript">
