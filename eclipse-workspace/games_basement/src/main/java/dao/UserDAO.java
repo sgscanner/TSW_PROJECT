@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import bean.UserBean;
 
 public interface UserDAO {
-	public ArrayList<UserBean> User=new ArrayList<UserBean>();
 	
 	public void addUser(UserBean ub);
 	public void deleteUser(UserBean ub);

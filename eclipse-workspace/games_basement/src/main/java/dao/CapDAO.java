@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import bean.CapBean;
 
 public interface CapDAO {
-	public ArrayList<CapBean> cap=new ArrayList<CapBean>();
 
 	public void addCap(CapBean cb);
 	public void removeCap(CapBean cb);

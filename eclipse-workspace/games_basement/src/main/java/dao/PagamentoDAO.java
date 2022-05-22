@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import bean.PagamentoBean;
 
 public interface PagamentoDAO {
-	public ArrayList<PagamentoBean> Pagamento = new ArrayList<PagamentoBean>();
 
 	public void addPagamento(PagamentoBean pb);
 

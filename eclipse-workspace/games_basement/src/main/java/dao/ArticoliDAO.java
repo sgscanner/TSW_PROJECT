@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import bean.ArticoliBean;
 
 public interface ArticoliDAO {
-	public ArrayList<ArticoliBean> articoli=new ArrayList<ArticoliBean>();
 	
 	public void addArticolo(ArticoliBean ab);
 	public void removeArticolo(ArticoliBean ab);

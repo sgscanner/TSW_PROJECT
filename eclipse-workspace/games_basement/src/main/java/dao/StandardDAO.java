@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import bean.StandardBean;
 
 public interface StandardDAO {
-	public ArrayList<StandardBean> Standard = new ArrayList<StandardBean>();
 
 	public void addStandard(StandardBean sb);
 

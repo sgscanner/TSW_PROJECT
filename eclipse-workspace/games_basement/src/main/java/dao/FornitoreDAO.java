@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import bean.FornitoreBean;
 
 public interface FornitoreDAO {
-	public ArrayList<FornitoreBean> Fornitore = new ArrayList<FornitoreBean>();
 
 	public void addFornitore(FornitoreBean fb);
 

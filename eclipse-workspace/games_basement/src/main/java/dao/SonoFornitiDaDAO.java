@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import bean.SonoFornitiDaBean;
 
 public interface SonoFornitiDaDAO {
-	public ArrayList<SonoFornitiDaBean> SonoFornitiDa = new ArrayList<SonoFornitiDaBean>();
 
 	public void addSonoFornitiDa(SonoFornitiDaBean sfdb);
 

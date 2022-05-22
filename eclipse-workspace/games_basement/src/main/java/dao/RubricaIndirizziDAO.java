@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import bean.RubricaIndirizziBean;
 
 public interface RubricaIndirizziDAO {
-	public ArrayList<RubricaIndirizziBean> RubricaIndirizzi = new ArrayList<RubricaIndirizziBean>();
 
 	public void addRubricaIndirizzi(RubricaIndirizziBean rib);
 

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import bean.VeloceBean;
 
 public interface VeloceDAO {
-	public ArrayList<VeloceBean> Veloce = new ArrayList<VeloceBean>();
 
 	public void addVeloce(VeloceBean vb);
 

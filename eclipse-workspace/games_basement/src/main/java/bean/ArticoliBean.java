@@ -3,13 +3,13 @@ package bean;
 
 public class ArticoliBean {
 	private String nome,descrizione,immagine,codiceA,tipologia;
-	private int codiceC;
-	private float prezzo;
+	private long codiceC;
+	private double prezzo;
 	private boolean offerta;
 	
 	public ArticoliBean() { }
-	
-	public ArticoliBean(String codiceA ,int codiceC,String descrizione,float prezzo,String nome,
+
+	public ArticoliBean(String codiceA ,long  codiceC,String descrizione,double prezzo,String nome,
 			           String tipologia,boolean offerta,String immagine) {
 		this.codiceA=codiceA;
 		this.codiceC=codiceC;
@@ -106,7 +106,7 @@ public class ArticoliBean {
 	/**
 	 * @return the codiceC
 	 */
-	public int getCodiceC() {
+	public long getCodiceC() {
 		return codiceC;
 	}
 
@@ -114,7 +114,7 @@ public class ArticoliBean {
 	/**
 	 * @param codiceC the codiceC to set
 	 */
-	public void setCodiceC(int codiceC) {
+	public void setCodiceC(long codiceC) {
 		this.codiceC = codiceC;
 	}
 
@@ -122,7 +122,7 @@ public class ArticoliBean {
 	/**
 	 * @return the prezzo
 	 */
-	public float getPrezzo() {
+	public double getPrezzo() {
 		return prezzo;
 	}
 

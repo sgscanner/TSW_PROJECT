@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import bean.OrdineBean;
 
 public interface OrdineDAO {
-	public ArrayList<OrdineBean> Ordine = new ArrayList<OrdineBean>();
 
 	public void addOrdine(OrdineBean ob);
 

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import bean.ProvinciaBean;
 
 public interface ProvinciaDAO {
-	public ArrayList<ProvinciaBean> Provincia = new ArrayList<ProvinciaBean>();
 
 	public void addProvincia(ProvinciaBean pb);
 

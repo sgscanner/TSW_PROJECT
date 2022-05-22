@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import bean.FatturaBean;
 
 public interface FatturaDAO {
-	public ArrayList<FatturaBean> Fattura = new ArrayList<FatturaBean>();
 
 	public void addFattura(FatturaBean fb);
 
