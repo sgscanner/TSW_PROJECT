@@ -3,14 +3,14 @@ package bean;
 public class PagamentoBean {
 	private int idPagamento;
 	private String numOrdine;
-	private float importoPagamento;
+	private double importoPagamento;
 	
 	
 	public PagamentoBean() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PagamentoBean(int idPagamento,String numOrdine,float importoPagamento) {
+	public PagamentoBean(int idPagamento,String numOrdine,double importoPagamento) {
 		this.idPagamento=idPagamento;
 		this.numOrdine=numOrdine;
 		this.importoPagamento=importoPagamento;
@@ -36,12 +36,12 @@ public class PagamentoBean {
 	}
 
 
-	public float getImportoPagamento() {
+	public double getImportoPagamento() {
 		return importoPagamento;
 	}
 
 
-	public void setImportoPagamento(float importoPagamento) {
+	public void setImportoPagamento(double importoPagamento) {
 		this.importoPagamento = importoPagamento;
 	}
 

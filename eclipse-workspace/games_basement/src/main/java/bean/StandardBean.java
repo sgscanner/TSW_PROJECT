@@ -6,13 +6,13 @@ public class StandardBean {
 	private int idSpedizione;
 	private String numOrdine;
 	private Date dataOrdine;
-	private float totale;
+	private double totale;
 	
 	public StandardBean() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public StandardBean(int idSpedizione,String numOrdine,Date dataOrdine,float totale) {
+	public StandardBean(int idSpedizione,String numOrdine,Date dataOrdine,double totale) {
 		this.idSpedizione=idSpedizione;
 		this.numOrdine=numOrdine;
 		this.dataOrdine=dataOrdine;
@@ -43,11 +43,11 @@ public class StandardBean {
 		this.dataOrdine = dataOrdine;
 	}
 
-	public float getTotale() {
+	public double getTotale() {
 		return totale;
 	}
 
-	public void setTotale(float totale) {
+	public void setTotale(double totale) {
 		this.totale = totale;
 	}
 

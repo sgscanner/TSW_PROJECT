@@ -21,11 +21,6 @@ public class ArticoliImpl implements ArticoliDAO{
 			Statement s=c.createStatement();
 			ResultSet rs=s.executeQuery("select * from Articolo");
 
-			System.out.println("prima dell'if"+rs.next());
-			if(!rs.next()) {
-				articoli.add(new ArticoliBean("",0,"",(float) 0.0,"","",false,""));
-			}
-			System.out.println("dopo l'if:"+rs.next());
 			while(rs.next()) {
 				String codiceA=rs.getString("codice_articoli"),descrizione=rs.getString("descrizione"),
 						tipologia=rs.getString("tipologia_articoli"),immagine=rs.getString("immagine"),nome=rs.getString("nome");

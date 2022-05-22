@@ -6,13 +6,13 @@ public class VeloceBean {
 	private int idSpedizione;
 	private String numOrdine;
 	private Date dataOrdine;
-	private float totale;
+	private double totale;
 
 	public VeloceBean() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public VeloceBean(int idSpedizione,String numOrdine,Date dataOrdine,float totale) {
+	public VeloceBean(int idSpedizione,String numOrdine,Date dataOrdine,double totale) {
 		this.idSpedizione=idSpedizione;
 		this.numOrdine=numOrdine;
 		this.dataOrdine=dataOrdine;
@@ -43,7 +43,7 @@ public class VeloceBean {
 		this.dataOrdine = dataOrdine;
 	}
 
-	public float getTotale() {
+	public double getTotale() {
 		return totale;
 	}
 

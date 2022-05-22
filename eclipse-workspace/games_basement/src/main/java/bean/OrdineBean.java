@@ -2,12 +2,12 @@ package bean;
 
 public class OrdineBean {
 	private String numOrdine,idUtente;
-	private float totale;
+	private double totale;
 	private int numProdotti;
 	
 	public OrdineBean() {}	
 	
-	public OrdineBean(String numOrdine,String idUtente,float totale,int numProdotti) {
+	public OrdineBean(String numOrdine,String idUtente,double totale,int numProdotti) {
 		this.numOrdine=numOrdine;
 		this.idUtente=idUtente;
 		this.totale=totale;
@@ -35,10 +35,10 @@ public class OrdineBean {
 		this.numProdotti = numProdotti;
 	}
 	
-	public float getTotale() {
+	public double getTotale() {
 		return totale;
 	}
-	public void setTotale(float totale) {
+	public void setTotale(double totale) {
 		this.totale = totale;
 	}
 	

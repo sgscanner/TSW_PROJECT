@@ -1,18 +1,19 @@
 package bean;
 
 public class UserBean {
-	private String password,username,email;
-	private Ruolo ruolo;
+	private String password, username, email;
+	private String String;
 
-	public UserBean() {}
-	
-	public UserBean(String password,String username,String email,Ruolo ruolo) {
-		this.password=password;
-		this.username=username;
-		this.email=email;
-		this.ruolo=ruolo;
+	public UserBean() {
 	}
-	
+
+	public UserBean(String password, String username, String email, String String) {
+		this.password = password;
+		this.username = username;
+		this.email = email;
+		this.String = String;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -37,11 +38,11 @@ public class UserBean {
 		this.email = email;
 	}
 
-	public Ruolo getRuolo() {
-		return ruolo;
+	public String getString() {
+		return String;
 	}
 
-	public void setRuolo(Ruolo ruolo) {
-		this.ruolo = ruolo;
+	public void setString(String String) {
+		this.String = String;
 	}
 }

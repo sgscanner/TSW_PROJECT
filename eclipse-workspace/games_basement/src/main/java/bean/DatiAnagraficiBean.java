@@ -3,19 +3,18 @@ package bean;
 import java.sql.Date;
 
 public class DatiAnagraficiBean {
-	private String idUtente,idCittà,nome,cognome,indirizzo,telefono;
+	private String idUtente,idCittà,nome,cognome,telefono;
 	private Date dataNascita;
 	
 	public DatiAnagraficiBean() {}
 
 	public DatiAnagraficiBean(String idUtente,String idCittà,String nome,String cognome,
-							  String indirizzo,String telefono,Date dataNascita){
+							 String telefono,Date dataNascita){
 		
 		this.idUtente=idUtente;
 		this.idCittà=idCittà;
 		this.nome=nome;
 		this.cognome=cognome;
-		this.indirizzo=indirizzo;
 		this.telefono=telefono;
 		this.dataNascita=dataNascita;
 		
@@ -59,14 +58,6 @@ public class DatiAnagraficiBean {
 
 	public void setCognome(String cognome) {
 		this.cognome = cognome;
-	}
-
-	public String getIndirizzo() {
-		return indirizzo;
-	}
-
-	public void setIndirizzo(String indirizzo) {
-		this.indirizzo = indirizzo;
 	}
 
 	public String getTelefono() {
