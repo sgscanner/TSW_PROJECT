@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import bean.CapBean;
 import bean.DatiAnagraficiBean;
+import dao.DatiAnagraficiDAO;
 
-public class DatiAnagrificiImpl {
+public class DatiAnagrificiImpl implements DatiAnagraficiDAO{
 	private Connection c;
 	private ArrayList<DatiAnagraficiBean> al;
 	
@@ -45,5 +45,53 @@ public class DatiAnagrificiImpl {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void addDatiAnagrafici(DatiAnagraficiBean dab) {
+		// TODO Auto-generated method stub
+		try {
+			Statement s=c.createStatement();
+			s.executeUpdate("insert into Dati_anagrafici values('"+dab.getIdUtente()+"','"+dab.getIdCittà()+"',"
+							+ "'"+dab.getNome()+"','"+dab.getCognome()+"','"+dab.getTelefono()+"','"+dab.getDataNascita()+"')");
+		}catch(SQLException e) {
+			
+		}finally {
+			al.add(dab);
+		}
+	}
+
+	@Override
+	public void removeDatiAnagrafici(DatiAnagraficiBean dab) {
+		// TODO Auto-generated method stub
+		try{
+			Statement s=c.createStatement();
+			s.executeUpdate("delete from Dati_anagrafici where Dati_anagrafici.id_utente='"+dab.getIdUtente()+"'");
+		}catch(SQLException e) {
+			
+		}finally {
+			al.remove(dab);
+		}
+	}
+
+	@Override
+	public void updateDatiAnagrafici(DatiAnagraficiBean oldDab, DatiAnagraficiBean newDab) {
+		// TODO Auto-generated method stub
+		try{
+			Statement s=c.createStatement(),s1=c.createStatement();
+			s.executeUpdate("delete from Dati_anagrafici where Dati_anagrafici.id_utente='"+oldDab.getIdUtente()+"'");
+			s1.executeUpdate("insert into Dati_anagrafici values('"+newDab.getIdUtente()+"','"+newDab.getIdCittà()+"',"
+					+ "'"+newDab.getNome()+"','"+newDab.getCognome()+"','"+newDab.getTelefono()+"','"+newDab.getDataNascita()+"')");
+		}catch(SQLException e) {
+			
+		}finally {
+			al.set(al.indexOf(oldDab), newDab);
+		}
+	}
+
+	@Override
+	public ArrayList<DatiAnagraficiBean> getAllDatiAnagrafici() {
+		// TODO Auto-generated method stub
+		return al;
 	}
 }

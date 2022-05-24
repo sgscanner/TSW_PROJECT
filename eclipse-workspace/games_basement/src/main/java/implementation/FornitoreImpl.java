@@ -6,10 +6,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import bean.CapBean;
 import bean.FornitoreBean;
+import dao.FornitoreDAO;
 
-public class FornitoreImpl {
+public class FornitoreImpl implements FornitoreDAO{
 	private Connection c;
 	private ArrayList<FornitoreBean> al;
 	
@@ -40,5 +40,52 @@ public class FornitoreImpl {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void addFornitore(FornitoreBean fb) {
+		// TODO Auto-generated method stub
+		try {
+			Statement s=c.createStatement();
+			s.executeUpdate("insert into Fornitore values('"+fb.getIva()+"','"+fb.getNome()+"','"+fb.getIndirizzo()+"')");
+		}catch(SQLException e){
+			
+		}finally {
+			al.add(fb);
+		}
+	}
+
+	@Override
+	public void removeFornitore(FornitoreBean fb) {
+		// TODO Auto-generated method stub
+		try {
+			Statement s=c.createStatement();
+			s.executeUpdate("delete from Fornitore where Fornitore.partita_iva='"+fb.getIva()+"'");
+		}catch(SQLException e) {
+			
+		}finally {
+			al.remove(fb);
+		}
+		
+	}
+
+	@Override
+	public void updateFornitore(FornitoreBean oldfb, FornitoreBean newfb) {
+		// TODO Auto-generated method stub
+		try {
+			Statement d=c.createStatement(),i=c.createStatement();
+			d.executeUpdate("delete from Fornitore where Fornitore.partita_iva='"+oldfb.getIva()+"'");
+			i.executeUpdate("insert into Fornitore values('"+newfb.getIva()+"','"+newfb.getNome()+"','"+newfb.getIndirizzo()+"')");
+		}catch(SQLException e) {
+			
+		}finally {
+			al.set(al.indexOf(oldfb),newfb);
+		}
+	}
+
+	@Override
+	public ArrayList<FornitoreBean> getAllFornitore() {
+		// TODO Auto-generated method stub
+		return al;
 	}
 }

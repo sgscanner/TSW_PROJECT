@@ -7,8 +7,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import bean.OrdineBean;
+import dao.OrdineDAO;
 
-public class OrdineImpl {
+public class OrdineImpl implements OrdineDAO{
 	private Connection c;
 	private ArrayList<OrdineBean> al;
 	
@@ -44,5 +45,35 @@ public class OrdineImpl {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void addOrdine(OrdineBean ob) {
+		// TODO Auto-generated method stub
+		try {
+			Statement s=c.createStatement();
+		}catch(SQLException e) {
+			
+		}finally {
+			al.add(ob);
+		}
+	}
+
+	@Override
+	public void removeOrdine(OrdineBean ob) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateOrdine(OrdineBean oldob, OrdineBean newob) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<OrdineBean> getAllOrdine() {
+		// TODO Auto-generated method stub
+		return al;
 	}
 }

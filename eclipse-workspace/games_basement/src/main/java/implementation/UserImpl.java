@@ -6,10 +6,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import bean.CapBean;
 import bean.UserBean;
+import dao.UserDAO;
 
-public class UserImpl {
+public class UserImpl implements UserDAO{
 	private Connection c;
 	private ArrayList<UserBean> al;
 
@@ -41,5 +41,29 @@ public class UserImpl {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void addUser(UserBean ub) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteUser(UserBean ub) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateUser(UserBean oldUB, UserBean newUB) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<UserBean> getAllUser() {
+		// TODO Auto-generated method stub
+		return al;
 	}
 }

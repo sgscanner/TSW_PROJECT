@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import bean.CapBean;
 import bean.StandardBean;
+import dao.StandardDAO;
 
-public class StandardImpl {
+public class StandardImpl implements StandardDAO{
 	private Connection c;
 	private ArrayList<StandardBean> al;
 	
@@ -46,5 +46,29 @@ public class StandardImpl {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void addStandard(StandardBean sb) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeStandard(StandardBean sb) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateStandard(StandardBean oldsb, StandardBean newsb) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<StandardBean> getAllStandard() {
+		// TODO Auto-generated method stub
+		return al;
 	}
 }

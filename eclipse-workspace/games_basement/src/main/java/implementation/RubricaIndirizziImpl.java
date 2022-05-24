@@ -7,8 +7,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import bean.RubricaIndirizziBean;
+import dao.RubricaIndirizziDAO;
 
-public class RubricaIndirizziImpl {
+public class RubricaIndirizziImpl implements RubricaIndirizziDAO{
 	private Connection c;
 	private ArrayList<RubricaIndirizziBean> al;
 	
@@ -39,5 +40,29 @@ public class RubricaIndirizziImpl {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void addRubricaIndirizzi(RubricaIndirizziBean rib) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeRubricaIndirizzi(RubricaIndirizziBean rib) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateRubricaIndirizzi(RubricaIndirizziBean oldrib, RubricaIndirizziBean newrib) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<RubricaIndirizziBean> getAllRubricaIndirizzi() {
+		// TODO Auto-generated method stub
+		return al;
 	}
 }

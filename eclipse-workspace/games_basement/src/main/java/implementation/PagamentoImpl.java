@@ -7,8 +7,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import bean.PagamentoBean;
+import dao.PagamentoDAO;
 
-public class PagamentoImpl {
+public class PagamentoImpl implements PagamentoDAO{
 	private Connection c;
 	private ArrayList<PagamentoBean> al;
 
@@ -39,5 +40,29 @@ public class PagamentoImpl {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void addPagamento(PagamentoBean pb) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removePagamento(PagamentoBean pb) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updatePagamento(PagamentoBean oldpb, PagamentoBean newpb) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<PagamentoBean> getAllPagamento() {
+		// TODO Auto-generated method stub
+		return al;
 	}
 }

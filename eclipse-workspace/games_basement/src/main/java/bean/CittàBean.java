@@ -1,7 +1,7 @@
 package bean;
 
 public class CittàBean {
-	private String idCittà,nomeCittà;
+	private String idCittà,nomeCittà,cap;
 	
 	
 	public CittàBean() {
@@ -31,6 +31,14 @@ public class CittàBean {
 
 	public void setNomeCittà(String nomeCittà) {
 		this.nomeCittà = nomeCittà;
+	}
+
+	public String getCap() {
+		return cap;
+	}
+
+	public void setCap(String cap) {
+		this.cap = cap;
 	}
 
 }

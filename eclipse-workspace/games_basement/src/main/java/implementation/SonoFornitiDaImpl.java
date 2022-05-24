@@ -6,10 +6,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import bean.CapBean;
 import bean.SonoFornitiDaBean;
+import dao.SonoFornitiDaDAO;
 
-public class SonoFornitiDaImpl {
+public class SonoFornitiDaImpl implements SonoFornitiDaDAO{
 	private Connection c;
 	private ArrayList<SonoFornitiDaBean> al;
 	
@@ -40,5 +40,29 @@ public class SonoFornitiDaImpl {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void addSonoFornitiDa(SonoFornitiDaBean sfdb) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeSonoFornitiDa(SonoFornitiDaBean sfdb) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateSonoFornitiDa(SonoFornitiDaBean oldsfdb, SonoFornitiDaBean newsfdb) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<SonoFornitiDaBean> getAllSonoFornitiDa() {
+		// TODO Auto-generated method stub
+		return al;
 	}
 }

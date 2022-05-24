@@ -7,8 +7,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import bean.VeloceBean;
+import dao.VeloceDAO;
 
-public class VeloceImpl {
+public class VeloceImpl implements VeloceDAO{
 	private Connection c;
 	private ArrayList<VeloceBean> al;
 		
@@ -39,5 +40,29 @@ public class VeloceImpl {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void addVeloce(VeloceBean vb) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeVeloce(VeloceBean vb) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateVeloce(VeloceBean oldvb, VeloceBean newvb) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<VeloceBean> getAllVeloce() {
+		// TODO Auto-generated method stub
+		return al;
 	}
 }

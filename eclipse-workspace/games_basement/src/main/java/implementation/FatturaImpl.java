@@ -6,10 +6,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import bean.CapBean;
 import bean.FatturaBean;
+import dao.FatturaDAO;
 
-public class FatturaImpl {
+public class FatturaImpl implements FatturaDAO{
 	private Connection c;
 	private ArrayList<FatturaBean> al;
 	
@@ -39,6 +39,30 @@ public class FatturaImpl {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void addFattura(FatturaBean fb) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeFattura(FatturaBean fb) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateFattura(FatturaBean oldfb, FatturaBean newfb) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<FatturaBean> getAllFattura() {
+		// TODO Auto-generated method stub
+		return al;
 	}
 	
 }

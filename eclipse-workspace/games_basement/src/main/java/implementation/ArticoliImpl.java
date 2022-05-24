@@ -1,6 +1,9 @@
 package implementation;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import bean.ArticoliBean;
@@ -47,12 +50,12 @@ public class ArticoliImpl implements ArticoliDAO{
 		}
 	}
 	
-	public ArrayList<ArticoliBean> queryGetProduct(int i) {
+	public ArrayList<ArticoliBean> queryGetProduct() {
 		ArrayList<ArticoliBean> homepage=new ArrayList<ArticoliBean>();
 		
 		try {
 			Statement s=c.createStatement();
-			ResultSet rs=s.executeQuery("select * from Articolo order by rand() limit "+i);
+			ResultSet rs=s.executeQuery("select * from Articolo order by rand() limit 1");
 			while(rs.next()) {
 				String codiceA=rs.getString(1),descrizione=rs.getString(3),tipologia=rs.getString(5),immagine=rs.getString(7),nome=rs.getString(8);
 				int codiceC=rs.getInt(2);

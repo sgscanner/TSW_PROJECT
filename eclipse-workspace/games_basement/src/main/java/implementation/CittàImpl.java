@@ -7,8 +7,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import bean.CittàBean;
+import dao.CittàDAO;
 
-public class CittàImpl {
+public class CittàImpl implements CittàDAO{
 	private Connection c;
 	private ArrayList<CittàBean> al;
 	
@@ -42,5 +43,49 @@ public class CittàImpl {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void addCittà(CittàBean cb) {
+		// TODO Auto-generated method stub
+		try {
+			Statement s=c.createStatement();
+			s.executeUpdate("insert into Città values('"+cb.getIdCittà()+"','"+cb.getNomeCittà()+"')");
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			al.add(cb);
+		}
+	}
+
+	@Override
+	public void removeCittà(CittàBean cb) {
+		// TODO Auto-generated method stub
+		try {
+			Statement s=c.createStatement();
+			s.executeUpdate("delete from Città where Città.id_città='"+cb.getIdCittà()+"'");
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			al.remove(cb);
+		}
+	}
+
+	@Override
+	public void updateCittà(CittàBean oldCittà, CittàBean newCittà) {
+		// TODO Auto-generated method stub
+		try {
+			Statement s=c.createStatement(),s1=c.createStatement();
+			s.executeUpdate("delete from Città where Città.id_città='"+oldCittà.getIdCittà()+"'");
+			s1.executeUpdate("insert into Città values('"+newCittà.getIdCittà()+"','"+newCittà.getNomeCittà()+"')");
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public ArrayList<CittàBean> getAllCittà() {
+		// TODO Auto-generated method stub
+		return al;
 	}
 }
