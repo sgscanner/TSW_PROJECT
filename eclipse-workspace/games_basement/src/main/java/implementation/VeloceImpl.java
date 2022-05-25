@@ -45,24 +45,46 @@ public class VeloceImpl implements VeloceDAO{
 	@Override
 	public void addVeloce(VeloceBean vb) {
 		// TODO Auto-generated method stub
-		
+		try {
+			Statement s=c.createStatement();
+			s.executeUpdate("insert into Veloce values('"+vb.getIdSpedizione()+"','"+vb.getNumOrdine()+"','"+vb.getDataOrdine()+"','"+vb.getTotale()+"')");
+		}catch(SQLException e) {
+			
+		}finally {
+			al.add(vb);
+		}
 	}
 
 	@Override
 	public void removeVeloce(VeloceBean vb) {
 		// TODO Auto-generated method stub
-		
+		try {
+			Statement s=c.createStatement();
+			s.executeUpdate("delete from Veloce where Veloce.id_spedizione='"+vb.getIdSpedizione()+"'");
+		}catch(SQLException e) {
+			
+		}finally {
+			al.remove(vb);
+		}
 	}
 
 	@Override
 	public void updateVeloce(VeloceBean oldvb, VeloceBean newvb) {
 		// TODO Auto-generated method stub
-		
+		try {
+			Statement s=c.createStatement(),s1=c.createStatement();
+			s.executeUpdate("delete from Veloce where Veloce.id_spedizione='"+oldvb.getIdSpedizione()+"'");
+			s1.executeUpdate("insert into Veloce values('"+newvb.getIdSpedizione()+"','"+newvb.getNumOrdine()+"','"+newvb.getDataOrdine()+"','"+newvb.getTotale()+"'");
+		}catch(SQLException e) {
+			
+		}finally {
+			al.set(al.indexOf(oldvb), newvb);
+		}
 	}
 
 	@Override
 	public ArrayList<VeloceBean> getAllVeloce() {
 		// TODO Auto-generated method stub
-		return al;
+	 	return al;
 	}
 }

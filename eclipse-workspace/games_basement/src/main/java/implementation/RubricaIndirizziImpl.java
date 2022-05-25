@@ -45,19 +45,40 @@ public class RubricaIndirizziImpl implements RubricaIndirizziDAO{
 	@Override
 	public void addRubricaIndirizzi(RubricaIndirizziBean rib) {
 		// TODO Auto-generated method stub
-		
+		try {
+			Statement s=c.createStatement();
+			s.executeUpdate("insert into Rubrica_indirizzi values('"+rib.getIdIndirizzo()+"','"+rib.getIdUtente()+"','"+rib.getIdCittà()+"','"+rib.getIndirizzo()+"')");
+		}catch(SQLException e) {
+			
+		}finally {
+			al.add(rib);
+		}
 	}
 
 	@Override
 	public void removeRubricaIndirizzi(RubricaIndirizziBean rib) {
 		// TODO Auto-generated method stub
-		
+		try {
+			Statement s=c.createStatement();
+			s.executeUpdate("delete from Rubrica_indirizzi where Rubrica_indirizzi.Id_Indirizzo='"+rib.getIdIndirizzo()+"'");
+		}catch(SQLException e) {
+			
+		}finally {
+			al.remove(rib);
+		}
 	}
 
 	@Override
 	public void updateRubricaIndirizzi(RubricaIndirizziBean oldrib, RubricaIndirizziBean newrib) {
 		// TODO Auto-generated method stub
-		
+		try {
+			Statement s=c.createStatement(),s1=c.createStatement();
+			s.executeUpdate("delete from Rubrica_indirizzi where Rubrica_indirizzi.Id_Indirizzo='"+oldrib.getIdIndirizzo()+"'");
+			s1.executeUpdate("insert into Rubrica_indirizzi values('"+newrib.getIdIndirizzo()+"','"+newrib.getIdUtente()+"','"+newrib.getIdCittà()+"','"+newrib.getIndirizzo()+"')");
+		}catch(SQLException e) {
+			
+		}finally {
+		}
 	}
 
 	@Override

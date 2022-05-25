@@ -26,7 +26,7 @@ public class OrdineImpl implements OrdineDAO{
 			ResultSet rs=s.executeQuery("select * from Ordine");
 			
 			while(rs.next()) {
-				String numOrdine=rs.getString(1),idU=rs.getString(1);
+				String numOrdine=rs.getString(1),idU=rs.getString(2);
 				double importo=rs.getDouble(3);
 				int numArt=rs.getInt(4);
 				
@@ -52,8 +52,9 @@ public class OrdineImpl implements OrdineDAO{
 		// TODO Auto-generated method stub
 		try {
 			Statement s=c.createStatement();
+			s.executeUpdate("insert into Ordine values('"+ob.getNumOrdine()+"','"+ob.getIdUtente()+"','"+ob.getTotale()+"','"+ob.getNumProdotti()+"')");
 		}catch(SQLException e) {
-			
+			e.printStackTrace();
 		}finally {
 			al.add(ob);
 		}
@@ -62,13 +63,28 @@ public class OrdineImpl implements OrdineDAO{
 	@Override
 	public void removeOrdine(OrdineBean ob) {
 		// TODO Auto-generated method stub
-		
+		try {
+			Statement s=c.createStatement();
+			s.executeUpdate("delete from Ordine where Ordine where Ordine.numero_ordine='"+ob.getNumOrdine()+"'");
+		}catch(SQLException e) {
+			
+		}finally {
+			 al.remove(ob);
+		}
 	}
 
 	@Override
 	public void updateOrdine(OrdineBean oldob, OrdineBean newob) {
 		// TODO Auto-generated method stub
-		
+		try {
+			Statement d=c.createStatement(),i=c.createStatement();
+			d.executeUpdate("delete from Ordine where Ordine where Ordine.numero_ordine='"+oldob.getNumOrdine()+"'");
+			i.execute("insert into Ordine values('"+newob.getNumOrdine()+"','"+newob.getIdUtente()+"','"+newob.getTotale()+"','"+newob.getNumProdotti()+"')");
+		}catch(SQLException e) {
+			
+		}finally {
+			al.set(al.indexOf(oldob),newob);
+		}
 	}
 
 	@Override

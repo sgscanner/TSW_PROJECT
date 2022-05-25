@@ -46,19 +46,40 @@ public class UserImpl implements UserDAO{
 	@Override
 	public void addUser(UserBean ub) {
 		// TODO Auto-generated method stub
-		
+		try {
+			Statement s=c.createStatement();
+			s.executeUpdate("insert into Utente values('"+ub.getUsername()+"','"+ub.getEmail()+"','"+ub.getPassword()+"','"+ub.getRuolo()+"')");
+		}catch(SQLException e) {
+			
+		}finally {
+		}
 	}
 
 	@Override
 	public void deleteUser(UserBean ub) {
 		// TODO Auto-generated method stub
-		
+		try {
+			Statement s=c.createStatement();
+			s.executeUpdate("delete from Utente where Utente.id_utente='"+ub.getUsername()+"'");
+		}catch(SQLException e) {
+			
+		}finally {
+			al.remove(ub);
+		}
 	}
 
 	@Override
 	public void updateUser(UserBean oldUB, UserBean newUB) {
 		// TODO Auto-generated method stub
-		
+		try {
+			Statement s=c.createStatement(),s1=c.createStatement();
+			s.executeUpdate("delete from Utente where Utente.id_utente='"+oldUB.getUsername()+"'");
+			s1.executeUpdate("insert into Utente values('"+newUB.getUsername()+"','"+newUB.getEmail()+"','"+newUB.getPassword()+"','"+newUB.getRuolo()+"')");
+		}catch(SQLException e) {
+			
+		}finally {
+			al.set(al.indexOf(oldUB),newUB);
+		}
 	}
 
 	@Override

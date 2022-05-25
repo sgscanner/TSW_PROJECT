@@ -1,7 +1,9 @@
 DROP DATABASE IF EXISTS gameshop;
-	CREATE DATABASE gameshop;
+CREATE DATABASE gameshop;
 USE gameshop;
 
+CREATE USER 'gameshop'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL PRIVILIGES on gameshop.* to 'gameshop'@'localhost';
 
 DROP TABLE IF EXISTS Catalogo;
 CREATE TABLE Catalogo (
@@ -152,3 +154,6 @@ CREATE TABLE Fattura (
 	foreign key(id_pagamento) REFERENCES PAGAMENTO(id_pagamento)
 );
 
+insert into Fornitore values('01833690157','Sony','Via cantalupo in sabina 29');
+insert into Fornitore values('08106710158','Microsoft','Viale Pasubio 21');
+insert into Fornitore values('03359860966','Nintendo','Via Torri Bianche, 6');

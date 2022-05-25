@@ -45,19 +45,41 @@ public class SonoFornitiDaImpl implements SonoFornitiDaDAO{
 	@Override
 	public void addSonoFornitiDa(SonoFornitiDaBean sfdb) {
 		// TODO Auto-generated method stub
-		
+		try {
+			Statement s=c.createStatement();
+			s.executeUpdate("insert into Sono_forniti_da values('"+sfdb.getCodiceArticoli()+"','"+sfdb.getIva()+"')");
+		}catch(SQLException e) {
+			
+		}finally {
+			al.add(sfdb);
+		}
 	}
 
 	@Override
 	public void removeSonoFornitiDa(SonoFornitiDaBean sfdb) {
 		// TODO Auto-generated method stub
-		
+		try {
+			Statement s=c.createStatement();
+			s.executeUpdate("delete from Sono_forniti_da where Sono_forniti_da.partita_iva='"+sfdb.getIva()+"'");
+		}catch(SQLException e) {
+			
+		}finally {
+			al.remove(sfdb);
+		}
 	}
 
 	@Override
 	public void updateSonoFornitiDa(SonoFornitiDaBean oldsfdb, SonoFornitiDaBean newsfdb) {
 		// TODO Auto-generated method stub
-		
+		try {
+			Statement s=c.createStatement(),s1=c.createStatement();
+			s.executeUpdate("delete from Sono_forniti_da where Sono_forniti_da.partita_iva='"+oldsfdb.getIva()+"'");
+			s1.executeUpdate("insert into Sono_forniti_da values('"+newsfdb.getCodiceArticoli()+"','"+newsfdb.getIva()+"')");
+		}catch(SQLException e) {
+			
+		}finally {
+			al.set(al.indexOf(oldsfdb), newsfdb);
+		}
 	}
 
 	@Override

@@ -2,16 +2,16 @@ package bean;
 
 public class UserBean {
 	private String password, username, email;
-	private String String;
+	private String ruolo;
 
 	public UserBean() {
 	}
 
-	public UserBean(String password, String username, String email, String String) {
+	public UserBean(String password, String username, String email, String ruolo) {
 		this.password = password;
 		this.username = username;
 		this.email = email;
-		this.String = String;
+		this.ruolo = ruolo;
 	}
 
 	public String getPassword() {
@@ -38,11 +38,11 @@ public class UserBean {
 		this.email = email;
 	}
 
-	public String getString() {
-		return String;
+	public String getRuolo() {
+		return ruolo;
 	}
 
-	public void setString(String String) {
-		this.String = String;
+	public void setRuolo(String ruolo) {
+		this.ruolo = ruolo;
 	}
 }
