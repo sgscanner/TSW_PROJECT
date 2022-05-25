@@ -16,49 +16,43 @@
 			<h4>Dati Personali</h4><br>
 
 				<!-- Nome-->
-
 				<div class="form-group">
 					<label>Nome</label><br>
 					<input type="text" placeholder="Inserisci il tuo nome" id="Nome">
 				</div>
 
 				<!-- Cognome-->
-
 				<div class="form-group">
 					<label >Cognome</label><br>
 					<input type="text" placeholder="Inserisci il tuo cognome" id="Cognome">
 				</div> 
 
 				<!-- Username-->
-
 				<div class="form-group">
 					<label >Username</label><br>
 					<input type="text" placeholder="Scegli un username!" id="Username">
 				</div> 
 
 				<!-- Password-->
-
 				<div class="form-group">
 					<label >Password</label><br>
-					<input type="password" placeholder="Inserisci la tua password" id="Password">
+					<input type="password" placeholder="Inserisci la tua password" id="password">
 				</div> 
 
-				<!-- Text input-->
-
+				<!-- Confirm password-->
 				<div class="form-group">
 					<label >Confirm Password</label><br>
-					<input type="password" placeholder="Reinserisci la tua password" id="PasswordDue">
+					<input type="password" placeholder="Reinserisci la tua password" id="passwordDue" onkeyup="checkPassword()">
+					<p id="alertPassword"></p>
 				</div> 
 
 				<!-- Text input-->
 				<div class="form-group">
-					<label class="col-md-4 control-label">E-Mail</label><br>
+					<label >E-Mail</label><br>
 					<input type="email" placeholder="Inserisci la tua e-mail" id="email">					
 				</div> 
 
-
 				<!-- Num. Telefono-->
-
 				<div class="form-group">
 					<label >Numero di Telefono</label><br>
 					<input type="text" id="phone" onchange="checkPhone(this.value)" placeholder="Inserisci numero telefono">
@@ -113,6 +107,19 @@
 	        console.log("(error)phone "+phone);
 
 	    }
+	}
+	
+	function checkPassword(){
+		var firstPassword=document.getElementById("password").value;
+		var secondPassword=document.getElementById("passwordDue").value;
+		
+		if(firstPassword == secondPassword){
+			document.getElementById("alertPassword").style.color="#8CC63E";
+			document.getElementById("alertPassword").innerHTML='<span>Le password corrispondono!</span>';
+		}else{
+			document.getElementById("alertPassword").style.color="#EE2B39";
+			document.getElementById("alertPassword").innerHTML='<span>Le password non corrispondono!</span>';
+		}
 	}
 </script>
 </body>
