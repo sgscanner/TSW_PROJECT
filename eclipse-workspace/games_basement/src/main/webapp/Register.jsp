@@ -15,65 +15,45 @@
 		<form class="register_form" action="HomePage.html" method="post" id="contact_form" name="regForm">
 			<h4>Dati Personali</h4><br>
 
-				<!-- Nome-->
-				<div class="form-group">
-					<label>Nome</label><br>
-					<input type="text" placeholder="Inserisci il tuo nome" id="Nome">
-				</div>
-
-				<!-- Cognome-->
-				<div class="form-group">
-					<label >Cognome</label><br>
-					<input type="text" placeholder="Inserisci il tuo cognome" id="Cognome">
-				</div> 
-
-				<!-- Username-->
-				<div class="form-group">
-					<label >Username</label><br>
-					<input type="text" placeholder="Scegli un username!" id="Username">
-				</div> 
-
-				<!-- Password-->
-				<div class="form-group">
-					<label >Password</label><br>
-					<input type="password" placeholder="Inserisci la tua password" id="password">
-				</div> 
-
-				<!-- Confirm password-->
-				<div class="form-group">
-					<label >Confirm Password</label><br>
-					<input type="password" placeholder="Reinserisci la tua password" id="passwordDue" onkeyup="checkPassword()">
-					<p id="alertPassword"></p>
-				</div> 
-
-				<!-- Text input-->
-				<div class="form-group">
-					<label >E-Mail</label><br>
-					<input type="email" placeholder="Inserisci la tua e-mail" id="email">					
-				</div> 
-
-				<!-- Num. Telefono-->
-				<div class="form-group">
-					<label >Numero di Telefono</label><br>
-					<input type="text" id="phone" onchange="checkPhone(this.value)" placeholder="Inserisci numero telefono">
-				</div> 
-
-				<!-- BDay -->
-				<div class="form-group">
-					<label>Data di nascita</label><br>
-					<input type="date" placeholder="01/01/1901">
-				</div> 
 				
-				<!-- Residenza -->
 				<div class="form-group">
-					<label>Indirizzo Residenza</label><br>
+					<!-- Nome -->
+					<input type="text" placeholder="Inserisci il tuo nome" id="Nome">
+					<!-- Cognome -->
+					<input type="text" placeholder="Inserisci il tuo cognome" id="Cognome">
+					
+					<!-- Numero Telefono -->
+					<input type="text" id="phone" onchange="regexPhone(this.value)" placeholder="Inserisci numero telefono">
+					<p id="checkPhone"></p>
+				
+					<!-- BDAY -->
+					<input type="date" placeholder="01/01/1901">
+					
+					<!-- Residenza -->
 					<input type="text" placeholder="Via Roma 01">
-				</div> 
-
-				<!-- CAP -->
+					
+					<!-- Cap -->
+					<input type="text" placeholder="CAP">
+				</div>
+			
 				<div class="form-group">
-					<label>CAP</label><br>
-					<input type="text" placeholder="00000">
+				<!-- Password -->
+					<input type="password" placeholder="Inserisci la tua password" id="password">
+					<img src="img/eyeClose.png" width="30" height="25" id="eye" onclick="showPwd()">
+					<p id="strongPwd"></p>
+				</div>
+			
+			
+				<div class="form-group">
+					<!--  Username -->
+					<input type="text" placeholder="Scegli un username!" id="Username">
+				
+					<!-- CheckPassword -->
+					<input type="password" placeholder="Reinserisci la tua password" id="passwordDue" onkeyup="checkPassword()">
+					<p id="alertPassword">
+					<!-- Email-->	
+					<input type="email" onchange="regexEmail(this.value)" placeholder="Inserisci la tua e-mail" id="email">	
+					<p id="checkEmail"></p>		
 				</div> 
 				
 				<!-- Button -->
@@ -88,27 +68,8 @@
 		<a href="HomePage.html">
 			<img src="img/logo.jpeg" alt="Logo failed to load" style="width:150px;heihgt:150px;">
 		</a>
-	</footer>
-<script type="text/javascript">
-	function checkPhone(phone){
-		/*(123) 456-7890
-		  (123)456-7890
-		  123-456-7890
-		  123.456.7890
-		  1234567890
-		  +31636363634
-		  075-63546725*/
-		var reg = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
-	    var result=phone.match(reg);
-	    if (result) {
-	        console.log("(true)phone  "+phone);
-	        return (true)
-	    } else {
-	        console.log("(error)phone "+phone);
-
-	    }
-	}
-	
+	</footer >
+<script>
 	function checkPassword(){
 		var firstPassword=document.getElementById("password").value;
 		var secondPassword=document.getElementById("passwordDue").value;
@@ -119,6 +80,51 @@
 		}else{
 			document.getElementById("alertPassword").style.color="#EE2B39";
 			document.getElementById("alertPassword").innerHTML='<span>Le password non corrispondono!</span>';
+		}
+	}
+
+	function regexEmail(email){
+		/*someText@someEmail.com(o un dominio compreso fra 2 e 4 caratteri)*/
+		var regex=/\w+@\w+\.\w{2,4}/i;
+		var result=email.match(regex);
+		
+		if(!result){
+			document.getElementById("checkEmail").style.color="#EE2B39";
+			document.getElementById("checkEmail").innerHTML="<span>Inserisci una email corretta.</span>";
+		}else{
+			document.getElementById("checkEmail").innerHTML="";
+		}
+	}
+	
+	function regexPhone(phone){
+		/*(123) 456-7890
+		  (123)456-7890
+		  123-456-7890
+		  123.456.7890
+		  1234567890
+		  +31636363634
+		  075-63546725*/
+		var reg = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+	    var result=phone.match(reg);
+	
+		if(!result){
+			document.getElementById("checkPhone").style.color="#EE2B39";
+			document.getElementById("checkPhone").innerHTML='<span>Numero di telefono non valido</span>';
+		}else{
+			document.getElementById("checkPhone").innerHTML='';
+		}
+	}
+	
+	function showPwd(){
+		var pwd=document.getElementById("password");
+		var img=document.getElementById("eye");
+		
+		if(pwd.getAttribute("type")==="password"){
+			pwd.setAttribute("type","text");
+			img.src="img/eye.png";
+		}else{
+			pwd.setAttribute("type","password");
+			img.src="img/eyeClose.png";
 		}
 	}
 </script>
