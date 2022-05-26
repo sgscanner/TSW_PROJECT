@@ -10,6 +10,7 @@
 <title>Registrazione</title>
 </head>
 <body>
+
 	<div class="container">
 
 		<form class="register_form" action="HomePage.html" method="post" id="contact_form" name="regForm">

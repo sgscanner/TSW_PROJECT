@@ -154,6 +154,16 @@ CREATE TABLE Fattura (
 	foreign key(id_pagamento) REFERENCES PAGAMENTO(id_pagamento)
 );
 
+DROP TABLE IF EXISTS Recensione;
+CREATE TABLE Recensione(
+	numeroStelle int not null,
+	id_utente varchar(250) not null,
+	codice_articoli varchar(250) not null,
+	
+	foreign  key(id_utente) references Utente(id_utente),
+	foreign  key(codice_articoli) references Articolo(codice_articoli)
+);
+
 insert into Fornitore values('01833690157','Sony','Via cantalupo in sabina 29');
 insert into Fornitore values('08106710158','Microsoft','Viale Pasubio 21');
 insert into Fornitore values('03359860966','Nintendo','Via Torri Bianche, 6');

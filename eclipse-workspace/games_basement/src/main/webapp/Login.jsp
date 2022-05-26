@@ -15,6 +15,7 @@
 				<div class="form-group"> 
 					<label>Username</label>&nbsp;
 					<input type="text" name="username" placeholder="Inserisci username"><br>
+					<p id="checkUsername"></p>
 				</div>
 				
 				<!-- Password -->
@@ -33,5 +34,9 @@
 	<footer>
 		<a href="HomePage.html" >Home</a>
 	</footer>
+<script>
+	
+
+</script>	
 </body>
 </html>
