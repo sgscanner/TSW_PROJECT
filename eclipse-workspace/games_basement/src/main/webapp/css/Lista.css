@@ -1,0 +1,75 @@
+@charset "ISO-8859-1";
+
+html { font-size: 22px; }
+body { padding: 1rem; }
+
+.prodotti {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  gap: 2px;
+  margin-top:15%;
+  margin-bottom:10%;
+}
+
+.prodotto {
+  background-color: white;
+  color: black;
+  border: 1px black solid;
+  padding: 1rem;
+  height: 15rem;
+}
+
+.image{
+	border:solid black 1px;
+	width:150px;
+	height:150px;
+	margin:auto;
+	float:none;
+	text-align:center;
+	position:relative;
+}
+
+.bottone1{
+	float:left;
+}
+
+.bottone2{
+	float:right;
+}
+
+.prezzo{
+	float:left;
+}
+
+.stelle{
+	float:right;
+}
+
+.botton{
+	clear:both;
+}
+
+A:LINK{
+	color:black;
+}
+
+A:VISITED{
+	color:black;
+}
+
+A:HOVER{
+	color:red;
+}
+
+A:ACTIVE{
+	color:red;
+}
+
+@media (min-width: 600px) {
+  .prodotti { grid-template-columns: repeat(2, 1fr);}
+}
+
+@media (min-width: 900px) {
+  .prodotti { grid-template-columns: repeat(3, 1fr); }
+}
