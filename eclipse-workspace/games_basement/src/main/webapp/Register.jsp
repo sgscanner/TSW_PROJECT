@@ -13,7 +13,7 @@
 
 	<div class="container">
 
-		<form class="register_form" action="HomePage.html" method="post" id="contact_form" name="regForm">
+		<form class="register_form" action="RegisterServlet" method="post" id="contact_form" name="regForm">
 			<h4>Dati Personali</h4><br>
 
 				
@@ -39,7 +39,7 @@
 			
 				<div class="form-group">
 				<!-- Password -->
-					<input type="password" placeholder="Inserisci la tua password" id="password">
+					<input type="password" onkeyup="validatePassword()" placeholder="Inserisci la tua password" id="password">
 					<img src="img/eyeClose.png" width="30" height="25" id="eye" onclick="showPwd()">
 					<p id="strongPwd"></p>
 				</div>
@@ -128,6 +128,21 @@
 			img.src="img/eyeClose.png";
 		}
 	}
+	
+	function validatePassword(){
+		var pwd=document.getElementById("password").value;
+		var specialRegex=/\W|_/;
+		var length=pwd.length;
+		
+		if(length<=8 && !pwd.match(specialRegex)){
+			document.getElementById("strongPwd").innerHTML="La password è corta e non contiene caratteri speciali";
+		}else if(length>=8 && !pwd.match(specialRegex)){
+			document.getElementById("strongPwd").innerHTML="La password non contiene caratteri speciali";
+		}else if(length>=8 && pwd.match(specialRegex)){
+			document.getElementById("strongPwd").innerHTML="Password forte";
+		}
+	}
+	
 </script>
 </body>
 </html>
