@@ -19,42 +19,44 @@
 				
 				<div class="form-group">
 					<!-- Nome -->
-					<input type="text" placeholder="Inserisci il tuo nome" id="Nome">
+					<input type="text" placeholder="Inserisci il tuo nome" id="Nome" name="nome">
 					<!-- Cognome -->
-					<input type="text" placeholder="Inserisci il tuo cognome" id="Cognome">
+					<input type="text" placeholder="Inserisci il tuo cognome" id="Cognome" name="surname">
 					
 					<!-- Numero Telefono -->
-					<input type="text" id="phone" onchange="regexPhone(this.value)" placeholder="Inserisci numero telefono">
-					<p id="checkPhone"></p>
+					<input type="text" id="phone" name="phoneNumber" onchange="regexPhone(this.value)" placeholder="Inserisci numero telefono">
 				
 					<!-- BDAY -->
-					<input type="date" placeholder="01/01/1901">
+					<input type="date" placeholder="01/01/1901" name="bday">
 					
 					<!-- Residenza -->
-					<input type="text" placeholder="Via Roma 01">
+					<input type="text" placeholder="Via Roma 01" name="indirizzo">
 					
 					<!-- Cap -->
-					<input type="text" placeholder="CAP">
+					<input type="text" placeholder="CAP" name="cap">
+					
+					<!-- Nome Città -->
+					<input type="text" placeholder="Città" name="città">
 				</div>
 			
 				<div class="form-group">
 				<!-- Password -->
-					<input type="password" onkeyup="validatePassword()" placeholder="Inserisci la tua password" id="password">
+					<input type="password" name="password" onkeyup="validatePassword()" placeholder="Inserisci la tua password" id="password">
 					<img src="img/eyeClose.png" width="30" height="25" id="eye" onclick="showPwd()">
-					<p id="strongPwd"></p>
 				</div>
 			
 			
 				<div class="form-group">
 					<!--  Username -->
-					<input type="text" placeholder="Scegli un username!" id="Username">
+					<input type="text" placeholder="Scegli un username!" name="username" id="Username">
 				
 					<!-- CheckPassword -->
 					<input type="password" placeholder="Reinserisci la tua password" id="passwordDue" onkeyup="checkPassword()">
-					<p id="alertPassword">
+					
 					<!-- Email-->	
-					<input type="email" onchange="regexEmail(this.value)" placeholder="Inserisci la tua e-mail" id="email">	
-					<p id="checkEmail"></p>		
+					<input type="email" name="email" onchange="regexEmail(this.value)" placeholder="Inserisci la tua e-mail" id="email">	
+
+					<p id="alert">
 				</div> 
 				
 				<!-- Button -->
@@ -76,11 +78,11 @@
 		var secondPassword=document.getElementById("passwordDue").value;
 		
 		if(firstPassword == secondPassword){
-			document.getElementById("alertPassword").style.color="#8CC63E";
-			document.getElementById("alertPassword").innerHTML='<span>Le password corrispondono!</span>';
+			document.getElementById("alert").style.color="#8CC63E";
+			document.getElementById("alert").innerHTML='<span>Le password corrispondono!</span>';
 		}else{
-			document.getElementById("alertPassword").style.color="#EE2B39";
-			document.getElementById("alertPassword").innerHTML='<span>Le password non corrispondono!</span>';
+			document.getElementById("alert").style.color="#EE2B39";
+			document.getElementById("alert").innerHTML='<span>Le password non corrispondono!</span>';
 		}
 	}
 
@@ -90,10 +92,10 @@
 		var result=email.match(regex);
 		
 		if(!result){
-			document.getElementById("checkEmail").style.color="#EE2B39";
-			document.getElementById("checkEmail").innerHTML="<span>Inserisci una email corretta.</span>";
+			document.getElementById("alert").style.color="#EE2B39";
+			document.getElementById("alert").innerHTML="<span>Inserisci una email corretta.</span>";
 		}else{
-			document.getElementById("checkEmail").innerHTML="";
+			document.getElementById("alert").innerHTML="";
 		}
 	}
 	
@@ -109,10 +111,10 @@
 	    var result=phone.match(reg);
 	
 		if(!result){
-			document.getElementById("checkPhone").style.color="#EE2B39";
-			document.getElementById("checkPhone").innerHTML='<span>Numero di telefono non valido</span>';
+			document.getElementById("alert").style.color="#EE2B39";
+			document.getElementById("alert").innerHTML='<span>Numero di telefono non valido</span>';
 		}else{
-			document.getElementById("checkPhone").innerHTML='';
+			document.getElementById("alert").innerHTML='';
 		}
 	}
 	
@@ -135,11 +137,11 @@
 		var length=pwd.length;
 		
 		if(length<=8 && !pwd.match(specialRegex)){
-			document.getElementById("strongPwd").innerHTML="La password è corta e non contiene caratteri speciali";
+			document.getElementById("alert").innerHTML="La password è corta e non contiene caratteri speciali";
 		}else if(length>=8 && !pwd.match(specialRegex)){
-			document.getElementById("strongPwd").innerHTML="La password non contiene caratteri speciali";
+			document.getElementById("alert").innerHTML="La password non contiene caratteri speciali";
 		}else if(length>=8 && pwd.match(specialRegex)){
-			document.getElementById("strongPwd").innerHTML="Password forte";
+			document.getElementById("alert").innerHTML="Password forte";
 		}
 	}
 	

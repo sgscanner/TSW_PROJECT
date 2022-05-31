@@ -7,7 +7,7 @@ public class UserBean {
 	public UserBean() {
 	}
 
-	public UserBean(String password, String username, String email, String ruolo) {
+	public UserBean(String username, String email, String password, String ruolo) {
 		this.password = password;
 		this.username = username;
 		this.email = email;

@@ -13,12 +13,9 @@ CREATE TABLE Catalogo (
 DROP TABLE IF EXISTS Utente;
 CREATE TABLE Utente (
 	id_utente varchar(25) not null primary key,
-  email varchar(25) not null ,
-  codice_catalogo int(10),
+  email varchar(30) not null ,
   password varchar(32) not null,
   
-  foreign key(codice_catalogo) REFERENCES catalogo(codice_catalogo),
-  UNIQUE KEY email(email)
 );
 
 DROP TABLE IF EXISTS Città;

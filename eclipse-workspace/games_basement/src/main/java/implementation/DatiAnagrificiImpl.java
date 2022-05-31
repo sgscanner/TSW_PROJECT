@@ -50,12 +50,11 @@ public class DatiAnagrificiImpl implements DatiAnagraficiDAO{
 	@Override
 	public void addDatiAnagrafici(DatiAnagraficiBean dab) {
 		// TODO Auto-generated method stub
-		try {
-			Statement s=c.createStatement();
+		try(Statement s=c.createStatement();) {
 			s.executeUpdate("insert into Dati_anagrafici values('"+dab.getIdUtente()+"','"+dab.getIdCittà()+"',"
 							+ "'"+dab.getNome()+"','"+dab.getCognome()+"','"+dab.getTelefono()+"','"+dab.getDataNascita()+"')");
 		}catch(SQLException e) {
-			
+			e.printStackTrace();
 		}finally {
 			al.add(dab);
 		}

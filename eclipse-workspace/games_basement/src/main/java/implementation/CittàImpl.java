@@ -48,8 +48,7 @@ public class CittàImpl implements CittàDAO{
 	@Override
 	public void addCittà(CittàBean cb) {
 		// TODO Auto-generated method stub
-		try {
-			Statement s=c.createStatement();
+		try(Statement s=c.createStatement();) {
 			s.executeUpdate("insert into Città values('"+cb.getIdCittà()+"','"+cb.getNomeCittà()+"')");
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -64,6 +63,7 @@ public class CittàImpl implements CittàDAO{
 		try {
 			Statement s=c.createStatement();
 			s.executeUpdate("delete from Città where Città.id_città='"+cb.getIdCittà()+"'");
+			s.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
