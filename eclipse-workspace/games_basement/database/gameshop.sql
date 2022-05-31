@@ -15,7 +15,7 @@ CREATE TABLE Utente (
 	id_utente varchar(25) not null primary key,
   email varchar(30) not null ,
   password varchar(32) not null,
-  
+  ruolo varchar(30 ) not null	
 );
 
 DROP TABLE IF EXISTS Città;

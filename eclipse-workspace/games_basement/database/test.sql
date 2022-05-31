@@ -1,0 +1,2 @@
+CREATE TAble Test;
+DROP
