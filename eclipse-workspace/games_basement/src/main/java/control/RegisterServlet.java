@@ -14,8 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import java.util.Base64;
-
 import bean.DatiAnagraficiBean;
 import bean.UserBean;
 import implementation.DatiAnagrificiImpl;
@@ -46,8 +44,8 @@ public class RegisterServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String uName=request.getParameter("username"),password=request.getParameter("password"),cap=request.getParameter("cap"),indirizzo=request.getParameter("indirizzo"),
-				date=request.getParameter("bday"),nome=request.getParameter("nome"),cognome=request.getParameter("surname"),telefono=request.getParameter("phoneNumber"),
+		String uName=request.getParameter("username"),password=request.getParameter("password"),cap=request.getParameter("cap"),
+				date=request.getParameter("bday"),nome=request.getParameter("nome"),cognome=request.getParameter("cognome"),telefono=request.getParameter("phone"),
 				email=request.getParameter("email"),città=request.getParameter("citta");	
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		long l;

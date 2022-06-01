@@ -1,17 +1,91 @@
 @charset "UTF-8";
-.container{
-	height: auto;
-	place-items:center;
-	text-align:center
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+* {margin: 0; padding: 0;}
+
+html {
+	height: 100%;
+	/*Image only BG fallback*/
+	
+	/*background = gradient + image pattern combo*/
+	background: 
+		linear-gradient(#000000,rgb(192,28,40));
 }
 
-.form-group {
-	margin: auto;
-	width: 50%;
-	border: 3px solid white;
-	padding: 10px;
+body {
+	font-family: montserrat, arial, verdana;
 }
 
-footer{
-	text-align:center;
+#msform fieldset {
+	background: white;
+	border: 0 none;
+	border-radius: 3px;
+	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+	padding: 20px 30px;
+	box-sizing: border-box;
+	width: 80%;
+	margin: 0 10%;
+	
+	/*stacking fieldsets above each other*/
+	position: relative;
+}
+
+#msform {
+	width: 400px;
+	margin: 50px auto;
+	text-align: center;
+	position: relative;
+}
+
+/*Hide all except first fieldset*/
+#msform fieldset:not(:first-of-type) {
+	display: none;
+}
+
+/*inputs*/
+#msform input {
+	padding: 15px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	width: 100%;
+	box-sizing: border-box;
+	font-family: montserrat;
+	color: #2C3E50;
+	font-size: 13px;
+}
+
+/*buttons*/
+#msform .button {
+	width: 100px;
+	background: rgb(192,28,40);
+	font-weight: bold;
+	color: white;
+	border: 0 none;
+	border-radius: 1px;
+	cursor: pointer;
+	padding: 10px 5px;
+	margin: 10px 5px;
+}
+
+#msform .button:hover, #msform .button:focus {
+	box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+}
+
+#username{
+	background-image:url(img/utente.png);
+	position:left;
+	padding-left:30px;
+	background-size:15px;
+	background-repeat:no-repeat;
+	border-radius:3 px;
+}
+
+#password{
+	background-image:url(img/password.png);
+	position:left;
+	padding-left:30px;
+	background-size:15px;
+	background-repeat:no-repeat;
+	border-radius:3 px;
 }

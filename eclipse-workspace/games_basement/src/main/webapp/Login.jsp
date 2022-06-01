@@ -9,34 +9,15 @@
 </head>
 <body>
 	<div class="container">
-		<form class="form_login" action="HomePage.html" method="POST">
-			<h4>Inserisci le tue informazioni</h4>
-				<!-- Username -->
-				<div class="form-group"> 
-					<label>Username</label>&nbsp;
-					<input type="text" name="username" placeholder="Inserisci username"><br>
-					<p id="checkUsername"></p>
-				</div>
-				
-				<!-- Password -->
-				<div class="form-group">
-					<label>Password</label>&nbsp;<input type="password" name="password" placeholder="Inserisci password"><br>
-				</div>
-				
-				<!-- Buttons -->
-				<div class="form-group">
-					<input type="submit" value="Login">&nbsp;
-					<input type="reset" value="Clear">&nbsp;
-					Non ancora un utente?<a href="Register.jsp">Registrati!</a>
-				</div>
+		<form id="msform" class="form_login" action="LoginServlet" method="POST">
+			<fieldset>
+			    <h2 class="fs-title">Login</h2>
+			    <input type="text" id="username" name="username" placeholder="Username" />
+			    <input type="password" id="password" name="password" placeholder="Password" />
+			   	<a href="Register.jsp"><button class="button">Registrati</button></a>
+			    <input type="button" name="next" class="button" value="Login" />
+	 	 	</fieldset>
 		</form>
 	</div>
-	<footer>
-		<a href="HomePage.html" >Home</a>
-	</footer>
-<script>
-	
-
-</script>	
 </body>
 </html>
