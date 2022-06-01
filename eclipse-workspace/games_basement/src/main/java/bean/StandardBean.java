@@ -2,7 +2,11 @@ package bean;
 
 import java.sql.Date;
 
-public class StandardBean {
+public class StandardBean implements java.io.Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2849550795657922316L;
 	private int idSpedizione;
 	private String numOrdine;
 	private Date dataOrdine;
@@ -49,6 +53,12 @@ public class StandardBean {
 
 	public void setTotale(double totale) {
 		this.totale = totale;
+	}
+
+	@Override
+	public String toString() {
+		return "StandardBean [idSpedizione=" + idSpedizione + ", numOrdine=" + numOrdine + ", dataOrdine=" + dataOrdine
+				+ ", totale=" + totale + "]";
 	}
 
 }

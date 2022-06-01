@@ -1,6 +1,10 @@
 package bean;
 
-public class RecensioneBean {
+public class RecensioneBean implements java.io.Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6200178024799958170L;
 	private int numeroStelle;
 	private String codiceArticolo,idUtente;
 	
@@ -36,6 +40,12 @@ public class RecensioneBean {
 
 	public void setIdUtente(String idUtente) {
 		this.idUtente = idUtente;
+	}
+
+	@Override
+	public String toString() {
+		return "RecensioneBean [numeroStelle=" + numeroStelle + ", codiceArticolo=" + codiceArticolo + ", idUtente="
+				+ idUtente + "]";
 	}
 
 }

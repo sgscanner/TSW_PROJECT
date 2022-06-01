@@ -1,6 +1,10 @@
 package bean;
 
-public class UserBean {
+public class UserBean implements java.io.Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 504079178701869142L;
 	private String password, username, email;
 	private String ruolo;
 
@@ -44,5 +48,11 @@ public class UserBean {
 
 	public void setRuolo(String ruolo) {
 		this.ruolo = ruolo;
+	}
+
+	@Override
+	public String toString() {
+		return "UserBean [password=" + password + ", username=" + username + ", email=" + email + ", ruolo=" + ruolo
+				+ "]";
 	}
 }

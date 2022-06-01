@@ -37,7 +37,7 @@
 					<input type="text" placeholder="CAP" name="cap">
 					
 					<!-- Nome Città -->
-					<input type="text" placeholder="Città" name="città">
+					<input type="text" placeholder="Città" name="citta">
 				</div>
 			
 				<div class="form-group">

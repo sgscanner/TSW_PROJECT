@@ -1,6 +1,10 @@
 package bean;
 
-public class FornitoreBean {
+public class FornitoreBean implements java.io.Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1943829324313237331L;
 	private String iva,nome,indirizzo;
 	
 	public FornitoreBean() {}
@@ -33,5 +37,10 @@ public class FornitoreBean {
 
 	public void setIndirizzo(String indirizzo) {
 		this.indirizzo = indirizzo;
+	}
+
+	@Override
+	public String toString() {
+		return "FornitoreBean [iva=" + iva + ", nome=" + nome + ", indirizzo=" + indirizzo + "]";
 	};
 }

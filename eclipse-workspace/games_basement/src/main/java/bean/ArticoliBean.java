@@ -1,7 +1,11 @@
 package bean;
 
 
-public class ArticoliBean {
+public class ArticoliBean implements java.io.Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String nome,descrizione,immagine,codiceA,tipologia;
 	private long codiceC;
 	private double prezzo;
@@ -148,5 +152,12 @@ public class ArticoliBean {
 	 */
 	public void setOfferta(boolean offerta) {
 		this.offerta = offerta;
+	}
+
+	@Override
+	public String toString() {
+		return "ArticoliBean [nome=" + nome + ", descrizione=" + descrizione + ", immagine=" + immagine + ", codiceA="
+				+ codiceA + ", tipologia=" + tipologia + ", codiceC=" + codiceC + ", prezzo=" + prezzo + ", offerta="
+				+ offerta + "]";
 	}
 }

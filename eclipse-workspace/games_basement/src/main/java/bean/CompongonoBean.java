@@ -1,6 +1,10 @@
 package bean;
 
-public class CompongonoBean {
+public class CompongonoBean implements java.io.Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8327016825696622708L;
 	private String codiceArticoli,numOrdine;
 	private int quantità;
 	
@@ -41,6 +45,12 @@ public class CompongonoBean {
 
 	public void setQuantità(int quantità) {
 		this.quantità = quantità;
+	}
+
+	@Override
+	public String toString() {
+		return "CompongonoBean [codiceArticoli=" + codiceArticoli + ", numOrdine=" + numOrdine + ", quantità="
+				+ quantità + "]";
 	}
 
 }
