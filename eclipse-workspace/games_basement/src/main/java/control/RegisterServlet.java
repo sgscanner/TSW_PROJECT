@@ -1,6 +1,9 @@
 package control;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,21 +14,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import java.util.Base64;
+
 import bean.CittàBean;
 import bean.DatiAnagraficiBean;
+import bean.UserBean;
 import implementation.CittàImpl;
 import implementation.DatiAnagrificiImpl;
+import implementation.UserImpl;
 /**
  * Servlet implementation class RegisterServlet
  */
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static String driver="jdbc:mysql://localhost:3306/gameshop";
-	private static String uname="gameshop",pass="password";
-	 
-	
-	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -48,7 +50,7 @@ public class RegisterServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String uName=request.getParameter("username"),password=request.getParameter("password"),cap=request.getParameter("cap"),indirizzo=request.getParameter("indirizzo"),
 				date=request.getParameter("bday"),nome=request.getParameter("nome"),cognome=request.getParameter("surname"),telefono=request.getParameter("phoneNumber"),
-				email=request.getParameter("email"),città=request.getParameter("città");	
+				email=request.getParameter("email"),città=request.getParameter("citta");	
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		long l;
 		Date d1;
@@ -60,24 +62,48 @@ public class RegisterServlet extends HttpServlet {
 			//istanzio le implementazioni dei DAO
 			DatiAnagrificiImpl dai=new DatiAnagrificiImpl();
 			CittàImpl ci=new CittàImpl();
+			UserImpl ui=new UserImpl();
 			
 			//istanzio i Bean
-			DatiAnagraficiBean dab=new DatiAnagraficiBean(uName,cap,nome,cognome,telefono,d1);
+			DatiAnagraficiBean dab=new DatiAnagraficiBean(uName,cap,nome,cognome,telefono,d1,città);
 			CittàBean cb=new CittàBean(cap,città);
+			UserBean ub=new UserBean(uName,email,encryptPwd(password),"normale");
 			
 			//aggiuta al db dei Bean
-			ci.addCittà(cb);
-			dai.addDatiAnagrafici(dab);
+			ui.addUser(ub);
+			ui.stopConnection();
 			
-			//rilascio connessioni
+			ci.addCittà(cb);
 			ci.stopConnection();
+
+			dai.addDatiAnagrafici(dab);
 			dai.stopConnection();
 			
-			//redirect alla homepage
-			response.sendRedirect("HomePage.jsp");
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
+	//metodi utils
+	private String encryptPwd(String toEncrypt) {
+		String generatedPassword=null;
+		String salt="gameshop";
+		
+		try {
+			MessageDigest md=MessageDigest.getInstance("SHA-1");
+			md.update(salt.getBytes(StandardCharsets.UTF_8));
+			byte[] bytes=md.digest(toEncrypt.getBytes(StandardCharsets.UTF_8));
+			StringBuilder sb=new StringBuilder();
+			for(int i=0;i<bytes.length;i++) {
+				sb.append(Integer.toString((bytes[i] & 0xff)+0x100,16).substring(1));
+			}
+			generatedPassword=sb.toString();
+		}catch(NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		
+		return generatedPassword;
+	}
+	
 }

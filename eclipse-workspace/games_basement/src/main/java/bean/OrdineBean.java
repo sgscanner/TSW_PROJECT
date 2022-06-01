@@ -1,6 +1,10 @@
 package bean;
 
-public class OrdineBean {
+public class OrdineBean implements java.io.Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5447490824210428305L;
 	private String numOrdine,idUtente;
 	private double totale;
 	private int numProdotti;
@@ -40,6 +44,12 @@ public class OrdineBean {
 	}
 	public void setTotale(double totale) {
 		this.totale = totale;
+	}
+
+	@Override
+	public String toString() {
+		return "OrdineBean [numOrdine=" + numOrdine + ", idUtente=" + idUtente + ", totale=" + totale + ", numProdotti="
+				+ numProdotti + "]";
 	}
 	
 	

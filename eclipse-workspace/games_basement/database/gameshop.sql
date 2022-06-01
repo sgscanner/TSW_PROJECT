@@ -27,14 +27,14 @@ CREATE TABLE Città (
 
  CREATE TABLE Dati_anagrafici (
 	id_utente varchar(25) NOT NULL,
-	id_città varchar(30) NOT NULL,
-	Nome varchar(25) NOT NULL,
-	Cognome varchar(25) NOT NULL,
-	Indirizzo varchar(50) NOT NULL,
+	cap varchar(30) NOT NULL,
+	nome varchar(25) NOT NULL,
+	cognome varchar(25) NOT NULL,
 	telefono varchar(15) DEFAULT NULL,
 	data_nascita date NOT NULL,
-	FOREIGN KEY (id_utente) REFERENCES Utente (id_utente),
-	FOREIGN KEY (id_città) REFERENCES Città (id_città)
+	città varchar(30) not null,
+	
+	FOREIGN KEY (id_utente) REFERENCES Utente (id_utente)
 ) 
 
 DROP TABLE IF EXISTS Rubrica_indirizzi;

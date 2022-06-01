@@ -2,7 +2,11 @@ package bean;
 
 import java.sql.Date;
 
-public class VeloceBean {
+public class VeloceBean implements java.io.Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2657627281469583089L;
 	private int idSpedizione;
 	private String numOrdine;
 	private Date dataOrdine;
@@ -49,5 +53,11 @@ public class VeloceBean {
 
 	public void setTotale(float totale) {
 		this.totale = totale;
+	}
+
+	@Override
+	public String toString() {
+		return "VeloceBean [idSpedizione=" + idSpedizione + ", numOrdine=" + numOrdine + ", dataOrdine=" + dataOrdine
+				+ ", totale=" + totale + "]";
 	}
 }

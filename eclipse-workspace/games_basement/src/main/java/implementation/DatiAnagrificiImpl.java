@@ -27,11 +27,12 @@ public class DatiAnagrificiImpl implements DatiAnagraficiDAO{
 			ResultSet rs=s.executeQuery("select * from Dati_anagrafici");
 			
 			while(rs.next()) {
-				String idU=rs.getString(1),idC=rs.getString(2),nome=rs.getString(3),cognome=rs.getString(4),
-						telefono=rs.getString(5);
-				Date bDay=rs.getDate(6);
+				String idU=rs.getString(1),idC=rs.getString(7),nome=rs.getString(4),cognome=rs.getString(5),
+						telefono=rs.getString(2),città=rs.getString(6);
 				
-				al.add(new DatiAnagraficiBean(idU,idC,nome,cognome,telefono,bDay));
+				Date bDay=rs.getDate(3);
+				
+				al.add(new DatiAnagraficiBean(idU,idC,nome,cognome,telefono,bDay,città));
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -51,8 +52,8 @@ public class DatiAnagrificiImpl implements DatiAnagraficiDAO{
 	public void addDatiAnagrafici(DatiAnagraficiBean dab) {
 		// TODO Auto-generated method stub
 		try(Statement s=c.createStatement();) {
-			s.executeUpdate("insert into Dati_anagrafici values('"+dab.getIdUtente()+"','"+dab.getIdCittà()+"',"
-							+ "'"+dab.getNome()+"','"+dab.getCognome()+"','"+dab.getTelefono()+"','"+dab.getDataNascita()+"')");
+			s.executeUpdate("insert into Dati_anagrafici values('"+dab.getIdUtente()+"','"+dab.getTelefono()+"',"
+							+ "'"+dab.getDataNascita()+"','"+dab.getNome()+"','"+dab.getCognome()+"','"+dab.getCitta()+"','"+dab.getcap()+"')");
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -79,8 +80,8 @@ public class DatiAnagrificiImpl implements DatiAnagraficiDAO{
 		try{
 			Statement s=c.createStatement(),s1=c.createStatement();
 			s.executeUpdate("delete from Dati_anagrafici where Dati_anagrafici.id_utente='"+oldDab.getIdUtente()+"'");
-			s1.executeUpdate("insert into Dati_anagrafici values('"+newDab.getIdUtente()+"','"+newDab.getIdCittà()+"',"
-					+ "'"+newDab.getNome()+"','"+newDab.getCognome()+"','"+newDab.getTelefono()+"','"+newDab.getDataNascita()+"')");
+			s.executeUpdate("insert into Dati_anagrafici values('"+newDab.getIdUtente()+"','"+newDab.getTelefono()+"',"
+					+ "'"+newDab.getDataNascita()+"','"+newDab.getNome()+"','"+newDab.getCognome()+"','"+newDab.getCitta()+"','"+newDab.getcap()+"')");
 		}catch(SQLException e) {
 			
 		}finally {

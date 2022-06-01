@@ -43,12 +43,21 @@ public class UserImpl implements UserDAO{
 		}
 	}
 
+	public UserBean searchUser(String username) {
+		for(UserBean ub:al) {
+			if(ub.getUsername().equals(username)) {
+				return ub;
+			}
+		}
+		return null;
+	}
+	
 	@Override
 	public void addUser(UserBean ub) {
 		// TODO Auto-generated method stub
 		try {
 			Statement s=c.createStatement();
-			s.executeUpdate("insert into Utente values('"+ub.getUsername()+"','"+ub.getEmail()+"','"+ub.getPassword()+"','"+ub.getRuolo()+"')");
+			s.executeUpdate("insert into Utente values('"+ub.getUsername()+"','"+ub.getRuolo()+"','"+ub.getEmail()+"','"+ub.getPassword()+"')");
 		}catch(SQLException e) {
 			
 		}finally {

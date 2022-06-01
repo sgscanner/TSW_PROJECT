@@ -1,6 +1,10 @@
 package bean;
 
-public class SonoFornitiDaBean {
+public class SonoFornitiDaBean implements java.io.Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3461369057012305821L;
 	private String codiceArticoli,iva;
 	
 	public SonoFornitiDaBean() {
@@ -26,6 +30,11 @@ public class SonoFornitiDaBean {
 
 	public void setIva(String iva) {
 		this.iva = iva;
+	}
+
+	@Override
+	public String toString() {
+		return "SonoFornitiDaBean [codiceArticoli=" + codiceArticoli + ", iva=" + iva + "]";
 	}
 
 }

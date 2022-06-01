@@ -1,6 +1,10 @@
 package bean;
 
-public class ContantiBean {
+public class ContantiBean implements java.io.Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2548065902746541671L;
 	private int idPagamento;
 	
 	public ContantiBean() {
@@ -17,6 +21,11 @@ public class ContantiBean {
 
 	public void setIdPagamento(int idPagamento) {
 		this.idPagamento = idPagamento;
+	}
+
+	@Override
+	public String toString() {
+		return "ContantiBean [idPagamento=" + idPagamento + "]";
 	}
 
 }

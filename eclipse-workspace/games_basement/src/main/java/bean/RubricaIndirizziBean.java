@@ -1,6 +1,10 @@
 package bean;
 
-public class RubricaIndirizziBean {
+public class RubricaIndirizziBean implements java.io.Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3948556415938913893L;
 	private int idIndirizzo;
 	private String idUtente,idCittà,indirizzo;
 	
@@ -53,6 +57,12 @@ public class RubricaIndirizziBean {
 
 	public void setIndirizzo(String indirizzo) {
 		this.indirizzo = indirizzo;
+	}
+
+	@Override
+	public String toString() {
+		return "RubricaIndirizziBean [idIndirizzo=" + idIndirizzo + ", idUtente=" + idUtente + ", idCittà=" + idCittà
+				+ ", indirizzo=" + indirizzo + "]";
 	}
 
 	

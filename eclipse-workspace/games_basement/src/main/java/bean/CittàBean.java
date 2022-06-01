@@ -1,6 +1,10 @@
 package bean;
 
-public class CittàBean {
+public class CittàBean implements java.io.Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4901391385007109896L;
 	private String idCittà,nomeCittà,cap;
 	
 	
@@ -39,6 +43,11 @@ public class CittàBean {
 
 	public void setCap(String cap) {
 		this.cap = cap;
+	}
+
+	@Override
+	public String toString() {
+		return "CittàBean [idCittà=" + idCittà + ", nomeCittà=" + nomeCittà + ", cap=" + cap + "]";
 	}
 
 }
