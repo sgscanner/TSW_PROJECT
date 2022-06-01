@@ -16,10 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.util.Base64;
 
-import bean.CittàBean;
 import bean.DatiAnagraficiBean;
 import bean.UserBean;
-import implementation.CittàImpl;
 import implementation.DatiAnagrificiImpl;
 import implementation.UserImpl;
 /**
@@ -61,21 +59,16 @@ public class RegisterServlet extends HttpServlet {
 			
 			//istanzio le implementazioni dei DAO
 			DatiAnagrificiImpl dai=new DatiAnagrificiImpl();
-			CittàImpl ci=new CittàImpl();
 			UserImpl ui=new UserImpl();
 			
 			//istanzio i Bean
 			DatiAnagraficiBean dab=new DatiAnagraficiBean(uName,cap,nome,cognome,telefono,d1,città);
-			CittàBean cb=new CittàBean(cap,città);
 			UserBean ub=new UserBean(uName,email,encryptPwd(password),"normale");
 			
 			//aggiuta al db dei Bean
 			ui.addUser(ub);
 			ui.stopConnection();
 			
-			ci.addCittà(cb);
-			ci.stopConnection();
-
 			dai.addDatiAnagrafici(dab);
 			dai.stopConnection();
 			
