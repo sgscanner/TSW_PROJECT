@@ -10,7 +10,7 @@
 <title>Registrazione</title>
 </head>
 <body>
-	<!-- multistep form -->
+<!-- multistep form -->
 	<form id="msform" action="RegisterServlet" method="POST">
 	  <!-- progressbar -->
 	  <ul id="progressbar">
@@ -46,9 +46,6 @@
 		    <input type="button" name="previous" class="previous action-button" value="Previous" />
 		    <input type="submit" name="submit" class="submit action-button" value="Submit" />
 	  </fieldset>
-</form>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
 <script>
 	function checkPassword(){
 		var firstPassword=document.getElementById("password").value;
@@ -56,10 +53,10 @@
 		
 		if(firstPassword == secondPassword){
 			document.getElementById("alert").style.color="#8CC63E";
-			document.getElementById("alert").innerHTML='Le password corrispondono!';
+			document.getElementById("alert").innerHTML='<span>Le password corrispondono!</span>';
 		}else{
 			document.getElementById("alert").style.color="#EE2B39";
-			document.getElementById("alert").innerHTML='Le password non corrispondono!';
+			document.getElementById("alert").innerHTML='<span>Le password non corrispondono!</span>';
 		}
 	}
 
@@ -70,7 +67,7 @@
 		
 		if(!result){
 			document.getElementById("alert").style.color="#EE2B39";
-			document.getElementById("alert").innerHTML="Inserisci una email corretta.";
+			document.getElementById("alert").innerHTML="<span>Inserisci una email corretta.</span>";
 		}else{
 			document.getElementById("alert").innerHTML="";
 		}
@@ -89,7 +86,7 @@
 	
 		if(!result){
 			document.getElementById("alert").style.color="#EE2B39";
-			document.getElementById("alert").innerHTML='Numero di telefono non valido';
+			document.getElementById("alert").innerHTML='<span>Numero di telefono non valido</span>';
 		}else{
 			document.getElementById("alert").innerHTML='';
 		}
@@ -209,9 +206,7 @@
 	    }
 	  );
 	});
-
 	
-
 </script>
 </body>
 </html>
