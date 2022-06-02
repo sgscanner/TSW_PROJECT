@@ -12,11 +12,6 @@
 <body>
 	
 	<%@include file="Header.jsp" %>
-	<%@include file="Header.jsp" %>
-	
-
-	
-	
 		<p class="par"><b>Crea recensione</b></p>
 		
 		<div style="display: grid; grid-template-columns: auto auto">

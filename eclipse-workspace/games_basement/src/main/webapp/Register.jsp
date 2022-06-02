@@ -26,7 +26,9 @@
 	    <input type="password" id="password" name="password" onkeyup="validatePassword()" placeholder="Password" />
 	    <input type="password" id="passwordDue" name="passwordDue" onkeyup="checkPassword()" placeholder="Confirm Password" />
 	    <p id="alert"></p>
+	    <button class="next action-button" formaction="Login.jsp" >Login</button>
 	    <input type="button" name="next" class="next action-button" value="Next" />
+	    <a href="HomePage.jsp"><img src="img/logo.png" width="150 px" height="100 px"></a>
 	  </fieldset>
 	  <fieldset>
 	    <h2 class="fs-title">Dati personali</h2>
@@ -36,6 +38,7 @@
 		    <span id="alert"></span>
 		    <input type="button" name="previous" class="previous action-button" value="Previous" />
 		    <input type="button" name="next" class="next action-button" value="Next" />
+		    <a href="HomePage.jsp"><img src="img/logo.png" width="150 px" height="100 px"></a>
 	  </fieldset>
 	  <fieldset>
 	    <h2 class="fs-title">Dati Anagrafici</h2>
@@ -45,7 +48,11 @@
 		    <span id="alert"></span>
 		    <input type="button" name="previous" class="previous action-button" value="Previous" />
 		    <input type="submit" name="submit" class="submit action-button" value="Submit" />
+		    <a href="HomePage.jsp"><img src="img/logo.png" width="150 px" height="100 px"></a>
 	  </fieldset>
+	</form>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
 <script>
 	function checkPassword(){
 		var firstPassword=document.getElementById("password").value;

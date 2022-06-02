@@ -11,11 +11,12 @@
 	<div class="container">
 		<form id="msform" class="form_login" action="LoginServlet" method="POST">
 			<fieldset>
-			    <h2 class="fs-title">Login</h2>
+			    <h2 class="fs-title">Login</h2> 
 			    <input type="text" id="username" name="username" placeholder="Username" />
 			    <input type="password" id="password" name="password" placeholder="Password" />
-			   	<a href="Register.jsp"><button class="button">Registrati</button></a>
-			    <input type="button" name="next" class="button" value="Login" />
+			    <button class="button" formaction="Register.jsp" >Registrati</button>
+			    <input type="button"  class="button" value="Login" />
+			    <a href="HomePage.jsp"><img src="img/logo.png" width="150 px" height="100 px"></a>
 	 	 	</fieldset>
 		</form>
 	</div>

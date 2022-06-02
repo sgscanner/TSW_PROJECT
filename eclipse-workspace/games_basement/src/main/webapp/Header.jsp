@@ -11,7 +11,7 @@
    <body>
         <div class="header">
             <nav>
-                <img src="img/logo.jpeg" class="logo">
+                <img src="img/logo.png" class="logo">
                 <form class="form">
                     <input type="text" placeholder="Search...">
                     <input type="submit" value="Search">

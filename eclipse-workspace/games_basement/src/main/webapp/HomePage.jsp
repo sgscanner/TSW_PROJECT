@@ -105,25 +105,25 @@
 	<div class="slideshow-container">
 
         <div class="mySlides fade">
-          <div class="numbertext">1 / 5</div>
+          <div class="numbertext"></div>
           <img src="img/banner3.jpg" style="width:100%">
           <div class="text"> </div>
         </div>
         
         <div class="mySlides fade">
-          <div class="numbertext">2 / 5</div>
+          <div class="numbertext"></div>
           <img src="img/banner2.jpg" style="width:100%">
           <div class="text">  </div>
         </div>
         
         <div class="mySlides fade">
-          <div class="numbertext">3 / 5</div>
+          <div class="numbertext"></div>
           <img src="img/banner1.jpg" style="width:100%">
           <div class="text"> </div>
         </div>
 
         <div class="mySlides fade">
-            <div class="numbertext">4 / 5 </div>
+            <div class="numbertext"></div>
             <img src="img/banner5.jpg" style="width:100%">
             <div class="text"></div>
           </div>
@@ -134,8 +134,8 @@
             <div class="text"> </div>
           </div>
         
-        <a class="prev" onclick="plusSlides(-1)">❮</a>
-        <a class="next" onclick="plusSlides(1)">❯</a>
+        <a class="prev" onclick="plusSlides(-1)"><img src="img/left.png" width="15 px" height="15 px"></a>
+        <a class="next" onclick="plusSlides(1)"><img src="img/right.png" width="15 px" height="15 px"> </a>
         
         </div>
         <br>

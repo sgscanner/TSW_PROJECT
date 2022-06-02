@@ -12,9 +12,6 @@
 </head>
 <body>
 	<%@include file="Header.jsp" %>
-	<%@include file="Header.jsp" %>
-	
-	
 	
 	<p><b>Marvel's Spider-Man</b></p>
 	

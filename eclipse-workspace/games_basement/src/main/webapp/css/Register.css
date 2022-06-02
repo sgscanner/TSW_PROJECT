@@ -208,3 +208,6 @@ body {
 	border-radius:3 px;
 }
 
+input:focus{
+	outline:red;
+}
