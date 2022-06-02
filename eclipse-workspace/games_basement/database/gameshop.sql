@@ -122,7 +122,7 @@ CREATE TABLE Pagamento (
 
 DROP TABLE IF EXISTS Carta;
 CREATE TABLE Carta(
-	numero_di_carta varchar(25) not null primary key,
+	numero_di_carta varchar(25) not null,
 	id_pagamento int(10) not null,
 	dati_intestatario varchar(25) not null,
 	foreign key(id_pagamento) REFERENCES PAGAMENTO(id_pagamento)
@@ -136,7 +136,7 @@ CREATE TABLE Contanti(
 
 DROP TABLE IF EXISTS Bonifico;
 CREATE TABLE Bonifico (
-	iban varchar (27) not null primary key,
+	iban varchar (27) not null ,
 	id_pagamento int(10) not null,
 	causale varchar(144) not null,
 	dati_intestatario varchar(50) not null,
