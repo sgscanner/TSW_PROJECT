@@ -20,6 +20,7 @@ nav{
     align-items: center;
     justify-content: space-between;
 }
+
 .logo{
     width: 140px;
 }
@@ -36,14 +37,7 @@ nav{
     padding: 5px 16px;
     
 }
-.form{
-    float:left;
-    padding: 10px;
-    border: none;
-    margin-top: 19px;
-    margin-right: 16px;
-    font-size: 17px;
-}
+
 
 ul{
     float: left;
@@ -76,4 +70,40 @@ li a:hover {
 .carrello{
     width: 45px;
 
+}
+
+form {
+  width: 75vmin;
+  height: 100%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  padding: 40px 0;
+}
+
+input[type="text"] {
+  padding: 15px 10px;
+  border: none;
+  border-bottom: 1px solid #645979;
+  outline: none;
+  border-radius: 5px 5px 0 0;
+  background-color: #ffffff;
+  font-size: 16px;
+}
+
+#autocomplete {
+  list-style: none;
+}
+
+.list {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 0 0 5px 5px;
+}
+.list-items {
+  padding: 10px 5px;
+}
+.list-items:hover {
+  background-color: #dddddd;
 }

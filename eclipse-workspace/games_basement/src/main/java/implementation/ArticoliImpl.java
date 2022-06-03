@@ -50,6 +50,29 @@ public class ArticoliImpl implements ArticoliDAO{
 		}
 	}
 	
+	public String[] searchBar(String input) { 
+		
+		try(Statement s=c.createStatement()) {
+			ResultSet rs=s.executeQuery("select Articolo.nome from Articolo where Articolo.nome LIKE '%"+input+"'");
+			ArrayList<String> temp=new ArrayList<String>();
+			
+			while(rs.next()) {
+				temp.add(rs.getString(1));
+			}
+			
+			String [] products=new String[temp.size()];
+			
+			for(int i=0;i<temp.size();i++) {
+				products[i]=temp.get(i);
+			}
+			
+			return products;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public ArrayList<ArticoliBean> queryGetProduct() {
 		ArrayList<ArticoliBean> homepage=new ArrayList<ArticoliBean>();
 		

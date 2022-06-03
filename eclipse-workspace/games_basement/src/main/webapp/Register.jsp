@@ -8,8 +8,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Registrazione</title>
+<script src="jquery.js"></script>
 </head>
 <body>
+
 <!-- multistep form -->
 	<form id="msform" action="RegisterServlet" method="POST">
 	  <!-- progressbar -->
@@ -51,7 +53,6 @@
 		    <a href="HomePage.jsp"><img src="img/logo.png" width="150 px" height="100 px"></a>
 	  </fieldset>
 	</form>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
 <script>
 	function checkPassword(){
