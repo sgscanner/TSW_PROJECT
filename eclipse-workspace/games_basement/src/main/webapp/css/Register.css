@@ -207,7 +207,3 @@ body {
 	background-repeat:no-repeat;
 	border-radius:3 px;
 }
-
-input:focus{
-	outline:red;
-}

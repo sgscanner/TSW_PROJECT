@@ -12,49 +12,59 @@
 </head>
 <body>
 
-<!-- multistep form -->
-	<form id="msform" action="RegisterServlet" method="POST">
-	  <!-- progressbar -->
-	  <ul id="progressbar">
-	    <li class="active">Account</li>
-	    <li>Chi sei</li>
-	    <li>Dati Anagrafici</li>
-	  </ul>
-	  <!-- fieldsets -->
-	  <fieldset>
-	    <h2 class="fs-title">Account</h2>
-	    <input type="text" id="username" name="username" placeholder="Username" />
-	    <input type="text" id="email" name="email" onkeyup="regexEmail()" placeholder="Email" />
-	    <input type="password" id="password" name="password" onkeyup="validatePassword()" placeholder="Password" />
-	    <input type="password" id="passwordDue" name="passwordDue" onkeyup="checkPassword()" placeholder="Confirm Password" />
-	    <p id="alert"></p>
-	    <button class="next action-button" formaction="Login.jsp" >Login</button>
-	    <input type="button" name="next" class="next action-button" value="Next" />
-	    <a href="HomePage.jsp"><img src="img/logo.png" width="150 px" height="100 px"></a>
-	  </fieldset>
-	  <fieldset>
-	    <h2 class="fs-title">Dati personali</h2>
-		    <input type="text" id="nome" name="nome" placeholder="nome" />
-		    <input type="text" id="cognome" name="cognome" placeholder="cognome" />
-		    <input type="text" id="phone" name="phone" onchange="regexPhone(this.value)" placeholder="Numero di Telefono"  />
-		    <span id="alert"></span>
-		    <input type="button" name="previous" class="previous action-button" value="Previous" />
+	<form id="msform" action="RegisterFilter" method="POST">
+		  <input type="hidden" id="flag" name="flag" value="<%request.getAttribute("flag"); %>">
+		  
+		  <!-- progressbar -->
+		  <ul id="progressbar">
+		    <li class="active">Account</li>
+		    <li>Chi sei</li>
+		    <li>Dati Anagrafici</li>
+		  </ul>
+	
+		  <fieldset id="firstField">
+		    <h2 class="fs-title">Account</h2>
+		    <input type="text" id="username" name="username" placeholder="Username" autocomplete="false"/>
+		    <input type="text" id="email" name="email" onkeyup="regexEmail()" placeholder="Email" />
+		    <input type="password" id="password" name="password" onkeyup="validatePassword()" placeholder="Password" />
+		    <input type="password" id="passwordDue" name="passwordDue" onkeyup="checkPassword()" placeholder="Confirm Password" />
+		    <p id="alert"></p>
+		    <button class="next action-button" formaction="Login.jsp" >Login</button>
 		    <input type="button" name="next" class="next action-button" value="Next" />
 		    <a href="HomePage.jsp"><img src="img/logo.png" width="150 px" height="100 px"></a>
-	  </fieldset>
-	  <fieldset>
-	    <h2 class="fs-title">Dati Anagrafici</h2>
-		    <input type="text" name="citta" placeholder="Città" />
-		    <input type="text" name="cap" placeholder="Cap" />
-		    <input type="date" name="bday" />
-		    <span id="alert"></span>
-		    <input type="button" name="previous" class="previous action-button" value="Previous" />
-		    <input type="submit" name="submit" class="submit action-button" value="Submit" />
-		    <a href="HomePage.jsp"><img src="img/logo.png" width="150 px" height="100 px"></a>
-	  </fieldset>
+		  </fieldset>
+		  <fieldset id="secondField">
+		    <h2 class="fs-title">Dati personali</h2>
+			    <input type="text" id="nome" name="nome" placeholder="nome" autocomplete="false"/>
+			    <input type="text" id="cognome" name="cognome" placeholder="cognome" autocomplete="false"/>
+			    <input type="text" id="phone" name="phone" onchange="regexPhone(this.value)" placeholder="Numero di Telefono"  />
+			    <p id="alertTwo"></p>
+			    <input type="button" name="previous" class="previous action-button" value="Previous" />
+			    <input type="button" name="next" class="next action-button" value="Next" />
+			    <a href="HomePage.jsp"><img src="img/logo.png" width="150 px" height="100 px"></a>
+		  </fieldset>
+		  <fieldset id="thirdField">
+		    <h2 class="fs-title">Dati Anagrafici</h2>
+			    <input type="text" name="citta" placeholder="Città" autocomplete="false"/>
+			    <input type="text" name="cap" placeholder="Cap" />
+			    <input type="date" name="bday" />
+			    <p id="alertThree"></p>
+			    <input type="button" name="previous" class="previous action-button" value="Previous" />
+			    <input type="submit" name="submit" class="submit action-button" value="Submit" />
+			    <a href="HomePage.jsp"><img src="img/logo.png" width="150 px" height="100 px"></a>
+		  </fieldset>
+	
 	</form>
 <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
 <script>
+	$(document).ready(function(){
+		var flag=$("#flag");
+		
+		if(flag.val()==''){
+			console.log("vuota");
+		}
+	});
+
 	function checkPassword(){
 		var firstPassword=document.getElementById("password").value;
 		var secondPassword=document.getElementById("passwordDue").value;
@@ -93,10 +103,10 @@
 	    var result=phone.match(reg);
 	
 		if(!result){
-			document.getElementById("alert").style.color="#EE2B39";
-			document.getElementById("alert").innerHTML='<span>Numero di telefono non valido</span>';
+			document.getElementById("alertTwo").style.color="#EE2B39";
+			document.getElementById("alertTwo").innerHTML='<span>Numero di telefono non valido</span>';
 		}else{
-			document.getElementById("alert").innerHTML='';
+			document.getElementById("alertTwo").innerHTML='';
 		}
 	}
 	
@@ -136,15 +146,19 @@
 	  if (animating) return false;
 	  animating = true;
 
-	  //assegno i fieldset "attuale" e "successivo" accedendo al tag "padre" di entrambi
+	  //assegno i fieldset "attuale" e "successivo" accedendo al tag "padre" di entrambi i pulsanti
 	  current_fs = $(this).parent();
 	  next_fs = $(this).parent().next();
 
+	  if(checkEmpties(current_fs)>0){
+      	$(this).parent().stop(true,true);
+      }
 	  //attiva il prossimo step sulla progess-bar usando l'indice di next_fs
 	  $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
 
 	  //mostra il prossimo fieldset
 	  next_fs.show();
+	  
 	  //nascondi il corrente
 	  current_fs.animate(
 	    { opacity: 0 },
@@ -180,6 +194,7 @@
 	  current_fs = $(this).parent();
 	  previous_fs = $(this).parent().prev();
 
+	  
 	  //rimuove di 1 dalla progress-bar
 	  $("#progressbar li")
 	    .eq($("fieldset").index(current_fs))
@@ -215,6 +230,36 @@
 	  );
 	});
 	
+	function checkEmpties(fieldset){
+		if(fieldset.is("#firstField")){
+			return checkFirstField();
+		}else if(fieldset.is("#secondField")){
+			return checkSecondField();
+		}
+	}
+	
+	function checkFirstField(){
+		var count=0;
+		if($("#firstField > #username").val()==''){
+			count++;
+			console.log("inserisci username");
+		}
+	}
+	
+	function checkSecondField(){
+		var count=0;
+		if($("#secondField > #nome").val()==''){
+			count++;
+			console.log("inserisci nome");
+		}
+		return count;
+	}
+	
+	function checkThirdField(){
+		if($("#thirdField > #citta").val()==''){
+			console.log("inserisci città");W
+		}
+	}
 </script>
 </body>
 </html>

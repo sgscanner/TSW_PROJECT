@@ -44,10 +44,20 @@ public class UserImpl implements UserDAO{
 	}
 
 	public UserBean searchUser(String username) {
-		for(UserBean ub:al) {
-			if(ub.getUsername().equals(username)) {
-				return ub;
+		try(Statement s=c.createStatement()){
+			ResultSet rs=s.executeQuery("select * from Utente where Utente.id_utente='"+username+"'");
+			UserBean ub=new UserBean() ;
+			
+			while(rs.next()) {
+				ub.setUsername(rs.getString("id_utente"));
+				ub.setEmail(rs.getString("email"));
+				ub.setRuolo(rs.getString("ruolo"));
+				ub.setPassword(rs.getString("password"));
 			}
+			
+			return ub;
+		}catch(SQLException e) {
+			System.out.println("error:"+e.getMessage());
 		}
 		return null;
 	}

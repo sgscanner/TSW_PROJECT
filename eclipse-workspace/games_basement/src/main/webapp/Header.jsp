@@ -15,15 +15,8 @@
                 <form class="form">
                     <input type="text" placeholder="Search..." id="input" list="languages" autocomplete="off">
                     <datalist id="languages">
-  <option value="PHP" />
-  <option value="C++" />
-  <option value="Java" />
-  <option value="Ruby" />
-  <option value="Python" />
-  <option value="Go" />
-  <option value="Perl" />
-  <option value="Erlang" />
-</datalist>
+						  
+					</datalist>
                     <input type="submit" value="Search">
                 </form>	
                 <ul class="nav-links">
@@ -43,78 +36,27 @@
         
         <div style="height: 10px;"></div>
 <script>
-let names = [
-	  "Ayla",
-	  "Jake",
-	  "Sean",
-	  "Henry",
-	  "Brad",
-	  "Stephen",
-	  "Taylor",
-	  "Timmy",
-	  "Cathy",
-	  "John",
-	  "Amanda",
-	  "Amara",
-	  "Sam",
-	  "Sandy",
-	  "Danny",
-	  "Ellen",
-	  "Camille",
-	  "Chloe",
-	  "Emily",
-	  "Nadia",
-	  "Mitchell",
-	  "Harvey",
-	  "Lucy",
-	  "Amy",
-	  "Glen",
-	  "Peter",
-	];
-	//Sort names in ascending order
-	let sortedNames = names.sort();
+var input=document.getElementById("input");
 
-	//reference
-	let input = document.getElementById("input");
-
-	//Execute function on keyup
-	input.addEventListener("keyup", (e) => {
-	  //loop through above array
-	  //Initially remove all elements ( so if user erases a letter or adds new letter then clean previous outputs)
-	  removeElements();
-	  for (let i of sortedNames) {
-	    //convert input to lowercase and compare with each string
-
-	    if (
-	      i.toLowerCase().startsWith(input.value.toLowerCase()) &&
-	      input.value != ""
-	    ) {
-	      //create li element
-	      let listItem = document.createElement("li");
-	      //One common class name
-	      listItem.classList.add("list-items");
-	      listItem.style.cursor = "pointer";
-	      listItem.setAttribute("onclick", "displayNames('" + i + "')");
-	      //Display matched part in bold
-	      let word = "<b>" + i.substr(0, input.value.length) + "</b>";
-	      word += i.substr(input.value.length);
-	      //display the value in array
-	      listItem.innerHTML = word;
-	      document.querySelector(".list").appendChild(listItem);
-	    }
-	  }
-	});
-	function displayNames(value) {
-	  input.value = value;
-	  removeElements();
+input.addEventListener("keyup",(e)=>{
+	var test = [
+		"lunedì",
+		"martedì",
+		"mercoledì",
+		"giovedì",
+		"venerdì",
+		"sabato",
+		"domenica"];
+	var option='';
+	
+	for(var i=0;i<test.length;i++){
+		option+="<option value='"+test[i]+"'/>";
 	}
-	function removeElements() {
-	  //clear all the item
-	  let items = document.querySelectorAll(".list-items");
-	  items.forEach((item) => {
-	    item.remove();
-	  });
-	}
+	
+	document.getElementById("languages").innerHTML=option;
+});
+
+
 </script>
 </body>
 </html>

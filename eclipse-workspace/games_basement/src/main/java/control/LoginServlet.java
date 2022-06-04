@@ -1,7 +1,11 @@
 package control;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,6 +35,17 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String uName=request.getParameter("username"),password=request.getParameter("password"),encrypted=encryptPwd(password);
+		UserImpl ui=new UserImpl();
+		UserBean ub=ui.searchUser(uName);
+		
+		if(ub==null) {
+			RequestDispatcher rd=request.getRequestDispatcher("Login.jsp");
+			rd.forward(request, response);
+		}else {
+			// pass the request along the filter chain
+
+		}
 	}
 
 	/**
@@ -38,22 +53,26 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String uName=request.getParameter("username"),password=request.getParameter("password");
-		
-		UserImpl ui=new UserImpl();
-		
-		if(ui.searchUser(uName)==null) {
-			System.out.println("username errato o utente non registrato");
-		}else {
-			UserBean s=ui.searchUser(uName);
-			
-			if(s.getPassword().equals(password)) {
-				System.out.println("welcome");
-			}else {
-				System.out.println("password errata");
-			}
-		}
-	
+		doGet(request, response);
 	}
 
+	private String encryptPwd(String toEncrypt) {
+		String generatedPassword=null;
+		String salt="gameshop";
+		
+		try {
+			MessageDigest md=MessageDigest.getInstance("SHA-1");
+			md.update(salt.getBytes(StandardCharsets.UTF_8));
+			byte[] bytes=md.digest(toEncrypt.getBytes(StandardCharsets.UTF_8));
+			StringBuilder sb=new StringBuilder();
+			for(int i=0;i<bytes.length;i++) {
+				sb.append(Integer.toString((bytes[i] & 0xff)+0x100,16).substring(1));
+			}
+			generatedPassword=sb.toString();
+		}catch(NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		
+		return generatedPassword;
+	}
 }
