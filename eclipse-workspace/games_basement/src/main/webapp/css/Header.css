@@ -67,6 +67,7 @@ li a {
 li a:hover {
     background-color:  #3c3c3c;
 }
+
 .carrello{
     width: 45px;
 
@@ -104,6 +105,7 @@ input[type="text"] {
 .list-items {
   padding: 10px 5px;
 }
+
 .list-items:hover {
   background-color: #dddddd;
 }

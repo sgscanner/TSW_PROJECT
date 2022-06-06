@@ -1,3 +1,4 @@
+<%@page import="bean.UserBean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -7,8 +8,9 @@
 <title>Header</title>
 <style><%@include file="css/Header.css" %></style>
 </head>
-
-   <body>
+ <body>
+ 		<%UserBean ub=(UserBean)request.getSession().getAttribute("user"); %>
+ 
         <div class="header">
             <nav>
                 <img src="img/logo.png" class="logo">
@@ -20,7 +22,12 @@
                     <input type="submit" value="Search">
                 </form>	
                 <ul class="nav-links">
-                    <li><a href="Login.jsp">Accedi</a></li>
+                	<%if(ub==null){%>
+                    	<li><a href="Login.jsp">Accedi</a></li>
+                    <%}else{ %>
+                    	<%System.out.println("username: "+ub.getUsername()); %>
+						<li><a href="PersonalPage.jsp"><%ub.getUsername(); %></a></li>
+                    <%} %>
                     <li><a href="Register.jsp">Registrati</a></li>
                     <li><img src="img/carrello.jpg" class="carrello"></li>
                 </ul>

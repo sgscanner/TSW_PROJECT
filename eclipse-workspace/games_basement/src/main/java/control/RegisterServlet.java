@@ -8,11 +8,13 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import java.util.Base64;
 
@@ -53,6 +55,10 @@ public class RegisterServlet extends HttpServlet {
 		long l;
 		Date d1;
 		try {
+			//istanzio il dispatcher per reindirizzare alla homepage e la sessione attuale a cui aggiungo il bean dell'utente
+			RequestDispatcher rd=request.getRequestDispatcher("HomePage.jsp");
+			HttpSession newSession=request.getSession();
+			
 			//converto in formato Data la stringa presa dal parametro "bDay"
 			l = sdf.parse(date).getTime();
 			d1=new Date(l);
@@ -72,6 +78,13 @@ public class RegisterServlet extends HttpServlet {
 			dai.addDatiAnagrafici(dab);
 			dai.stopConnection();
 			
+			
+			//aggiunta dell'user bean alla sessione
+			newSession.setAttribute("user", ub);
+			newSession.setMaxInactiveInterval(15*60);
+			
+			//redirect alla homepage
+			rd.forward(request, response);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

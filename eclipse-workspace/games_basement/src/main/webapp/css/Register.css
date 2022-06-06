@@ -8,11 +8,7 @@
 
 html {
 	height: 100%;
-	/*Image only BG fallback*/
-	
-	/*background = gradient + image pattern combo*/
-	background: 
-		linear-gradient(#000000,rgb(192,28,40));
+	background: linear-gradient(#000000,rgb(192,28,40));
 }
 
 body {
@@ -20,14 +16,14 @@ body {
 }
 
 /*form styles*/
-#msform {
+#form {
 	width: 400px;
 	margin: 50px auto;
 	text-align: center;
 	position: relative;
 }
 
-#msform fieldset {
+#form fieldset {
 	background: white;
 	border: 0 none;
 	border-radius: 3px;
@@ -41,13 +37,13 @@ body {
 	position: relative;
 }
 
-/*Hide all except first fieldset*/
-#msform fieldset:not(:first-of-type) {
+/*Nasconde tutti i fieldset tranne il primo*/
+#form fieldset:not(:first-of-type) {
 	display: none;
 }
 
-/*inputs*/
-#msform input{
+/*inputs style*/
+#form input{
 	padding: 15px;
 	border: 1px solid #ccc;
 	border-radius: 3px;
@@ -59,8 +55,8 @@ body {
 	font-size: 13px;
 }
 
-/*buttons*/
-#msform .action-button {
+/*buttons style*/
+#form .action-button {
 	width: 100px;
 	background: rgb(192,28,40);
 	font-weight: bold;
@@ -72,10 +68,11 @@ body {
 	margin: 10px 5px;
 }
 
-#msform .action-button:hover, #msform .action-button:focus {
+#form .action-button:hover, #form .action-button:focus {
 	box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
 }
-/*headings*/
+
+/*headings dei fieldset*/
 .fs-title {
 	font-size: 15px;
 	text-transform: uppercase;
@@ -100,6 +97,7 @@ body {
 	float: left;
 	position: relative;
 }
+
 #progressbar li:before {
 	content: counter(step);
 	counter-increment: step;
@@ -137,14 +135,37 @@ body {
 	color: white;
 }
 
-.flexContainer {
-    display: flex;
+.form-field {
+    margin-bottom: 5px;
 }
 
-.password {
-    flex: 1;
+.form-field input {
+    border: solid 2px #f0f0f0;
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    display: block;
+    width: 100%;
 }
 
+.form-inputContainer input:focus {
+    outline: none;
+}
+
+.form-inputContainer.error input {
+   color: #FF0000;
+}
+
+.form-inputContainer.success input {
+   color: #28a745;
+}
+
+.form-inputContainer small {
+    color: #FF0000;
+}
+
+/*Inserisco le varie icone agli input*/
 #username{
 	background-image:url(img/utente.png);
 	position:left;
@@ -153,6 +174,7 @@ body {
 	background-repeat:no-repeat;
 	border-radius:3 px;
 }
+
 
 #nome{
 	background-image:url(img/utente.png);
@@ -190,7 +212,7 @@ body {
 	border-radius:3 px;
 }
 
-#passwordDue{
+#checkPassword{
 	background-image:url(img/password.png);
 	position:left;
 	padding-left:30px;

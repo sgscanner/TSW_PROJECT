@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bean.UserBean;
 import implementation.UserImpl;
@@ -43,8 +44,17 @@ public class LoginServlet extends HttpServlet {
 			RequestDispatcher rd=request.getRequestDispatcher("Login.jsp");
 			rd.forward(request, response);
 		}else {
-			// pass the request along the filter chain
-
+			if(ub.getPassword().equals(encrypted)) {
+				HttpSession newSession=request.getSession();
+				RequestDispatcher rd=request.getRequestDispatcher("HomePage.jsp");
+				newSession.setAttribute("user", ub);
+				newSession.setMaxInactiveInterval(15*60); //15 minuti di inattività
+				rd.forward(request, response);
+			}
+			else {
+				RequestDispatcher rd=request.getRequestDispatcher("Login.jsp");
+				rd.forward(request, response);
+			}
 		}
 	}
 

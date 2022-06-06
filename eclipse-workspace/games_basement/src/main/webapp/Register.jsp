@@ -12,7 +12,7 @@
 </head>
 <body>
 
-	<form id="msform" action="RegisterFilter" method="POST">
+	<form id="form" action="RegisterServlet" method="POST">
 		  <input type="hidden" id="flag" name="flag" value="<%request.getAttribute("flag"); %>">
 		  
 		  <!-- progressbar -->
@@ -24,121 +24,73 @@
 	
 		  <fieldset id="firstField">
 		    <h2 class="fs-title">Account</h2>
-		    <input type="text" id="username" name="username" placeholder="Username" autocomplete="false"/>
-		    <input type="text" id="email" name="email" onkeyup="regexEmail()" placeholder="Email" />
-		    <input type="password" id="password" name="password" onkeyup="validatePassword()" placeholder="Password" />
-		    <input type="password" id="passwordDue" name="passwordDue" onkeyup="checkPassword()" placeholder="Confirm Password" />
-		    <p id="alert"></p>
-		    <button class="next action-button" formaction="Login.jsp" >Login</button>
+		    <div class="inputContainer">
+		    	<input type="text" id="username" name="username" placeholder="Username" autocomplete="false"/>
+		    	<small></small>
+		    </div>
+		    <div class="inputContainer">
+		    	<input type="text" id="email" name="email" placeholder="Email" /><br>
+		    	<small></small>
+		    </div>
+		    <div class="inputContainer">
+		  	 	<input type="password" id="password" name="password" placeholder="Password" />
+		  	 	<small></small>
+		    </div>
+		    <div class="inputContainer">
+		    	<input type="password" id="checkPassword" name="checkPassword" placeholder="Confirm Password" />
+		    	<small></small>
+		    </div>
+			<button class="next action-button" name="login" onclick="location.href='Login.jsp';" >Login</button>
 		    <input type="button" name="next" class="next action-button" value="Next" />
 		    <a href="HomePage.jsp"><img src="img/logo.png" width="150 px" height="100 px"></a>
 		  </fieldset>
+		  
 		  <fieldset id="secondField">
 		    <h2 class="fs-title">Dati personali</h2>
-			    <input type="text" id="nome" name="nome" placeholder="nome" autocomplete="false"/>
-			    <input type="text" id="cognome" name="cognome" placeholder="cognome" autocomplete="false"/>
-			    <input type="text" id="phone" name="phone" onchange="regexPhone(this.value)" placeholder="Numero di Telefono"  />
-			    <p id="alertTwo"></p>
+		    	<div class="inputContainer">
+		    		<input type="text" id="nome" name="nome" placeholder="nome" autocomplete="false"/>
+		    		<small></small>
+		    	</div>
+			    <div class="inputContainer">
+			    	<input type="text" id="cognome" name="cognome" placeholder="cognome" autocomplete="false"/>
+			    	<small></small>
+			    </div>
+			    <div class="inputContainer">
+			    	<input type="text" id="phone" name="phone" placeholder="Numero di Telefono"  />
+			    	<small></small>
+			    </div>
 			    <input type="button" name="previous" class="previous action-button" value="Previous" />
 			    <input type="button" name="next" class="next action-button" value="Next" />
 			    <a href="HomePage.jsp"><img src="img/logo.png" width="150 px" height="100 px"></a>
 		  </fieldset>
+		  
 		  <fieldset id="thirdField">
 		    <h2 class="fs-title">Dati Anagrafici</h2>
-			    <input type="text" name="citta" placeholder="Città" autocomplete="false"/>
-			    <input type="text" name="cap" placeholder="Cap" />
-			    <input type="date" name="bday" />
-			    <p id="alertThree"></p>
+			    <div class="inputContainer">
+			    	<input type="text" name="citta" placeholder="Città" autocomplete="false"/>
+			    	<small></small>
+			    </div>
+			    <div class="inputContainer"> 
+			    	<input type="text" name="cap" placeholder="Cap" />
+			    	<small></small>
+			    </div>
+			    <div class="inputContainer">
+			    	<input type="date" name="bday" />
+			    	<small></small>
+			    </div>
 			    <input type="button" name="previous" class="previous action-button" value="Previous" />
-			    <input type="submit" name="submit" class="submit action-button" value="Submit" />
+			    <input type="submit" name="invio-dati" class="submit action-button" value="Submit" />
 			    <a href="HomePage.jsp"><img src="img/logo.png" width="150 px" height="100 px"></a>
 		  </fieldset>
 	
 	</form>
+	
+<!-- import delle librei utili -->
 <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
+
+<!-- Animazione -->
 <script>
-	$(document).ready(function(){
-		var flag=$("#flag");
-		
-		if(flag.val()==''){
-			console.log("vuota");
-		}
-	});
-
-	function checkPassword(){
-		var firstPassword=document.getElementById("password").value;
-		var secondPassword=document.getElementById("passwordDue").value;
-		
-		if(firstPassword == secondPassword){
-			document.getElementById("alert").style.color="#8CC63E";
-			document.getElementById("alert").innerHTML='<span>Le password corrispondono!</span>';
-		}else{
-			document.getElementById("alert").style.color="#EE2B39";
-			document.getElementById("alert").innerHTML='<span>Le password non corrispondono!</span>';
-		}
-	}
-
-	function regexEmail(email){
-		/*someText@someEmail.com(o un dominio compreso fra 2 e 4 caratteri)*/
-		var regex=/\w+@\w+\.\w{2,4}/i;
-		var result=email.match(regex);
-		
-		if(!result){
-			document.getElementById("alert").style.color="#EE2B39";
-			document.getElementById("alert").innerHTML="<span>Inserisci una email corretta.</span>";
-		}else{
-			document.getElementById("alert").innerHTML="";
-		}
-	}
-	
-	function regexPhone(phone){
-		/*(123) 456-7890
-		  (123)456-7890
-		  123-456-7890
-		  123.456.7890
-		  1234567890
-		  +31636363634
-		  075-63546725*/
-		var reg = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
-	    var result=phone.match(reg);
-	
-		if(!result){
-			document.getElementById("alertTwo").style.color="#EE2B39";
-			document.getElementById("alertTwo").innerHTML='<span>Numero di telefono non valido</span>';
-		}else{
-			document.getElementById("alertTwo").innerHTML='';
-		}
-	}
-	
-	function showPwd(){
-		var pwd=document.getElementById("password");
-		var img=document.getElementById("eye");
-		
-		if(pwd.getAttribute("type")==="password"){
-			pwd.setAttribute("type","text");
-			img.src="img/eye.png";
-		}else{
-			pwd.setAttribute("type","password");
-			img.src="img/eyeClose.png";
-		}
-	}
-	
-	function validatePassword(){
-		var pwd=document.getElementById("password").value;
-		var specialRegex=/\W|_/;
-		var length=pwd.length;
-		
-		if(length<=8 && !pwd.match(specialRegex)){
-			document.getElementById("alert").innerHTML="La password è corta e non contiene caratteri speciali";
-		}else if(length>=8 && !pwd.match(specialRegex)){
-			document.getElementById("alert").innerHTML="La password non contiene caratteri speciali";
-		}else if(length>=8 && pwd.match(specialRegex)){
-			document.getElementById("alert").innerHTML="Password forte";
-		}
-	}
-	
-	//jQuery time
-	var current_fs, next_fs, previous_fs; //fieldsets
+ var current_fs, next_fs, previous_fs; //fieldsets
 	var left, opacity, scale; //proprietà dei fieldset che andremo ad animare
 	var animating; //flag per evitare dei click troppo veloci
 
@@ -150,9 +102,6 @@
 	  current_fs = $(this).parent();
 	  next_fs = $(this).parent().next();
 
-	  if(checkEmpties(current_fs)>0){
-      	$(this).parent().stop(true,true);
-      }
 	  //attiva il prossimo step sulla progess-bar usando l'indice di next_fs
 	  $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
 
@@ -229,36 +178,156 @@
 	    }
 	  );
 	});
+</script>
+
+<!-- Check Form -->
+<script>
+	const passwordField=document.querySelector("#password");
+	const checkPasswordField=document.querySelector("#checkPassword");
+	const emailField=document.querySelector("#email");
+	const phoneField=document.querySelector("#phone");
+	const formField=document.getElementById("form");
 	
-	function checkEmpties(fieldset){
-		if(fieldset.is("#firstField")){
-			return checkFirstField();
-		}else if(fieldset.is("#secondField")){
-			return checkSecondField();
+	formField.addEventListener('submit',function(e){
+		//al submit della form lo prevengo per fare un check degli input che vanno controllati
+		e.preventDefault();
+
+		//controllo i vari input necessari da controllare
+		let emailValid=checkEmail();
+		let passwordValid=checkPassword();
+		let checkPasswordValid=checkSecondPassword();
+		let phoneValid=checkPhone();
+		
+		let formValid=emailValid && passwordValid && checkPasswordValid && phoneValid;
+		
+		//ora che ho controllato tutto posso fare la submit
+		if(formValid){
+			formField.submit();
 		}
+	});
+	
+	function isEmpty(value){
+		if(value==='')
+			return true;
+		else
+			return false;
 	}
 	
-	function checkFirstField(){
-		var count=0;
-		if($("#firstField > #username").val()==''){
-			count++;
-			console.log("inserisci username");
-		}
+	function isValidEmail(email){
+		var regex=/[\w-\.]+@([\w-]+\.)+[\w-]{2,4}/g;
+		
+		return email.match(regex);
 	}
 	
-	function checkSecondField(){
-		var count=0;
-		if($("#secondField > #nome").val()==''){
-			count++;
-			console.log("inserisci nome");
-		}
-		return count;
+	function isValidPassword(password){
+		var regex=/^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$/g;
+		
+		return password.match(regex);
 	}
 	
-	function checkThirdField(){
-		if($("#thirdField > #citta").val()==''){
-			console.log("inserisci città");W
+	function isValidPhone(phone){
+		/*
+			(123) 456-7890
+			+(123) 456-7890
+			+(123)-456-7890
+			+(123) - 456-7890
+			+(123) - 456-78-90
+			123-456-7890
+			123.456.7890
+			1234567890
+			+31636363634
+			075-63546725
+		*/
+		var regex=/^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g;
+		
+		return phone.match(regex);
+	}
+	
+	function showError(inputField,messageError){
+		var formField = inputField.parentElement; //accendo all'elemento padre dell'input field
+		
+		// aggiungo la classe "error" all'input
+	    formField.classList.remove('success');
+	    formField.classList.add('error');
+	    
+	    var error = formField.querySelector('small');//accedo al field dove visualizzerò il messagio
+	    error.textContent = messageError; //aggiungo il messaggio
+	}
+	
+	function showSuccess(inputField){
+		var formField = inputField.parentElement; //accendo all'elemento padre dell'input field
+		
+		// aggiungo la classe "success" all'input
+	    formField.classList.remove('error');
+	    formField.classList.add('success');
+	    
+	    var success=formField.querySelector('small');//accedo al field dell'errore
+	    success.textContent = ''; //rimuovo il messaggio di errore dall'input field
+	}
+	
+	function checkEmail(){
+		let valid = false;
+	    const email = emailField.value.trim();
+	    if (isEmpty(email)) {
+	        showError(emailField, 'Inserisci una email.');
+	    } else if (!isValidEmail(email)) {
+	        showError(emailField, 'Email non valida.')
+	    } else {
+	        showSuccess(emailField);
+	        valid = true;
+	    }
+	    return valid;
+	}
+	
+	function checkPassword(){
+		let valid = false;
+
+		const password = passwordField.value.trim();
+		    
+		if (isEmpty(password)) {
+			showError(passwordField, 'Inserisci una password.');
+		} else if (!isValidPassword(password)) {
+			showError(passwordField,'Inserire almeno 1 carattere maiuscolo,1 minuscolo,1 carattere numerico e 1 di questi caratteri(!@#$%^&*)');
+		} else {
+			showSuccess(passwordField);
+			valid = true;
 		}
+
+		return valid;
+	}
+	
+	function checkPhone(){
+		let valid=false;
+		
+		const phone=phoneField.value.trim();
+		
+		if(isEmpty(phone)){
+			showError(phoneField,'Inserisci un numero di telefono,');
+		}else if(!isValidPhone(phone)){
+			showError(phoneField,'Inserisci un numero di telefono valido.');
+		}else{
+			showSuccess(phoneField);
+			valid=true;
+		}
+		return valid;
+	}
+	
+	function checkSecondPassword(){
+		let valid=false;
+		
+		var toCheck=passwordField.value.trim();
+		var check=checkPasswordField.value.trim();
+		
+		if(isEmpty(check)){
+			showError(checkPasswordField,"Reinserisci la password.");
+		}else if(toCheck !== check){
+			showError(checkPasswordField,"Le password non corrispondono.");
+		}else{
+			showSuccess(checkPasswordField);
+			valid=true;
+		}
+		
+		return valid;
 	}
 </script>
 </body>

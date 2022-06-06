@@ -8,21 +8,58 @@
 <style><%@include file="css/Login.css"%></style>
 </head>
 <body>
-	<div class="container">
-		<form id="msform" class="form_login" action="LoginFilter" method="POST">
-			<fieldset>
-			    <h2 class="fs-title">Login</h2> 
-			    <input type="text" id="username" name="username" placeholder="Username" />
-			    <input type="password" id="password" name="password" placeholder="Password" />
-			    <button class="button" formaction="Register.jsp" >Registrati</button>
+	<form id="form" class="form_login" action="LoginFilter" method="POST">
+		<fieldset>
+			<h2 class="fs-title">Login</h2> 
+			
+			    <div id="inputContainer">
+			    	<input type="text" id="username" name="username" placeholder="Username" />
+			    	<small></small>
+			    </div>
+			    
+			    <div id="inputContainer">
+			    	<input type="password" id="password" name="password" placeholder="Password" />
+			    	<small></small>
+			    </div>
+			    
+			    <button class="button" onclick="location.href='Register.jsp';" >Registrati</button>
 			    <input type="submit"  class="button" value="Login" />
+			    
 			    <a href="HomePage.jsp"><img src="img/logo.png" width="150 px" height="100 px"></a>
-	 	 	</fieldset>
-		</form>
-	</div>
+	 	 </fieldset>
+	</form>
 <script>
-	
+	const username=document.querySelector("#username");
+	const password=document.querySelector("#password");
+	const form=document.querySelector("#form");
 
+	form.addEventListener('submit',function(e){
+		//al submit della form lo prevengo per fare un check degli input che vanno controllati
+		e.preventDefault();
+		
+		if(!isEmpty(username.value.trim()) && !isEmpty(password.value.trim())){
+			var uNameVal=username.value.trim();
+			var passwordVal=password.value.trim();
+			
+			$.ajax({
+				url:'LoginAjax',
+				method:'POST',
+				data:{
+					uNameVal:uNameVal,
+				},
+				success: function(errors){
+					showError(errors);
+				},
+			});
+		}
+	});
+	
+	function isEmpty(value){
+		if(value==='')
+			return true;
+		else
+			return false;
+	}
 </script>	
 </body>
 </html>
