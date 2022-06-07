@@ -8,12 +8,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Registrazione</title>
-<script src="jquery.js"></script>
+<!-- import delle librerie utili -->
+<script src="jQuery/jquery.js"></script>
+<script src='jQuery/jquery-ui.min.js'></script>
 </head>
 <body>
 
 	<form id="form" action="RegisterServlet" method="POST">
-		  <input type="hidden" id="flag" name="flag" value="<%request.getAttribute("flag"); %>">
 		  
 		  <!-- progressbar -->
 		  <ul id="progressbar">
@@ -24,9 +25,9 @@
 	
 		  <fieldset id="firstField">
 		    <h2 class="fs-title">Account</h2>
-		    <div class="inputContainer">
+		    <div class="inputContainer" id="usernameDiv">
 		    	<input type="text" id="username" name="username" placeholder="Username" autocomplete="false"/>
-		    	<small></small>
+		    	<small id="smallUname"></small>
 		    </div>
 		    <div class="inputContainer">
 		    	<input type="text" id="email" name="email" placeholder="Email" /><br>
@@ -85,9 +86,6 @@
 	
 	</form>
 	
-<!-- import delle librei utili -->
-<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
-
 <!-- Animazione -->
 <script>
  var current_fs, next_fs, previous_fs; //fieldsets
@@ -186,6 +184,7 @@
 	const checkPasswordField=document.querySelector("#checkPassword");
 	const emailField=document.querySelector("#email");
 	const phoneField=document.querySelector("#phone");
+	const userNameField=document.querySelector("#username");
 	const formField=document.getElementById("form");
 	
 	formField.addEventListener('submit',function(e){
@@ -193,6 +192,7 @@
 		e.preventDefault();
 
 		//controllo i vari input necessari da controllare
+		checkUsername();
 		let emailValid=checkEmail();
 		let passwordValid=checkPassword();
 		let checkPasswordValid=checkSecondPassword();
@@ -205,6 +205,21 @@
 			formField.submit();
 		}
 	});
+	
+	function checkUsername(){
+		var userName=userNameField.value.trim();
+		const xhttp = new XMLHttpRequest();
+		xhttp.onload = function() {
+		    document.getElementById("txtHint").innerHTML = this.responseText;
+		}
+		xhttp.open("GET", "RegisterAjax?username="+userName);
+		xhttp.send();
+		xhttp.onreadystatechange=function(){
+			if(xmlHttp.readyState==4)  {  
+				document.form.firstField.usernameDiv.smallUname=xhttp.response.Text;			
+			}
+		};
+	}
 	
 	function isEmpty(value){
 		if(value==='')

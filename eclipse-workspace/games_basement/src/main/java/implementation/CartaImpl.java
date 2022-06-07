@@ -43,7 +43,6 @@ public class CartaImpl implements CartaDAO{
 		// TODO Auto-generated method stub
 		try(Statement s=c.createStatement()){
 			s.executeUpdate("insert into Carta values('"+cb.getNumeroCarta()+"','"+cb.getIdPagamento()+"','"+cb.getDatiIntestario()+"')");
-			
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}

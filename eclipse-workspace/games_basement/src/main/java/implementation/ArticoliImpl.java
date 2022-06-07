@@ -50,35 +50,12 @@ public class ArticoliImpl implements ArticoliDAO{
 		}
 	}
 	
-	public String[] searchBar(String input) { 
-		
-		try(Statement s=c.createStatement()) {
-			ResultSet rs=s.executeQuery("select Articolo.nome from Articolo where Articolo.nome LIKE '%"+input+"'");
-			ArrayList<String> temp=new ArrayList<String>();
-			
-			while(rs.next()) {
-				temp.add(rs.getString(1));
-			}
-			
-			String [] products=new String[temp.size()];
-			
-			for(int i=0;i<temp.size();i++) {
-				products[i]=temp.get(i);
-			}
-			
-			return products;
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
-	public ArrayList<ArticoliBean> queryGetProduct() {
+	public ArrayList<ArticoliBean> queryGetProduct(int number) {
 		ArrayList<ArticoliBean> homepage=new ArrayList<ArticoliBean>();
 		
 		try {
 			Statement s=c.createStatement();
-			ResultSet rs=s.executeQuery("select * from Articolo order by rand() limit 1");
+			ResultSet rs=s.executeQuery("select * from Articolo order by rand() limit +'"+number+"'");
 			while(rs.next()) {
 				String codiceA=rs.getString(1),descrizione=rs.getString(3),tipologia=rs.getString(5),immagine=rs.getString(7),nome=rs.getString(8);
 				int codiceC=rs.getInt(2);
@@ -117,7 +94,7 @@ public class ArticoliImpl implements ArticoliDAO{
 		// TODO Auto-generated method stub
 		try {
 			Statement s=c.createStatement();
-			s.executeUpdate("delete from Articolo where Articolo.nome='"+ab.getNome()+"'");
+			s.executeUpdate("delete from Articolo where Articolo.codice_articoli='"+ab.getCodiceA()+"'");
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -129,7 +106,7 @@ public class ArticoliImpl implements ArticoliDAO{
 		// TODO Auto-generated method stub
 		try {
 			Statement s=c.createStatement(),s1=c.createStatement();
-			s.executeUpdate("delete from Articolo where Articolo.nome='"+oldArticolo.getNome()+"'");
+			s.executeUpdate("delete from Articolo where Articolo.codice_articoli='"+oldArticolo.getCodiceA()+"'");
 			s1.executeUpdate("insert into Articolo values('"+newArticolo.getCodiceA()+"','"+newArticolo.getCodiceC()+"',"
 					+ "'"+newArticolo.getDescrizione()+"','"+newArticolo.getPrezzo()+"','"+newArticolo.getTipologia()+"',"
 					+ "'"+newArticolo.isOfferta()+"','"+newArticolo.getImmagine()+"','"+newArticolo.getNome()+"')");

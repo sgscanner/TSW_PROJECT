@@ -14,12 +14,11 @@
 			
 			    <div id="inputContainer">
 			    	<input type="text" id="username" name="username" placeholder="Username" />
-			    	<small></small>
 			    </div>
 			    
 			    <div id="inputContainer">
 			    	<input type="password" id="password" name="password" placeholder="Password" />
-			    	<small></small>
+			    	<small id="error"></small>
 			    </div>
 			    
 			    <button class="button" onclick="location.href='Register.jsp';" >Registrati</button>
@@ -46,9 +45,13 @@
 				method:'POST',
 				data:{
 					uNameVal:uNameVal,
+					passwordVal:passwordVal
 				},
-				success: function(errors){
-					showError(errors);
+				success: function(success){
+					form.submit();
+				},
+				error:function(error){
+					$('#error').html();
 				},
 			});
 		}

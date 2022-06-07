@@ -26,10 +26,10 @@
                     	<li><a href="Login.jsp">Accedi</a></li>
                     <%}else{ %>
                     	<%System.out.println("username: "+ub.getUsername()); %>
-						<li><a href="PersonalPage.jsp"><%ub.getUsername(); %></a></li>
-                    <%} %>
+						<li><a href="PersonalPage.jsp"><%=ub.getUsername() %></a></li>
+                    <%}%>
                     <li><a href="Register.jsp">Registrati</a></li>
-                    <li><img src="img/carrello.jpg" class="carrello"></li>
+                    <li><a href="Carrello.jsp"><img src="img/carrello.jpg" class="carrello"></a></li>
                 </ul>
             </nav>
              <ul class="first">

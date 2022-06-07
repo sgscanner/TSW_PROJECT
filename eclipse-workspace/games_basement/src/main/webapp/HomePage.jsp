@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <title>HomePage!</title>
+<link rel="icon" type="image/x-icon" href="/images/logo.ico">
 <link rel="stylesheet" href="css/HomePage.css">
-
 <style>
 * {
 	box-sizing: border-box
@@ -117,7 +117,6 @@ to {
 	}
 }
 </style>
-
 </head>
 <body>
 	<%@include file="Header.jsp"%>
