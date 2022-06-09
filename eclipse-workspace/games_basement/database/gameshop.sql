@@ -13,9 +13,9 @@ CREATE TABLE Catalogo (
 DROP TABLE IF EXISTS Utente;
 CREATE TABLE Utente (
 	id_utente varchar(25) not null primary key,
-  email varchar(30) not null ,
-  password varchar(32) not null,
-  ruolo varchar(30 ) not null	
+  	email varchar(30) not null ,
+  	password varchar(32) not null,
+  	ruolo varchar(30 ) not null	
 );
 
 DROP TABLE IF EXISTS Città;
@@ -39,14 +39,12 @@ CREATE TABLE Città (
 
 DROP TABLE IF EXISTS Rubrica_indirizzi;
 CREATE TABLE Rubrica_indirizzi (
-	Id_Indirizzo smallint not null,
+	id_indirizzo smallint not null,
 	id_utente varchar(25) not null,
 	id_città varchar(30) not null,
-	nome varchar(25) not null,
-	cognome varchar(25) not null,
 	indirizzo varchar(50) not null,
-	foreign key(id_utente) references utente (id_utente),
-	foreign key (id_città) references città(id_città)
+	foreign key(id_utente) references utente (id_utente)
+	primary key id_indirizzo
 );
 
 DROP TABLE IF EXISTS Ordine;
@@ -54,7 +52,7 @@ CREATE TABLE Ordine (
 	numero_ordine varchar(30) not null primary key,
 	id_utente varchar(25) not null,
 	importo_totale decimal(20,2) not null,
-	numero_articoli int (15) not null,
+
 	foreign key (id_utente) REFERENCES utente (id_utente)
 );
 
@@ -74,6 +72,8 @@ CREATE TABLE Articoli (
 	nomi 		varchar(250) not null,
 	tipologia_articoli 	varchar(250) not null,
 	offerta boolean not null,
+	quantità int not null,
+	
 	foreign key(codice_catalogo) REFERENCES Catalogo (codice_catalogo)
 );
 
