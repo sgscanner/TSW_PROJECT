@@ -21,7 +21,7 @@
 			    	<small id="error"></small>
 			    </div>
 			    
-			    <button class="button" onclick="location.href='Register.jsp';" >Registrati</button>
+			    <button class="button" id="RegButton" >Registrati</button>
 			    <input type="submit"  class="button" value="Login" />
 			    
 			    <a href="HomePage.jsp"><img src="img/logo.png" width="150 px" height="100 px"></a>
@@ -32,6 +32,10 @@
 	const password=document.querySelector("#password");
 	const form=document.querySelector("#form");
 
+	document.getElementById("RegButton").onclick=function(){
+		location.href="Register.jsp";
+	}
+	
 	form.addEventListener('submit',function(e){
 		//al submit della form lo prevengo per fare un check degli input che vanno controllati
 		e.preventDefault();
@@ -40,20 +44,7 @@
 			var uNameVal=username.value.trim();
 			var passwordVal=password.value.trim();
 			
-			$.ajax({
-				url:'LoginAjax',
-				method:'POST',
-				data:{
-					uNameVal:uNameVal,
-					passwordVal:passwordVal
-				},
-				success: function(success){
-					form.submit();
-				},
-				error:function(error){
-					$('#error').html();
-				},
-			});
+			
 		}
 	});
 	

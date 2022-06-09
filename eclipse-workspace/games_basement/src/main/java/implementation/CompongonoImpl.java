@@ -6,7 +6,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import bean.ArticoliBean;
 import bean.CompongonoBean;
+import bean.OrdineBean;
 import dao.CompongonoDAO;
 
 public class CompongonoImpl implements CompongonoDAO{
@@ -43,48 +45,28 @@ public class CompongonoImpl implements CompongonoDAO{
 	}
 
 	@Override
-	public void addCompongono(CompongonoBean cb) {
+	public void addArticleToCart(ArticoliBean ab, int quantity) {
 		// TODO Auto-generated method stub
-		try {
-			Statement s=c.createStatement();
-			s.executeUpdate("insert into Compongono values('"+cb.getCodiceArticoli()+"','"+cb.getNumOrdine()+"','"+cb.getQuantità()+"')");
-		}catch(SQLException e) {
-			
-		}finally {
-			al.add(cb);
-		}
+		
 	}
 
 	@Override
-	public void removeCompongono(CompongonoBean cb) {
+	public void removeArticleFromCart(ArticoliBean ab, int quantity) {
 		// TODO Auto-generated method stub
-		try {
-			Statement s=c.createStatement();
-			s.executeUpdate("delete from Compongono where Compongono.codice_articoli='"+cb.getCodiceArticoli()+"'");
-		}catch(SQLException e) {
-			
-		}finally {
-			al.add(cb);
-		}
+		
 	}
 
 	@Override
-	public void updateCompongono(CompongonoBean oldCb, CompongonoBean newCb) {
+	public ArrayList<ArticoliBean> getAllArticleOrder(OrdineBean ob) {
 		// TODO Auto-generated method stub
-		try {
-			Statement d=c.createStatement(),i=c.createStatement();
-			d.executeUpdate("delete from Compongono where Compongono.codice_articoli='"+oldCb.getCodiceArticoli()+"'");
-			i.executeUpdate("insert into Compongono values('"+newCb.getCodiceArticoli()+"','"+newCb.getNumOrdine()+"','"+newCb.getQuantità()+"')");
-		}catch(SQLException e){
-			
-		}finally {
-			al.set(al.indexOf(oldCb), newCb);
-		}
+		return null;
 	}
 
 	@Override
 	public ArrayList<CompongonoBean> getAllCompongono() {
 		// TODO Auto-generated method stub
-		return al;
+		return null;
 	}
+
+
 }

@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>HomePage!</title>
+<title>HomePage</title>
 <link rel="icon" type="image/x-icon" href="/images/logo.ico">
 <link rel="stylesheet" href="css/HomePage.css">
 <style>

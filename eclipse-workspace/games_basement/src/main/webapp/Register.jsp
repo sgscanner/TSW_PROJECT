@@ -41,7 +41,7 @@
 		    	<input type="password" id="checkPassword" name="checkPassword" placeholder="Confirm Password" />
 		    	<small></small>
 		    </div>
-			<button class="next action-button" name="login" onclick="location.href='Login.jsp';" >Login</button>
+			<button class="action-button" name="login" id="LogButton" >Login</button>
 		    <input type="button" name="next" class="next action-button" value="Next" />
 		    <a href="HomePage.jsp"><img src="img/logo.png" width="150 px" height="100 px"></a>
 		  </fieldset>
@@ -187,12 +187,15 @@
 	const userNameField=document.querySelector("#username");
 	const formField=document.getElementById("form");
 	
+	document.getElementById("LogButton").onclick=function(){
+		location.href="Login.jsp";
+	};
+	
 	formField.addEventListener('submit',function(e){
 		//al submit della form lo prevengo per fare un check degli input che vanno controllati
 		e.preventDefault();
 
 		//controllo i vari input necessari da controllare
-		checkUsername();
 		let emailValid=checkEmail();
 		let passwordValid=checkPassword();
 		let checkPasswordValid=checkSecondPassword();

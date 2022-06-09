@@ -30,10 +30,9 @@ public class ArticoliImpl implements ArticoliDAO{
 				long codiceC=rs.getLong("codice_catalogo");
 				double prezzo=rs.getDouble("prezzo");
 				boolean offerta=rs.getBoolean("offerta");
-				System.out.println("codiceA: "+codiceA+"codiceC: "+codiceC+"descrizione: "+descrizione+
-								   "prezzo: "+prezzo+"tipologia: "+
-								   "offerta: "+offerta+"immagine: "+immagine+"nome:"+nome);
-				articoli.add(new ArticoliBean(codiceA,codiceC,descrizione,prezzo,nome,tipologia,offerta,immagine));
+				int quantità=rs.getInt("quantità");
+				
+				articoli.add(new ArticoliBean(codiceA,codiceC,descrizione,prezzo,nome,tipologia,offerta,immagine,quantità));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -57,12 +56,14 @@ public class ArticoliImpl implements ArticoliDAO{
 			Statement s=c.createStatement();
 			ResultSet rs=s.executeQuery("select * from Articolo order by rand() limit +'"+number+"'");
 			while(rs.next()) {
-				String codiceA=rs.getString(1),descrizione=rs.getString(3),tipologia=rs.getString(5),immagine=rs.getString(7),nome=rs.getString(8);
-				int codiceC=rs.getInt(2);
-				float prezzo=rs.getFloat(4);
-				boolean offerta=rs.getBoolean(6);
+				String codiceA=rs.getString("codice_articoli"),descrizione=rs.getString("descrizione"),
+						tipologia=rs.getString("tipologia_articoli"),immagine=rs.getString("immagine"),nome=rs.getString("nome");
+				long codiceC=rs.getLong("codice_catalogo");
+				double prezzo=rs.getDouble("prezzo");
+				boolean offerta=rs.getBoolean("offerta");
+				int quantità=rs.getInt("quantità");
 				
-				homepage.add(new ArticoliBean(codiceA,codiceC,descrizione,prezzo,nome,tipologia,offerta,immagine));
+				homepage.add(new ArticoliBean(codiceA,codiceC,descrizione,prezzo,nome,tipologia,offerta,immagine,quantità));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -80,7 +81,7 @@ public class ArticoliImpl implements ArticoliDAO{
 			Statement s=c.createStatement();
 			s.executeUpdate("insert into Articolo values('"+ab.getCodiceA()+"','"+ab.getCodiceC()+"',"
 							+ "'"+ab.getDescrizione()+"','"+ab.getPrezzo()+"','"+ab.getTipologia()+"',"
-							+ "'"+ab.isOfferta()+"','"+ab.getImmagine()+"','"+ab.getNome()+"')");
+							+ "'"+ab.isOfferta()+"','"+ab.getImmagine()+"','"+ab.getNome()+"','"+ab.getQuantità()+"')");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
