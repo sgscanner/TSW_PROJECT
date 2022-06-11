@@ -1,6 +1,7 @@
 package implementation;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,6 +13,7 @@ import dao.RecensioneDAO;
 public class RecensioneImpl implements RecensioneDAO {
 	private ArrayList<RecensioneBean> al;
 	private Connection c;
+	private final String INSERT_QUERY="insert into Recensione values(?,?,?)";
 	
 	public RecensioneImpl() {
 		// TODO Auto-generated constructor stub
@@ -31,8 +33,6 @@ public class RecensioneImpl implements RecensioneDAO {
 		}catch (SQLException e) {
 			// TODO: handle exception
 		}
-		
-		
 	}
 
 	public void stopConnection() {
@@ -47,14 +47,14 @@ public class RecensioneImpl implements RecensioneDAO {
 	@Override
 	public void addRecensione(RecensioneBean rb) {
 		// TODO Auto-generated method stub
-		try {
-			Statement s=c.createStatement();
-			s.executeUpdate("insert into Recensione values('"+rb.getNumeroStelle()+"','"+rb.getIdUtente()+"','"+rb.getCodiceArticolo()+"')");
-		} catch (SQLException e) {
-			// TODO: handle exception
-		}finally {
-			al.add(rb);
+		try(PreparedStatement ps=c.prepareStatement(INSERT_QUERY)){
+			ps.setInt(1, rb.getNumeroStelle());
+			ps.setString(2, rb.getIdUtente());
+			ps.setString(3, rb.getCodiceArticolo());
+		}catch(SQLException e) {
+			System.out.println("error: "+e.getMessage());
 		}
+		al.add(rb);
 	}
 
 	@Override
@@ -79,8 +79,6 @@ public class RecensioneImpl implements RecensioneDAO {
 			s1.executeUpdate("insert into Recensione values('"+newRecensione.getNumeroStelle()+"','"+newRecensione.getIdUtente()+"','"+newRecensione.getCodiceArticolo()+"')");
 		} catch (Exception e) {
 			// TODO: handle exception
-		}finally {
-			al.set(al.indexOf(oldRecensione), newRecensione);
 		}
 	}
 

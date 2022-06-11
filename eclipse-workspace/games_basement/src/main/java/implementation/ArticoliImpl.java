@@ -1,6 +1,7 @@
 package implementation;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,6 +13,8 @@ import dao.ArticoliDAO;
 public class ArticoliImpl implements ArticoliDAO{
 	private ArrayList<ArticoliBean> articoli;
 	private Connection c;
+	private static final String DELETE_QUERY="delete from Articolo where Articolo.codice_articoli=?";
+	private static final String INSERT_QUERY="insert into Articolo values(?,?,?,?,?,?,?,?,?)";
 	
 	public ArticoliImpl() {
 		articoli=new ArrayList<ArticoliBean>();
@@ -77,11 +80,12 @@ public class ArticoliImpl implements ArticoliDAO{
 	@Override
 	public void addArticolo(ArticoliBean ab) {
 		// TODO Auto-generated method stub
-		try {
-			Statement s=c.createStatement();
-			s.executeUpdate("insert into Articolo values('"+ab.getCodiceA()+"','"+ab.getCodiceC()+"',"
-							+ "'"+ab.getDescrizione()+"','"+ab.getPrezzo()+"','"+ab.getTipologia()+"',"
-							+ "'"+ab.isOfferta()+"','"+ab.getImmagine()+"','"+ab.getNome()+"','"+ab.getQuantità()+"')");
+		try(PreparedStatement ps=c.prepareStatement(INSERT_QUERY)){
+			ps.setString(1, ab.getCodiceA()); ps.setLong(2,ab.getCodiceC());
+			ps.setString(3, ab.getDescrizione()); ps.setFloat(4, (float)ab.getPrezzo());
+			ps.setString(5,ab.getTipologia());
+			ps.setBoolean(6, ab.isOfferta()); ps.setString(7, ab.getImmagine());
+			ps.setString(8, ab.getNome()); ps.setInt(9, ab.getQuantità());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -93,9 +97,8 @@ public class ArticoliImpl implements ArticoliDAO{
 	@Override
 	public void removeArticolo(ArticoliBean ab) {
 		// TODO Auto-generated method stub
-		try {
-			Statement s=c.createStatement();
-			s.executeUpdate("delete from Articolo where Articolo.codice_articoli='"+ab.getCodiceA()+"'");
+		try(PreparedStatement ps=c.prepareStatement(DELETE_QUERY)) {
+			ps.setString(1, ab.getCodiceA());
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -105,16 +108,8 @@ public class ArticoliImpl implements ArticoliDAO{
 	@Override
 	public void updateArticolo(ArticoliBean oldArticolo, ArticoliBean newArticolo) {
 		// TODO Auto-generated method stub
-		try {
-			Statement s=c.createStatement(),s1=c.createStatement();
-			s.executeUpdate("delete from Articolo where Articolo.codice_articoli='"+oldArticolo.getCodiceA()+"'");
-			s1.executeUpdate("insert into Articolo values('"+newArticolo.getCodiceA()+"','"+newArticolo.getCodiceC()+"',"
-					+ "'"+newArticolo.getDescrizione()+"','"+newArticolo.getPrezzo()+"','"+newArticolo.getTipologia()+"',"
-					+ "'"+newArticolo.isOfferta()+"','"+newArticolo.getImmagine()+"','"+newArticolo.getNome()+"')");
-		}catch(SQLException e) {
-			
-		}
-		articoli.set(articoli.indexOf(oldArticolo), newArticolo);
+		removeArticolo(oldArticolo);
+		addArticolo(newArticolo);
 	}
 
 	@Override

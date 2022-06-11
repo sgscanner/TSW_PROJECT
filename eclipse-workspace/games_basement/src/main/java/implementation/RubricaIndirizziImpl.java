@@ -1,6 +1,7 @@
 package implementation;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,6 +13,7 @@ import dao.RubricaIndirizziDAO;
 public class RubricaIndirizziImpl implements RubricaIndirizziDAO{
 	private Connection c;
 	private ArrayList<RubricaIndirizziBean> al;
+	private final String INSERT_QUERY="insert into Rubrica_indirizzi values(?,?,?,?)";
 	
 	public RubricaIndirizziImpl() {
 		// TODO Auto-generated constructor stub
@@ -45,14 +47,15 @@ public class RubricaIndirizziImpl implements RubricaIndirizziDAO{
 	@Override
 	public void addRubricaIndirizzi(RubricaIndirizziBean rib) {
 		// TODO Auto-generated method stub
-		try {
-			Statement s=c.createStatement();
-			s.executeUpdate("insert into Rubrica_indirizzi values('"+rib.getIdIndirizzo()+"','"+rib.getIdUtente()+"','"+rib.getIdCittà()+"','"+rib.getIndirizzo()+"')");
+		try(PreparedStatement ps=c.prepareStatement(INSERT_QUERY)){
+			ps.setString(1, rib.getIdUtente());
+			ps.setString(2, rib.getIdCittà());
+			ps.setString(3, rib.getIndirizzo());
+			ps.setShort(4, (short) rib.getIdIndirizzo());
 		}catch(SQLException e) {
-			
-		}finally {
-			al.add(rib);
+			System.out.println(e.getMessage());
 		}
+		al.add(rib);
 	}
 
 	@Override
@@ -71,14 +74,8 @@ public class RubricaIndirizziImpl implements RubricaIndirizziDAO{
 	@Override
 	public void updateRubricaIndirizzi(RubricaIndirizziBean oldrib, RubricaIndirizziBean newrib) {
 		// TODO Auto-generated method stub
-		try {
-			Statement s=c.createStatement(),s1=c.createStatement();
-			s.executeUpdate("delete from Rubrica_indirizzi where Rubrica_indirizzi.Id_Indirizzo='"+oldrib.getIdIndirizzo()+"'");
-			s1.executeUpdate("insert into Rubrica_indirizzi values('"+newrib.getIdIndirizzo()+"','"+newrib.getIdUtente()+"','"+newrib.getIdCittà()+"','"+newrib.getIndirizzo()+"')");
-		}catch(SQLException e) {
-			
-		}finally {
-		}
+		removeRubricaIndirizzi(oldrib);
+		addRubricaIndirizzi(newrib);
 	}
 
 	@Override

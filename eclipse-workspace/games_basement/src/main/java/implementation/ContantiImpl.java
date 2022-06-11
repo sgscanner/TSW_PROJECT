@@ -1,6 +1,7 @@
 package implementation;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,6 +13,7 @@ import dao.ContantiDAO;
 public class ContantiImpl implements ContantiDAO {
 	private Connection c;
 	private ArrayList<ContantiBean> al;
+	private final String INSERT_QUERY="insert into Contanti values(?)";
 	
 	public ContantiImpl() {
 		// TODO Auto-generated constructor stub
@@ -46,14 +48,12 @@ public class ContantiImpl implements ContantiDAO {
 	@Override
 	public void addContanti(ContantiBean cb) {
 		// TODO Auto-generated method stub
-		try {
-			Statement s=c.createStatement();
-			s.executeUpdate("insert into Contanti values('"+cb.getIdPagamento()+"')");
+		try(PreparedStatement ps=c.prepareStatement(INSERT_QUERY)){
+			ps.setInt(1, cb.getIdPagamento());
 		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			al.add(cb);
+			System.out.println(e.getMessage());
 		}
+		al.add(cb);
 	}
 
 	@Override
@@ -72,15 +72,8 @@ public class ContantiImpl implements ContantiDAO {
 	@Override
 	public void updateContanti(ContantiBean oldCb, ContantiBean newCb) {
 		// TODO Auto-generated method stub
-		try {
-			Statement d=c.createStatement(),i=c.createStatement();
-			d.executeUpdate("delete from Contanti where Contanti.id_pagamento='"+oldCb.getIdPagamento()+"'");
-			i.executeUpdate("insert into Contanti values('"+newCb.getIdPagamento()+"')");
-		}catch(SQLException e) {
-			
-		}finally {
-			al.set(al.indexOf(oldCb),newCb);
-		}
+		removeContanti(oldCb);
+		addContanti(newCb);
 	}
 
 	@Override
@@ -89,6 +82,4 @@ public class ContantiImpl implements ContantiDAO {
 		return al;
 	}
 
-	
-	
 }

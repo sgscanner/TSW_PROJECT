@@ -1,6 +1,7 @@
 package implementation;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,7 +13,8 @@ import dao.VeloceDAO;
 public class VeloceImpl implements VeloceDAO{
 	private Connection c;
 	private ArrayList<VeloceBean> al;
-		
+	private final String INSERT_QUERY="insert into Veloce values(?,?,?,?)";
+	
 	public VeloceImpl() {
 		// TODO Auto-generated constructor stub
 		al=new ArrayList<VeloceBean>();
@@ -45,14 +47,15 @@ public class VeloceImpl implements VeloceDAO{
 	@Override
 	public void addVeloce(VeloceBean vb) {
 		// TODO Auto-generated method stub
-		try {
-			Statement s=c.createStatement();
-			s.executeUpdate("insert into Veloce values('"+vb.getIdSpedizione()+"','"+vb.getNumOrdine()+"','"+vb.getDataOrdine()+"','"+vb.getTotale()+"')");
+		try(PreparedStatement ps=c.prepareStatement(INSERT_QUERY)){
+			ps.setInt(1,vb.getIdSpedizione());
+			ps.setString(2,vb.getNumOrdine());
+			ps.setDate(3,vb.getDataOrdine());
+			ps.setFloat(4, (float)vb.getTotale());
 		}catch(SQLException e) {
-			
-		}finally {
-			al.add(vb);
+			System.out.println(e.getMessage());
 		}
+		al.add(vb);
 	}
 
 	@Override
@@ -71,15 +74,8 @@ public class VeloceImpl implements VeloceDAO{
 	@Override
 	public void updateVeloce(VeloceBean oldvb, VeloceBean newvb) {
 		// TODO Auto-generated method stub
-		try {
-			Statement s=c.createStatement(),s1=c.createStatement();
-			s.executeUpdate("delete from Veloce where Veloce.id_spedizione='"+oldvb.getIdSpedizione()+"'");
-			s1.executeUpdate("insert into Veloce values('"+newvb.getIdSpedizione()+"','"+newvb.getNumOrdine()+"','"+newvb.getDataOrdine()+"','"+newvb.getTotale()+"'");
-		}catch(SQLException e) {
-			
-		}finally {
-			al.set(al.indexOf(oldvb), newvb);
-		}
+		removeVeloce(newvb);
+		addVeloce(newvb);
 	}
 
 	@Override

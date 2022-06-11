@@ -1,6 +1,7 @@
 package implementation;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,6 +13,7 @@ import dao.CatalogoDAO;
 public class CatalogoImpl implements CatalogoDAO{
 	private Connection c;
 	private ArrayList<CatalogoBean> al;
+	private final String INSERT_QUERY="insert into Catalogo values(?)";
 	
 	public CatalogoImpl() {
 		// TODO Auto-generated constructor stub
@@ -44,14 +46,12 @@ public class CatalogoImpl implements CatalogoDAO{
 	@Override
 	public void addCatalogo(CatalogoBean cb) {
 		// TODO Auto-generated method stub
-		try {
-			Statement s=c.createStatement();
-			s.executeUpdate("insert into Catalogo values('"+cb.getCodiceCatalogo()+"')");
+		try(PreparedStatement ps=c.prepareStatement(INSERT_QUERY)){
+			ps.setInt(1, cb.getCodiceCatalogo());
 		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			al.add(cb);
+			System.out.println(e.getMessage());
 		}
+		al.add(cb);
 	}
 
 	@Override
@@ -63,22 +63,15 @@ public class CatalogoImpl implements CatalogoDAO{
 		}catch(SQLException e) {
 			
 		}finally {
-			al.add(cb);
+			al.remove(cb);
 		}
 	}
 
 	@Override
 	public void updateCatalogo(CatalogoBean oldCatalogo, CatalogoBean newCatalogo) {
 		// TODO Auto-generated method stub
-		try {
-			Statement d=c.createStatement(),i=c.createStatement();
-			d.executeUpdate("delete from Catalogo where Catalogo.codice_catalogo='"+oldCatalogo.getCodiceCatalogo()+"'");
-			i.executeUpdate("insert into Catalogo values('"+newCatalogo.getCodiceCatalogo()+"')");
-		}catch(SQLException e) {
-			
-		}finally {
-			al.set(al.indexOf(oldCatalogo), newCatalogo);
-		}
+		removeCatalogo(oldCatalogo);
+		removeCatalogo(newCatalogo);
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package implementation;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,6 +13,7 @@ import dao.CartaDAO;
 public class CartaImpl implements CartaDAO{
 	private ArrayList<CartaBean> al;
 	private Connection c;
+	private final String INSERT_QUERY="insert into Carta values(?,?,?)";
 	
 	public CartaImpl() {
 		// TODO Auto-generated constructor stub
@@ -41,11 +43,13 @@ public class CartaImpl implements CartaDAO{
 	@Override
 	public void addCarta(CartaBean cb) {
 		// TODO Auto-generated method stub
-		try(Statement s=c.createStatement()){
-			s.executeUpdate("insert into Carta values('"+cb.getNumeroCarta()+"','"+cb.getIdPagamento()+"','"+cb.getDatiIntestario()+"')");
+		try(PreparedStatement ps=c.prepareStatement(INSERT_QUERY)){
+			ps.setString(1, cb.getNumeroCarta()); ps.setInt(2, cb.getIdPagamento());
+			ps.setString(3, cb.getDatiIntestario());
 		}catch(SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
+		al.add(cb);
 	}
 
 	@Override
@@ -61,13 +65,8 @@ public class CartaImpl implements CartaDAO{
 	@Override
 	public void updateCarta(CartaBean oldCarta, CartaBean newCarta) {
 		// TODO Auto-generated method stub
-		try {
-			Statement d=c.createStatement(),i=c.createStatement();
-			d.executeUpdate("delete from Carta AS c where c.numero_di_carta='"+oldCarta.getNumeroCarta()+"' and c.id_pagamento='"+oldCarta.getIdPagamento()+"' and c.dati_intestatario='"+oldCarta.getDatiIntestario()+"' ");
-			i.executeUpdate("insert into Carta values('"+newCarta.getNumeroCarta()+"','"+newCarta.getIdPagamento()+"','"+newCarta.getDatiIntestario()+"')");
-		}catch(SQLException e) {
-			
-		}
+		removeCarta(oldCarta);
+		addCarta(newCarta);
 	}
 
 	@Override

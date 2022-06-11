@@ -1,6 +1,7 @@
 package implementation;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,7 +13,8 @@ import dao.PagamentoDAO;
 public class PagamentoImpl implements PagamentoDAO{
 	private Connection c;
 	private ArrayList<PagamentoBean> al;
-
+	private final String INSERT_QUERY="insert into Pagamento values(?,?,?)";
+	
 	public PagamentoImpl() {
 		// TODO Auto-generated constructor stub
 		al = new ArrayList<PagamentoBean>();
@@ -45,13 +47,12 @@ public class PagamentoImpl implements PagamentoDAO{
 	@Override
 	public void addPagamento(PagamentoBean pb) {
 		// TODO Auto-generated method stub
-		try {
-			Statement s=c.createStatement();
-			s.executeUpdate("insert into Pagamento values('"+pb.getIdPagamento()+"','"+pb.getNumOrdine()+"','"+pb.getImportoPagamento()+"')");
+		try(PreparedStatement ps=c.prepareStatement(INSERT_QUERY)) {
+			ps.setInt(1, pb.getIdPagamento());
+			ps.setString(2, pb.getNumOrdine());
+			ps.setFloat(3, (float)pb.getImportoPagamento());
 		}catch(SQLException e) {
-			
-		}finally {
-			al.add(pb);
+			System.out.println("Error:"+e.getMessage());
 		}
 	}
 
@@ -71,15 +72,8 @@ public class PagamentoImpl implements PagamentoDAO{
 	@Override
 	public void updatePagamento(PagamentoBean oldpb, PagamentoBean newpb) {
 		// TODO Auto-generated method stub
-		try {
-			Statement s=c.createStatement(),s1=c.createStatement();
-			s.executeUpdate("delete from Pagamento where Pagamento.id_pagamento='"+oldpb.getIdPagamento()+"'");
-			s1.executeUpdate("insert into Pagamento values('"+newpb.getIdPagamento()+"','"+newpb.getNumOrdine()+"','"+newpb.getImportoPagamento()+"')");
-		}catch(SQLException e) {
-			
-		}finally {
-			al.set(al.indexOf(oldpb), newpb);
-		}
+		removePagamento(oldpb);
+		addPagamento(newpb);
 	}
 
 	@Override

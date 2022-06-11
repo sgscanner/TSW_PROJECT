@@ -1,6 +1,7 @@
 package implementation;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,6 +13,7 @@ import dao.OrdineDAO;
 public class OrdineImpl implements OrdineDAO{
 	private Connection c;
 	private ArrayList<OrdineBean> al;
+	private final String INSERT_QUERY="insert into Ordine values(?,?,?)";
 	
 	public OrdineImpl() {
 		// TODO Auto-generated constructor stub
@@ -28,9 +30,8 @@ public class OrdineImpl implements OrdineDAO{
 			while(rs.next()) {
 				String numOrdine=rs.getString(1),idU=rs.getString(2);
 				double importo=rs.getDouble(3);
-				int numArt=rs.getInt(4);
 				
-				al.add(new OrdineBean(numOrdine,idU,importo,numArt));
+				al.add(new OrdineBean(numOrdine,idU,importo));
 				
 			}
 		}catch(SQLException e) {
@@ -50,13 +51,12 @@ public class OrdineImpl implements OrdineDAO{
 	@Override
 	public void addOrdine(OrdineBean ob) {
 		// TODO Auto-generated method stub
-		try {
-			Statement s=c.createStatement();
-			s.executeUpdate("insert into Ordine values('"+ob.getNumOrdine()+"','"+ob.getIdUtente()+"','"+ob.getTotale()+"','"+ob.getNumProdotti()+"')");
+		try (PreparedStatement ps=c.prepareStatement(INSERT_QUERY)){
+			ps.setString(1, ob.getNumOrdine());
+			ps.setString(2, ob.getIdUtente());
+			ps.setFloat(3, (float)ob.getTotale());
 		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			al.add(ob);
+			
 		}
 	}
 
@@ -76,15 +76,8 @@ public class OrdineImpl implements OrdineDAO{
 	@Override
 	public void updateOrdine(OrdineBean oldob, OrdineBean newob) {
 		// TODO Auto-generated method stub
-		try {
-			Statement d=c.createStatement(),i=c.createStatement();
-			d.executeUpdate("delete from Ordine where Ordine where Ordine.numero_ordine='"+oldob.getNumOrdine()+"'");
-			i.execute("insert into Ordine values('"+newob.getNumOrdine()+"','"+newob.getIdUtente()+"','"+newob.getTotale()+"','"+newob.getNumProdotti()+"')");
-		}catch(SQLException e) {
-			
-		}finally {
-			al.set(al.indexOf(oldob),newob);
-		}
+		removeOrdine(oldob);
+		addOrdine(newob);
 	}
 
 	@Override

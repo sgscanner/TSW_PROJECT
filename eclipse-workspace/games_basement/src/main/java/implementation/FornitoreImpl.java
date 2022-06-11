@@ -1,6 +1,7 @@
 package implementation;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,6 +13,7 @@ import dao.FornitoreDAO;
 public class FornitoreImpl implements FornitoreDAO{
 	private Connection c;
 	private ArrayList<FornitoreBean> al;
+	private final String INSERT_QUERY="insert into Fornitore values(?,?,?)";
 	
 	public FornitoreImpl() {
 		// TODO Auto-generated constructor stub
@@ -45,14 +47,14 @@ public class FornitoreImpl implements FornitoreDAO{
 	@Override
 	public void addFornitore(FornitoreBean fb) {
 		// TODO Auto-generated method stub
-		try {
-			Statement s=c.createStatement();
-			s.executeUpdate("insert into Fornitore values('"+fb.getIva()+"','"+fb.getNome()+"','"+fb.getIndirizzo()+"')");
-		}catch(SQLException e){
-			
-		}finally {
-			al.add(fb);
+		try (PreparedStatement ps=c.prepareStatement(INSERT_QUERY)){
+			ps.setString(1, fb.getIva());
+			ps.setString(2, fb.getNome());
+			ps.setString(3, fb.getIndirizzo());
+		}catch(SQLException e) {
+			System.out.println("error:"+e.getMessage());
 		}
+		al.add(fb);
 	}
 
 	@Override
@@ -72,15 +74,8 @@ public class FornitoreImpl implements FornitoreDAO{
 	@Override
 	public void updateFornitore(FornitoreBean oldfb, FornitoreBean newfb) {
 		// TODO Auto-generated method stub
-		try {
-			Statement d=c.createStatement(),i=c.createStatement();
-			d.executeUpdate("delete from Fornitore where Fornitore.partita_iva='"+oldfb.getIva()+"'");
-			i.executeUpdate("insert into Fornitore values('"+newfb.getIva()+"','"+newfb.getNome()+"','"+newfb.getIndirizzo()+"')");
-		}catch(SQLException e) {
-			
-		}finally {
-			al.set(al.indexOf(oldfb),newfb);
-		}
+		removeFornitore(oldfb);
+		addFornitore(newfb);
 	}
 
 	@Override

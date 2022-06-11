@@ -1,6 +1,7 @@
 package implementation;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,7 +13,8 @@ import dao.UserDAO;
 public class UserImpl implements UserDAO{
 	private Connection c;
 	private ArrayList<UserBean> al;
-
+	private final String INSERT_QUERY="insert into Utente values(?,?,?,?)";
+	
 	public UserImpl() {
 		// TODO Auto-generated constructor stub
 		al=new ArrayList<UserBean>();
@@ -65,13 +67,16 @@ public class UserImpl implements UserDAO{
 	@Override
 	public void addUser(UserBean ub) {
 		// TODO Auto-generated method stub
-		try {
-			Statement s=c.createStatement();
-			s.executeUpdate("insert into Utente values('"+ub.getUsername()+"','"+ub.getRuolo()+"','"+ub.getEmail()+"','"+ub.getPassword()+"')");
+		try (PreparedStatement ps=c.prepareStatement(INSERT_QUERY)){
+			ps.setString(1, ub.getUsername());
+			ps.setString(2, ub.getRuolo());
+			ps.setString(3, ub.getPassword());
+			ps.setString(4, ub.getEmail());
 		}catch(SQLException e) {
-			
-		}finally {
+			System.out.println(e.getMessage());
 		}
+		
+		al.add(ub);
 	}
 
 	@Override

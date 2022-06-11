@@ -1,6 +1,7 @@
 package implementation;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,6 +13,7 @@ import dao.BonificoDAO;
 public class BonificoImpl implements BonificoDAO{
 	private ArrayList<BonificoBean> al;
 	private Connection c;
+	private final String INSERT_QUERY="insert into Bonifico values(?,?,?,?)";
 	
 	public BonificoImpl() {
 		// TODO Auto-generated constructor stub
@@ -31,7 +33,6 @@ public class BonificoImpl implements BonificoDAO{
 				BonificoBean bb=new BonificoBean(iban,dati,causale,idPagamento);
 				al.add(bb);
 			}
-			
 		}catch(SQLException e) {
 			
 		}
@@ -49,11 +50,13 @@ public class BonificoImpl implements BonificoDAO{
 	@Override
 	public void addBonifico(BonificoBean cb) {
 		// TODO Auto-generated method stub
-		try (Statement s=c.createStatement()){
-			s.executeUpdate("insert into Bonifico values('"+cb.getIban()+"','"+cb.getIdPagamento()+"','"+cb.getCausale()+"','"+cb.getDatiIntestario()+"')");
+		try (PreparedStatement ps=c.prepareStatement(INSERT_QUERY)){
+			ps.setString(1, cb.getIban()); ps.setInt(2, cb.getIdPagamento());
+			ps.setString(3, cb.getCausale()); ps.setString(4, cb.getDatiIntestario());
 		}catch(SQLException e) {
-			
+			System.out.println(e.getMessage());
 		}
+		al.add(cb);
 	}
 
 	@Override
@@ -70,14 +73,8 @@ public class BonificoImpl implements BonificoDAO{
 	@Override
 	public void updateBonifico(BonificoBean oldBonifico, BonificoBean newBonifico) {
 		// TODO Auto-generated method stub
-		try {
-			Statement s=c.createStatement(),s1=c.createStatement();
-			s.executeUpdate("delete from Bonifico as b where b.iban='"+oldBonifico.getIban()+"' and b.id_pagamento='"+oldBonifico.getIdPagamento()+"' "
-					  + "and b.causale='"+oldBonifico.getCausale()+"' and b.dati_intestatario='"+oldBonifico.getDatiIntestario()+"'");
-			s1.executeUpdate("insert into Bonifico values('"+newBonifico.getIban()+"','"+newBonifico.getIdPagamento()+"','"+newBonifico.getCausale()+"','"+newBonifico.getDatiIntestario()+"')");
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
+		removeBonifico(oldBonifico);
+		addBonifico(newBonifico);
 	}
 
 	@Override

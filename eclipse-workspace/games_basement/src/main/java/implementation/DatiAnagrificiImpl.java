@@ -2,6 +2,7 @@ package implementation;
 
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -13,6 +14,7 @@ import dao.DatiAnagraficiDAO;
 public class DatiAnagrificiImpl implements DatiAnagraficiDAO{
 	private Connection c;
 	private ArrayList<DatiAnagraficiBean> al;
+	private final String INSERT_QUERY="insert into Dati_anagrafici values(?,?,?,?,?,?,?)";
 	
 	public DatiAnagrificiImpl() {
 		// TODO Auto-generated constructor stub
@@ -27,8 +29,8 @@ public class DatiAnagrificiImpl implements DatiAnagraficiDAO{
 			ResultSet rs=s.executeQuery("select * from Dati_anagrafici");
 			
 			while(rs.next()) {
-				String idU=rs.getString(1),idC=rs.getString(7),nome=rs.getString(4),cognome=rs.getString(5),
-						telefono=rs.getString(2),città=rs.getString(6);
+				String idU=rs.getString("id_utente"),idC=rs.getString("cap"),nome=rs.getString("nome"),cognome=rs.getString("cognome"),
+						telefono=rs.getString("telefono"),città=rs.getString("città");
 				
 				Date bDay=rs.getDate(3);
 				
@@ -51,14 +53,15 @@ public class DatiAnagrificiImpl implements DatiAnagraficiDAO{
 	@Override
 	public void addDatiAnagrafici(DatiAnagraficiBean dab) {
 		// TODO Auto-generated method stub
-		try(Statement s=c.createStatement();) {
-			s.executeUpdate("insert into Dati_anagrafici values('"+dab.getIdUtente()+"','"+dab.getTelefono()+"',"
-							+ "'"+dab.getDataNascita()+"','"+dab.getNome()+"','"+dab.getCognome()+"','"+dab.getCitta()+"','"+dab.getcap()+"')");
+		try(PreparedStatement ps=c.prepareStatement(INSERT_QUERY)){
+			ps.setString(1, dab.getIdUtente()); ps.setString(2, dab.getTelefono());
+			ps.setDate(3, dab.getDataNascita()); ps.setString(4, dab.getNome());
+			ps.setString(5, dab.getCognome()); ps.setString(6, dab.getCitta());
+			ps.setString(7, dab.getcap());
 		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			al.add(dab);
+			System.out.println(e.getMessage());
 		}
+		al.add(dab);
 	}
 
 	@Override
@@ -77,16 +80,8 @@ public class DatiAnagrificiImpl implements DatiAnagraficiDAO{
 	@Override
 	public void updateDatiAnagrafici(DatiAnagraficiBean oldDab, DatiAnagraficiBean newDab) {
 		// TODO Auto-generated method stub
-		try{
-			Statement s=c.createStatement(),s1=c.createStatement();
-			s.executeUpdate("delete from Dati_anagrafici where Dati_anagrafici.id_utente='"+oldDab.getIdUtente()+"'");
-			s.executeUpdate("insert into Dati_anagrafici values('"+newDab.getIdUtente()+"','"+newDab.getTelefono()+"',"
-					+ "'"+newDab.getDataNascita()+"','"+newDab.getNome()+"','"+newDab.getCognome()+"','"+newDab.getCitta()+"','"+newDab.getcap()+"')");
-		}catch(SQLException e) {
-			
-		}finally {
-			al.set(al.indexOf(oldDab), newDab);
-		}
+		removeDatiAnagrafici(oldDab);
+		addDatiAnagrafici(newDab);
 	}
 
 	@Override

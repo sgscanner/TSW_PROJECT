@@ -2,6 +2,7 @@ package implementation;
 
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -13,6 +14,7 @@ import dao.StandardDAO;
 public class StandardImpl implements StandardDAO{
 	private Connection c;
 	private ArrayList<StandardBean> al;
+	private final String INSERT_QUERY="insert into Standard values(?,?,?)";
 	
 	public StandardImpl() {
 		al=new ArrayList<StandardBean>();
@@ -51,14 +53,14 @@ public class StandardImpl implements StandardDAO{
 	@Override
 	public void addStandard(StandardBean sb) {
 		// TODO Auto-generated method stub
-		try {
-			Statement s=c.createStatement();
-			s.executeUpdate("insert into Standard values('"+sb.getIdSpedizione()+"','"+sb.getNumOrdine()+"','"+sb.getDataOrdine()+"','"+sb.getTotale()+"')");
+		try(PreparedStatement ps=c.prepareStatement(INSERT_QUERY)){
+			ps.setLong(1,sb.getIdSpedizione());
+			ps.setString(2,sb.getNumOrdine());
+			ps.setDate(3, sb.getDataOrdine());
 		}catch(SQLException e) {
-			
-		}finally {
-			al.add(sb);
+			System.out.println(e.getMessage());
 		}
+		al.add(sb);
 	}
 
 	@Override
@@ -77,15 +79,8 @@ public class StandardImpl implements StandardDAO{
 	@Override
 	public void updateStandard(StandardBean oldsb, StandardBean newsb) {
 		// TODO Auto-generated method stub
-		try {
-			Statement s=c.createStatement(),s1=c.createStatement();
-			s.executeUpdate("delete from Standard where Standard.id_spedizione='"+oldsb.getIdSpedizione()+"'");
-			s1.executeUpdate("insert into Standard values('"+newsb.getIdSpedizione()+"','"+newsb.getNumOrdine()+"','"+newsb.getDataOrdine()+"','"+newsb.getTotale()+"')");
-		}catch(SQLException e) {
-			
-		}finally {
-			al.set(al.indexOf(oldsb), newsb);
-		}
+		removeStandard(oldsb);
+		addStandard(newsb);
 	}
 
 	@Override
