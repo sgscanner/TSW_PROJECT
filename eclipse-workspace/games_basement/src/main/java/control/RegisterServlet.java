@@ -16,8 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import java.util.Base64;
-
 import bean.DatiAnagraficiBean;
 import bean.UserBean;
 import implementation.DatiAnagrificiImpl;

@@ -9,19 +9,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import bean.UserBean;
 import implementation.UserImpl;
 
 /**
- * Servlet implementation class LoginAjax
+ * Servlet implementation class AjaxUsername
  */
-@WebServlet("/LoginAjax")
-public class LoginAjax extends HttpServlet {
+@WebServlet("/AjaxUsername")
+public class AjaxUsername extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginAjax() {
+    public AjaxUsername() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,6 +35,18 @@ public class LoginAjax extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String uname=request.getParameter("param");
+		UserImpl ui=new UserImpl();
+		JSONObject json=new JSONObject();
+		
+		try {
+			json.put("usernameInfo",checkUname(ui, uname));
+		}catch(JSONException e) {
+			System.out.println(e.getMessage());
+		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().print(json);
 	}
 
 	/**
@@ -38,17 +54,26 @@ public class LoginAjax extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String uName=request.getParameter("username");
-		UserImpl ui=new UserImpl();
-		
-		if(ui.searchUser(uName)==null) {
-			PrintWriter pw=response.getWriter();
-			pw.print("Username errato");
-		}else {
-			PrintWriter pw=response.getWriter();
-			pw.print("Username correttoà  F");
-		}
+		doGet(request, response);
 	}
 
+	private String checkUname(UserImpl ui,String username) {
+		if(username.equals("")) {
+			return "Inserisci username";
+		}
+		
+		
+		if(ui.getAllUser().size()==0) {
+			return "Non ci sono utenti registrati";
+		}
+		
+		UserBean ub=ui.searchUser(username);
+		
+		if(ub==null) {
+			return "Username disponibile";
+		}else {
+			return "Username già preso";
+		}
+	}
 	
 }

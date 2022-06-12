@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>Registrazione</title>
 <!-- import delle librerie utili -->
+<script src="ajax/ajaxJSON.js"></script>
 <script src="jQuery/jquery.js"></script>
 <script src='jQuery/jquery-ui.min.js'></script>
 </head>
@@ -25,7 +26,7 @@
 	
 		  <fieldset id="firstField">
 		    <h2 class="fs-title">Account</h2>
-		    <div class="inputContainer" id="usernameDiv">
+		    <div class="inputContainer">
 		    	<input type="text" id="username" name="username" placeholder="Username" autocomplete="false"/>
 		    	<small id="smallUname"></small>
 		    </div>
@@ -186,6 +187,7 @@
 	const phoneField=document.querySelector("#phone");
 	const userNameField=document.querySelector("#username");
 	const formField=document.getElementById("form");
+	//boolean unameValid=false;
 	
 	document.getElementById("LogButton").onclick=function(){
 		location.href="Login.jsp";
@@ -196,12 +198,14 @@
 		e.preventDefault();
 
 		//controllo i vari input necessari da controllare
+		checkUsername();
+		//console.log("unameValid value:"+unameValid);
 		let emailValid=checkEmail();
 		let passwordValid=checkPassword();
 		let checkPasswordValid=checkSecondPassword();
 		let phoneValid=checkPhone();
 		
-		let formValid=emailValid && passwordValid && checkPasswordValid && phoneValid;
+		let formValid=emailValid && passwordValid && checkPasswordValid && phoneValid  ;
 		
 		//ora che ho controllato tutto posso fare la submit
 		if(formValid){
@@ -209,19 +213,35 @@
 		}
 	});
 	
-	function checkUsername(){
-		var userName=userNameField.value.trim();
-		const xhttp = new XMLHttpRequest();
-		xhttp.onload = function() {
-		    document.getElementById("txtHint").innerHTML = this.responseText;
+	function setValid(bool){
+		unameValid=bool;
+	}
+	
+	function readJson(listJSON){
+		var json = JSON.parse(listJSON) 
+		var result=json.usernameInfo;
+			
+		if(result=="Username già preso"){
+			setValid(false);
+			showError(userNameField,result);
+		}else if(result=="Username disponibile" ){
+			setValid(true);
+			showSuccess(userNameField);
+		}else if(result=="Inserisci username"){
+			showError(userNameField,result);
+		}else if(result=="Non ci sono utentti registrati"){
+			showSuccess(userNameField);
 		}
-		xhttp.open("GET", "RegisterAjax?username="+userName);
-		xhttp.send();
-		xhttp.onreadystatechange=function(){
-			if(xmlHttp.readyState==4)  {  
-				document.form.firstField.usernameDiv.smallUname=xhttp.response.Text;			
-			}
-		};
+	}
+	
+	function checkUsername(){
+		var id="smallUname";
+		var url="/games_basement/AjaxUsername";
+		var param=userNameField.value.trim();
+		var param2=userNameField.value.trim();
+		var timeout=0;
+		
+		ajaxCall(id, url, readJson, param, param2, timeout);
 	}
 	
 	function isEmpty(value){
@@ -270,6 +290,7 @@
 	    
 	    var error = formField.querySelector('small');//accedo al field dove visualizzerò il messagio
 	    error.textContent = messageError; //aggiungo il messaggio
+		error.style.color="red";
 	}
 	
 	function showSuccess(inputField){

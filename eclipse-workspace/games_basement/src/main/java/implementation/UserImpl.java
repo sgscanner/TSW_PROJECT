@@ -29,7 +29,6 @@ public class UserImpl implements UserDAO{
 			
 			while(rs.next()) {	
 				al.add(new UserBean(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)));
-				
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -46,6 +45,7 @@ public class UserImpl implements UserDAO{
 	}
 
 	public UserBean searchUser(String username) {
+		
 		try(Statement s=c.createStatement()){
 			ResultSet rs=s.executeQuery("select * from Utente where Utente.id_utente='"+username+"'");
 			UserBean ub=new UserBean() ;
