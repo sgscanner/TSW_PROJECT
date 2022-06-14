@@ -11,13 +11,15 @@
 <style><%@include file="css/Prodotto.css"%></style>
 </head>
 <body>
-	<%@include file="Header.jsp" %>
 	
-	<p><b>Marvel's Spider-Man</b></p>
+	<%@ include file="Header.jsp" %>
 	
-	<div style="display: grid; grid-template-columns: auto auto; margin-top:10px;">
-		<div>
+	<div class="titpro">
+		<p><b>Titolo prodotto</b></p>
+	</div>
 	
+	<div class="prodotto">
+		<div class="prodotto1">
 			<img class="pitcure" src="img/1.jpg" alt="1" style="max-width:100%">
 		
 			<img class="pitcure" src="img/2.jpg" alt="2" style="max-width:100%">
@@ -29,32 +31,37 @@
 			<img class="pitcure" src="img/5.jpg" alt="5" style="max-width:100%">
 		</div>
 		
-		<div class="cart">
-			<div class="prezzo">
-				<p>19,99&euro;</p>
+		<div class="shop">
+			<div class="shop1">
+					<div class="shop2">
+						<p style="display:inline;">prezzo&euro;</p>
+						
+					</div>
+					<div class="shop2">
+						<p style="display:inline;">Quantit&agrave;&nbsp;<input class="n" type="number" min="1" max="99"></p>
+					</div>
 			</div>
-			<div>
-				<p style="display:inline">Quantit&agrave;:</p>
-				<input class="n" type="number" min="1" max="99">
+			
+			<div class="shop1">
+				<div class="shop2">
+					<p><b>Genere</b>
+					<p><b>Data di rilascio</b>
+					<p><b>PEGI</b>
+				</div>
+				<div class="shop2">
+					<p>Action
+					<p>12/11/2020
+					<p>16+
+				</div>
 			</div>
-			<div>
-				<form method="post" action="">
-					<input class="buttonA" type="submit" value="Acquista ora">
-				</form>
-			</div>
-			<div>
-				<form action="">
-					<input class="buttonB" type="submit" value="Aggiungi al carrello">
-				</form>
-			</div>
-			<div>
-				<p style="display:inline">
-				<b>Genere</b>&nbsp;&nbsp;Action<br>
-				<b>Rilascio</b>&nbsp;&nbsp;07/09/2018<br>
-				<b>PEGI</b>&nbsp;&nbsp;16+	
-			</div>
-			<div>
-				<p class="offerta">Prodotto in offerta</p>
+			
+			<div class="shop1">
+				<div class="shop2">
+					<button class="bao">Acquista ora</button>
+				</div>
+				<div class="shop2">
+					<button class="bag">Aggiungi al carrello</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -66,45 +73,6 @@
 		
 		<div class="line">
 		
-		</div>
-		
-		<div>
-			<p class="des">DESCRIZIONE</p>
-			<p class="d">Marvel's Spider-Man contiene tutte le acrobazie, le improvvisazioni e le ragnatele che hanno reso celebre 
-			l'arrampicamuri, uno dei supereroi pi&ugrave; famosi al mondo, introducendo allo stesso tempo elementi mai visti 
-			in un gioco di Spider-Man.</p>
-		</div>
-		
-			<p class="rec">RECENSIONI</p>
-			
-		<div style="display: grid; grid-template-columns: auto auto">
-			
-			
-				<div>
-				
-				</div>
-				
-			
-			
-			<div style="border: 2px solid black">
-				<div style="display: grid; grid-template-columns: auto auto;">
-					<p>Nome Cliente</p>
-					<div>
-						<%@include file="StaticStar.jsp" %>
-					</div>
-				</div>
-				<p>Titolo recensione</p>
-				<p>Descrizione</p>
-			</div>
-			
-		</div>
-		
-		<div>
-			<p class="par"><b>Recensisci prodotto</b></p>
-			<form method="post" action="Feedback.jsp">
-      			<input class="buttonR" type="submit" value="Scrivi una recensione"/>
-    		</form>
-			
 		</div>
 		
 		<div style="margin-top: 25px;">
