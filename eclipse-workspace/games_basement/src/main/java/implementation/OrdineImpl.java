@@ -1,6 +1,7 @@
 package implementation;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,10 +29,11 @@ public class OrdineImpl implements OrdineDAO{
 			ResultSet rs=s.executeQuery("select * from Ordine");
 			
 			while(rs.next()) {
-				String numOrdine=rs.getString(1),idU=rs.getString(2);
-				double importo=rs.getDouble(3);
+				String numOrdine=rs.getString("numero_ordine"),idU=rs.getString("id_utente");
+				double importo=rs.getDouble("importo_totale");
+				Date date=rs.getDate("data_ordine");
 				
-				al.add(new OrdineBean(numOrdine,idU,importo));
+				al.add(new OrdineBean(numOrdine,idU,importo,date));
 				
 			}
 		}catch(SQLException e) {

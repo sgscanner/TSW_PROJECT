@@ -164,3 +164,6 @@ CREATE TABLE Recensione(
 insert into Fornitore values('01833690157','Sony','Via cantalupo in sabina 29');
 insert into Fornitore values('08106710158','Microsoft','Viale Pasubio 21');
 insert into Fornitore values('03359860966','Nintendo','Via Torri Bianche, 6');
+insert into Catalogo values('1');
+insert into Articolo values
+	('5026555431873','1','In GTA 5 vivi la storia di tre criminali diversi tra loro che si danno da fare per sopravvivere e realizzarsi nel più grande mondo di gioco mai creato.',31.0,' Azione, Open World',false,'gtaVps5/1.png-gtaVps5/2.png-gtaVps5/3.png','GTA V','50'),

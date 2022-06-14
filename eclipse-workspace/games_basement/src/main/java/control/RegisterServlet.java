@@ -47,8 +47,8 @@ public class RegisterServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String uName=request.getParameter("username"),password=request.getParameter("password"),cap=request.getParameter("cap"),
-				date=request.getParameter("bday"),nome=request.getParameter("nome"),cognome=request.getParameter("cognome"),telefono=request.getParameter("phone"),
-				email=request.getParameter("email"),città=request.getParameter("citta");	
+			   date=request.getParameter("bday"),nome=request.getParameter("nome"),cognome=request.getParameter("cognome"),telefono=request.getParameter("phone"),
+			   email=request.getParameter("email"),città=request.getParameter("citta");	
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		long l;
 		Date d1;
