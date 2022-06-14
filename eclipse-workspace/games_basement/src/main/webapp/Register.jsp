@@ -36,7 +36,7 @@
 		    </div>
 		    <div class="inputContainer">
 		  	 	<input type="password" id="password" name="password" placeholder="Password" />
-		  	 	<small></small>
+		  	 	<small></small>	
 		    </div>
 		    <div class="inputContainer">
 		    	<input type="password" id="checkPassword" name="checkPassword" placeholder="Confirm Password" />
@@ -44,7 +44,6 @@
 		    </div>
 			<button class="action-button" name="login" id="LogButton" >Login</button>
 		    <input type="button" name="next" class="next action-button" value="Next" />
-		    <a href="HomePage.jsp"><img src="img/logo.png" width="150 px" height="100 px"></a>
 		  </fieldset>
 		  
 		  <fieldset id="secondField">
@@ -63,7 +62,6 @@
 			    </div>
 			    <input type="button" name="previous" class="previous action-button" value="Previous" />
 			    <input type="button" name="next" class="next action-button" value="Next" />
-			    <a href="HomePage.jsp"><img src="img/logo.png" width="150 px" height="100 px"></a>
 		  </fieldset>
 		  
 		  <fieldset id="thirdField">
@@ -82,7 +80,6 @@
 			    </div>
 			    <input type="button" name="previous" class="previous action-button" value="Previous" />
 			    <input type="submit" name="invio-dati" class="submit action-button" value="Submit" />
-			    <a href="HomePage.jsp"><img src="img/logo.png" width="150 px" height="100 px"></a>
 		  </fieldset>
 	
 	</form>
@@ -187,7 +184,7 @@
 	const phoneField=document.querySelector("#phone");
 	const userNameField=document.querySelector("#username");
 	const formField=document.getElementById("form");
-	//boolean unameValid=false;
+	const smallUname=document.getElementById("smallUname");
 	
 	document.getElementById("LogButton").onclick=function(){
 		location.href="Login.jsp";
@@ -204,32 +201,30 @@
 		let passwordValid=checkPassword();
 		let checkPasswordValid=checkSecondPassword();
 		let phoneValid=checkPhone();
+		let unameError=smallUname.innerHTML;
 		
 		let formValid=emailValid && passwordValid && checkPasswordValid && phoneValid  ;
 		
 		//ora che ho controllato tutto posso fare la submit
-		if(formValid){
-			formField.submit();
+		if(unameError!="Username già preso"){
+			if(formValid){
+				formField.submit();
+			}
 		}
 	});
 	
-	function setValid(bool){
-		unameValid=bool;
-	}
 	
 	function readJson(listJSON){
 		var json = JSON.parse(listJSON) 
 		var result=json.usernameInfo;
 			
 		if(result=="Username già preso"){
-			setValid(false);
 			showError(userNameField,result);
 		}else if(result=="Username disponibile" ){
-			setValid(true);
 			showSuccess(userNameField);
 		}else if(result=="Inserisci username"){
 			showError(userNameField,result);
-		}else if(result=="Non ci sono utentti registrati"){
+		}else if(result=="Non ci sono utenti registrati"){
 			showSuccess(userNameField);
 		}
 	}
