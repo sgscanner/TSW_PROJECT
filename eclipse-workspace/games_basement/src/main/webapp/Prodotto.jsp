@@ -29,6 +29,12 @@
 			<img class="pitcure" src="img/4.jpg" alt="4" style="max-width:100%">
 		
 			<img class="pitcure" src="img/5.jpg" alt="5" style="max-width:100%">
+			
+			<div style="display:inline">
+			<button class="buttonleft" onclick="plusDivs(-1)">&#10094;</button>
+			<button class="buttonright" onclick="plusDivs(1)">&#10095;</button>	
+		</div> 
+			
 		</div>
 		
 		<div class="shop">
@@ -44,42 +50,90 @@
 			
 			<div class="shop1">
 				<div class="shop2">
-					<p><b>Genere</b>
-					<p><b>Data di rilascio</b>
-					<p><b>PEGI</b>
+					<p><b>Genere</b>&nbsp;Action
+					<p><b>Rilascio</b>&nbsp;12/11/2020
+					<p><b>PEGI</b>&nbsp;16+
 				</div>
 				<div class="shop2">
-					<p>Action
-					<p>12/11/2020
-					<p>16+
+					<button class="off" type="button">&#127918;&nbsp;Prodotto in offerta</button>
 				</div>
 			</div>
 			
 			<div class="shop1">
 				<div class="shop2">
-					<button class="bao">Acquista ora</button>
+					<button form="acquista" class="bao" type="submit">Acquista ora</button>
 				</div>
 				<div class="shop2">
-					<button class="bag">Aggiungi al carrello</button>
+					<button form="carrello" class="bag" type="submit">Aggiungi al carrello</button>
 				</div>
 			</div>
 		</div>
 	</div>
 		
-		<div style="display:inline">
-			<button class="buttonleft" onclick="plusDivs(-1)">&#10094;</button>
-			<button class="buttonright" onclick="plusDivs(1)">&#10095;</button>	
-		</div> 
+		<div class="line"></div>
 		
-		<div class="line">
+		<div>
+			<div>
+				<p class="d">DESCRIZIONE</p>
+			</div>
+			<div style="display:grid;grid-template-columns:1fr;margin-bottom:10px;">
+				<p>Nell'ultima avventura dell'universo di Marvel's Spider-Man, 
+				l'adolescente Miles Morales affronta il trasloco nella sua nuova 
+				casa mentre segue le orme del suo mentore, Peter Parker, 
+				per diventare il nuovo Spider-Man. Quando una feroce 
+				forza minaccia di distruggere la sua nuova casa, 
+				l'aspirante eroe comprende che da grandi poteri, 
+				derivano grandi responsabilit&agrave;. Per salvare la New York della Marvel, 
+				Miles deve indossare il costume di Spider-Man e guadagnarselo.</p>
+			</div>
+		</div>
 		
+		<div style="display:grid;grid-template-columns:1fr 1fr;border:5px solid red;">
+			<div style="border:5px solid green;">
+			
+			</div>
+			<div style="border:5px solid blue;">
+				
+			</div>
 		</div>
 		
 		<div style="margin-top: 25px;">
 			<%@include file="Footer.jsp"%>
 		</div>
 		
-	<script>
+		<form action="" method="get" id="carrello">
+		
+		</form>
+		
+		<form action="" method="get" id="acquista">
+		
+		</form>
+		
+<script type="text/javascript">
+	const form = document.getElementById('carrello');
+		
+	form.addEventListener('submit',(event) => {
+			
+	});
+		
+	form.addEventListener('submit'),(event) =>{
+			event.preventDefault();
+	});
+</script>
+
+<script type="text/javascript">
+	const form = document.getElementById('acquista');
+		
+	form.addEventListener('submit',(event) => {
+			
+	});
+		
+	form.addEventListener('submit'),(event) =>{
+			event.preventDefault();
+	});
+</script>
+
+<script type="text/javascript">
 	var slideIndex = 1;
 	showDivs(slideIndex);
 
@@ -97,7 +151,8 @@
 	  }
 	  x[slideIndex-1].style.display = "block";  
 	}
-	</script>
+	 
+</script>
 	
 </body>
 </html>
