@@ -6,6 +6,8 @@
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Prodotto</title>
+<script src="jQuery/jquery.js"></script>
+<script src='jQuery/jquery-ui.min.js'></script>
 <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style><%@include file="css/Prodotto.css"%></style>
@@ -119,6 +121,7 @@
 	form.addEventListener('submit'),(event) =>{
 			event.preventDefault();
 	});
+	
 </script>
 
 <script type="text/javascript">
