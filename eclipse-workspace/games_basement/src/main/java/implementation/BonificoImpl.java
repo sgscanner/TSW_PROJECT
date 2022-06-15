@@ -53,6 +53,7 @@ public class BonificoImpl implements BonificoDAO{
 		try (PreparedStatement ps=c.prepareStatement(INSERT_QUERY)){
 			ps.setString(1, cb.getIban()); ps.setInt(2, cb.getIdPagamento());
 			ps.setString(3, cb.getCausale()); ps.setString(4, cb.getDatiIntestario());
+			ps.executeUpdate();
 		}catch(SQLException e) {
 			System.out.println(e.getMessage());
 		}

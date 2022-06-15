@@ -51,6 +51,7 @@ public class PagamentoImpl implements PagamentoDAO{
 			ps.setInt(1, pb.getIdPagamento());
 			ps.setString(2, pb.getNumOrdine());
 			ps.setFloat(3, (float)pb.getImportoPagamento());
+			ps.executeUpdate();
 		}catch(SQLException e) {
 			System.out.println("Error:"+e.getMessage());
 		}

@@ -42,7 +42,7 @@
 		    	<input type="password" id="checkPassword" name="checkPassword" placeholder="Confirm Password" />
 		    	<small></small>
 		    </div>
-			<button class="action-button" name="login" id="LogButton" >Login</button>
+			<a href="HomePage.jsp" class="action-button" id="HomePageButton" >HomePage</a>
 		    <input type="button" name="next" class="next action-button" value="Next" />
 		  </fieldset>
 		  
@@ -139,7 +139,6 @@
 	  current_fs = $(this).parent();
 	  previous_fs = $(this).parent().prev();
 
-	  
 	  //rimuove di 1 dalla progress-bar
 	  $("#progressbar li")
 	    .eq($("fieldset").index(current_fs))
@@ -185,10 +184,11 @@
 	const userNameField=document.querySelector("#username");
 	const formField=document.getElementById("form");
 	const smallUname=document.getElementById("smallUname");
+	var boolResult;
 	
-	document.getElementById("LogButton").onclick=function(){
-		location.href="Login.jsp";
-	};
+	/**document.getElementById("LogButton").onclick=function(){
+		location.href="HomePage.jsp";
+	};**/
 	
 	formField.addEventListener('submit',function(e){
 		//al submit della form lo prevengo per fare un check degli input che vanno controllati
@@ -201,15 +201,12 @@
 		let passwordValid=checkPassword();
 		let checkPasswordValid=checkSecondPassword();
 		let phoneValid=checkPhone();
-		let unameError=smallUname.innerHTML;
 		
-		let formValid=emailValid && passwordValid && checkPasswordValid && phoneValid  ;
+		let formValid=emailValid && passwordValid && checkPasswordValid && phoneValid && boolResult  ;
 		
 		//ora che ho controllato tutto posso fare la submit
-		if(unameError!="Username già preso"){
-			if(formValid){
-				formField.submit();
-			}
+		if(formValid){
+			form.submit();
 		}
 	});
 	
@@ -217,14 +214,18 @@
 	function readJson(listJSON){
 		var json = JSON.parse(listJSON) 
 		var result=json.usernameInfo;
-			
+		
 		if(result=="Username già preso"){
+			boolResult=false;
 			showError(userNameField,result);
 		}else if(result=="Username disponibile" ){
+			boolResult=true;
 			showSuccess(userNameField);
 		}else if(result=="Inserisci username"){
+			boolResult=false;
 			showError(userNameField,result);
 		}else if(result=="Non ci sono utenti registrati"){
+			boolResult=true;
 			showSuccess(userNameField);
 		}
 	}

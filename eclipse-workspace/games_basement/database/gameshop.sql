@@ -4,7 +4,6 @@ USE gameshop;
 
 CREATE USER 'gameshop'@'localhost' IDENTIFIED BY 'password';
 GRANT ALL PRIVILIGES on gameshop.* to 'gameshop'@'localhost';
-
 DROP TABLE IF EXISTS Catalogo;
 CREATE TABLE Catalogo (
 	codice_catalogo int(15) not null primary key

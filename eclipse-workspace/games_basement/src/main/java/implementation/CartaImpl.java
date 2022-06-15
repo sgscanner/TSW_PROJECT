@@ -46,6 +46,7 @@ public class CartaImpl implements CartaDAO{
 		try(PreparedStatement ps=c.prepareStatement(INSERT_QUERY)){
 			ps.setString(1, cb.getNumeroCarta()); ps.setInt(2, cb.getIdPagamento());
 			ps.setString(3, cb.getDatiIntestario());
+			ps.executeUpdate();
 		}catch(SQLException e) {
 			System.out.println(e.getMessage());
 		}

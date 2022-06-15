@@ -52,6 +52,7 @@ public class RubricaIndirizziImpl implements RubricaIndirizziDAO{
 			ps.setString(2, rib.getIdCittà());
 			ps.setString(3, rib.getIndirizzo());
 			ps.setShort(4, (short) rib.getIdIndirizzo());
+			ps.executeUpdate();
 		}catch(SQLException e) {
 			System.out.println(e.getMessage());
 		}

@@ -51,6 +51,7 @@ public class FornitoreImpl implements FornitoreDAO{
 			ps.setString(1, fb.getIva());
 			ps.setString(2, fb.getNome());
 			ps.setString(3, fb.getIndirizzo());
+			ps.executeUpdate();
 		}catch(SQLException e) {
 			System.out.println("error:"+e.getMessage());
 		}

@@ -136,7 +136,7 @@ public class ArticoliBean implements java.io.Serializable{
 	/**
 	 * @param prezzo the prezzo to set
 	 */
-	public void setPrezzo(int prezzo) {
+	public void setPrezzo(double prezzo) {
 		this.prezzo = prezzo;
 	}
 

@@ -229,3 +229,19 @@ body {
 	background-repeat:no-repeat;
 	border-radius:3 px;
 }
+
+#HomePageButton:link{
+	 text-decoration: none
+}
+
+#HomePageButton:visited{
+	 text-decoration: none
+}
+
+#HomePageButton:hover{
+	 text-decoration: none
+}
+
+#HomePageButton:active{
+	 text-decoration: none
+}

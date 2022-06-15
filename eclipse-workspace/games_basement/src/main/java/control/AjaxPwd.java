@@ -62,12 +62,11 @@ public class AjaxPwd extends HttpServlet {
 				
 			}
 			
+			ui.stopConnection();
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			response.getWriter().print(json);
 		}
-		
-		
 	}
 
 	/**

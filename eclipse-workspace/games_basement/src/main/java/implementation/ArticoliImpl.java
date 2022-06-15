@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import bean.ArticoliBean;
+import bean.OrdineBean;
 import dao.ArticoliDAO;
 
 public class ArticoliImpl implements ArticoliDAO {
@@ -16,8 +17,8 @@ public class ArticoliImpl implements ArticoliDAO {
 	private Connection c;
 	private static final String DELETE_QUERY = "delete from Articolo where Articolo.codice_articoli=?";
 	private static final String INSERT_QUERY = "insert into Articolo values(?,?,?,?,?,?,?,?,?)";
-	private static final String SEARCH_DATE_VELOCE="select o.numero_ordine,o.id_utente,o.importo_totale from Ordine as o,Veloce as v where o.numero_ordine=v.numero_ordine and v.data_spedizione between ? and ? ";
-	private static final String SEARCH_DATE_STANDARD="select o.numero_ordine,o.id_utente,o.importo_totale from Ordine as o,Veloce as v where o.numero_ordine=v.numero_ordine and v.data_spedizione between ? and ? ";	
+	private static final String SEARCH_BY_DATE="select o.numero_ordine,o.id_utente,o.importo_totale,o.data_ordine from Ordine as o where o.data_ordine between ? and ?";
+	private static final String SEARCH_BY_CODE="select * from Articolo where Articolo.codice_articoli=?";
 	
 	public ArticoliImpl() {
 		articoli = new ArrayList<ArticoliBean>();
@@ -57,6 +58,41 @@ public class ArticoliImpl implements ArticoliDAO {
 		}
 	}
 
+	public ArticoliBean searchByCode(String codice) {
+		ArticoliBean ab=new ArticoliBean();
+		
+		try (PreparedStatement ps=c.prepareStatement(SEARCH_BY_CODE)){
+			ps.setString(1, codice);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				String codiceA = rs.getString("codice_articoli"), descrizione = rs.getString("descrizione"),
+						tipologia = rs.getString("tipologia_articoli"), immagine = rs.getString("immagine"),
+						nome = rs.getString("nome");
+				long codiceC = rs.getLong("codice_catalogo");
+				double prezzo = rs.getDouble("prezzo");
+				boolean offerta = rs.getBoolean("offerta");
+				int quantità = rs.getInt("quantità");
+				
+				ab.setCodiceA(codiceA);
+				ab.setDescrizione(descrizione);
+				ab.setTipologia(tipologia);
+				ab.setImmagine(immagine);
+				ab.setNome(nome);
+				ab.setCodiceC(codiceC);
+				ab.setPrezzo(prezzo);
+				ab.setOfferta(offerta);
+				ab.setQuantità(quantità);
+			}
+			
+			return ab;
+		}catch(SQLException e) {
+			
+		}
+		
+		return ab;
+	}
+	
 	public ArrayList<ArticoliBean> queryGetProduct(int number) {
 		ArrayList<ArticoliBean> homepage = new ArrayList<ArticoliBean>();
 
@@ -83,20 +119,23 @@ public class ArticoliImpl implements ArticoliDAO {
 		return homepage;
 	}
 
-	public void searchByDate(Date from, Date to, String type) {
-		if (type.equals("Veloce")) {
-			try (PreparedStatement ps = c.prepareStatement("select * from Ordine as o,Veloce as v where")) {
-
-			} catch (SQLException e) {
-				System.out.println(e.getMessage());
+	public ArrayList<OrdineBean> searchByDate(Date from, Date to) {
+		ArrayList<OrdineBean> ob=new ArrayList<OrdineBean>();
+		try(PreparedStatement ps=c.prepareStatement(SEARCH_BY_DATE)){
+			ps.setDate(1, from);
+			ps.setDate(2, to);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()) {
+				String numOrdine=rs.getString("numero_ordine"),idU=rs.getString("id_utente");
+				double importo=rs.getDouble("importo_totale");
+				Date date=rs.getDate("data_ordine");
+				
+				ob.add(new OrdineBean(numOrdine,idU,importo,date));
 			}
-		} else if (type.equals("Standard")) {
-			try (PreparedStatement ps = c.prepareStatement("")) {
-
-			} catch (SQLException e) {
-				System.out.println(e.getMessage());
-			}
+		}catch(SQLException e) {
+			System.out.println(e.getMessage());
 		}
+		return ob;
 	}
 
 	/* metodi interface */
@@ -113,6 +152,7 @@ public class ArticoliImpl implements ArticoliDAO {
 			ps.setString(7, ab.getImmagine());
 			ps.setString(8, ab.getNome());
 			ps.setInt(9, ab.getQuantità());
+			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -126,6 +166,7 @@ public class ArticoliImpl implements ArticoliDAO {
 		// TODO Auto-generated method stub
 		try (PreparedStatement ps = c.prepareStatement(DELETE_QUERY)) {
 			ps.setString(1, ab.getCodiceA());
+			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

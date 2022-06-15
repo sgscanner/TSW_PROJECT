@@ -48,6 +48,7 @@ public class CatalogoImpl implements CatalogoDAO{
 		// TODO Auto-generated method stub
 		try(PreparedStatement ps=c.prepareStatement(INSERT_QUERY)){
 			ps.setInt(1, cb.getCodiceCatalogo());
+			ps.executeUpdate();
 		}catch(SQLException e) {
 			System.out.println(e.getMessage());
 		}
