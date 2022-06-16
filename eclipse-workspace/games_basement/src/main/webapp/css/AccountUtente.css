@@ -1,0 +1,180 @@
+@charset "ISO-8859-1"
+
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+/*basic reset*/
+html {
+	height: 100%;
+	background: linear-gradient(#000000,rgb(192,28,40));
+}
+
+body {
+	font-family: montserrat, arial, verdana;
+}
+
+h3{
+	text-align:center;
+	color:white;
+	margin-top:7%;
+}
+
+.fields {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  gap: 3%;
+  margin-top:6%;
+  margin-bottom:10%;
+}
+
+.field{
+    background-color: white;
+    border: black groove 2px;
+    border-radius:20px;
+    position:relative;
+}
+
+.bottoni{
+	width: 100px;
+	background: rgb(192,28,40);
+	font-weight: bold;
+	color: red;
+	border: 0 none;
+	border-radius: 1px;
+	cursor: pointer;
+	padding: 10px 5px;
+	margin: 10px 5px;
+}
+
+/*form styles*/
+#form {
+	align-items:center;
+	width: 80%;
+	margin: auto;
+	text-align: center;
+	position: relative;
+}
+
+/*inputs style*/
+#form input{
+	padding: 15px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	width: 100%;
+	box-sizing: border-box;
+	font-family: montserrat;
+	color: #2C3E50;
+	font-size: 13px;
+}
+
+/*headings dei fieldset*/
+.fs-title {
+	font-size: 15px;
+	text-transform: uppercase;
+	color: black;
+	margin-bottom: 10px;
+}
+
+.form-field {
+    margin-bottom: 5px;
+}
+
+.form-field input {
+    border: solid 2px #f0f0f0;
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    display: block;
+    width: 100%;
+}
+
+.form-inputContainer input:focus {
+    outline: none;
+}
+
+.form-inputContainer.error input {
+   color: #FF0000;
+}
+
+.form-inputContainer.success input {
+   color: #28a745;
+}
+
+.form-inputContainer small {
+    color: #FF0000;
+}
+
+/*Inserisco le varie icone agli input*/
+#username{
+	background-image:url(img/utente.png);
+	position:left;
+	padding-left:30px;
+	background-size:15px;
+	background-repeat:no-repeat;
+	border-radius:3 px;
+}
+
+
+#nome{
+	background-image:url(img/utente.png);
+	position:left;
+	padding-left:30px;
+	background-size:15px;
+	background-repeat:no-repeat;
+	border-radius:3 px;
+}
+
+#cognome{
+	background-image:url(img/utente.png);
+	position:left;
+	padding-left:30px;
+	background-size:15px;
+	background-repeat:no-repeat;
+	border-radius:3 px;
+}
+
+#email{
+	background-image:url(img/email.png);
+	position:left;
+	padding-left:30px;
+	background-size:15px;
+	background-repeat:no-repeat;
+	border-radius:10 px;
+}
+
+#password{
+	background-image:url(img/password.png);
+	position:left;
+	padding-left:30px;
+	background-size:15px;
+	background-repeat:no-repeat;
+	border-radius:3 px;
+}
+
+#checkPassword{
+	background-image:url(img/password.png);
+	position:left;
+	padding-left:30px;
+	background-size:15px;
+	background-repeat:no-repeat;
+	border-radius:3 px;
+}
+
+#phone{
+	background-image:url(img/phone.png);
+	position:left;
+	padding-left:30px;
+	background-size:15px;
+	background-repeat:no-repeat;
+	border-radius:3 px;
+}
+
+@media (min-width: 600px) {
+  .fields { grid-template-columns: repeat(2, 1fr);}
+}
+
+@media (min-width: 900px) {
+  .fields { grid-template-columns: repeat(3, 1fr); }
+}
