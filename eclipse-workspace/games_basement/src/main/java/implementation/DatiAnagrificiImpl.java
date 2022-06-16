@@ -58,6 +58,7 @@ public class DatiAnagrificiImpl implements DatiAnagraficiDAO{
 			ps.setDate(3, dab.getDataNascita()); ps.setString(4, dab.getNome());
 			ps.setString(5, dab.getCognome()); ps.setString(6, dab.getCitta());
 			ps.setString(7, dab.getcap());
+			ps.executeUpdate();
 		}catch(SQLException e) {
 			System.out.println(e.getMessage());
 		}
@@ -70,6 +71,7 @@ public class DatiAnagrificiImpl implements DatiAnagraficiDAO{
 		try{
 			Statement s=c.createStatement();
 			s.executeUpdate("delete from Dati_anagrafici where Dati_anagrafici.id_utente='"+dab.getIdUtente()+"'");
+			
 		}catch(SQLException e) {
 			
 		}finally {

@@ -16,7 +16,7 @@ public class CompongonoImpl implements CompongonoDAO{
 	private Connection c;
 	private ArrayList<CompongonoBean> compongonoList;
 	private final String REMOVE_PRODOTTO = "update Articolo set Articolo.quantità=quantità-? where Articolo.codice_articoli=?";
-	private final String INSERT_COMPONGONO = "insert into Compongono values(?,?,?)";
+	private final String INSERT_COMPONGONO = "insert into Compongono values(?,?,?,?)";
 	private final String REMOVE_ORDINE = "delete from Compongono where Compongono.numero_ordine=? ";
 	
 	public CompongonoImpl() {
@@ -32,7 +32,7 @@ public class CompongonoImpl implements CompongonoDAO{
 			ResultSet rs=s.executeQuery("select * from Compongono");
 			
 			while(rs.next()) {
-				compongonoList.add(new CompongonoBean(rs.getString(1),rs.getString(2),rs.getInt(3)));
+				compongonoList.add(new CompongonoBean(rs.getString("codice_articoli"),rs.getString("numero_ordine"),rs.getInt("quantità"),rs.getFloat("prezzo_storico")));
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -48,7 +48,18 @@ public class CompongonoImpl implements CompongonoDAO{
 		}
 	}
 
-	public void completeOrder(OrdineBean ob,ArrayList<ArticoliBean> articoli){
+	public CompongonoBean searchCart() {
+		CompongonoBean cb=new CompongonoBean();
+		try(Statement s=c.createStatement()){
+			s.execute("select * from Compongono where Compongono.numero_ordine='not completed'");
+		}catch(SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return cb;
+	}
+	
+	public void completeOrder(OrdineBean ob,ArrayList<ArticoliBean> articoli,String num_ordine){
 		for(ArticoliBean ab:articoli) {
 			try(PreparedStatement ps=c.prepareStatement(REMOVE_PRODOTTO)){
 				Statement s=c.createStatement();
@@ -58,6 +69,7 @@ public class CompongonoImpl implements CompongonoDAO{
 				while(rs.next()) {
 					ps.setInt(1, rs.getInt(1));
 					ps.setString(2, ab.getCodiceA());
+					ps.execute();
 				}
 				
 			}catch(SQLException e) {
@@ -69,13 +81,30 @@ public class CompongonoImpl implements CompongonoDAO{
 		oi.addOrdine(ob);
 	}
 	
+	public int addToCart(ArticoliBean ab,int quantità) {
+		int result=0;
+		try(PreparedStatement ps=c.prepareStatement(INSERT_COMPONGONO)){
+			ps.setString(1, ab.getCodiceA());
+			ps.setInt(2, quantità);
+			ps.setFloat(3, (float)ab.getPrezzo());
+			ps.setString(4, "not completed");
+			result=ps.executeUpdate();
+			return result;
+		}catch(SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+	
 	@Override
 	public void addCompongono(CompongonoBean cb) {
 		// TODO Auto-generated method stub
 		try(PreparedStatement ps=c.prepareStatement(INSERT_COMPONGONO)){
 			ps.setString(1, cb.getCodiceArticoli());
-			ps.setString(2, cb.getNumOrdine());
-			ps.setInt(3, cb.getQuantità());
+			ps.setInt(2, cb.getQuantità());
+			ps.setFloat(3,(float) cb.getPrezzo_storico());
+			ps.setString(4, cb.getNumOrdine());
+			ps.executeUpdate();
 		}catch(SQLException e) {
 			System.out.println(e.getMessage());
 		}
@@ -87,6 +116,7 @@ public class CompongonoImpl implements CompongonoDAO{
 		// TODO Auto-generated method stub
 		try(PreparedStatement ps=c.prepareStatement(REMOVE_ORDINE)){
 			ps.setString(1, ob.getNumOrdine());
+			ps.executeUpdate();
 		}catch (SQLException e) {
 			// TODO: handle exception
 			System.out.println(e.getMessage());

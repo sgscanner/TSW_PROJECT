@@ -57,6 +57,7 @@ public class StandardImpl implements StandardDAO{
 			ps.setLong(1,sb.getIdSpedizione());
 			ps.setString(2,sb.getNumOrdine());
 			ps.setDate(3, sb.getDataOrdine());
+			ps.executeUpdate();
 		}catch(SQLException e) {
 			System.out.println(e.getMessage());
 		}

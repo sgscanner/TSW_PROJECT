@@ -52,6 +52,7 @@ public class FatturaImpl implements FatturaDAO{
 			ps.setLong(1,cb.getIdFattura());
 			ps.setLong(2, cb.getIdPagamento());
 			ps.setDate(3, cb.getData());
+			ps.executeUpdate();
 		}catch(SQLException e) {
 			System.out.println(e.getMessage());
 		}

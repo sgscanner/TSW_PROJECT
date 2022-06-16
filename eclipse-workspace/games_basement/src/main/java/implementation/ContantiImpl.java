@@ -50,6 +50,7 @@ public class ContantiImpl implements ContantiDAO {
 		// TODO Auto-generated method stub
 		try(PreparedStatement ps=c.prepareStatement(INSERT_QUERY)){
 			ps.setInt(1, cb.getIdPagamento());
+			ps.executeUpdate();
 		}catch(SQLException e) {
 			System.out.println(e.getMessage());
 		}

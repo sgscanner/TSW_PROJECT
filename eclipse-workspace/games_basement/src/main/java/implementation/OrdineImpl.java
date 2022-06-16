@@ -14,7 +14,7 @@ import dao.OrdineDAO;
 public class OrdineImpl implements OrdineDAO{
 	private Connection c;
 	private ArrayList<OrdineBean> al;
-	private final String INSERT_QUERY="insert into Ordine values(?,?,?)";
+	private final String INSERT_QUERY="insert into Ordine values(?,?,?,?)";
 	
 	public OrdineImpl() {
 		// TODO Auto-generated constructor stub
@@ -57,6 +57,8 @@ public class OrdineImpl implements OrdineDAO{
 			ps.setString(1, ob.getNumOrdine());
 			ps.setString(2, ob.getIdUtente());
 			ps.setFloat(3, (float)ob.getTotale());
+			ps.setDate(4, ob.getData_ordine());
+			ps.executeUpdate();
 		}catch(SQLException e) {
 			
 		}

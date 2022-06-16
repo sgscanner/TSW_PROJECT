@@ -51,6 +51,7 @@ public class RecensioneImpl implements RecensioneDAO {
 			ps.setInt(1, rb.getNumeroStelle());
 			ps.setString(2, rb.getIdUtente());
 			ps.setString(3, rb.getCodiceArticolo());
+			ps.executeUpdate();
 		}catch(SQLException e) {
 			System.out.println("error: "+e.getMessage());
 		}

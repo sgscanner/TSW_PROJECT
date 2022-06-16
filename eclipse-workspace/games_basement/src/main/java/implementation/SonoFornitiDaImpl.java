@@ -50,6 +50,7 @@ public class SonoFornitiDaImpl implements SonoFornitiDaDAO{
 		try(PreparedStatement ps=c.prepareStatement(INSERT_QUERY)){
 			ps.setString(1,sfdb.getCodiceArticoli() );
 			ps.setString(2, sfdb.getIva());
+			ps.executeUpdate();
 		}catch(SQLException e) {
 			System.out.println(e.getMessage());
 		}

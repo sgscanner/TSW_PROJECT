@@ -72,6 +72,7 @@ public class UserImpl implements UserDAO{
 			ps.setString(2, ub.getRuolo());
 			ps.setString(3, ub.getPassword());
 			ps.setString(4, ub.getEmail());
+			ps.executeUpdate();
 		}catch(SQLException e) {
 			System.out.println(e.getMessage());
 		}

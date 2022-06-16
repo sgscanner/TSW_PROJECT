@@ -52,6 +52,7 @@ public class VeloceImpl implements VeloceDAO{
 			ps.setString(2,vb.getNumOrdine());
 			ps.setDate(3,vb.getDataOrdine());
 			ps.setFloat(4, (float)vb.getTotale());
+			ps.executeUpdate();
 		}catch(SQLException e) {
 			System.out.println(e.getMessage());
 		}

@@ -10,7 +10,6 @@
 </head>
  <body>
  		<%UserBean ub=(UserBean)request.getSession().getAttribute("user"); %>
- 
         <div class="header">
             <nav>
                 <img src="img/logo.png" class="logo">
@@ -25,7 +24,6 @@
                 	<%if(ub==null){%>
                     	<li><a href="Login.jsp">Accedi</a></li>
                     <%}else{ %>
-                    	<%System.out.println("username: "+ub.getUsername()); %>
 						<li><a href="PersonalPage.jsp"><%=ub.getUsername() %></a></li>
                     <%}%>
                     <li><a href="Register.jsp">Registrati</a></li>
