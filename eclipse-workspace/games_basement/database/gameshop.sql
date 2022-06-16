@@ -51,7 +51,8 @@ CREATE TABLE Ordine (
 	numero_ordine varchar(30) not null primary key,
 	id_utente varchar(25) not null,
 	importo_totale decimal(20,2) not null,
-
+	data_ordine date not null,
+	
 	foreign key (id_utente) REFERENCES utente (id_utente)
 );
 
@@ -62,8 +63,8 @@ CREATE TABLE Fornitore (
 	indirizzo	varchar(250) not null
 );
 
-DROP TABLE IF EXISTS Articoli;
-CREATE TABLE Articoli (
+DROP TABLE IF EXISTS Articolo;
+CREATE TABLE Articolo (
 	codice_articoli varchar (30) not null primary key,
 	codice_catalogo int (10) not null,
 	descrizione varchar(250) not null,
@@ -81,6 +82,8 @@ CREATE TABLE Compongono (
 	codice_articoli varchar (30) not null,
 	numero_ordine VARCHAR (30) not null,
 	quantità varchar(30) not null,
+	prezzo_storico decimal(15,2) not null.
+	
 	foreign key(codice_articoli) REFERENCES ARTICOLI(codice_articoli),
 	foreign key(numero_ordine) REFERENCES ORDINE(numero_ordine)
 );

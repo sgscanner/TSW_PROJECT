@@ -1,26 +1,23 @@
 package control;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import implementation.ArticoliImpl;
-
 /**
- * Servlet implementation class SearchBar
+ * Servlet implementation class PersonalPageServlet
  */
-@WebServlet("/SearchBar")
-public class SearchBar extends HttpServlet {
+@WebServlet("/PersonalPageServlet")
+public class PersonalPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchBar() {
+    public PersonalPageServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,8 +27,13 @@ public class SearchBar extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String product=request.getParameter("text");
-		ArticoliImpl ai=new ArticoliImpl();
+		String type=request.getParameter("tipo");
+		
+		if(type.equals("dati_anagrafici")) {
+			
+		}else if(type.equals("dati_shipment")) {
+			
+		}
 	}
 
 	/**

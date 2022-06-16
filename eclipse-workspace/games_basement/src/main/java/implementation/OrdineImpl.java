@@ -15,6 +15,7 @@ public class OrdineImpl implements OrdineDAO{
 	private Connection c;
 	private ArrayList<OrdineBean> al;
 	private final String INSERT_QUERY="insert into Ordine values(?,?,?,?)";
+	private static final String SEARCH_BY_DATE = "select o.numero_ordine,o.id_utente,o.importo_totale,o.data_ordine from Ordine as o where o.data_ordine between ? and ?";
 	
 	public OrdineImpl() {
 		// TODO Auto-generated constructor stub
@@ -50,6 +51,25 @@ public class OrdineImpl implements OrdineDAO{
 		}
 	}
 
+	public ArrayList<OrdineBean> searchByDate(Date from, Date to) {
+		ArrayList<OrdineBean> ob=new ArrayList<OrdineBean>();
+		try(PreparedStatement ps=c.prepareStatement(SEARCH_BY_DATE)){
+			ps.setDate(1, from);
+			ps.setDate(2, to);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()) {
+				String numOrdine=rs.getString("numero_ordine"),idU=rs.getString("id_utente");
+				double importo=rs.getDouble("importo_totale");
+				Date date=rs.getDate("data_ordine");
+				
+				ob.add(new OrdineBean(numOrdine,idU,importo,date));
+			}
+		}catch(SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return ob;
+	}
+	
 	@Override
 	public void addOrdine(OrdineBean ob) {
 		// TODO Auto-generated method stub

@@ -59,8 +59,15 @@ public class CompongonoImpl implements CompongonoDAO{
 		return cb;
 	}
 	
-	public void completeOrder(OrdineBean ob,ArrayList<ArticoliBean> articoli,String num_ordine){
+	public void completeOrder(OrdineBean ob,ArrayList<ArticoliBean> articoli){
 		for(ArticoliBean ab:articoli) {
+			
+			try (Statement s=c.createStatement()){
+				s.execute("update Compongono set numero_ordine='"+ob.getNumOrdine()+"' where Compongono.codice_articoli='"+ab.getCodiceA()+"'");
+			}catch(SQLException e1){
+				System.out.println(e1.getMessage());
+			}
+			
 			try(PreparedStatement ps=c.prepareStatement(REMOVE_PRODOTTO)){
 				Statement s=c.createStatement();
 				ResultSet rs=s.executeQuery("select Compongono.quantità "
@@ -129,19 +136,19 @@ public class CompongonoImpl implements CompongonoDAO{
 		// TODO Auto-generated method stub
 		ArrayList<ArticoliBean> carrello=new ArrayList<ArticoliBean>();
 		try(Statement s=c.createStatement()){
-			ResultSet rs=s.executeQuery("select a.codice_articoli,a.codice_catalogo,a.descrizione,a.prezzo,a.tipologia_articoli,a.offerta,a.immagine,a.nome,a.quantità"
+			ResultSet rs=s.executeQuery("select a.codice_articoli,a.codice_catalogo,a.descrizione,a.prezzo,a.tipologia_articoli,a.offerta,a.nome,a.quantità"
 						  +"from Articolo as a,Compongono as c,Ordine as o"
 						  +"where a.codice_articoli=c.codice_articoli and c.numero_ordine='"+ob.getNumOrdine()+"'");
 			
 			while(rs.next()) {
 				String codiceA=rs.getString("codice_articoli"),descrizione=rs.getString("descrizione"),
-						tipologia=rs.getString("tipologia_articoli"),immagine=rs.getString("immagine"),nome=rs.getString("nome");
+						tipologia=rs.getString("tipologia_articoli"),nome=rs.getString("nome");
 				long codiceC=rs.getLong("codice_catalogo");
 				double prezzo=rs.getDouble("prezzo");
 				boolean offerta=rs.getBoolean("offerta");
 				int quantità=rs.getInt("quantità");
 				
-				carrello.add(new ArticoliBean(codiceA,codiceC,descrizione,prezzo,nome,tipologia,offerta,immagine,quantità));
+				carrello.add(new ArticoliBean(codiceA,codiceC,descrizione,prezzo,nome,tipologia,offerta,quantità));
 			}
 			
 		}catch(SQLException e) {
