@@ -28,7 +28,7 @@ public class RubricaIndirizziImpl implements RubricaIndirizziDAO{
 			ResultSet rs=s.executeQuery("select * from Cap");
 			
 			while(rs.next()) {
-				al.add(new RubricaIndirizziBean(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4)));
+				al.add(new RubricaIndirizziBean(rs.getInt(4),rs.getString(1),rs.getString(2),rs.getString(3)));
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -59,6 +59,24 @@ public class RubricaIndirizziImpl implements RubricaIndirizziDAO{
 		al.add(rib);
 	}
 
+	public RubricaIndirizziBean searchRubrica(String uname) {
+		RubricaIndirizziBean rib=new RubricaIndirizziBean();
+	
+		try(Statement s=c.createStatement()){
+			ResultSet rs=s.executeQuery("select * from Rubrica_indirizzi ad ri where ri.id_utente='"+uname+"'");
+			while(rs.next()) {
+				rib.setIdUtente(rs.getString(1));
+				rib.setIdCittà(rs.getString(2));
+				rib.setIndirizzo(rs.getString(3));
+				rib.setIdIndirizzo(rs.getInt(4));
+			}
+		}catch(SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return rib;
+	}
+	
 	@Override
 	public void removeRubricaIndirizzi(RubricaIndirizziBean rib) {
 		// TODO Auto-generated method stub

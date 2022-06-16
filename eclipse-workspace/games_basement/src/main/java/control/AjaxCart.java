@@ -1,6 +1,7 @@
 package control;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import bean.CompongonoBean;
 import implementation.ArticoliImpl;
 import implementation.CompongonoImpl;
 

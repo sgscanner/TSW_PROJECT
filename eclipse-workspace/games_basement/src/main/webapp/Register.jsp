@@ -97,39 +97,19 @@
 	  //assegno i fieldset "attuale" e "successivo" accedendo al tag "padre" di entrambi i pulsanti
 	  current_fs = $(this).parent();
 	  next_fs = $(this).parent().next();
-
-	  //attiva il prossimo step sulla progess-bar usando l'indice di next_fs
-	  $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-
-	  //mostra il prossimo fieldset
-	  next_fs.show();
+		
+	  if(current_fs.is("#firstField")){
+		  console.log("first");
+		 if(checkFirstField()){
+			 animationNext(current_fs,next_fs);
+		 }
+	  }if(current_fs.is("#secondField")){
+		  console.log("second");
+		  if(checkSecondField()){
+			  
+		  }
+	  }
 	  
-	  //nascondi il corrente
-	  current_fs.animate(
-	    { opacity: 0 },
-	    {
-	      step: function (now, mx) {
-	        //1. riduci current_fs a 80%
-	        scale = 1 - (1 - now) * 0.2;
-	        //2. scorri next_fs dalla destra(50%)
-	        left = now * 50 + "%";
-	        //3. incrementa l'opacità del next_fs di 1 appena entra
-	        opacity = 1 - now;
-	        current_fs.css({
-	          transform: "scale(" + scale + ")",
-	          position: "absolute"
-	        });
-	        next_fs.css({ left: left, opacity: opacity });
-	      },
-	      duration: 800,
-	      complete: function () {
-	        current_fs.hide();
-	        animating = false;
-	      },
-	      //default dal plugin 
-	      easing: "easeInOutBack"
-	    }
-	  );
 	});
 
 	$(".previous").click(function () {
@@ -173,6 +153,42 @@
 	    }
 	  );
 	});
+	
+	function animationNext(current_fs,next_fs){
+		//attiva il prossimo step sulla progess-bar usando l'indice di next_fs
+		  $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+		
+		next_fs.show();
+		
+		 //nascondi il corrente
+		  current_fs.animate(
+		    { opacity: 0 },
+		    {
+		      step: function (now, mx) {
+		        //1. riduci current_fs a 80%
+		        scale = 1 - (1 - now) * 0.2;
+		        //2. scorri next_fs dalla destra(50%)
+		        left = now * 50 + "%";
+		        //3. incrementa l'opacità del next_fs di 1 appena entra
+		        opacity = 1 - now;
+		        current_fs.css({
+		          transform: "scale(" + scale + ")",
+		          position: "absolute"
+		        });
+		        next_fs.css({ left: left, opacity: opacity });
+		      },
+		      duration: 800,
+		      complete: function () {
+		        current_fs.hide();
+		        animating = false;
+		      },
+		      //default dal plugin 
+		      easing: "easeInOutBack"
+		    }
+		  );
+	}
+	
+	
 </script>
 
 <!-- Check Form -->
@@ -184,48 +200,37 @@
 	const userNameField=document.querySelector("#username");
 	const formField=document.getElementById("form");
 	const smallUname=document.getElementById("smallUname");
-	var boolResult;
 	
-	/**document.getElementById("LogButton").onclick=function(){
-		location.href="HomePage.jsp";
-	};**/
-	
-	formField.addEventListener('submit',function(e){
-		//al submit della form lo prevengo per fare un check degli input che vanno controllati
-		e.preventDefault();
-
-		//controllo i vari input necessari da controllare
+	function checkFirstField(){
 		checkUsername();
-		//console.log("unameValid value:"+unameValid);
 		let emailValid=checkEmail();
 		let passwordValid=checkPassword();
 		let checkPasswordValid=checkSecondPassword();
-		let phoneValid=checkPhone();
+		let smallCheck=checkSmallUname();
+		let valid= emailValid && checkPasswordValid && passwordValid && smallCheck;
 		
-		let formValid=emailValid && passwordValid && checkPasswordValid && phoneValid && boolResult  ;
-		
-		//ora che ho controllato tutto posso fare la submit
-		if(formValid){
-			form.submit();
-		}
-	});
+		return valid;
+	}
 	
+	function checkSmallUname(){
+		return isEmpty(smallUname.innerHTML);
+	}
+	
+	function checkSecondField(){
+		return checkPhone();
+	}
 	
 	function readJson(listJSON){
 		var json = JSON.parse(listJSON) 
 		var result=json.usernameInfo;
 		
 		if(result=="Username già preso"){
-			boolResult=false;
 			showError(userNameField,result);
 		}else if(result=="Username disponibile" ){
-			boolResult=true;
 			showSuccess(userNameField);
 		}else if(result=="Inserisci username"){
-			boolResult=false;
 			showError(userNameField,result);
 		}else if(result=="Non ci sono utenti registrati"){
-			boolResult=true;
 			showSuccess(userNameField);
 		}
 	}
@@ -358,8 +363,8 @@
 		}else if(toCheck !== check){
 			showError(checkPasswordField,"Le password non corrispondono.");
 		}else{
-			showSuccess(checkPasswordField);
 			valid=true;
+			showSuccess(checkPasswordField);
 		}
 		
 		return valid;
