@@ -6,7 +6,7 @@ public class ArticoliBean implements java.io.Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String nome,descrizione,immagine,codiceA,tipologia;
+	private String nome,descrizione,codiceA,tipologia;
 	private long codiceC;
 	private double prezzo;
 	private boolean offerta;
@@ -15,7 +15,7 @@ public class ArticoliBean implements java.io.Serializable{
 	public ArticoliBean() { }
 
 	public ArticoliBean(String codiceA ,long  codiceC,String descrizione,double prezzo,String nome,
-			           String tipologia,boolean offerta,String immagine,int quantità) {
+			           String tipologia,boolean offerta,int quantità) {
 		this.codiceA=codiceA;
 		this.codiceC=codiceC;
 		this.descrizione=descrizione;
@@ -24,7 +24,6 @@ public class ArticoliBean implements java.io.Serializable{
 		this.nome=nome;
 		this.tipologia=tipologia;
 		this.offerta=offerta;
-		this.immagine=immagine;
 		this.quantità=quantità;
 	}
 
@@ -59,23 +58,6 @@ public class ArticoliBean implements java.io.Serializable{
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
-
-
-	/**
-	 * @return the immagine
-	 */
-	public String getImmagine() {
-		return immagine;
-	}
-
-
-	/**
-	 * @param immagine the immagine to set
-	 */
-	public void setImmagine(String immagine) {
-		this.immagine = immagine;
-	}
-
 
 	/**
 	 * @return the codiceA
@@ -166,7 +148,7 @@ public class ArticoliBean implements java.io.Serializable{
 
 	@Override
 	public String toString() {
-		return "ArticoliBean [nome=" + nome + ", descrizione=" + descrizione + ", immagine=" + immagine + ", codiceA="
+		return "ArticoliBean [nome=" + nome + ", descrizione=" + descrizione + ", codiceA="
 				+ codiceA + ", tipologia=" + tipologia + ", codiceC=" + codiceC + ", prezzo=" + prezzo + ", offerta="
 				+ offerta + "]";
 	}

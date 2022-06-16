@@ -17,7 +17,7 @@ import org.json.JSONArray;
 import com.google.gson.Gson;
 
 import bean.OrdineBean;
-import implementation.ArticoliImpl;
+import implementation.OrdineImpl;
 
 /**
  * Servlet implementation class AjaxFilterProduct
@@ -46,8 +46,8 @@ public class AjaxFilterProduct extends HttpServlet {
 		try {
 			from=new Date(sdf.parse(firstDate).getTime());
 			to=new Date(sdf.parse(secondDate).getTime());
-			ArticoliImpl ai=new ArticoliImpl();
-			ArrayList<OrdineBean>list=ai.searchByDate(from, to);
+			OrdineImpl oi=new OrdineImpl();
+			ArrayList<OrdineBean>list=oi.searchByDate(from, to);
 			Gson gson=new Gson();
 			JSONArray jArray= new JSONArray();
 			
@@ -55,7 +55,7 @@ public class AjaxFilterProduct extends HttpServlet {
 				jArray.put(gson.toJson(o));
 			}
 			
-			ai.stopConnection();
+			oi.stopConnection();
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			response.getWriter().print(jArray);
