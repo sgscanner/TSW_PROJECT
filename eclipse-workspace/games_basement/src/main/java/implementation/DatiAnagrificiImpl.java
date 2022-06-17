@@ -50,6 +50,32 @@ public class DatiAnagrificiImpl implements DatiAnagraficiDAO{
 		}
 	}
 
+	public DatiAnagraficiBean searchDatiAnagrafici(String uname) {
+		DatiAnagraficiBean dab=new DatiAnagraficiBean();
+		
+		try(Statement s=c.createStatement()) {
+			ResultSet rs=s.executeQuery("select * from Dati_anagrafici where Dati_anagrafici.id_utente='"+uname+"'");
+			
+			while(rs.next()) {
+				String idU=rs.getString("id_utente"),idC=rs.getString("cap"),nome=rs.getString("nome"),cognome=rs.getString("cognome"),
+						telefono=rs.getString("telefono"),città=rs.getString("città");
+				Date bDay=rs.getDate(3);
+				
+				dab.setIdUtente(idU);
+				dab.setcap(idC);
+				dab.setNome(nome);
+				dab.setCognome(cognome);
+				dab.setTelefono(telefono);
+				dab.setCitta(città);
+				dab.setDataNascita(bDay);
+			}
+		}catch(SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return dab;
+	}
+	
 	@Override
 	public void addDatiAnagrafici(DatiAnagraficiBean dab) {
 		// TODO Auto-generated method stub

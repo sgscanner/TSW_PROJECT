@@ -64,6 +64,22 @@ public class UserImpl implements UserDAO{
 		return null;
 	}
 	
+	public void upgradeUtente(String uname) {
+		try(Statement s=c.createStatement()){
+			s.executeUpdate("update Utente set ruolo='admin' where Utente.id_utente='"+uname+"'");
+		}catch(SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public void downgradeUtente(String uname) {
+		try(Statement s=c.createStatement()){
+			s.executeUpdate("update Utente set ruolo='normale' where Utente.id_utente='"+uname+"'");
+		}catch(SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
 	@Override
 	public void addUser(UserBean ub) {
 		// TODO Auto-generated method stub
