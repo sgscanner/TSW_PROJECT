@@ -120,7 +120,7 @@ input::-webkit-inner-spin-button {
 	border:2px solid red;
 	color: black;
 	background-color: white;
-	transition-duration:0.5s;
+	transition-duration:0.4s;
 	cursor:pointer;
 }
 
@@ -130,7 +130,7 @@ input::-webkit-inner-spin-button {
 	height: 45px;
 	border:2px solid black;
 	color: white;
-	transition-duration:0.5s;
+	transition-duration:0.4s;
 	cursor: pointer;
 	background-color: red;
 }
@@ -166,4 +166,36 @@ input::-webkit-inner-spin-button {
 
 .off:hover{
 	text-decoration:underline;
+}
+
+.des{
+	display:grid;
+	grid-template-columns:1fr;
+	margin-bottom:10px;
+}
+
+.feed{
+	display:grid;
+	grid-template-columns:1fr 1fr;
+	border:5px solid red;
+	margin-bottom:10px;
+}
+
+.f{
+	font-size: 22px;
+	width: 225px;
+	height: 45px;
+	color: black;
+	background-color:silver;
+	border: 2px solid red;
+	border-radius: 20px;
+	transition-duration:0.4s;
+	cursor: pointer;
+	margin-top: 10px;
+}
+
+.f:hover{
+	color:silver;
+	background-color: red;
+	border: 2px solid black;
 }

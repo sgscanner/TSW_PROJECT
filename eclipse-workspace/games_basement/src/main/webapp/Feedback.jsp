@@ -12,46 +12,69 @@
 <body>
 	
 	<%@include file="Header.jsp" %>
-		<p class="par"><b>Crea recensione</b></p>
 		
-		<div style="display: grid; grid-template-columns: auto auto">
-			<div>
-				<img class="pitcure" src="img/rec.jpg" alt="1" style="max-width:100%">
+	<div class="container">
+		<div class="titolo">
+			<p><b>Crea Recensione</b></p>
+		</div>
+		<div class="line"></div>
+		<div class="c1">
+			<div class="c2">
+				<img class="pitcure" alt="img" src="img/rec.jpg">
 			</div>
-			<div>
-				<p class="pro">Marvel's Spider-Man</p>
+			<div class="c3">
+				<p>Titolo prodotto</p>
 			</div>
 		</div>
-		
 		<div class="line"></div>
-		
-		<p class="val"><b>Valutazione complessiva</b></p>
-	<form action="" method="post" id="com">	
-		<div style="margin-left:300px">
-			<%@include file="Star.jsp" %>
+		<div class="c4">
+			<div class="c5">
+				<p style="display:grid;justify-content:center;align-content:center;"><b>Valutazione complessiva</b></p>
+			</div>
+			<div class="c6">
+				<%@include file="Star.jsp" %> <!-- Da Fixare -->
+			</div>
 		</div>
-		
 		<div class="line"></div>
-	
-		<div>
-			<p class="val"><b>Aggiungi un titolo</b></p>
-			<input class="bar" type="text" placeholder="Quali sono le cose più importanti da sapere ?">
+		<div class="c7">
+			<div class="c8">
+				<p><b>Aggiungi un titolo</b></p>
+			</div>
+			<div class="c9">
+				<input id="b" class="t" style="border:2px solid black;border-radius:10px;" type="text" placeholder="inserisci un titolo...">
+			</div>
 		</div>
-		
 		<div class="line"></div>
-		
-		<p class="val"><b>Aggiungi una recensione scritta</b></p>
-		
-		<div style="margin-left:300px">
-			
-				<textarea class="t" name="comments" rows="10" cols="70" placeholder="Lascia una recensione..." maxlength="500" form="com"></textarea><br>
-				<input class="button" type="submit" value="Invia">
+		<div class="c10">
+			<div class="c11">
+				<p><b>Aggiungi recensione</b></p>
+			</div>
+			<div class="c12">
+				<textarea id="a" class="area" style="border:2px solid black;border-radius:10px;" rows="8" cols="52" placeholder="Scrivi una recensione..."></textarea>
+			</div>
 		</div>
-	</form>
+		<div class="line"></div>
+		<div class="c13">
+			<div>
+				
+			</div>
+			<div class="c14">
+				<button form="feed" type="submit" class="b">Invia</button>
+			</div>
+		</div>
+	</div>
 	
 	<div style="margin-top: 25px;">
 		<%@include file="Footer.jsp" %>
 	</div>
 	
+	<form method="get" action="Prodotto.jsp" id="feed"></form>
+	
+	<script>
+	window.onload = function() {
+		  document.getElementById('a').value = '';
+		  document.getElementById('b').value = '';
+		  }
+	</script>
 </body>
 </html>

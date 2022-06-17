@@ -78,7 +78,7 @@
 			<div>
 				<p class="d">DESCRIZIONE</p>
 			</div>
-			<div style="display:grid;grid-template-columns:1fr;margin-bottom:10px;">
+			<div class="des">
 				<p>Nell'ultima avventura dell'universo di Marvel's Spider-Man, 
 				l'adolescente Miles Morales affronta il trasloco nella sua nuova 
 				casa mentre segue le orme del suo mentore, Peter Parker, 
@@ -90,13 +90,18 @@
 			</div>
 		</div>
 		
-		<div style="display:grid;grid-template-columns:1fr 1fr;border:5px solid red;">
+		<div class="feed">
 			<div style="border:5px solid green;">
-			
+				
 			</div>
 			<div style="border:5px solid blue;">
 				
 			</div>
+		</div>
+		
+		<div>
+			<p><b>Inserisci una nuova recensione</b></p>
+			<button class="f" form="feedback" type="submit">Scrivi una recensione</button>
 		</div>
 		
 		<div style="margin-top: 25px;">
@@ -109,6 +114,10 @@
 		
 		<form action="" method="get" id="acquista">
 		
+		</form>
+		
+		<form action="Feedback.jsp" method="get" id="feedback">
+			
 		</form>
 		
 <script type="text/javascript">
