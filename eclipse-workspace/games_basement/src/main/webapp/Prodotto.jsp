@@ -86,7 +86,7 @@
 				forza minaccia di distruggere la sua nuova casa, 
 				l'aspirante eroe comprende che da grandi poteri, 
 				derivano grandi responsabilit&agrave;. Per salvare la New York della Marvel, 
-				Miles deve indossare il costume di Spider-Man e guadagnarselo.</p>
+				Miles deve indossare il costume di Spider-Man e guadagnarselo</p>
 			</div>
 		</div>
 		
