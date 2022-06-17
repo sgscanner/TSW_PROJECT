@@ -1,79 +1,189 @@
-@charset "ISO-8859-1"
+@charset "ISO-8859-1";
 
-@import url(https://fonts.googleapis.com/css?family=Montserrat);
-
-/*basic reset*/
-html {
-	height: 100%;
-	background: linear-gradient(#000000,rgb(192,28,40));
+*{
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+	font-family:"Poppins", sans serif;
 }
 
-body {
-	font-family: montserrat, arial, verdana;
+body{
+  align-items: center;
+  justify-content: center;
+  background: white;
 }
 
-h3{
-	text-align:center;
-	color:white;
-	margin-top:7%;
-}
 
-.fields {
+.contenitore{
   max-width: 1200px;
+  height:100%;
   margin: 0 auto;
   display: grid;
-  gap: 3%;
-  margin-top:6%;
+  gap: 2px;
+  margin-top:5%;
   margin-bottom:10%;
 }
 
-.field{
-    background-color: white;
-    border: black groove 2px;
-    border-radius:20px;
-    position:relative;
+.container_testo{
+  
+  height: 100%;
+  max-width:900px;
+  min-height:400px;
+  margin-left:25%;
+  text-align:center;
 }
 
-.bottoni{
-	width: 100px;
-	background: rgb(192,28,40);
-	font-weight: bold;
-	color: red;
-	border: 0 none;
-	border-radius: 1px;
-	cursor: pointer;
-	padding: 10px 5px;
-	margin: 10px 5px;
+.container{
+	position:absolute;
+	float:left;
+	border: 1px black solid;
+  padding: 1rem;
+  height: 25rem;
+  max-width: 300px;
+  width: 100%;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-/*form styles*/
-#form {
-	align-items:center;
-	width: 80%;
-	margin: auto;
-	text-align: center;
-	position: relative;
+.testo{
+	margin-top:15%;
+	font-size:20px;
 }
 
-/*inputs style*/
-#form input{
-	padding: 15px;
-	border: 1px solid #ccc;
-	border-radius: 3px;
-	margin-bottom: 10px;
-	width: 100%;
-	box-sizing: border-box;
-	font-family: montserrat;
-	color: #2C3E50;
-	font-size: 13px;
+
+.container .topic{
+  font-size: 30px;
+  font-weight: 500;
+  margin-bottom: 20px;
 }
 
-/*headings dei fieldset*/
-.fs-title {
-	font-size: 15px;
-	text-transform: uppercase;
-	color: black;
-	margin-bottom: 10px;
+.content{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.content .list{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin-right: 50px;
+  position: relative;
+}
+
+.content .list label{
+  height: 60px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 60px;
+  cursor: pointer;
+  padding-left: 25px;
+  transition: all 0.5s ease;
+  color: black;
+  z-index: 12;
+}
+
+#Panoramica:checked ~ .list label.Panoramica,
+#Dati_Account:checked ~ .list label.Dati_Account,
+#Dati_personali:checked ~ .list label.Dati_Personali,
+#Dati_spedizione:checked ~ .list label.Dati_spedizione,
+#Logout:checked ~ .list label.Logout{
+  color: black;
+}
+
+.content .list label:hover{
+  color: black;
+}
+
+a{
+	text-decoration:none;	
+}
+
+A:ACTIVE{
+	color:black;
+}
+
+A:VISITED{
+	color:black;
+}
+
+A:HOVER{
+	color:rgb(192,28,40);
+}
+
+A:LINK{
+	color:black;
+}
+
+.content .slider{
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 60px;
+  width: 100%;
+  border-radius: 12px;
+  background: rgb(192,28,40);
+  transition: all 0.4s ease;
+}
+
+#Panoramica:checked ~ .list .slider{
+ 	top:0;
+}
+#Dati_Account:checked ~ .list .slider{
+	top:60px;
+}
+#Dati_personali:checked ~ .list .slider{
+	top:120px;
+}
+#Dati_spedizione:checked ~ .list .slider{
+	top:180px;
+}
+#Logout:checked ~ .list .slider{
+	top:240px;
+}
+
+.content .text-content{
+  width: 80%;
+  height: 100%;
+}
+
+.content .text{
+  display: none;
+}
+
+.content .text .title{
+  font-size: 25px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.content .text p{
+  text-align: justify;
+}
+
+.content .text-content .home{
+  display: block;
+}
+
+#Panoramica:checked ~ .list label.Panoramica,
+#Dati_Account:checked ~ .list label.Dati_Account,
+#Dati_personali:checked ~ .list label.Dati_Personali,
+#Dati_spedizione:checked ~ .list label.Dati_spedizione,
+#Logout:checked ~ .list label.Logout{
+  display: block;
+}
+
+#Panoramica:checked ~ .text-content .Account,
+#Dati_Account:checked ~ .text-content .Pano,
+#Dati_personali:checked ~ .text-content .Pano, .Account,
+#Dati_spedizione:checked ~ .text-content .Pano, .Account,
+#Logout:checked ~ .text-content .Pano, .Account{
+  display: none;
+}
+
+.content input{
+  display: none;
 }
 
 .form-field {
@@ -106,7 +216,6 @@ h3{
     color: #FF0000;
 }
 
-/*Inserisco le varie icone agli input*/
 #username{
 	background-image:url(img/utente.png);
 	position:left;
@@ -120,7 +229,7 @@ h3{
 #nome{
 	background-image:url(img/utente.png);
 	position:left;
-	padding-left:30px;
+	padding-left:20px;
 	background-size:15px;
 	background-repeat:no-repeat;
 	border-radius:3 px;
@@ -129,7 +238,7 @@ h3{
 #cognome{
 	background-image:url(img/utente.png);
 	position:left;
-	padding-left:30px;
+	padding-left:20px;
 	background-size:15px;
 	background-repeat:no-repeat;
 	border-radius:3 px;
@@ -165,16 +274,52 @@ h3{
 #phone{
 	background-image:url(img/phone.png);
 	position:left;
-	padding-left:30px;
+	padding-left:20px;
 	background-size:15px;
 	background-repeat:no-repeat;
 	border-radius:3 px;
 }
 
+#indirizzo{
+	background-image:url(img/indirizzo.png);
+	position:left;
+	padding-left:20px;
+	background-size:16px;
+	background-repeat:no-repeat;
+	border-radius:3 px;
+}
+
+#citta{
+	background-image:url(img/indirizzo.png);
+	position:left;
+	padding-left:20px;
+	background-size:16px;
+	background-repeat:no-repeat;
+	border-radius:3 px;
+}
+
+#cap{
+	background-image:url(img/indirizzo.png);
+	position:left;
+	padding-left:20px;
+	background-size:16px;
+	background-repeat:no-repeat;
+	border-radius:3 px;
+}
+
+#data{
+	background-image:url(img/torta.png);
+	position:left;
+	padding-left:80px;
+	background-size:20px;
+	background-repeat:no-repeat;
+	border-radius:3 px;
+}
+
 @media (min-width: 600px) {
-  .fields { grid-template-columns: repeat(2, 1fr);}
+  .prodotti { grid-template-columns: repeat(2, 1fr);}
 }
 
 @media (min-width: 900px) {
-  .fields { grid-template-columns: repeat(3, 1fr); }
+  .prodotti { grid-template-columns: repeat(2, 1fr); }
 }
