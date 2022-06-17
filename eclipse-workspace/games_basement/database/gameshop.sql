@@ -11,7 +11,7 @@ CREATE TABLE Catalogo (
 
 DROP TABLE IF EXISTS Utente;
 CREATE TABLE Utente (
-	id_utente varchar(25) not null primary key,
+	id_utente varchar(25) not null primary key on update cascade on delete cascade,
   	email varchar(30) not null ,
   	password varchar(32) not null,
   	ruolo varchar(30 ) not null	
@@ -65,7 +65,7 @@ CREATE TABLE Fornitore (
 
 DROP TABLE IF EXISTS Articolo;
 CREATE TABLE Articolo (
-	codice_articoli varchar (30) not null primary key,
+	codice_articoli varchar (30) not null ,
 	codice_catalogo int (10) not null,
 	descrizione varchar(250) not null,
 	prezzo 		decimal(15,2) not null,

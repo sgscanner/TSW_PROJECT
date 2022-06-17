@@ -15,7 +15,7 @@
 </head>
 <body>
 
-	<form id="form" action="RegisterServlet" method="POST">
+	<form id="form" action="RegisterServlet" method="POST" onsubmit="event.preventDefault(); checkThirdField();">
 		  
 		  <!-- progressbar -->
 		  <ul id="progressbar">
@@ -24,7 +24,7 @@
 		    <li>Dati Anagrafici</li>
 		  </ul>
 	
-		  <fieldset id="firstField">
+		  <fieldset id="firstField" >
 		    <h2 class="fs-title">Account</h2>
 		    <div class="inputContainer">
 		    	<input type="text" id="username" name="username" placeholder="Username" autocomplete="false"/>
@@ -67,15 +67,15 @@
 		  <fieldset id="thirdField">
 		    <h2 class="fs-title">Dati Anagrafici</h2>
 			    <div class="inputContainer">
-			    	<input type="text" name="citta" placeholder="Città" autocomplete="false"/>
+			    	<input type="text" name="citta" placeholder="Città" id="citta" autocomplete="false"/>
 			    	<small></small>
 			    </div>
 			    <div class="inputContainer"> 
-			    	<input type="text" name="cap" placeholder="Cap" />
+			    	<input type="text" name="cap" placeholder="Cap" id="cap"/>
 			    	<small></small>
 			    </div>
 			    <div class="inputContainer">
-			    	<input type="date" name="bday" />
+			    	<input type="date" name="bday" id="date" />
 			    	<small></small>
 			    </div>
 			    <input type="button" name="previous" class="previous action-button" value="Previous" />
@@ -88,31 +88,27 @@
 <script>
  var current_fs, next_fs, previous_fs; //fieldsets
 	var left, opacity, scale; //proprietà dei fieldset che andremo ad animare
-	var animating; //flag per evitare dei click troppo veloci
 
 	$(".next").click(function () {
-	  if (animating) return false;
-	  animating = true;
 
 	  //assegno i fieldset "attuale" e "successivo" accedendo al tag "padre" di entrambi i pulsanti
 	  current_fs = $(this).parent();
 	  next_fs = $(this).parent().next();
 		
 	  if(current_fs.is("#firstField")){
-		  console.log("first");
 		 if(checkFirstField()){
 			 animationNext(current_fs,next_fs);
 		 }
-	  }if(current_fs.is("#secondField")){
-		  console.log("second");
+	  }else if(current_fs.is("#secondField")){
 		  if(checkSecondField()){
-			  
+			  animationNext(current_fs,next_fs);
 		  }
 	  }
-	  
 	});
 
 	$(".previous").click(function () {
+		
+		
 	  if (animating) return false;
 	  animating = true;
 
@@ -193,13 +189,18 @@
 
 <!-- Check Form -->
 <script>
-	const passwordField=document.querySelector("#password");
+	const capField=document.getElementById("cap");
 	const checkPasswordField=document.querySelector("#checkPassword");
+	const cittaField=document.getElementById("citta");
+	const cognomeField=document.getElementById("cognome");
+	const dateField=document.getElementById("date");
 	const emailField=document.querySelector("#email");
-	const phoneField=document.querySelector("#phone");
-	const userNameField=document.querySelector("#username");
 	const formField=document.getElementById("form");
+	const nomeField=document.getElementById("nome");
+	const passwordField=document.querySelector("#password");
+	const phoneField=document.querySelector("#phone");
 	const smallUname=document.getElementById("smallUname");
+	const userNameField=document.querySelector("#username");
 	
 	function checkFirstField(){
 		checkUsername();
@@ -217,7 +218,22 @@
 	}
 	
 	function checkSecondField(){
-		return checkPhone();
+		let phoneValid=checkPhone();
+		let nomeValid=checkNome();
+		let cognomeValid=checkCognome();
+		
+		return phoneValid && nomeValid && cognomeValid;
+	}
+	
+	function checkThirdField(){
+		let cittaValid=checkCitta();
+		let capValid=checkCap();
+		let dateValid=checkDate();
+		let valid=cittaValid && capValid && dateValid;
+		
+		if(valid){
+			formField.submit();
+		}
 	}
 	
 	function readJson(listJSON){
@@ -317,6 +333,55 @@
 	        valid = true;
 	    }
 	    return valid;
+	}
+	
+	function checkNome(){
+		if(isEmpty(nomeField.value.trim())){
+			showError(nomeField,"Qual è il tuo nome?");
+			return false;
+		}else{
+			showSuccess(nomeField);
+			return true;
+		}
+	}
+	
+	function checkCognome(){
+		if(isEmpty(cognomeField.value.trim())){
+			showError(cognomeField,"Qual è il tuo cognome?");
+			return false;
+		}else{
+			showSuccess(cognomeField);
+			return true;
+		}
+	}
+	
+	function checkCitta(){
+		if(isEmpty(cittaField.value.trim())){
+			showError(cittaField,"Dove abiti?");
+			return false;
+		}else {
+			showSuccess(cittaField);
+			return true;
+		}
+	}
+	
+	function checkCap(){
+		if(isEmpty(capField.value.trim())){
+			showError(capField,"Inserisci un CAP.");
+			return false;
+		}else{
+			showSuccess(capField);
+			return true;
+		}
+	}
+	
+	function checkDate(){
+		if(isEmpty(dateField.value)){
+			return false;
+		}else{
+			showSuccess(dateField);
+			return true;
+		}
 	}
 	
 	function checkPassword(){
