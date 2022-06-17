@@ -120,7 +120,7 @@ to {
 </head>
 <body>
 	<%@include file="Header.jsp"%>
-
+	<br>
 	<div class="slideshow-container">
 		<div class="mySlides fade">
 			<div class="numbertext"></div>
