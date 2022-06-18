@@ -80,6 +80,7 @@
 			    </div>
 			    <input type="button" name="previous" class="previous action-button" value="Previous" />
 			    <input type="submit" name="invio-dati" class="submit action-button" value="Submit" />
+			    <input type="hidden" id="emailInfo" value=""/>
 		  </fieldset>
 	
 	</form>
@@ -195,6 +196,7 @@
 	const cognomeField=document.getElementById("cognome");
 	const dateField=document.getElementById("date");
 	const emailField=document.querySelector("#email");
+	const emailInfoField=document.getElementById("#emailInfo");
 	const formField=document.getElementById("form");
 	const nomeField=document.getElementById("nome");
 	const passwordField=document.querySelector("#password");
@@ -232,8 +234,37 @@
 		let valid=cittaValid && capValid && dateValid;
 		
 		if(valid){
-			formField.submit();
+			checkEmailSend();
+			
+			if(emailInfoField.value=="t'appost"){
+				if(confirm("Email inviata con successo.")){
+					formField.submit();
+				}
+			}else{
+				alert("Email di conferma non inviata,riprovare.");
+			}
 		}
+	}
+	
+	function emailJson(listJson){
+		var json = JSON.parse(listJSON) 
+		var result = json.emailInfo;
+		
+		if(result=="Email inviata"){
+			emailInfoField.value="t'appost";			
+		}else if(result=="Email non inviata"){
+			emailInfoField.value="niente appost";
+		}
+	}
+	
+	function checkEmailSend(){
+		var id="smallUname";
+		var url="/games_basement/AjaxEmailPrenotazione";
+		var param=emailField.value.trim();
+		var param2=emailField.value.trim();
+		var timeout=0;
+		
+		ajaxCall(id, url, emailJson, param, param2, timeout);
 	}
 	
 	function readJson(listJSON){
