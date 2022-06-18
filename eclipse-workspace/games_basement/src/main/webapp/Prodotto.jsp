@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="bean.ArticoliBean" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +16,8 @@
 <body>
 	
 	<%@ include file="Header.jsp" %>
+	
+	
 	
 	<div class="titpro">
 		<p><b>Titolo prodotto</b></p>

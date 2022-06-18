@@ -2,8 +2,10 @@ DROP DATABASE IF EXISTS gameshop;
 CREATE DATABASE gameshop;
 USE gameshop;
 
+
+DROP USER IF EXISTS 'gameshop'@'localhost';
 CREATE USER 'gameshop'@'localhost' IDENTIFIED BY 'password';
-GRANT ALL PRIVILIGES on gameshop.* to 'gameshop'@'localhost';
+GRANT ALL PRIVILEGES on gameshop.* to 'gameshop'@'localhost';
 DROP TABLE IF EXISTS Catalogo;
 CREATE TABLE Catalogo (
 	codice_catalogo int(15) not null primary key
@@ -11,17 +13,19 @@ CREATE TABLE Catalogo (
 
 DROP TABLE IF EXISTS Utente;
 CREATE TABLE Utente (
-	id_utente varchar(25) not null primary key on update cascade on delete cascade,
+	id_utente varchar(25) not null ,
   	email varchar(30) not null ,
   	password varchar(32) not null,
-  	ruolo varchar(30 ) not null	
+  	ruolo varchar(30 ) not null,
+	
+    primary key (id_utente) 
 );
 
 DROP TABLE IF EXISTS Città;
 CREATE TABLE Città (
 	id_città varchar(30) not null primary key,
 	nome_città varchar(25) not null,
-	cap varchar(25) not null,
+	cap varchar(25) not null
 );
 
  CREATE TABLE Dati_anagrafici (
@@ -34,7 +38,7 @@ CREATE TABLE Città (
 	città varchar(30) not null,
 	
 	FOREIGN KEY (id_utente) REFERENCES Utente (id_utente)
-) 
+); 
 
 DROP TABLE IF EXISTS Rubrica_indirizzi;
 CREATE TABLE Rubrica_indirizzi (
@@ -42,8 +46,8 @@ CREATE TABLE Rubrica_indirizzi (
 	id_utente varchar(25) not null,
 	id_città varchar(30) not null,
 	indirizzo varchar(50) not null,
-	foreign key(id_utente) references utente (id_utente)
-	primary key id_indirizzo
+	foreign key(id_utente) references utente (id_utente),
+	primary key (id_indirizzo)
 );
 
 DROP TABLE IF EXISTS Ordine;
@@ -74,6 +78,7 @@ CREATE TABLE Articolo (
 	offerta boolean not null,
 	quantità int not null,
 	
+    primary key(codice_articoli),
 	foreign key(codice_catalogo) REFERENCES Catalogo (codice_catalogo)
 );
 
@@ -82,17 +87,18 @@ CREATE TABLE Compongono (
 	codice_articoli varchar (30) not null,
 	numero_ordine VARCHAR (30) not null,
 	quantità varchar(30) not null,
-	prezzo_storico decimal(15,2) not null.
+	prezzo_storico decimal(15,2) not null,
 	
-	foreign key(codice_articoli) REFERENCES ARTICOLI(codice_articoli),
-	foreign key(numero_ordine) REFERENCES ORDINE(numero_ordine)
+	foreign key(codice_articoli) references Articolo(codice_articoli),
+	foreign key(numero_ordine) REFERENCES Ordine(numero_ordine)
 );
 
 DROP TABLE IF EXISTS Sono_forniti_da;
 CREATE TABLE Sono_forniti_da	(
 	codice_articoli varchar(30) not null,
 	partita_iva	varchar(11) not null,
-	foreign key(codice_articoli) REFERENCES articoli (codice_articoli),
+	
+    foreign key(codice_articoli) references Articolo(codice_articoli),
 	foreign key(partita_iva) REFERENCES fornitore(partita_iva)
 );
 
@@ -159,13 +165,13 @@ CREATE TABLE Recensione(
 	id_utente varchar(250) not null,
 	codice_articoli varchar(250) not null,
 	
-	foreign  key(id_utente) references Utente(id_utente),
-	foreign  key(codice_articoli) references Articolo(codice_articoli)
+    foreign key(codice_articoli) references Articolo(codice_articoli),
+	foreign  key(id_utente) references Utente(id_utente)
 );
 
 insert into Fornitore values('01833690157','Sony','Via cantalupo in sabina 29');
 insert into Fornitore values('08106710158','Microsoft','Viale Pasubio 21');
 insert into Fornitore values('03359860966','Nintendo','Via Torri Bianche, 6');
 insert into Catalogo values('1');
-insert into Articolo values
-	('5026555431873','1','In GTA 5 vivi la storia di tre criminali diversi tra loro che si danno da fare per sopravvivere e realizzarsi nel più grande mondo di gioco mai creato.',31.0,' Azione, Open World',false,'gtaVps5/1.png-gtaVps5/2.png-gtaVps5/3.png','GTA V','50'),
+
+	
