@@ -37,18 +37,20 @@ public class RegisterServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub	
+		// TODO Auto-generated method stub
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String uName=request.getParameter("username"),password=request.getParameter("password"),cap=request.getParameter("cap"),
 			   date=request.getParameter("bday"),nome=request.getParameter("nome"),cognome=request.getParameter("cognome"),telefono=request.getParameter("phone"),
-			   email=request.getParameter("email"),città=request.getParameter("citta");	
+			   email=request.getParameter("email"),città=request.getParameter("citta");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		long l;
 		Date d1;
@@ -56,31 +58,31 @@ public class RegisterServlet extends HttpServlet {
 			//istanzio il dispatcher per reindirizzare alla homepage e la sessione attuale a cui aggiungo il bean dell'utente
 			RequestDispatcher rd=request.getRequestDispatcher("HomePage.jsp");
 			HttpSession newSession=request.getSession();
-			
+
 			//converto in formato Data la stringa presa dal parametro "bDay"
 			l = sdf.parse(date).getTime();
 			d1=new Date(l);
-			
+
 			//istanzio le implementazioni dei DAO
 			DatiAnagrificiImpl dai=new DatiAnagrificiImpl();
 			UserImpl ui=new UserImpl();
-			
+
 			//istanzio i Bean
 			DatiAnagraficiBean dab=new DatiAnagraficiBean(uName,cap,nome,cognome,telefono,d1,città);
 			UserBean ub=new UserBean(uName,email,encryptPwd(password),"normale");
-			
+
 			//aggiuta al db dei Bean
 			ui.addUser(ub);
 			ui.stopConnection();
-			
+
 			dai.addDatiAnagrafici(dab);
 			dai.stopConnection();
-			
-			
+
+
 			//aggiunta dell'user bean alla sessione
 			newSession.setAttribute("user", ub);
 			newSession.setMaxInactiveInterval(15*60);
-			
+
 			//redirect alla homepage
 			rd.forward(request, response);
 		} catch (ParseException e) {
@@ -88,26 +90,26 @@ public class RegisterServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-	
+
 	//metodi utils
 	private String encryptPwd(String toEncrypt) {
 		String generatedPassword=null;
 		String salt="gameshop";
-		
+
 		try {
 			MessageDigest md=MessageDigest.getInstance("SHA-1");
 			md.update(salt.getBytes(StandardCharsets.UTF_8));
 			byte[] bytes=md.digest(toEncrypt.getBytes(StandardCharsets.UTF_8));
 			StringBuilder sb=new StringBuilder();
-			for(int i=0;i<bytes.length;i++) {
-				sb.append(Integer.toString((bytes[i] & 0xff)+0x100,16).substring(1));
+			for (byte element : bytes) {
+				sb.append(Integer.toString((element & 0xff)+0x100,16).substring(1));
 			}
 			generatedPassword=sb.toString();
 		}catch(NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
-		
+
 		return generatedPassword;
 	}
-	
+
 }

@@ -20,7 +20,7 @@ import implementation.UserImpl;
 @WebServlet("/AjaxUsername")
 public class AjaxUsername extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -32,12 +32,13 @@ public class AjaxUsername extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String uname=request.getParameter("param");
 		UserImpl ui=new UserImpl();
 		JSONObject json=new JSONObject();
-		
+
 		try {
 			json.put("usernameInfo",checkUname(ui, uname));
 		}catch(JSONException e) {
@@ -52,6 +53,7 @@ public class AjaxUsername extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
@@ -61,19 +63,19 @@ public class AjaxUsername extends HttpServlet {
 		if(username.equals("")) {
 			return "Inserisci username";
 		}
-		
-		
+
+
 		if(ui.getAllUser().size()==0) {
 			return "Non ci sono utenti registrati";
 		}
-		
+
 		UserBean ub=ui.searchUser(username);
-		
+
 		if(ub==null) {
 			return "Username disponibile";
 		}else {
 			return "Username già preso";
 		}
 	}
-	
+
 }

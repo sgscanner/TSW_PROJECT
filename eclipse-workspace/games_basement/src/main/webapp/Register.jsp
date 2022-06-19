@@ -34,8 +34,9 @@
 		    	<input type="text" id="email" name="email" placeholder="Email" /><br>
 		    	<small></small>
 		    </div>
-		    <div class="inputContainer">
+		    <div class="inputContainer" id="test">
 		  	 	<input type="password" id="password" name="password" placeholder="Password" />
+		    	<span><img src="img/password.png"></span>
 		  	 	<small></small>	
 		    </div>
 		    <div class="inputContainer">
@@ -234,38 +235,10 @@
 		let valid=cittaValid && capValid && dateValid;
 		
 		if(valid){
-			checkEmailSend();
-			
-			if(emailInfoField.value=="t'appost"){
-				if(confirm("Email inviata con successo.")){
-					formField.submit();
-				}
-			}else{
-				alert("Email di conferma non inviata,riprovare.");
-			}
+			formField.submit();
 		}
 	}
 	
-	function emailJson(listJson){
-		var json = JSON.parse(listJSON) 
-		var result = json.emailInfo;
-		
-		if(result=="Email inviata"){
-			emailInfoField.value="t'appost";			
-		}else if(result=="Email non inviata"){
-			emailInfoField.value="niente appost";
-		}
-	}
-	
-	function checkEmailSend(){
-		var id="smallUname";
-		var url="/games_basement/AjaxEmailPrenotazione";
-		var param=emailField.value.trim();
-		var param2=emailField.value.trim();
-		var timeout=0;
-		
-		ajaxCall(id, url, emailJson, param, param2, timeout);
-	}
 	
 	function readJson(listJSON){
 		var json = JSON.parse(listJSON) 

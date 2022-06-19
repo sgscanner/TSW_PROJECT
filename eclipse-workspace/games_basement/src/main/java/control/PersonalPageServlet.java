@@ -23,7 +23,7 @@ import implementation.UserImpl;
 @WebServlet("/PersonalPageServlet")
 public class PersonalPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -35,6 +35,7 @@ public class PersonalPageServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String type=request.getParameter("tipo");
@@ -49,16 +50,16 @@ public class PersonalPageServlet extends HttpServlet {
 			try {
 				l=sdf.parse(bDay).getTime();
 				date=new Date(l);
-				
+
 				DatiAnagraficiBean dab=new DatiAnagraficiBean(username,cap,nome,cognome,telefono,date,città);
 				dai.updateDatiAnagrafici(dai.searchDatiAnagrafici(username), dab);
-				
-				dai.stopConnection();				
-				
+
+				dai.stopConnection();
+
 			}catch(ParseException e) {
-				
+
 			}
-			
+
 		}else if(type.equals("rubrica_indirizzi")) {
 			RubricaIndirizziImpl ri=new RubricaIndirizziImpl();
 			String idC=request.getParameter("cap"),indirizzo=request.getParameter("indirizzo"),idIndirizzo=request.getParameter("id_indirizzo");
@@ -69,7 +70,7 @@ public class PersonalPageServlet extends HttpServlet {
 			UserImpl ui=new UserImpl();
 			String azione=request.getParameter("azione");
 			String uname=request.getParameter("username");
-			
+
 			if(azione.equals("upgrade")) {
 				ui.upgradeUtente(uname);
 			}else if(azione.equals("rimuovi")) {
@@ -77,7 +78,7 @@ public class PersonalPageServlet extends HttpServlet {
 			}else if(azione.equals("downgrade")) {
 				ui.downgradeUtente(uname);
 			}
-			
+
 			ui.stopConnection();
 		}
 	}
@@ -85,6 +86,7 @@ public class PersonalPageServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

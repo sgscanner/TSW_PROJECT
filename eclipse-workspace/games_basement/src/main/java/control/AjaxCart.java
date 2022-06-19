@@ -20,7 +20,7 @@ import implementation.CompongonoImpl;
 @WebServlet("/AjaxCart")
 public class AjaxCart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -32,18 +32,19 @@ public class AjaxCart extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String codiceA=request.getParameter("param");  
-		String quantitÃ =request.getParameter("param2");
+		String codiceA=request.getParameter("param");
+		String quantità=request.getParameter("param2");
 		CompongonoImpl ci=new CompongonoImpl();
 		JSONObject result=new JSONObject();
 		ArticoliImpl ai=new ArticoliImpl();
-		
-		if(ci.addToCart(ai.searchByCode(codiceA),Integer.parseInt(quantitÃ ))>0) {
+
+		if(ci.addToCart(ai.searchByCode(codiceA),Integer.parseInt(quantità))>0) {
 			try {
 				result.put("insertInfo","prodotto aggiunto");
-				
+
 				request.getSession().setAttribute("carrello", ci.searchCart());
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -57,18 +58,18 @@ public class AjaxCart extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
+
 		ci.stopConnection();
 		ai.stopConnection();
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().print(result);
-		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

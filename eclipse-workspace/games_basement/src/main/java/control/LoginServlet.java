@@ -22,7 +22,7 @@ import implementation.UserImpl;
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -34,12 +34,13 @@ public class LoginServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String uName=request.getParameter("username"),password=request.getParameter("password"),encrypted=encryptPwd(password);
 		UserImpl ui=new UserImpl();
 		UserBean ub=ui.searchUser(uName);
-		
+
 		if(ub==null) {
 			RequestDispatcher rd=request.getRequestDispatcher("Login.jsp");
 			rd.forward(request, response);
@@ -62,6 +63,7 @@ public class LoginServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
@@ -70,20 +72,20 @@ public class LoginServlet extends HttpServlet {
 	private String encryptPwd(String toEncrypt) {
 		String generatedPassword=null;
 		String salt="gameshop";
-		
+
 		try {
 			MessageDigest md=MessageDigest.getInstance("SHA-1");
 			md.update(salt.getBytes(StandardCharsets.UTF_8));
 			byte[] bytes=md.digest(toEncrypt.getBytes(StandardCharsets.UTF_8));
 			StringBuilder sb=new StringBuilder();
-			for(int i=0;i<bytes.length;i++) {
-				sb.append(Integer.toString((bytes[i] & 0xff)+0x100,16).substring(1));
+			for (byte element : bytes) {
+				sb.append(Integer.toString((element & 0xff)+0x100,16).substring(1));
 			}
 			generatedPassword=sb.toString();
 		}catch(NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
-		
+
 		return generatedPassword;
 	}
 }

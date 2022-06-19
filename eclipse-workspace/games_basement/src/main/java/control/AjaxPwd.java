@@ -23,7 +23,7 @@ import implementation.UserImpl;
 @WebServlet("/AjaxPwd")
 public class AjaxPwd extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -35,15 +35,16 @@ public class AjaxPwd extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String username=request.getParameter("param");
-		
+
 		if(request.getParameter("param2").equals("")) {
 			JSONObject json=new JSONObject();
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
-			
+
 			try {
 				json.put("passwordInfo","Inserisci password");
 			} catch (JSONException e) {
@@ -55,13 +56,13 @@ public class AjaxPwd extends HttpServlet {
 			String pwd=encryptPwd(request.getParameter("param2"));
 			JSONObject json=new JSONObject();
 			UserImpl ui=new UserImpl();
-			
+
 			try {
 				json.put("passwordInfo",checkPwd(ui, username,pwd));
 			}catch(JSONException e) {
-				
+
 			}
-			
+
 			ui.stopConnection();
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
@@ -72,6 +73,7 @@ public class AjaxPwd extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
@@ -79,32 +81,32 @@ public class AjaxPwd extends HttpServlet {
 
 	private String checkPwd(UserImpl ui,String username,String pwd) {
 		UserBean ub=ui.searchUser(username);
-		
+
 		if(!ub.getPassword().equals(pwd)) {
 			return "Password errata";
 		}else {
 			return null;
 		}
 	}
-	
+
 	private String encryptPwd(String toEncrypt) {
 		String generatedPassword=null;
 		String salt="gameshop";
-		
+
 		try {
 			MessageDigest md=MessageDigest.getInstance("SHA-1");
 			md.update(salt.getBytes(StandardCharsets.UTF_8));
 			byte[] bytes=md.digest(toEncrypt.getBytes(StandardCharsets.UTF_8));
 			StringBuilder sb=new StringBuilder();
-			for(int i=0;i<bytes.length;i++) {
-				sb.append(Integer.toString((bytes[i] & 0xff)+0x100,16).substring(1));
+			for (byte element : bytes) {
+				sb.append(Integer.toString((element & 0xff)+0x100,16).substring(1));
 			}
 			generatedPassword=sb.toString();
 		}catch(NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
-		
+
 		return generatedPassword;
 	}
-	
+
 }

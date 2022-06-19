@@ -25,7 +25,7 @@ import implementation.OrdineImpl;
 @WebServlet("/AjaxFilterProduct")
 public class AjaxFilterProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -37,12 +37,13 @@ public class AjaxFilterProduct extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String firstDate=request.getParameter("param"),secondDate=request.getParameter("param2");
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 		Date from,to;
-		
+
 		try {
 			from=new Date(sdf.parse(firstDate).getTime());
 			to=new Date(sdf.parse(secondDate).getTime());
@@ -50,16 +51,16 @@ public class AjaxFilterProduct extends HttpServlet {
 			ArrayList<OrdineBean>list=oi.searchByDate(from, to);
 			Gson gson=new Gson();
 			JSONArray jArray= new JSONArray();
-			
+
 			for(OrdineBean o:list) {
 				jArray.put(gson.toJson(o));
 			}
-			
+
 			oi.stopConnection();
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			response.getWriter().print(jArray);
-			
+
 		}catch(ParseException e) {
 			System.out.println(e.getMessage());
 		}
@@ -68,6 +69,7 @@ public class AjaxFilterProduct extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

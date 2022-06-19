@@ -49,7 +49,7 @@ public class RubricaIndirizziImpl implements RubricaIndirizziDAO{
 		// TODO Auto-generated method stub
 		try(PreparedStatement ps=c.prepareStatement(INSERT_QUERY)){
 			ps.setString(1, rib.getIdUtente());
-			ps.setString(2, rib.getIdCitt√†());
+			ps.setString(2, rib.getIdCitt‡†());
 			ps.setString(3, rib.getIndirizzo());
 			ps.setShort(4, (short) rib.getIdIndirizzo());
 			ps.executeUpdate();
@@ -66,7 +66,7 @@ public class RubricaIndirizziImpl implements RubricaIndirizziDAO{
 			ResultSet rs=s.executeQuery("select * from Rubrica_indirizzi ad ri where ri.id_utente='"+uname+"'");
 			while(rs.next()) {
 				rib.setIdUtente(rs.getString(1));
-				rib.setIdCitt√†(rs.getString(2));
+				rib.setIdCitt‡(rs.getString(2));
 				rib.setIndirizzo(rs.getString(3));
 				rib.setIdIndirizzo(rs.getInt(4));
 			}
