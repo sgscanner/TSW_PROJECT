@@ -6,17 +6,17 @@ public class RubricaIndirizziBean implements java.io.Serializable{
 	 */
 	private static final long serialVersionUID = -3948556415938913893L;
 	private int idIndirizzo;
-	private String idUtente,idCittà,indirizzo;
+	private String idUtente,idCitta,indirizzo;
 	
 	
 	public RubricaIndirizziBean() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public RubricaIndirizziBean(int idIndirizzo,String idUtente,String idCittà,String indirizzo) {
+	public RubricaIndirizziBean(int idIndirizzo,String idUtente,String idCitta,String indirizzo) {
 		this.idIndirizzo=idIndirizzo;
 		this.idUtente=idUtente;
-		this.idCittà=idCittà;
+		this.idCitta=idCitta;
 		this.indirizzo=indirizzo;
 	}
 	
@@ -40,13 +40,13 @@ public class RubricaIndirizziBean implements java.io.Serializable{
 	}
 
 
-	public String getIdCittà() {
-		return idCittà;
+	public String getIdCitta() {
+		return idCitta;
 	}
 
 
-	public void setIdCittà(String idCittà) {
-		this.idCittà= idCittà;
+	public void setIdCitta(String idCitta) {
+		this.idCitta= idCitta;
 	}
 
 
@@ -61,7 +61,7 @@ public class RubricaIndirizziBean implements java.io.Serializable{
 
 	@Override
 	public String toString() {
-		return "RubricaIndirizziBean [idIndirizzo=" + idIndirizzo + ", idUtente=" + idUtente + ", idCittà =" + idCittà
+		return "RubricaIndirizziBean [idIndirizzo=" + idIndirizzo + ", idUtente=" + idUtente + ", idCitta=" + idCitta
 				+ ", indirizzo=" + indirizzo + "]";
 	}
 

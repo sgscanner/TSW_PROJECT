@@ -30,11 +30,11 @@ public class DatiAnagrificiImpl implements DatiAnagraficiDAO{
 			
 			while(rs.next()) {
 				String idU=rs.getString("id_utente"),idC=rs.getString("cap"),nome=rs.getString("nome"),cognome=rs.getString("cognome"),
-						telefono=rs.getString("telefono"),città=rs.getString("città ");
+						telefono=rs.getString("telefono"),citta=rs.getString("citta");
 				
 				Date bDay=rs.getDate(3);
 				
-				al.add(new DatiAnagraficiBean(idU,idC,nome,cognome,telefono,bDay,città ));
+				al.add(new DatiAnagraficiBean(idU,idC,nome,cognome,telefono,bDay,citta));
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -58,7 +58,7 @@ public class DatiAnagrificiImpl implements DatiAnagraficiDAO{
 			
 			while(rs.next()) {
 				String idU=rs.getString("id_utente"),idC=rs.getString("cap"),nome=rs.getString("nome"),cognome=rs.getString("cognome"),
-						telefono=rs.getString("telefono"),città=rs.getString("città ");
+						telefono=rs.getString("telefono"),citta=rs.getString("citta");
 				Date bDay=rs.getDate(3);
 				
 				dab.setIdUtente(idU);
@@ -66,7 +66,7 @@ public class DatiAnagrificiImpl implements DatiAnagraficiDAO{
 				dab.setNome(nome);
 				dab.setCognome(cognome);
 				dab.setTelefono(telefono);
-				dab.setCitta(città);
+				dab.setCitta(citta);
 				dab.setDataNascita(bDay);
 			}
 		}catch(SQLException e) {

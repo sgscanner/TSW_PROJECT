@@ -36,9 +36,9 @@ public class ProductServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String type=request.getParameter("tipo");
 		String name=request.getParameter("nome_articolo"),codiceA=request.getParameter("codice_articolo"),codiceC=request.getParameter("catalogo"),descrizione=request.getParameter("descrizione"),prezzo=request.getParameter("prezzo")
-			  ,tipologia=request.getParameter("tipologia"),nome=request.getParameter("nome"),quantità=request.getParameter("quantita");
+			  ,tipologia=request.getParameter("tipologia"),nome=request.getParameter("nome"),quantita=request.getParameter("quantita");
 		ArticoliImpl ai=new ArticoliImpl();
-		ArticoliBean ab=new ArticoliBean(codiceA,Long.parseLong(codiceC),descrizione,Double.parseDouble(prezzo),nome,tipologia,false,Integer.parseInt(quantità));
+		ArticoliBean ab=new ArticoliBean(codiceA,Long.parseLong(codiceC),descrizione,Double.parseDouble(prezzo),nome,tipologia,false,Integer.parseInt(quantita));
 
 		if(type.equals("add")) {
 			String savePath="/games_basement/src/main/webapp/prodottiImg"+File.separator+name;

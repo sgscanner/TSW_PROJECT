@@ -14,7 +14,7 @@ import dao.ArticoliDAO;
 public class ArticoliImpl implements ArticoliDAO {
 	private ArrayList<ArticoliBean> articoli;
 	private Connection c;
-	private static final String DELETE_QUERY = "update Articolo set quantità =-1 where Articolo.codice_articoli=?";
+	private static final String DELETE_QUERY = "update Articolo set quantita=-1 where Articolo.codice_articoli=?";
 	private static final String INSERT_QUERY = "insert into Articolo values(?,?,?,?,?,?,?,?)";
 	private static final String SEARCH_BY_CODE = "select * from Articolo where Articolo.codice_articoli=?";
 	
@@ -35,9 +35,9 @@ public class ArticoliImpl implements ArticoliDAO {
 				long codiceC = rs.getLong("codice_catalogo");
 				double prezzo = rs.getDouble("prezzo");
 				boolean offerta = rs.getBoolean("offerta");
-				int quantità= rs.getInt("quantità ");
+				int quantita= rs.getInt("quantita");
 
-				articoli.add(new ArticoliBean(codiceA, codiceC, descrizione, prezzo, nome, tipologia, offerta,quantità));
+				articoli.add(new ArticoliBean(codiceA, codiceC, descrizione, prezzo, nome, tipologia, offerta,quantita));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -68,7 +68,7 @@ public class ArticoliImpl implements ArticoliDAO {
 				long codiceC = rs.getLong("codice_catalogo");
 				double prezzo = rs.getDouble("prezzo");
 				boolean offerta = rs.getBoolean("offerta");
-				int quantità= rs.getInt("quantità ");
+				int quantita= rs.getInt("quantita");
 				
 				ab.setCodiceA(codiceA);
 				ab.setDescrizione(descrizione);
@@ -77,7 +77,7 @@ public class ArticoliImpl implements ArticoliDAO {
 				ab.setCodiceC(codiceC);
 				ab.setPrezzo(prezzo);
 				ab.setOfferta(offerta);
-				ab.setQuantità(quantità);
+				ab.setQuantita(quantita);
 			}
 			
 			return ab;
@@ -101,10 +101,10 @@ public class ArticoliImpl implements ArticoliDAO {
 				long codiceC = rs.getLong("codice_catalogo");
 				double prezzo = rs.getDouble("prezzo");
 				boolean offerta = rs.getBoolean("offerta");
-				int quantità = rs.getInt("quantità ");
+				int quantita = rs.getInt("quantita");
 
 				homepage.add(new ArticoliBean(codiceA, codiceC, descrizione, prezzo, nome, tipologia, offerta,
-						quantità));
+						quantita));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -126,7 +126,7 @@ public class ArticoliImpl implements ArticoliDAO {
 			ps.setString(5, ab.getTipologia());
 			ps.setBoolean(6, ab.isOfferta());
 			ps.setString(8, ab.getNome());
-			ps.setInt(9, ab.getQuantità());
+			ps.setInt(9, ab.getQuantita());
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

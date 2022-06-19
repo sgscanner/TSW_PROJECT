@@ -6,17 +6,17 @@ public class CompongonoBean implements java.io.Serializable{
 	 */
 	private static final long serialVersionUID = -8327016825696622708L;
 	private String codiceArticoli,numOrdine;
-	private int quantità;
+	private int quantita;
 	private double prezzo_storico;
 	
 	public CompongonoBean() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CompongonoBean(String codiceArticoli,String numOrdine,int quantità,double prezzo_storico){
+	public CompongonoBean(String codiceArticoli,String numOrdine,int quantita,double prezzo_storico){
 		this.codiceArticoli=codiceArticoli;
 		this.numOrdine=numOrdine;
-		this.quantità=quantità;
+		this.quantita=quantita;
 		this.prezzo_storico=prezzo_storico;
 	}
 
@@ -40,13 +40,13 @@ public class CompongonoBean implements java.io.Serializable{
 	}
 
 
-	public int getQuantità() {
-		return quantità;
+	public int getQuantita() {
+		return quantita;
 	}
 
 
-	public void setQuantità(int quantità) {
-		this.quantità= quantità;
+	public void setQuantita(int quantita) {
+		this.quantita= quantita;
 	}
 
 	public double getPrezzo_storico() {
@@ -59,8 +59,8 @@ public class CompongonoBean implements java.io.Serializable{
 
 	@Override
 	public String toString() {
-		return "CompongonoBean [codiceArticoli=" + codiceArticoli + ", numOrdine=" + numOrdine + ", quantità ="
-				+ quantità+ "]";
+		return "CompongonoBean [codiceArticoli=" + codiceArticoli + ", numOrdine=" + numOrdine + ", quantita="
+				+ quantita+ "]";
 	}
 
 }

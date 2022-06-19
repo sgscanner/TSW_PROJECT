@@ -36,12 +36,12 @@ public class AjaxCart extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String codiceA=request.getParameter("param");
-		String quantità=request.getParameter("param2");
+		String quantita=request.getParameter("param2");
 		CompongonoImpl ci=new CompongonoImpl();
 		JSONObject result=new JSONObject();
 		ArticoliImpl ai=new ArticoliImpl();
 
-		if(ci.addToCart(ai.searchByCode(codiceA),Integer.parseInt(quantità))>0) {
+		if(ci.addToCart(ai.searchByCode(codiceA),Integer.parseInt(quantita))>0) {
 			try {
 				result.put("insertInfo","prodotto aggiunto");
 
