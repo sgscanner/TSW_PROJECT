@@ -48,7 +48,7 @@ public class RegisterServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String uName=request.getParameter("username"),password=request.getParameter("password"),cap=request.getParameter("cap"),
 			   date=request.getParameter("bday"),nome=request.getParameter("nome"),cognome=request.getParameter("cognome"),telefono=request.getParameter("phone"),
-			   email=request.getParameter("email"),citt√†=request.getParameter("citta");	
+			   email=request.getParameter("email"),citt‡=request.getParameter("citta");	
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		long l;
 		Date d1;
@@ -66,7 +66,7 @@ public class RegisterServlet extends HttpServlet {
 			UserImpl ui=new UserImpl();
 			
 			//istanzio i Bean
-			DatiAnagraficiBean dab=new DatiAnagraficiBean(uName,cap,nome,cognome,telefono,d1,citt√†);
+			DatiAnagraficiBean dab=new DatiAnagraficiBean(uName,cap,nome,cognome,telefono,d1,citt‡);
 			UserBean ub=new UserBean(uName,email,encryptPwd(password),"normale");
 			
 			//aggiuta al db dei Bean

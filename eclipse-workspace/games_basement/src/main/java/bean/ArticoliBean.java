@@ -10,12 +10,12 @@ public class ArticoliBean implements java.io.Serializable{
 	private long codiceC;
 	private double prezzo;
 	private boolean offerta;
-	private int quantit√†;
+	private int quantit‡;
 	
-	public ArticoliBean() { }
+	public ArticoliBean(){ }
 
 	public ArticoliBean(String codiceA ,long  codiceC,String descrizione,double prezzo,String nome,
-			           String tipologia,boolean offerta,int quantit√†) {
+			           String tipologia,boolean offerta,int quantit‡) {
 		this.codiceA=codiceA;
 		this.codiceC=codiceC;
 		this.descrizione=descrizione;
@@ -24,7 +24,7 @@ public class ArticoliBean implements java.io.Serializable{
 		this.nome=nome;
 		this.tipologia=tipologia;
 		this.offerta=offerta;
-		this.quantit√†=quantit√†;
+		this.quantit‡=quantit‡;
 	}
 
 
@@ -138,12 +138,12 @@ public class ArticoliBean implements java.io.Serializable{
 		this.offerta = offerta;
 	}
 
-	public int getQuantit√†() {
-		return quantit√†;
+	public int getQuantit‡() {
+		return quantit‡;
 	}
 
-	public void setQuantit√†(int quantit√†) {
-		this.quantit√† = quantit√†;
+	public void setQuantit‡(int quantit‡) {
+		this.quantit‡ = quantit‡;
 	}
 
 	@Override

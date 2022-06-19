@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="bean.RubricaIndirizziBean"%>
-<%@page import="bean.DatiAnagraficiBean"%>
-<%@page import="bean.UserBean"%>
-
+ <%@page import="bean.UserBean"%>
+ <%@page import="bean.DatiAnagraficiBean"%>
+ <%@page import="bean.RubricaIndirizziBean"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,68 +56,85 @@
 						<div id="Account" hidden="hidden">
 							<h2 class="titolo">Dati Account</h2><br>
 	    					<div class="inputContainer">
-	    						<input class="testo2" type="text" id="username" name="username" value="ub.getUsername()" placeholder="Username" readonly/>
+	    						<label for="username">Username:</label>
+	    						<input class="testo2" type="text" id="username" name="username" value="ub.getUsername()" placeholder="Username" readonly/><br><br>
 	    					<small id="smallUname"></small>
 	    					</div>
 	    					<div class="inputContainer">
-	    						<input class="testo2" type="text" id="email" name="email" value="ub.getEmail()" placeholder="Email" readonly/><br>
+	    						<label for="email">Email:</label>
+	    						<input class="testo2" type="text" id="email" name="email" value="ub.getEmail()" placeholder="Email" readonly/><br><br>
 	    					<small></small>
 	    					</div>
 	    					<div class="inputContainer">
-	  	 						<input class="testo2" type="password" id="password" name="password" value="ub.getPassword()" placeholder="Password" readonly/>
+	    						<label for="password">Password:</label>
+	  	 						<input class="testo2" type="password" id="password" name="password" value="ub.getPassword()" placeholder="Password" readonly/><br><br>
 	  	 						<small></small>	
 	   						</div>
 	    					<div class="inputContainer">
+	    						<label for="checkPassword">Conferma password:</label>
 	    						<input class="testo2" type="password" id="checkPassword" name="checkPassword" value="ub.getPassword()" placeholder="Confirm password" readonly />
+	    						<br><br>
 	    						<small></small>
 	    					</div>
-	    					<input type="button" id="editClick1" value="modifica">
-							<input type="button" id="salvaInfo1" value="salva">
+	    					<input type="button" class="bottone" id="editClick1" value="modifica">
+							<input type="button" class="bottone" id="salvaInfo1" value="salva">
 						</div>
 					</div>
 					<div class="testo">
 						<div id="Anagrafici" hidden="hidden">
 							<h2 class="titolo">Dati Anagrafici</h2><br>
 							<div class="inputContainer">
-		    					<input class="testo3" type="text" id="nome" name="nome" placeholder="nome" autocomplete="false"/>
+								<label for="nome">Nome:</label>
+		    					<input class="testo3" type="text" id="nome" name="nome" value="dab.getNome()" placeholder="nome" autocomplete="false"/><br><br>
 		    					<small></small>
 		    				</div>
 			    			<div class="inputContainer">
-			    				<input class="testo3" type="text" class="testo3" id="cognome" name="cognome" placeholder="cognome" autocomplete="false"/>
+			    				<label for="cognome">Cognome:</label>
+			    				<input class="testo3" type="text" class="testo3" id="cognome" name="cognome" value="dab.getCognome()" placeholder="cognome" autocomplete="false"/><br><br>
 			    				<small></small>
 			   				</div>
 			    		<div class="inputContainer">
-			    			<input class="testo3" type="text" id="phone" name="phone" placeholder="Numero di Telefono"  />
+			    			<label for="phone">Numero di telefono:</label>
+			    			<input class="testo3" type="text" id="phone" name="phone" value="dab.getTelefono()" placeholder="Numero di Telefono" /><br><br>
 			    			<small></small>
 			    		</div>
 			    			<div class="inputContainer">
-			    				<input class="testo3" id="citta" type="text" name="citta" value="dab.getCitta()" placeholder="Città" readonly/>
+			    				<label for="città">Città:</label>
+			    				<input class="testo3" id="città" type="text" name="citta" value="dab.getCitta()" placeholder="Città" readonly/><br><br>
 			    				<small></small>
 			    		</div>
 			    			<div class="inputContainer"> 
-			    				<input class="testo3" id="cap" type="text" name="cap" value="dab.getcap()" placeholder="Cap" readonly/>
+			    				<label for="cap">CAP:</label>
+			    				<input class="testo3" id="cap" type="text" name="cap" value="dab.getcap()" placeholder="Cap" readonly/><br><br>
 			    				<small></small>
 			   	 			</div>
 			    			<div class="inputContainer">
-			    				<input class="testo3" id="data" type="date" value="dab.getDataNascita()" name="bday" readonly/>
+			    				<label for="data">Data di nascita:</label>
+			    				<input class="testo3" id="data" type="date" value="dab.getDataNascita()" name="bday" readonly/><br><br>
 			    				<small></small>
 			    			</div>
-			   				<input type="button" id="editClick3" value="modifica">
-			   				<input type="button" id="salvaInfo3" value="salva">
+			   				<input type="button" class="bottone" id="editClick3" value="modifica">
+			   				<input type="button" class="bottone" id="salvaInfo3" value="salva">
 		 	 			</div>  
 					</div>
 					<div class="testo">
 						<div id="Spedizione"  hidden="hidden">
-		  					<h2 class="titolo">Indirizzi</h2><br>
+		  					<h2 class="titolo">Dati spedizione</h2><br>
 			    				<div class="inputContainer">
-			    				<input class="testo4" id="indirizzo" type="text" name="indirizzo" value="rib.getIndirizzo()" placeholder="Indirizzo" readonly/>
+			    				<label for="indirizzo">Indirizzo di spedizione:</label>
+			    				<input class="testo4" id="indirizzo1" type="text" name="indirizzo" value="rib.getIndirizzo()" placeholder="Indirizzo" readonly/><br><br>
+			    				<small></small>
+			    				<div class="inputContainer">
+			    				<label for="indirizzo">Indirizzo di fatturazione:</label>
+			    				<input class="testo4" id="indirizzo2" type="text" name="indirizzo" value="rib.getIndirizzo()" placeholder="Indirizzo" readonly/><br><br>
 			    				<small></small>
 			    		</div>
-			   			<input type="button" id="editClick4" value="modifica">
-			   			<input type="button" id="salvaInfo4" value="salva">
+			   			<input type="button" class="bottone" id="editClick4" value="modifica">
+			   			<input type="button" class="bottone" id="salvaInfo4" value="salva">
 		 	 			</div>
 		 		 </div>  
           	</div>
+		</div>
 		</div>
 	</form>
 <script>
@@ -155,6 +171,46 @@ $(document).ready(function(){
 		   $("#Account").hide();
 		   $("#Anagrafici").hide();
 		   $("#Spedizione").show();
+		});
+});
+</script>
+<script>
+$(document).ready(function(){
+	  $("#editClick1").click(function(){
+		   $(".testo2").removeAttr("readonly");
+		});
+});
+
+$(document).ready(function(){
+	  $("#salvaInfo1").click(function(){
+		   $(".testo2").attr("readonly", true);
+		   $("#sezione").attr("name", "dati_account");
+		});
+});
+
+$(document).ready(function(){
+	  $("#editClick3").click(function(){
+		   $(".testo3").removeAttr("readonly");
+		});
+});
+
+$(document).ready(function(){
+	  $("#salvaInfo3").click(function(){
+		   $(".testo3").attr("readonly", true);
+		   $("#sezione").attr("name", "dati_anagrafici");
+		});
+});
+
+$(document).ready(function(){
+	  $("#editClick4").click(function(){
+		   $(".testo4").removeAttr("readonly");
+		});
+});
+
+$(document).ready(function(){
+	  $("#salvaInfo4").click(function(){
+		   $(".testo4").attr("readonly", true);
+		   $("#sezione").attr("name", "dati_shipment");
 		});
 });
 </script>

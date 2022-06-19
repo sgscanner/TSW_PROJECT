@@ -13,11 +13,9 @@ body{
   background: white;
 }
 
-
 .contenitore{
   max-width: 1200px;
   height:100%;
-  margin: 0 auto;
   display: grid;
   gap: 2px;
   margin-top:5%;
@@ -25,25 +23,39 @@ body{
 }
 
 .container_testo{
-  
-  height: 100%;
-  max-width:900px;
-  min-height:400px;
+  max-width:80%;
+  max-height:10px;
   margin-left:25%;
+  margin-top:-8%;
   text-align:center;
+}
+
+.container_testo label{
+	display: inline-block;
+    width: 23%;
+    text-align:left;
+}
+
+.bottone{
+  background-color: rgb(192,28,40);
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }
 
 .container{
 	position:absolute;
 	float:left;
-	border: 1px black solid;
+	
   padding: 1rem;
-  height: 25rem;
+  height: 30rem;
   max-width: 300px;
   width: 100%;
   background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .testo{
@@ -68,17 +80,17 @@ body{
   display: flex;
   flex-direction: column;
   width: 80%;
-  margin-right: 50px;
+  margin-right: 10%;
   position: relative;
 }
 
 .content .list label{
   height: 60px;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 500;
   line-height: 60px;
   cursor: pointer;
-  padding-left: 25px;
+  padding-left: 15%;
   transition: all 0.5s ease;
   color: black;
   z-index: 12;
@@ -280,7 +292,7 @@ A:LINK{
 	border-radius:3 px;
 }
 
-#indirizzo{
+#indirizzo1{
 	background-image:url(img/indirizzo.png);
 	position:left;
 	padding-left:20px;
@@ -289,7 +301,16 @@ A:LINK{
 	border-radius:3 px;
 }
 
-#citta{
+#indirizzo2{
+	background-image:url(img/indirizzo.png);
+	position:left;
+	padding-left:20px;
+	background-size:16px;
+	background-repeat:no-repeat;
+	border-radius:3 px;
+}
+
+#città{
 	background-image:url(img/indirizzo.png);
 	position:left;
 	padding-left:20px;

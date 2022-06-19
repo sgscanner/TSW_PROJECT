@@ -45,12 +45,12 @@ public class PersonalPageServlet extends HttpServlet {
 			long l;
 			Date date;
 			String telefono=request.getParameter("telefono"),bDay=request.getParameter("bday")
-				   ,nome=request.getParameter("nome"),cognome=request.getParameter("cognome"),citt√†=request.getParameter("citta"),cap=request.getParameter("cap");
+				   ,nome=request.getParameter("nome"),cognome=request.getParameter("cognome"),citt‡=request.getParameter("citta"),cap=request.getParameter("cap");
 			try {
 				l=sdf.parse(bDay).getTime();
 				date=new Date(l);
 				
-				DatiAnagraficiBean dab=new DatiAnagraficiBean(username,cap,nome,cognome,telefono,date,citt√†);
+				DatiAnagraficiBean dab=new DatiAnagraficiBean(username,cap,nome,cognome,telefono,date,citt‡);
 				dai.updateDatiAnagrafici(dai.searchDatiAnagrafici(username), dab);
 				
 				dai.stopConnection();				
