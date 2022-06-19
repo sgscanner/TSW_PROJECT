@@ -36,7 +36,7 @@
 		    </div>
 		    <div class="inputContainer" id="test">
 		  	 	<input type="password" id="password" name="password" placeholder="Password" />
-		    	<span><img src="img/password.png"></span>
+		
 		  	 	<small></small>	
 		    </div>
 		    <div class="inputContainer">

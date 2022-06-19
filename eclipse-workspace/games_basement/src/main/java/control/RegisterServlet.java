@@ -1,6 +1,7 @@
 package control;
 
 import java.io.IOException;
+
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -49,46 +50,46 @@ public class RegisterServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String uName=request.getParameter("username"),password=request.getParameter("password"),cap=request.getParameter("cap"),
-			   date=request.getParameter("bday"),nome=request.getParameter("nome"),cognome=request.getParameter("cognome"),telefono=request.getParameter("phone"),
-			   email=request.getParameter("email"),citta=request.getParameter("citta");
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		long l;
-		Date d1;
-		try {
-			//istanzio il dispatcher per reindirizzare alla homepage e la sessione attuale a cui aggiungo il bean dell'utente
-			RequestDispatcher rd=request.getRequestDispatcher("HomePage.jsp");
-			HttpSession newSession=request.getSession();
+				   date=request.getParameter("bday"),nome=request.getParameter("nome"),cognome=request.getParameter("cognome"),telefono=request.getParameter("phone"),
+				   email=request.getParameter("email"),citta=request.getParameter("citta");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			long l;
+			Date d1;
+			try {
+				//istanzio il dispatcher per reindirizzare alla homepage e la sessione attuale a cui aggiungo il bean dell'utente
+				RequestDispatcher rd=request.getRequestDispatcher("HomePage.jsp");
+				HttpSession newSession=request.getSession();
 
-			//converto in formato Data la stringa presa dal parametro "bDay"
-			l = sdf.parse(date).getTime();
-			d1=new Date(l);
+				//converto in formato Data la stringa presa dal parametro "bDay"
+				l = sdf.parse(date).getTime();
+				d1=new Date(l);
 
-			//istanzio le implementazioni dei DAO
-			DatiAnagrificiImpl dai=new DatiAnagrificiImpl();
-			UserImpl ui=new UserImpl();
+				//istanzio le implementazioni dei DAO
+				DatiAnagrificiImpl dai=new DatiAnagrificiImpl();
+				UserImpl ui=new UserImpl();
 
-			//istanzio i Bean
-			DatiAnagraficiBean dab=new DatiAnagraficiBean(uName,cap,nome,cognome,telefono,d1,citta);
-			UserBean ub=new UserBean(uName,email,encryptPwd(password),"normale");
+				//istanzio i Bean
+				DatiAnagraficiBean dab=new DatiAnagraficiBean(uName,cap,nome,cognome,telefono,d1,citta);
+				UserBean ub=new UserBean(uName,email,encryptPwd(password),"normale");
 
-			//aggiuta al db dei Bean
-			ui.addUser(ub);
-			ui.stopConnection();
+				//aggiuta al db dei Bean
+				ui.addUser(ub);
+				ui.stopConnection();
 
-			dai.addDatiAnagrafici(dab);
-			dai.stopConnection();
+				dai.addDatiAnagrafici(dab);
+				dai.stopConnection();
 
 
-			//aggiunta dell'user bean alla sessione
-			newSession.setAttribute("user", ub);
-			newSession.setMaxInactiveInterval(15*60);
+				//aggiunta dell'user bean alla sessione
+				newSession.setAttribute("user", ub);
+				newSession.setMaxInactiveInterval(15*60);
 
-			//redirect alla homepage
-			rd.forward(request, response);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+				//redirect alla homepage
+				rd.forward(request, response);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 
 	//metodi utils

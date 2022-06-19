@@ -100,7 +100,10 @@ body{
 #Dati_Account:checked ~ .list label.Dati_Account,
 #Dati_personali:checked ~ .list label.Dati_Personali,
 #Dati_spedizione:checked ~ .list label.Dati_spedizione,
-#Logout:checked ~ .list label.Logout{
+#Lista_Utenti:checked ~ .list label.Lista_Utenti,
+#Lista_Prodotti:checked ~ .list label.Lista_Prodotti,
+#Logout:checked ~ .list label.Logout
+{
   color: black;
 }
 
@@ -151,8 +154,14 @@ A:LINK{
 #Dati_spedizione:checked ~ .list .slider{
 	top:180px;
 }
-#Logout:checked ~ .list .slider{
+#Lista_Utenti:checked ~ .list .slider{
 	top:240px;
+}
+#Lista_Prodotti:checked ~ .list .slider{
+	top:300px;
+}
+#Logout:checked ~ .list .slider{
+	top:360px;
 }
 
 .content .text-content{
@@ -182,16 +191,10 @@ A:LINK{
 #Dati_Account:checked ~ .list label.Dati_Account,
 #Dati_personali:checked ~ .list label.Dati_Personali,
 #Dati_spedizione:checked ~ .list label.Dati_spedizione,
+#Lista_Utenti:checked ~ .list label.Lista_Utenti,
+#Lista_Prodotti:checked ~ .list label.Lista_Prodotti,
 #Logout:checked ~ .list label.Logout{
   display: block;
-}
-
-#Panoramica:checked ~ .text-content .Account,
-#Dati_Account:checked ~ .text-content .Pano,
-#Dati_personali:checked ~ .text-content .Pano, .Account,
-#Dati_spedizione:checked ~ .text-content .Pano, .Account,
-#Logout:checked ~ .text-content .Pano, .Account{
-  display: none;
 }
 
 .content input{

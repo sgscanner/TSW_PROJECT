@@ -40,7 +40,9 @@ public class LoginServlet extends HttpServlet {
 		String uName=request.getParameter("username"),password=request.getParameter("password"),encrypted=encryptPwd(password);
 		UserImpl ui=new UserImpl();
 		UserBean ub=ui.searchUser(uName);
-
+			System.out.println("username"+uName);
+			System.out.println("Password"+password);
+			System.out.println("encrypted"+encrypted);
 		if(ub==null) {
 			RequestDispatcher rd=request.getRequestDispatcher("Login.jsp");
 			rd.forward(request, response);
