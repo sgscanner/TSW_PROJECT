@@ -49,9 +49,11 @@ html{
 }
 
 .line{
-	width: 1322px;
-	border: 1px solid black;
-	margin-top: 20px;
+	margin-top:15px;
+	height:2px;
+	border-width:0;
+	color:black;
+	background-color:black;
 }
 
 .titpro{
@@ -198,4 +200,49 @@ input::-webkit-inner-spin-button {
 	color:silver;
 	background-color: red;
 	border: 2px solid black;
+}
+
+.noff{
+	color:white;
+	font-size:20px;
+	width:250px;
+	height:45px;
+	background-color: red;
+	border: 2px solid red; 
+}
+
+.noff:hover{
+	text-decoration:underline;
+}
+
+.pd{
+	color:black;
+	font-size:20px;
+	width:250px;
+	height:45px;
+	background-color:transparent;
+	border: 2px solid green; 
+}
+
+.pd:hover{
+	text-decoration:underline;
+	text-decoration-color:green;
+}
+
+.pnd{
+	color:black;
+	font-size:20px;
+	width:300px;
+	height:45px;
+	background-color:transparent;
+	border: 2px solid red; 
+}
+
+.pnd:hover{
+	text-decoration:underline;
+	text-decoration-color:red;
+}
+
+.pre{
+	text-align:center;
 }

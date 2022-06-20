@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="bean.ArticoliBean" %>
+<%@ page import="bean.ArticoliBean"%>
+<%@ page import="control.ProductServlet"%>
+<%@ page import="dao.ArticoliDAO"%>
+<%@ page import="implementation.ArticoliImpl"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Prodotto</title>
+<title>Nome prodotto</title>
 <script src="jQuery/jquery.js"></script>
 <script src='jQuery/jquery-ui.min.js'></script>
 <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
@@ -43,8 +46,16 @@
 		<div class="shop">
 			<div class="shop1">
 					<div class="shop2">
+						<% double v = 0;
+							double valore = 30;
+							double sconto = 15;
+							boolean off = true;
+							if(off == true){%>
+						<p style="margin-bottom:10px;text-decoration:line-through;">prezzo&euro;</p>
+						<p>newprezzo&euro;</p>
+						<%}else{ %>
 						<p style="display:inline;">prezzo&euro;</p>
-						
+						<%} %>
 					</div>
 					<div class="shop2">
 						<p style="display:inline;">Quantit&agrave;&nbsp;<input class="n" type="number" min="1" max="99"></p>
@@ -53,12 +64,23 @@
 			
 			<div class="shop1">
 				<div class="shop2">
-					<p><b>Genere</b>&nbsp;Action
-					<p><b>Rilascio</b>&nbsp;12/11/2020
-					<p><b>PEGI</b>&nbsp;16+
+					&nbsp;
+					&nbsp;
+					<%boolean o = false;
+						if(o == true){%>
+					<button type="button" class="pd">&#9745;&nbsp;Prodotto disponibile</button>
+					<%}else{ %>
+					<button type="button" class="pnd">&#9940;&nbsp;Prodotto non disponibile</button>
+					<a class="pre" href="">Prenota Ora</a>
+					<%} %>
 				</div>
 				<div class="shop2">
+					<% int q = 1;
+						if(q>=1){%>
 					<button class="off" type="button">&#127918;&nbsp;Prodotto in offerta</button>
+					<%}else {%>
+					<button class="noff" type="button">&#9888;&nbsp;Prodotto non in offerta</button>
+					<%} %>
 				</div>
 			</div>
 			
@@ -73,7 +95,7 @@
 		</div>
 	</div>
 		
-		<div class="line"></div>
+		<hr class="line">
 		
 		<div>
 			<div>
