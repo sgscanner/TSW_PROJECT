@@ -22,7 +22,7 @@
                     	<ul id="search_list">
                     		<%ArticoliImpl ai=new ArticoliImpl();
                     		  for(ArticoliBean ab:ai.getAllArticoli()){%>
-                    				<li><%ab.getNome(); %></li>  
+                    				<li><%=ab.getNome() %></li>  
                     		  <% }%>
                     	</ul>
                     </div>
