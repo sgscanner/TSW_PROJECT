@@ -239,3 +239,17 @@ insert into Articolo (codice_articoli, codice_catalogo, descrizione, prezzo, nom
     ('47','1','Mettiti alla prova con Returnal per PlayStation 5 e aiuta Selena a sopravvivere in un pianeta alieno in continua trasformazione. Per sconfiggere le possenti creature che troverai sul cammino.','50.00','Returnal Ps5','gioco',true,'10'),
     ('48','1','È il momento di riprendersi Londra e chiunque tu veda in questa iconica città può essere reclutato nella tua resistenza.','35.00','Watch Dogs Legion Ps5','gioco',false,'10'),
     ('49','1','Per celebrare i 50 anni del campionato, WRC 10 offre una nuovissima edizione Anniversario traboccante di contenuti ed emozioni. Raccogli la sfida dei momenti più intensi dal 1973 a oggi!','35.00','WRC 10 Ps5','gioco',false,'10');
+
+#Giochi PsVita
+
+insert into Articolo (codice_articoli, codice_catalogo, descrizione, prezzo, nome, tipologia_articoli, offerta, quantità) values
+	('50','1','Angry Birds Star Wars è l ennesimo episodio della serie Rovio che per l occasione si ispira alla saga di Star Wars.','20.00','Angry Birds Star Wars PsVita','gioco',false,'10'),
+    ('51','1','Ambientato prima della rivolta dei più pericolosi criminali di Gotham City, il gioco presenta un giovane e rozzo Batman che affronta un momento chiave nei primi passi della sua carriera.','15.00','Batman Arkham Origins Blackgate PsVita','gioco',false,'10'),
+    ('52','1','Nei panni di un intraprendente eroina di nome Kat, si verrà proiettati tra i grattacieli e le nuvole di una misteriosa città.','10.00','Gravity Rush PsVita','gioco',false,'10'),
+    ('53','1','Dating simulator con protagonisti dei piccioni.','15.00','Hatoful Boyfriend PsVita','gioco',true,'10'),
+    ('54','1','Una spirale psichedelica di violenza e dolore. Di teste spaccate contro il muro da un calcio preciso, di bpm che salgono, di colori acidi e suoni acidissimi e fucilate al petto, di gente che rantola. Gole tagliate, pixel, maschere, audiocassette.','20.00','Hotline Miami PsVita','gioco',false,'10'),
+    ('55','1','Sei pronto a salvare il Mondo del fai da te dalla sua più grande minaccia? Ho sentito gridare un bel "sì", molto bene! E allora imbarcati nella sfida più impegnativa e sensorialmente stimolante di Sackboy.','30.00','LittleBigPlanet PsVita','gioco',false,'10'),
+    ('56','1','MotorStorm RC rappresenta una variazione sul tema per la serie sviluppata da Evolution Studios, una sorta di simpatico spin-off in cui i motori protagonisti sono quelli di automobiline radiocomandate','15.00','Motorsport RC PsVita','gioco',false,'10'),
+    ('57','1','Lo strepitoso platform di Ubisoft approda anche su PlayStation Vita: scopriamo se è la versione migliore','25.00','Rayman Legends PsVita','gioco',true,'10'),
+    ('58','1','Polli e pinguini. Armi e jetpack. E una discreta dose di piattaforme. Non serve molto altro per descrivere in breve quello che ha da offrire Rocketbirds: Hardboiled Chicken, vulcanico platform a scorrimento con elementi shooter','20.00','Rocketbirds Hardboiled Chicken PsVita','gioco',false,'10'),
+    ('59','1','Stick It To The Man è il nuovo platform adventure per PlayStation Vita sviluppato da Zoink! e prodotto da Ripstone.','15.00','Stick it to the man PsVita','gioco',false,'10');
