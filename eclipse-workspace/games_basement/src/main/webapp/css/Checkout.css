@@ -1,0 +1,47 @@
+.dati{
+	float:none;
+	display:block;
+	width: 100%;
+	padding:15px;
+	border-right: none;
+	
+}
+
+h3 {
+	font-family: "poppins", sans-serif;
+	
+}
+
+*{
+    margin: 0;
+    padding:0;
+    font-family: "poppins", sans-serif;
+    box-sizing: border-box;
+}
+
+#autocomplete {
+  list-style: none;
+}
+
+input[type="text"] {
+  padding: 15px 10px;
+  border: none;
+  border-bottom: 1px solid #645979;
+  outline: none;
+  border-radius: 5px 5px 0 0;
+  background-color: #ffffff;
+  font-size: 16px;
+}
+
+.image {
+	
+	 width: 200px;
+	
+}
+
+
+.FO {
+	width: 200px;
+	display:block;
+	
+}

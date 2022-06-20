@@ -1,0 +1,72 @@
+
+
+.tabella{
+	border:1px solid #060101;
+	border-collapse:collapse;
+	padding:3px 5px;
+	color:black;
+}
+
+td
+{
+	text-align:right;
+	 border: medium solid #00f;
+}
+tr
+{
+	text-align:left;
+	 border: medium solid #00f;
+}
+
+
+
+
+
+
+
+
+
+body{
+	margin:0%;
+	font-family:"Roboto";
+	font-variant:small-caps;
+	background-color : white;
+}
+
+
+
+
+.prodotto{
+	border-style : solid;
+	border-color : #57A773;
+	border-width: 5px;
+	height : auto;
+	width : 1350px;
+	margin : 3%;
+	padding : 2%;
+	border-radius : 10px;
+}
+
+
+
+.rigaNome{
+	width : 250px;
+	border-right: 2px solid black;
+	padding : 1%;
+	object-fit : contain;
+	text-align : center;
+	border-width : 2px;
+	border-color : black;
+}
+
+
+.rigaQ{
+	text-align : center;
+	padding : 2%;
+	width : 80px;
+	border-top: 2px solid black;
+}
+
+.q{
+	text-align : center;
+}
