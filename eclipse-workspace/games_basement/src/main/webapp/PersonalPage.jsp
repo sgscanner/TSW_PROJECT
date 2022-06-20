@@ -113,7 +113,7 @@
 	    					<small></small>
 	    				</div>
 	    				<input type="button" class="bottone" id="editClick1" value="Modifica">
-						<input type="submit" class="bottone" id="salvaInfo1" value="Salva" onclick="checkFirstField()">
+						<input type="submit" class="bottone" id="salvaInfo1" value="Salva" onclick="checkUsername()">
 					</div>
 				</div>
 				<div class="testo">
@@ -135,8 +135,8 @@
 			    			<small></small>
 			    		</div>
 			    			<div class="inputContainer">
-			    			<label for="città">Città:</label>
-			   				<input class="testo3" id="città" type="text" name="citta" value="dab.getCitta()" placeholder="Città" readonly/><br><br>
+			    			<label for="citta">Città:</label>
+			   				<input class="testo3" id="citta" type="text" name="citta" value="dab.getCitta()" placeholder="Città" readonly/><br><br>
 			   				<small></small>
 			    		</div>
 			   			<div class="inputContainer"> 
@@ -157,13 +157,13 @@
 					<div id="Spedizione"  hidden="hidden">
 		  				<h2 class="titolo">Dati spedizione</h2><br>
 			    		<div class="inputContainer">
-			    			<label for="indirizzo1">Indirizzo di spedizione:</label>
-			    			<input class="testo4" id="indirizzo1" type="text" name="indirizzo" value="rib.getIndirizzo()" placeholder="Indirizzo" readonly/><br><br>
+			    			<label for="spedizione">Indirizzo di spedizione:</label>
+			    			<input class="testo4" id="spedizione" type="text" name="indirizzo" value="rib.getIndirizzo()" placeholder="Indirizzo" readonly/><br><br>
 			    			<small></small>
 			    		</div>
 			   			<div class="inputContainer">
-			   				<label for="indirizzo2">Indirizzo di fatturazione:</label>
-			   				<input class="testo4" id="indirizzo2" type="text" name="indirizzo" value="rib.getIndirizzo()" placeholder="Indirizzo" readonly/><br><br>
+			   				<label for="fatturazione">Indirizzo di fatturazione:</label>
+			   				<input class="testo4" id="fatturazione" type="text" name="indirizzo" value="rib.getIndirizzo()" placeholder="Indirizzo" readonly/><br><br>
 			   				<small></small>
 			    		</div>
 			   			<input type="button" class="bottone" id="editClick4" value="Modifica">
@@ -420,12 +420,9 @@ $(document).ready(function(){
 <script>
 	const capField=document.getElementById("cap");
 	const checkPasswordField=document.querySelector("#checkPassword");
-	const cittaField=document.getElementById("città");
-	const nomeField=document.getElementById("nome");
+	const cittaField=document.getElementById("citta");	
 	const cognomeField=document.getElementById("cognome");
 	const dateField=document.getElementById("date");
-	const indirizzo1Field=document.getElementbyId("indirizzo1");
-	const indirizzo2Field=document.getElementById("indirizzo2");
 	const emailField=document.querySelector("#email");
 	const emailInfoField=document.getElementById("#emailInfo");
 	const formField=document.getElementById("form");
@@ -434,6 +431,8 @@ $(document).ready(function(){
 	const phoneField=document.querySelector("#phone");
 	const smallUname=document.getElementById("smallUname");
 	const userNameField=document.querySelector("#username");
+	const spedField=document.getElementById("spedizione");
+	const fattField=document.getElementById("fatturazione");
 	
 	function checkFirstField(){
 		checkUsername();
@@ -457,20 +456,34 @@ $(document).ready(function(){
 		let cittaValid=checkCitta();
 		let capValid=checkCap();
 		let dateValid=checkDate();
-		let valid= phoneValid && nomeValid && cognomeValid && cittaValid && capValid && dateValid;
 		
-		if(valid){
-			formField.submit();
-		}
-		return phoneValid && nomeValid && cognomeValid;
+		return phoneValid && nomeValid && cognomeValid && cittaValid && capValid && dateValid;
 	}
 	
 	function checkThirdField(){
-		let fattValid=checkFatt();
-		lef spedValid=checkSped();
-		let valid= fattValid && spedValid;
-		
-		return valid;
+		let sped = checkSped();
+		let fatt = checkFatt();
+		return SpedValid && fattValid;
+	}
+	
+	function checkSped(){
+		if(isEmpty(spedField.value.trim())){
+			showError(spedField,"Qual è il tuo indirizzo di spedizione?");
+			return false;
+		}else{
+			showSuccess(spedField);
+			return true;
+		}
+	}
+	
+	function checkFatt(){
+		if(isEmpty(spedField.value.trim())){
+			showError(fattField,"Qual è il tuo indirizzo di fatturazione?");
+			return false;
+		}else{
+			showSuccess(fattField);
+			return true;
+		}
 	}
 	
 	function readJson(listJSON){
@@ -536,7 +549,7 @@ $(document).ready(function(){
 	}
 	
 	function showError(inputField,messageError){
-		var formField = inputField.parentElement; //accedo all'elemento padre dell'input field
+		var formField = inputField.parentElement; //accendo all'elemento padre dell'input field
 		
 		// aggiungo la classe "error" all'input
 	    formField.classList.remove('success');
@@ -548,7 +561,7 @@ $(document).ready(function(){
 	}
 	
 	function showSuccess(inputField){
-		var formField = inputField.parentElement; //accedo all'elemento padre dell'input field
+		var formField = inputField.parentElement; //accendo all'elemento padre dell'input field
 		
 		// aggiungo la classe "success" all'input
 	    formField.classList.remove('error');
@@ -581,7 +594,6 @@ $(document).ready(function(){
 			return true;
 		}
 	}
-	
 	
 	function checkCognome(){
 		if(isEmpty(cognomeField.value.trim())){
@@ -673,25 +685,6 @@ $(document).ready(function(){
 		return valid;
 	}
 	
-	function checkSped(){
-		if(isEmpty(indirizzo1Field.value.trim())){
-			showError(indirizzo1Field,"Inserisci un indirizzo di spedizione.");
-			return false;
-		}else{
-			showSuccess(indirizzo1Field);
-			return true;
-		}
-	}
-	
-	function checkFatt(){
-		if(isEmpty(indirizzo2Field.value.trim())){
-			showError(indirizzo2Field,"Inserisci un indirizzo di fatturazione.");
-			return false;
-		}else{
-			showSuccess(indirizzo2Field);
-			return true;
-		}
-	}
 	
 </script>
 </body>
