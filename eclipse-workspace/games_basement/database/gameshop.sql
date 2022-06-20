@@ -225,3 +225,17 @@ insert into Articolo values('36','1','NBA 2K22 hai l’intero universo del baske
 insert into Articolo values('37','1','Tom Clancy s Rainbow Six® Extraction è uno sparatutto tattico cooperativo in prima persona per uno-tre giocatori. Forma la tua squadra d élite di operatori Rainbow Six.','30.00','Rainbow Six Extraction Ps4','gioco',false,'10');
 insert into Articolo values('38','1','Nell ultima avventura dell universo di Marvel s Spider-Man, l adolescente Miles Morales affronta il trasloco nella sua nuova casa mentre segue le orme del suo mentore, Peter Parker, per diventare il nuovo Spider-Man.','30.00','Spider Man Miles Morales Ps4','gioco',false,'10');
 insert into Articolo values('39','1','Marvel s Spider-Man contiene tutte le acrobazie, le improvvisazioni e le ragnatele che hanno reso celebre l arrampicamuri, uno dei supereroi più famosi al mondo,','20.00','Spider-Man Ps4','gioco',false,'10');
+
+#Giochi Ps5
+
+insert into Articolo (codice_articoli, codice_catalogo, descrizione, prezzo, nome, tipologia_articoli, offerta, quantità) values 
+	('40','1','Call of Duty®: Modern Warfare® II è il seguito del popolare Modern Warfare® del 2019.i giocatori potranno scoprire cosa ha reso la Task Force 141 la squadra leggendaria che è oggi.','60.00','Call of Duty Modern Warfare II Ps5','gioco',false,'0'),
+    ('41','1','Batman è morto e i criminali hanno invaso le strade di Gotham City. Proteggere la città, dare speranza ai suoi cittadini, mettere in riga le forze dell’ordine e incutere timore nei criminali è ora compito della Bat-famiglia.','60.00','Gotham Knights Ps5','gioco',false,'0'),
+    ('42','1','HITMAN 3 è la drammatica conclusione della trilogia del mondo degli assassini e porta i giocatori in giro per il mondo in un’avventura attraverso vaste locations sandbox.','25.00','Hitman 3 Ps5','gioco',false,'10'),
+    ('43','1','Riunisci la squadra degli eroi piú potenti della Terra, scatena i tuoi poteri e vivi il tuo sogno di supereroe.','25.00','Marvel Avengers Ps5','gioco',false,'10'),
+    ('44','1','Metro Exodus è uno sparatutto narrativo in prima persona firmato 4A Games. Il gioco combina combattimenti letali e furtività con esplorazione e survival horror in uno dei mondi più immersivi mai creati.','30.00','Metro Exodus Ps5','gioco',false,'10'),
+    ('45','1','La celeberrima saga di Mortal Kombat è tornata con un nuovo capitolo ed è più entusiasmante che mai. Le innovative varianti di personalizzazione dei personaggi ti forniscono un inedita libertà d azione.','15.00','Mortal Kombat 11 Ultimate Ps5','gioco',false,'10'),
+    ('46','1','Scopri i roster e i circuiti ufficiali e vivi le emozioni della stagione 2021. E se vuoi fare un tuffo nel passato, puoi rivivere la storia della MotoGP™ con più di 40 piloti e le loro moto iconiche!','20.00','MotoGP 21 Ps5','gioco',false,'10'),
+    ('47','1','Mettiti alla prova con Returnal per PlayStation 5 e aiuta Selena a sopravvivere in un pianeta alieno in continua trasformazione. Per sconfiggere le possenti creature che troverai sul cammino.','50.00','Returnal Ps5','gioco',true,'10'),
+    ('48','1','È il momento di riprendersi Londra e chiunque tu veda in questa iconica città può essere reclutato nella tua resistenza.','35.00','Watch Dogs Legion Ps5','gioco',false,'10'),
+    ('49','1','Per celebrare i 50 anni del campionato, WRC 10 offre una nuovissima edizione Anniversario traboccante di contenuti ed emozioni. Raccogli la sfida dei momenti più intensi dal 1973 a oggi!','35.00','WRC 10 Ps5','gioco',false,'10');
