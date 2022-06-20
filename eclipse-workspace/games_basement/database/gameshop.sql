@@ -73,7 +73,7 @@ CREATE TABLE Articolo (
 	codice_catalogo int (10) not null,
 	descrizione varchar(250) not null,
 	prezzo 		decimal(15,2) not null,
-	nomi 		varchar(250) not null,
+	nome 		varchar(250) not null,
 	tipologia_articoli 	varchar(250) not null,
 	offerta boolean not null,
 	quantità int not null,
@@ -222,3 +222,6 @@ insert into Articolo values('33','1','Non vedi l’ora di provare la migliore es
 insert into Articolo values('34','1','Piloti competitivi, collezionisti, amanti della messa a punto, progettisti di livree, fotografi e appassionati di corse arcade: le funzionalità ispirate dal passato, presente e futuro di Gran Turismo.','50.00','Gran Turimso 7 Ps4','gioco',true,'10');
 insert into Articolo values('35','1',' In Horizon: Forbidden West per PlayStation 4 ti muoverai in una frontiera maestosa e pericolosa, che nasconde nuove e misteriose minacce, con l’obiettivo di salvare quel che resta dell’umanità.','70.00','Horizon Forbidden West Ps4','gioco',false,'15');
 insert into Articolo values('36','1','NBA 2K22 hai l’intero universo del basket nelle tue mani. GIOCA ORA nell’ambiente realistico delle leghe NBA e WNBA e sfida le squadre e i giocatori originali.','45.00','Nba 2K22 Ps4','gioco',false,'10');
+insert into Articolo values('37','1','Tom Clancy s Rainbow Six® Extraction è uno sparatutto tattico cooperativo in prima persona per uno-tre giocatori. Forma la tua squadra d élite di operatori Rainbow Six.','30.00','Rainbow Six Extraction Ps4','gioco',false,'10');
+insert into Articolo values('38','1','Nell ultima avventura dell universo di Marvel s Spider-Man, l adolescente Miles Morales affronta il trasloco nella sua nuova casa mentre segue le orme del suo mentore, Peter Parker, per diventare il nuovo Spider-Man.','30.00','Spider Man Miles Morales Ps4','gioco',false,'10');
+insert into Articolo values('39','1','Marvel s Spider-Man contiene tutte le acrobazie, le improvvisazioni e le ragnatele che hanno reso celebre l arrampicamuri, uno dei supereroi più famosi al mondo,','20.00','Spider-Man Ps4','gioco',false,'10');
