@@ -46,7 +46,7 @@ CREATE TABLE Rubrica_indirizzi (
 	id_utente varchar(25) not null,
 	id_città varchar(30) not null,
 	indirizzo varchar(50) not null,
-	foreign key(id_utente) references utente (id_utente),
+	foreign key(id_utente) references Utente (id_utente),
 	primary key (id_indirizzo)
 );
 
@@ -57,7 +57,7 @@ CREATE TABLE Ordine (
 	importo_totale decimal(20,2) not null,
 	data_ordine date not null,
 	
-	foreign key (id_utente) REFERENCES utente (id_utente)
+	foreign key (id_utente) REFERENCES Utente (id_utente)
 );
 
 DROP TABLE IF EXISTS Fornitore;
@@ -99,7 +99,7 @@ CREATE TABLE Sono_forniti_da	(
 	partita_iva	varchar(11) not null,
 	
     foreign key(codice_articoli) references Articolo(codice_articoli),
-	foreign key(partita_iva) REFERENCES fornitore(partita_iva)
+	foreign key(partita_iva) REFERENCES Fornitore(partita_iva)
 );
 
 DROP TABLE IF EXISTS Standard;
@@ -108,7 +108,7 @@ CREATE TABLE Standard(
 	numero_ordine varchar (30) not null,
 	data_spedizione date,
 	costo	decimal(10,2) not null,
-	foreign key(numero_ordine) REFERENCES ORDINE(numero_ordine)
+	foreign key(numero_ordine) REFERENCES Ordine(numero_ordine)
 );
 
 DROP TABLE IF EXISTS Veloce;
@@ -117,7 +117,7 @@ CREATE TABLE Veloce (
 	numero_ordine varchar (30) not null,
 	data_spedizione date,
 	costo decimal(10,2) not null,
-	foreign key (numero_ordine) REFERENCES ORDINE(numero_ordine)
+	foreign key (numero_ordine) REFERENCES Ordine(numero_ordine)
 );
 
 DROP TABLE IF EXISTS Pagamento;
@@ -125,7 +125,7 @@ CREATE TABLE Pagamento (
 	id_pagamento int(15) not null primary key,
 	numero_ordine varchar (30) not null,
 	importo_pagamento decimal (15,2) not null,
-	foreign key(numero_ordine) REFERENCES ORDINE (numero_ordine)
+	foreign key(numero_ordine) REFERENCES Ordine (numero_ordine)
 );
 
 DROP TABLE IF EXISTS Carta;
@@ -133,13 +133,13 @@ CREATE TABLE Carta(
 	numero_di_carta varchar(25) not null,
 	id_pagamento int(10) not null,
 	dati_intestatario varchar(25) not null,
-	foreign key(id_pagamento) REFERENCES PAGAMENTO(id_pagamento)
+	foreign key(id_pagamento) REFERENCES Pagamento(id_pagamento)
 );
 
 DROP TABLE IF EXISTS Contanti;
 CREATE TABLE Contanti(
 	id_pagamento int (10) not null,
-	foreign key(id_pagamento) REFERENCES PAGAMENTO(id_pagamento)
+	foreign key(id_pagamento) REFERENCES Pagamento(id_pagamento)
 );
 
 DROP TABLE IF EXISTS Bonifico;
@@ -148,7 +148,7 @@ CREATE TABLE Bonifico (
 	id_pagamento int(10) not null,
 	causale varchar(144) not null,
 	dati_intestatario varchar(50) not null,
-	foreign key(id_pagamento) REFERENCES PAGAMENTO(id_pagamento)
+	foreign key(id_pagamento) REFERENCES Pagamento(id_pagamento)
 );
 
 DROP TABLE IF EXISTS Fattura;
@@ -156,7 +156,7 @@ CREATE TABLE Fattura (
 	id_fattura int(15) not null primary key,
 	id_pagamento int (10) not null,
 	data	date,
-	foreign key(id_pagamento) REFERENCES PAGAMENTO(id_pagamento)
+	foreign key(id_pagamento) REFERENCES Pagamento(id_pagamento)
 );
 
 DROP TABLE IF EXISTS Recensione;
@@ -221,3 +221,4 @@ insert into Articolo values('32','1','Ti diamo il benvenuto a Yara, un paradiso 
 insert into Articolo values('33','1','Non vedi l’ora di provare la migliore esperienza di calcio? Con FIFA 22 per PlayStation 4, realizzare i tuoi sogni di gloria è ancora più entusiasmante. Prendi per mano la tua squadra del cuore e portala sul tetto del mondo!','30.00','Fifa 22 Ps4','gioco',true,'15');
 insert into Articolo values('34','1','Piloti competitivi, collezionisti, amanti della messa a punto, progettisti di livree, fotografi e appassionati di corse arcade: le funzionalità ispirate dal passato, presente e futuro di Gran Turismo.','50.00','Gran Turimso 7 Ps4','gioco',true,'10');
 insert into Articolo values('35','1',' In Horizon: Forbidden West per PlayStation 4 ti muoverai in una frontiera maestosa e pericolosa, che nasconde nuove e misteriose minacce, con l’obiettivo di salvare quel che resta dell’umanità.','70.00','Horizon Forbidden West Ps4','gioco',false,'15');
+insert into Articolo values('36','1','NBA 2K22 hai l’intero universo del basket nelle tue mani. GIOCA ORA nell’ambiente realistico delle leghe NBA e WNBA e sfida le squadre e i giocatori originali.','45.00','Nba 2K22 Ps4','gioco',false,'10');
