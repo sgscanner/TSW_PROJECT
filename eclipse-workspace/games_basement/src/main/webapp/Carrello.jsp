@@ -5,9 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Carrello</title>
+	<%@include file="Header.jsp"%>
 </head>
 <body>
-	<%@include file="Header.jsp"%>
 	<div>
 		<div>
 			<table style="border:1px solid black;" class=tabella>

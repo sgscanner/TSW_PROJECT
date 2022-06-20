@@ -1,56 +1,19 @@
 <%@page import="bean.UserBean"%>
-<%@page import="bean.ArticoliBean" %>
-<%@page import="implementation.ArticoliImpl" %>
+<%@page import="bean.ArticoliBean"%>
+<%@page import="implementation.ArticoliImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Header</title>
-<style><%@include file="css/Header.css" %></style>
+<style>
+<%@include file="css/Header.css"%>
+</style>
 <script src="ajax/ajaxJSON.js"></script>
 <script src="jQuery/jquery.js"></script>
-<script src='jQuery/jquery-ui.min.js'></script>
-</head>
- <body>
- 		<%UserBean ub=(UserBean)request.getSession().getAttribute("user"); %>
-        <div class="header">
-            <nav>
-                <img src="img/logo.png" class="logo">
-                <form class="form">
-                    <input type="text" placeholder="Search..." id="input" autocomplete="off">
-                    <input type="submit" value="Search">
-                    <div id="search_option">
-                    	<ul id="search_list">
-                    		<%ArticoliImpl ai=new ArticoliImpl();
-                    		  for(ArticoliBean ab:ai.getAllArticoli()){%>
-                    				<li><%=ab.getNome() %></li>  
-                    		  <% }%>
-                    	</ul>
-                    </div>
-                </form>	
-                <ul class="nav-links">
-                	<%if(ub==null){%>
-                    	<li><a href="Login.jsp">Accedi</a></li>
-                    <%}else{ %>
-						<li><a href="PersonalPage.jsp"><%=ub.getUsername() %></a></li>
-                    <%}%>
-                    <li><a href="Register.jsp">Registrati</a></li>
-                    <li><a href="Carrello.jsp"><img src="img/carrello.jpg" class="carrello"></a></li>
-                    <li><button class="nav">Navigation</button></li>
-                </ul>
-            </nav>
-            <!--  <ul class="first">
-                <li><a href="">Home</a></li>
-                <li><a href="">Contatti</a></li>
-                <li><a href="">PlayStation</a></li>
-                <li><a href="">Xbox</a></li>
-                <li><a href="">Nintendo</a></li>
-            </ul>--> 
-        </div>
-        
-        <div style="height: 10px;"></div>
+<script src="jQuery/jquery-ui.min.js"></script>
 <script>
 	$("#search_option").hide();
 	
@@ -64,5 +27,40 @@
 		});
 	});
 </script>
+</head>
+<body>
+	<%UserBean ub=(UserBean)request.getSession().getAttribute("user"); %>
+	<div class="topnav" id="myTopnav">
+		<a href="#home" class="active">Home</a>
+		
+		<div class="dropdown">
+			<button class="dropbtn">Articoli<i class="fa fa-caret-down"></i></button>
+			
+			<div class="dropdown-content">
+				<a href="#">Nintendo</a>
+				<a href="#">Playstation</a>
+				<a href="#">Xbox</a>
+			</div>
+		</div>
+		<div class="dropdown">
+			<%if(ub == null){ %>
+				<button class="dropbtn"> Guest <i class="fa fa-caret-down"></i></button>
+				<div class="dropdown-content">
+					<a href="Login.jsp">Login</a> 
+					<a href="Register.jsp">Register</a> 
+				</div>
+			<%}else{%>
+				<button class="dropbtn"> <%=ub.getUsername() %> <i class="fa fa-caret-down"></i></button>
+				<div class="dropdown-content">
+					<a href="PersonalPage.jsp">Area Personale</a> 
+					<a href="Carrello.jsp">Carrello</a>
+					<a href="LogoutServlet.java">Logout</a> 
+				</div>
+			<%} %>
+			
+		</div>
+	</div>
+
+	<div style="height: 10px;"></div>
 </body>
 </html>
