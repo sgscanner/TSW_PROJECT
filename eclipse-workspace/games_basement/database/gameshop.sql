@@ -253,3 +253,17 @@ insert into Articolo (codice_articoli, codice_catalogo, descrizione, prezzo, nom
     ('57','1','Lo strepitoso platform di Ubisoft approda anche su PlayStation Vita: scopriamo se è la versione migliore','25.00','Rayman Legends PsVita','gioco',true,'10'),
     ('58','1','Polli e pinguini. Armi e jetpack. E una discreta dose di piattaforme. Non serve molto altro per descrivere in breve quello che ha da offrire Rocketbirds: Hardboiled Chicken, vulcanico platform a scorrimento con elementi shooter','20.00','Rocketbirds Hardboiled Chicken PsVita','gioco',false,'10'),
     ('59','1','Stick It To The Man è il nuovo platform adventure per PlayStation Vita sviluppato da Zoink! e prodotto da Ripstone.','15.00','Stick it to the man PsVita','gioco',false,'10');
+
+#Giochi digitali
+
+insert into Articolo (codice_articoli, codice_catalogo, descrizione, prezzo, nome, tipologia_articoli, offerta, quantità) values
+	('60','1','Immergiti in una visione inquieta della Detroit del futuro, dove umani e androidi conducono una fragile convivenza e le tue decisioni costruiscono la storia che ti circonda.','30.00','Detroit Become Human DG Ps4','gioco',true,'10'),
+    ('61','1','Entra nella nuova era della Formula 1® in EA SPORTS™ F1® 22, il videogioco ufficiale del FIA Formula One World Championship™ 2022.','60.00','F1 22 DG Xbox One','gioco',false,'0'),
+    ('62','1','Entra nella storia della Formula 1 con il gioco su licenza ufficiale F1 Manager 2022. Diventa il team principale della tua squadra preferita, poi scegli i piloti e il personale per la stagione 2022.','60.00','F1 22 Manager DG Ps5','gioco',false,'0'),
+    ('63','1','Impersona un vero allenatore nel mondo del calcio. Il destino del tuo club dipende da te.','40.00','Football Manager 22 DG Ps4','gioco',false,'10'),
+    ('64','1','A seguito di un enorme cataclisma, tre delle più feroci fazioni di guerrieri mai esistite nella storia si scontrano in un epica battaglia per la sopravvivenza.','50.00','For Honor DG Ps4','gioco',true,'10'),
+    ('65','1','GREEN HELL è un gioco di sopravvivenza in un mondo aperto ambientato nella foresta pluviale amazzonica','25.00','Green Hell DG Xbox One','gioco',false,'10'),
+    ('66','1','PAYDAY è uno sparatutto co-op per 4 giocatori, pieno d azione, in cui rapini banche e ottieni guadagni.','20.00','Payday 2 DG Ps4','gioco',false,'10'),
+    ('67','1','The Sims 4 è un videogioco di simulazione di vita della serie The Sims, sviluppato da Maxis e pubblicato da Electronic Arts.','15.00','Sims 4 DG Xbox One','gioco',false,'10'),
+    ('68','1','Stray è un action adventure in terza persona in cui vestiremo i panni di un gatto e ambientato tra le strade al neon di una cybercittà decadente.','40.00','Stray DG Ps5','gioco',false,'0'),
+    ('69','1','Uncharted: Legacy of Thieves Collection è la versione rimasterizzata e aggiornata per PS5 di Uncharted 4 e del suo DLC The Lost Legacy.','30.00','Uncharted Legacy of Thieves DG Ps5','gioco',true,'10');
