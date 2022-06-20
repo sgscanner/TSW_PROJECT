@@ -27,12 +27,6 @@
 	request.getRequestDispatcher("ErrorRole.jsp").forward(request,response);
 }
 %>
-<%DatiAnagrificiImpl dai = new DatiAnagrificiImpl();
-	DatiAnagraficiBean dab = dai.searchDatiAnagrafici(ub.getUsername());
-%>
-<%RubricaIndirizziImpl ri = new RubricaIndirizziImpl();
-	RubricaIndirizziBean rib = ri.searchRubrica(ub.getUsername());
-%>
 <form id="form" action="PersonalPageServlet" method="POST" onsubmit="event.preventDefault();">
 	<div class="contenitore">
 		<div class="container">
@@ -41,8 +35,12 @@
       			<input type="radio" name="slider" id="Dati_Account">
       			<input type="radio" name="slider" id="Dati_personali">
       			<input type="radio" name="slider" id="Dati_spedizione">
+      			<input type="radio" name="slider" id="Ordini_effettuati">
+      			<input type="radio" name="slider" id="Prenotazioni">
       			<input type="radio" name="slider" id="Lista_Utenti">
       			<input type="radio" name="slider" id="Lista_Prodotti">
+      			<input type="radio" name="slider" id="Lista_Ordini">
+      			<input type="radio" name="slider" id="Lista_Prenotazioni">
       			<input type="radio" name="slider" id="Logout">
 				<div class="list">
 					<label for="Panoramica" class="Panoramica">
@@ -52,10 +50,16 @@
 						<span class="Topic">Dati Account</span>
 					</label>
 					<label for="Dati_personali" class="Dati_personali">
-						<span class="Topic">Dati personali</span>
+						<span class="Topic">Dati anagrafici</span>
 					</label>
 					<label for="Dati_spedizione" class="Dati_spedizione">
 						<span class="Topic">Dati spedizione</span>
+					</label>
+					<label for="Ordini_effettuati" class="Ordini_effettuati">
+						<span class="Topic">Ordini effettuati</span>
+					</label>
+					<label for="Prenotazioni" class="Prenotazioni">
+						<span class="Topic">Prodotti prenotati</span>
 					</label>
 					<%if(ub.getRuolo().equals("admin")){ %>
 					<label for="Lista_Utenti" class="Lista_Utenti">
@@ -63,6 +67,12 @@
 					</label>
 					<label for="Lista_Prodotti" class="Lista_Prodotti">
 						<span class="Topic">Lista prodotti</span>
+					</label>
+					<label for="Lista_Ordini" class="Lista_Ordini">
+						<span class="Topic">Lista ordini</span>
+					</label>
+					<label for="Lista_Prenotazioni" class="Lista_Prenotazioni">
+						<span class="Topic">Lista prenotazioni</span>
 					</label>
 					<%} %>
 					<label for="Logout" class="Logout">
@@ -102,8 +112,8 @@
 	    					<br><br>
 	    					<small></small>
 	    				</div>
-	    				<input type="button" class="bottone" id="editClick1" value="modifica">
-						<input type="submit" class="bottone" id="salvaInfo1" value="salva" onclick="checkFirstField()">
+	    				<input type="button" class="bottone" id="editClick1" value="Modifica">
+						<input type="submit" class="bottone" id="salvaInfo1" value="Salva" onclick="checkFirstField()">
 					</div>
 				</div>
 				<div class="testo">
@@ -111,36 +121,36 @@
 						<h2 class="titolo">Dati Anagrafici</h2><br>
 						<div class="inputContainer">
 							<label for="nome">Nome:</label>
-		    				<input class="testo3" type="text" id="nome" name="nome" value="<%=dab.getNome()%>" placeholder="nome" autocomplete="false" readonly/><br><br>
+		    				<input class="testo3" type="text" id="nome" name="nome" value="dab.getNome()" placeholder="nome" autocomplete="false" readonly/><br><br>
 		    				<small></small>
 		    			</div>
 			    		<div class="inputContainer">
 			    			<label for="cognome">Cognome:</label>
-			    			<input class="testo3" type="text" class="testo3" id="cognome" name="cognome" value="<%=dab.getCognome()%>" placeholder="cognome" autocomplete="false" readonly/><br><br>
+			    			<input class="testo3" type="text" class="testo3" id="cognome" name="cognome" value="dab.getCognome()" placeholder="cognome" autocomplete="false" readonly/><br><br>
 			    			<small></small>
 			   			</div>
 			    		<div class="inputContainer">
 			    			<label for="phone">Numero di telefono:</label>
-			    			<input class="testo3" type="text" id="phone" name="phone" value="<%=dab.getTelefono()%>" placeholder="Numero di Telefono" readonly/><br><br>
+			    			<input class="testo3" type="text" id="phone" name="phone" value="dab.getTelefono()" placeholder="Numero di Telefono" readonly/><br><br>
 			    			<small></small>
 			    		</div>
 			    			<div class="inputContainer">
 			    			<label for="città">Città:</label>
-			   				<input class="testo3" id="città" type="text" name="citta" value="<%=dab.getCitta()%>" placeholder="Città" readonly/><br><br>
+			   				<input class="testo3" id="città" type="text" name="citta" value="dab.getCitta()" placeholder="Città" readonly/><br><br>
 			   				<small></small>
 			    		</div>
 			   			<div class="inputContainer"> 
 			   				<label for="cap">CAP:</label>
-			   				<input class="testo3" id="cap" type="text" name="cap" value="<%=dab.getcap()%>" placeholder="Cap" readonly/><br><br>
+			   				<input class="testo3" id="cap" type="text" name="cap" value="dab.getcap()" placeholder="Cap" readonly/><br><br>
 			   				<small></small>
 		   	 			</div>
 		    			<div class="inputContainer">
 		    				<label for="data">Data di nascita:</label>
-		    				<input class="testo3" id="data" type="date" value="<%=dab.getDataNascita()%>" name="bday" readonly/><br><br>
+		    				<input class="testo3" id="data" type="date" value="dab.getDataNascita()" name="bday" readonly/><br><br>
 		    				<small></small>
 		    			</div>
-		  				<input type="button" class="bottone" id="editClick3" value="modifica">
-		   				<input type="submit" class="bottone" id="salvaInfo3" value="salva" onclick="checkSecondField()">
+		  				<input type="button" class="bottone" id="editClick3" value="Modifica">
+		   				<input type="submit" class="bottone" id="salvaInfo3" value="Salva" onclick="checkSecondField()">
 		 	 		</div>  
 				</div>
 				<div class="testo">
@@ -148,18 +158,28 @@
 		  				<h2 class="titolo">Dati spedizione</h2><br>
 			    		<div class="inputContainer">
 			    			<label for="indirizzo1">Indirizzo di spedizione:</label>
-			    			<input class="testo4" id="indirizzo1" type="text" name="indirizzo" value="<%=rib.getIndirizzo()%>" placeholder="Indirizzo" readonly/><br><br>
+			    			<input class="testo4" id="indirizzo1" type="text" name="indirizzo" value="rib.getIndirizzo()" placeholder="Indirizzo" readonly/><br><br>
 			    			<small></small>
 			    		</div>
 			   			<div class="inputContainer">
 			   				<label for="indirizzo2">Indirizzo di fatturazione:</label>
-			   				<input class="testo4" id="indirizzo2" type="text" name="indirizzo" value="<%=rib.getIndirizzo()%>" placeholder="Indirizzo" readonly/><br><br>
+			   				<input class="testo4" id="indirizzo2" type="text" name="indirizzo" value="rib.getIndirizzo()" placeholder="Indirizzo" readonly/><br><br>
 			   				<small></small>
 			    		</div>
-			   			<input type="button" class="bottone" id="editClick4" value="modifica">
-			   			<input type="submit" class="bottone" id="salvaInfo4" value="salva" onclick="checkThirdField()">
+			   			<input type="button" class="bottone" id="editClick4" value="Modifica">
+			   			<input type="submit" class="bottone" id="salvaInfo4" value="Salva" onclick="checkThirdField()">
 		 	 		</div>
-		 		 </div>  
+		 		 </div> 
+		 		 <div class="testo">
+		 		 	<div id="Ordini" hidden="hidden">
+		 		 		
+		 		 	</div>
+		 		 </div> 
+		 		  <div class="testo">
+		 		 	<div id="Preno" hidden="hidden">
+		 		 		
+		 		 	</div>
+		 		 </div> 
 		 		 <div class="testo">
 		 		 <%if(ub.getRuolo().equals("admin")){%>
 		 		 	<div id="Utenti" hidden="hidden">
@@ -184,6 +204,20 @@
 		 		 	</div>
 		 		 	<% }%>
 		 		 </div>
+		 		  <div class="testo">
+		 		  <%if(ub.getRuolo().equals("admin")){%>
+		 		 	<div id="Lordini" hidden="hidden">
+                    	
+		 		 	</div>
+		 		 	<% }%>
+		 		 </div>
+		 		  <div class="testo">
+		 		  <%if(ub.getRuolo().equals("admin")){%>
+		 		 	<div id="Lprenotazioni" hidden="hidden">
+                    	
+		 		 	</div>
+		 		 	<% }%>
+		 		 </div>
           	</div>
 		</div>
 	</form>
@@ -198,6 +232,10 @@ $(document).ready(function(){
 		   $("#Spedizione").hide();
 		   $("#Utenti").hide();
 		   $("#Prodotti").hide();
+		   $("#Ordini").hide();
+		   $("#Preno").hide();
+		   $("#Lordini").hide();
+		   $("#Lprenotazioni").hide();
 		});
 });
 
@@ -207,8 +245,12 @@ $(document).ready(function(){
 		   $("#Account").show();
 		   $("#Anagrafici").hide();
 		   $("#Spedizione").hide();
+		   $("#Ordini").hide();
+		   $("#Preno").hide();
 		   $("#Utenti").hide();
 		   $("#Prodotti").hide();
+		   $("#Lordini").hide();
+		   $("#Lprenotazioni").hide();
 		});
 });
 
@@ -218,8 +260,12 @@ $(document).ready(function(){
 		   $("#Account").hide();
 		   $("#Anagrafici").show();
 		   $("#Spedizione").hide();
+		   $("#Ordini").hide();
+		   $("#Preno").hide();
 		   $("#Utenti").hide();
 		   $("#Prodotti").hide();
+		   $("#Lordini").hide();
+		   $("#Lprenotazioni").hide();
 		});
 });
 
@@ -229,8 +275,42 @@ $(document).ready(function(){
 		   $("#Account").hide();
 		   $("#Anagrafici").hide();
 		   $("#Spedizione").show();
+		   $("#Ordini").hide();
+		   $("#Preno").hide();
 		   $("#Utenti").hide();
 		   $("#Prodotti").hide();
+		   $("#Lordini").hide();
+		   $("#Lprenotazioni").hide();
+		});
+});
+
+$(document).ready(function(){
+	  $("#Ordini_effettuati").click(function(){
+		   $("#Panorama").hide();
+		   $("#Account").hide();
+		   $("#Anagrafici").hide();
+		   $("#Spedizione").hide();
+		   $("#Ordini").show();
+		   $("#Preno").hide();
+		   $("#Utenti").hide();
+		   $("#Prodotti").hide();
+		   $("#Lordini").hide();
+		   $("#Lprenotazioni").hide();
+		});
+});
+
+$(document).ready(function(){
+	  $("#Prenotazioni").click(function(){
+		   $("#Panorama").hide();
+		   $("#Account").hide();
+		   $("#Anagrafici").hide();
+		   $("#Spedizione").hide();
+		   $("#Ordini").hide();
+		   $("#Preno").show();
+		   $("#Utenti").hide();
+		   $("#Prodotti").hide();
+		   $("#Lordini").hide();
+		   $("#Lprenotazioni").hide();
 		});
 });
 
@@ -240,8 +320,12 @@ $(document).ready(function(){
 		   $("#Account").hide();
 		   $("#Anagrafici").hide();
 		   $("#Spedizione").hide();
+		   $("#Ordini").hide();
+		   $("#Preno").hide();
 		   $("#Utenti").show();
 		   $("#Prodotti").hide();
+		   $("#Lordini").hide();
+		   $("#Lprenotazioni").hide();
 		});
 });
 
@@ -251,10 +335,45 @@ $(document).ready(function(){
 		   $("#Account").hide();
 		   $("#Anagrafici").hide();
 		   $("#Spedizione").hide();
-		   $("#Utenti").hide();
+		   $("#Ordini").hide();
+		   $("#Preno").hide()
+	       $("#Utenti").hide();
 		   $("#Prodotti").show();
+		   $("#Lordini").hide();
+		   $("#Lprenotazioni").hide();
 		});
 });
+
+$(document).ready(function(){
+	  $("#Lista_Ordini").click(function(){
+		   $("#Panorama").hide();
+		   $("#Account").hide();
+		   $("#Anagrafici").hide();
+		   $("#Spedizione").hide();
+		   $("#Ordini").show();
+		   $("#Preno").hide();
+		   $("#Utenti").hide();
+		   $("#Prodotti").hide();
+		   $("#Lordini").show();
+		   $("#Lprenotazioni").hide();
+		});
+});
+
+$(document).ready(function(){
+	  $("#Lista_Prenotazioni").click(function(){
+		   $("#Panorama").hide();
+		   $("#Account").hide();
+		   $("#Anagrafici").hide();
+		   $("#Spedizione").hide();
+		   $("#Ordini").hide();
+		   $("#Preno").hide();
+		   $("#Utenti").hide();
+		   $("#Prodotti").hide();
+		   $("#Lordini").hide();
+		   $("#Lprenotazioni").show();
+		});
+});
+
 </script>
 <script>
 $(document).ready(function(){
@@ -302,6 +421,7 @@ $(document).ready(function(){
 	const capField=document.getElementById("cap");
 	const checkPasswordField=document.querySelector("#checkPassword");
 	const cittaField=document.getElementById("città");
+	const nomeField=document.getElementById("nome");
 	const cognomeField=document.getElementById("cognome");
 	const dateField=document.getElementById("date");
 	const indirizzo1Field=document.getElementbyId("indirizzo1");

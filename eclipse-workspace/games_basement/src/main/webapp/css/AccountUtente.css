@@ -154,14 +154,23 @@ A:LINK{
 #Dati_spedizione:checked ~ .list .slider{
 	top:180px;
 }
-#Lista_Utenti:checked ~ .list .slider{
+#Ordini_effettuati:checked ~ .list .slider{
 	top:240px;
 }
-#Lista_Prodotti:checked ~ .list .slider{
+#Prenotazioni:checked ~ .list .slider{
 	top:300px;
 }
-#Logout:checked ~ .list .slider{
+#Lista_Utenti:checked ~ .list .slider{
 	top:360px;
+}
+#Lista_Prodotti:checked ~ .list .slider{
+	top:420px;
+}
+#Lista_Ordini:checked ~ .list .slider{
+	top:480px;
+}
+#Lista_Prenotazioni:checked ~ .list .slider{
+	top:540px;
 }
 
 .content .text-content{

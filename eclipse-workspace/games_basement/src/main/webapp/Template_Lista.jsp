@@ -16,7 +16,7 @@
 		<div id="prodotto1">
 			<div class="image">
 			<a href="Ciao.jsp">
-				<img src="img/PlayStation5.jpg" alt="Immagine non disponibile" width="150px" height="137px">
+				<img src="prodottiImg/Nintendo 2DS/rec.jpg" alt="Immagine non disponibile" width="150px" height="137px">
 			</div>
 			<div class="txt">
 				<h5>Titolo</h5>
@@ -37,7 +37,7 @@
 		<div id="prodotto2">
 			<div class="image">
 			<a href="Ciao.jsp">
-				<img src="img/PlayStation5.jpg" alt="Immagine non disponibile" width="150px" height="137px">
+				<img src="prodottiImg/PlayStation5/rec.jpg" alt="Immagine non disponibile" width="150px" height="137px">
 			</div>
 			<div class="txt">
 				<h5>Titolo</h5>
@@ -58,7 +58,7 @@
 		<div id="prodotto3">
 			<div class="image">
 			<a href="Ciao.jsp">
-				<img src="img/PlayStation5.jpg" alt="Immagine non disponibile" width="150px" height="137px">
+				<img src="prodottiImg/PlayStation5/rec.jpg" alt="Immagine non disponibile" width="150px" height="137px">
 			</div>
 			<div class="txt">
 				<h5>Titolo</h5>
@@ -79,7 +79,7 @@
 		<div id="prodotto4">
 			<div class="image">
 			<a href="Ciao.jsp">
-				<img src="img/PlayStation5.jpg" alt="Immagine non disponibile" width="150px" height="137px">
+				<img src="prodottiImg/PlayStation5/rec.jpg" alt="Immagine non disponibile" width="150px" height="137px">
 			</div>
 			<div class="txt">
 				<h5>Titolo</h5>
@@ -100,7 +100,7 @@
 		<div id="prodotto5">
 			<div class="image">
 			<a href="Ciao.jsp">
-				<img src="img/PlayStation5.jpg" alt="Immagine non disponibile" width="150px" height="137px">
+				<img src="prodottiImg/PlayStation5/rec.jpg" alt="Immagine non disponibile" width="150px" height="137px">
 			</div>
 			<div class="txt">
 				<h5>Titolo</h5>
@@ -121,7 +121,7 @@
 		<div id="prodotto6">
 			<div class="image">
 			<a href="Ciao.jsp">
-				<img src="img/PlayStation5.jpg" alt="Immagine non disponibile" width="150px" height="137px">
+				<img src="prodottiImg/PlayStation5/rec.jpg" alt="Immagine non disponibile" width="150px" height="137px">
 			</div>
 			<div class="txt">
 				<h5>Titolo</h5>
@@ -142,7 +142,7 @@
 		<div id="prodotto7">
 			<div class="image">
 			<a href="Ciao.jsp">
-				<img src="img/PlayStation5.jpg" alt="Immagine non disponibile" width="150px" height="137px">
+				<img src="prodottiImg/PlayStation5/rec.jpg" alt="Immagine non disponibile" width="150px" height="137px">
 			</div>
 			<div class="txt">
 				<h5>Titolo</h5>
@@ -163,7 +163,7 @@
 		<div id="prodotto8">
 			<div class="image">
 			<a href="Ciao.jsp">
-				<img src="img/PlayStation5.jpg" alt="Immagine non disponibile" width="150px" height="137px">
+				<img src="prodottiImg/PlayStation5/rec.jpg" alt="Immagine non disponibile" width="150px" height="137px">
 			</div>
 			<div class="txt">
 				<h5>Titolo</h5>
@@ -184,7 +184,7 @@
 		<div id="prodotto9">
 			<div class="image">
 			<a href="Ciao.jsp">
-				<img src="img/PlayStation5.jpg" alt="Immagine non disponibile" width="150px" height="137px">
+				<img src="prodottiImg/PlayStation5/rec.jpg" alt="Immagine non disponibile" width="150px" height="137px">
 			</div>
 			<div class="txt">
 				<h5>Titolo</h5>
