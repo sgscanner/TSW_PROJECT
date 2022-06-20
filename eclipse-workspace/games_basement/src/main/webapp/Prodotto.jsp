@@ -9,7 +9,10 @@
 <head>
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nome prodotto</title>
+<%ArticoliImpl a=new ArticoliImpl();
+  ArticoliBean p=a.searchByCode(request.getParameter("id"));
+%>
+<title><%=p.getNome() %></title>
 <script src="jQuery/jquery.js"></script>
 <script src='jQuery/jquery-ui.min.js'></script>
 <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
@@ -21,20 +24,20 @@
 	<%@ include file="Header.jsp" %>
 	
 	<div class="titpro">
-		<p><b>Titolo prodotto</b></p>
+		<p><b><%=p.getNome() %></b></p>
 	</div>
 	
 	<div class="prodotto">
 		<div class="prodotto1">
-			<img class="pitcure" src="img/1.jpg" alt="1" style="max-width:100%">
+			<img class="pitcure" src="prodottiImg/<%=p.getNome() %>/1.jpg" alt="1" style="max-width:100%">
 		
-			<img class="pitcure" src="img/2.jpg" alt="2" style="max-width:100%">
+			<img class="pitcure" src="prodottiImg/<%=p.getNome() %>/2.jpg" alt="2" style="max-width:100%">
 		
-			<img class="pitcure" src="img/3.jpg" alt="3" style="max-width:100%">
+			<img class="pitcure" src="prodottiImg/<%=p.getNome() %>/3.jpg" alt="3" style="max-width:100%">
 		
-			<img class="pitcure" src="img/4.jpg" alt="4" style="max-width:100%">
+			<img class="pitcure" src="prodottiImg/<%=p.getNome() %>/4.jpg" alt="4" style="max-width:100%">
 		
-			<img class="pitcure" src="img/5.jpg" alt="5" style="max-width:100%">
+			<img class="pitcure" src="prodottiImg/<%=p.getNome() %>/5.jpg" alt="5" style="max-width:100%">
 			
 			<div style="display:inline">
 			<button class="buttonleft" onclick="plusDivs(-1)">&#10094;</button>
@@ -46,15 +49,16 @@
 		<div class="shop">
 			<div class="shop1">
 					<div class="shop2">
-						<% double v = 0;
-							double valore = 30;
-							double sconto = 15;
-							boolean off = true;
-							if(off == true){%>
-						<p style="margin-bottom:10px;text-decoration:line-through;">prezzo&euro;</p>
-						<p>newprezzo&euro;</p>
+						<% if(p.isOfferta() == true){
+							double r = p.getPrezzo();
+							double ps = 0;
+							double s = 15;
+							ps = r * s / 100;
+							ps = r - ps;%>
+						<p style="margin-bottom:10px;text-decoration:line-through;"><%=p.getPrezzo() %>&euro;</p>
+						<p><%=ps %>&euro;</p>
 						<%}else{ %>
-						<p style="display:inline;">prezzo&euro;</p>
+						<p style="display:inline;"><%=p.getPrezzo() %>&euro;</p>
 						<%} %>
 					</div>
 					<div class="shop2">
@@ -66,8 +70,7 @@
 				<div class="shop2">
 					&nbsp;
 					&nbsp;
-					<%boolean o = false;
-						if(o == true){%>
+					<%if(p.getQuantita()>0){%>
 					<button type="button" class="pd">&#9745;&nbsp;Prodotto disponibile</button>
 					<%}else{ %>
 					<button type="button" class="pnd">&#9940;&nbsp;Prodotto non disponibile</button>
@@ -75,8 +78,7 @@
 					<%} %>
 				</div>
 				<div class="shop2">
-					<% int q = 1;
-						if(q>=1){%>
+					<% if(p.isOfferta() == true){%>
 					<button class="off" type="button">&#127918;&nbsp;Prodotto in offerta</button>
 					<%}else {%>
 					<button class="noff" type="button">&#9888;&nbsp;Prodotto non in offerta</button>
@@ -102,24 +104,12 @@
 				<p class="d">DESCRIZIONE</p>
 			</div>
 			<div class="des">
-				<p>Nell'ultima avventura dell'universo di Marvel's Spider-Man, 
-				l'adolescente Miles Morales affronta il trasloco nella sua nuova 
-				casa mentre segue le orme del suo mentore, Peter Parker, 
-				per diventare il nuovo Spider-Man. Quando una feroce 
-				forza minaccia di distruggere la sua nuova casa, 
-				l'aspirante eroe comprende che da grandi poteri, 
-				derivano grandi responsabilit&agrave;. Per salvare la New York della Marvel, 
-				Miles deve indossare il costume di Spider-Man e guadagnarselo.</p>
+				<p><%=p.getDescrizione() %></p>
 			</div>
 		</div>
 		
 		<div class="feed">
-			<div style="border:5px solid green;">
-				
-			</div>
-			<div style="border:5px solid blue;">
-				
-			</div>
+			
 		</div>
 		
 		<div>
@@ -189,5 +179,76 @@
 	 
 </script>
 	
+<script>
+//apply user rating to all displays
+//add star ratings to an array
+var starRating = document.querySelectorAll(".fa-star"),
+ratingTotal = document.querySelectorAll(".rating-total");
+
+//convert ratingTotal HTMLCollection to array and reverse its order (5 star <-> 1 star)
+var reverseRatingTotal = Array.from(ratingTotal).reverse();
+
+//display initial rating totals
+displayTotals();
+
+//use event listener to record changes to user rating
+starRating.forEach(function(star) {
+star.addEventListener("click", recordRating);
+})
+
+function recordRating(event) {
+// use indexOf to identify selected user rating
+var userRating = Array.from(starRating).indexOf(event.target);
+
+// define selected rating to adjust display totals
+var selectedIndex;
+
+starRating.forEach(function(item, index) {
+ // add or remove .active class based upon selected user rating
+ if (index < userRating + 1) {
+   starRating[index].classList.add("active");
+   selectedIndex = index;
+ } else {
+   starRating[index].classList.remove("active");
+ }
+
+ displayTotals(selectedIndex);
+});
+}
+
+//display star rating totals from html custom data-
+function displayTotals(selectedIndex) {
+var barChart = document.querySelectorAll(".bar"),
+ displaySummary = document.querySelectorAll(".summary"),
+ numRatings = 0,
+ numRatingsValue = 0;
+
+// convert barChart HTMLCollection to array and reverse its order (5 star <-> 1 star)
+var reverseBarChart = Array.from(barChart).reverse();
+
+reverseRatingTotal.forEach(function(total, index) {
+ if (index == selectedIndex) {
+   // add selected rating to display total
+   total.innerHTML = (parseInt(total.getAttribute("data-rating-count")) + 1);
+   // adjust selected bar width
+   reverseBarChart[index].style.width = (((parseInt(total.getAttribute("data-rating-count")) + 1) / 20) * 100) + "%";
+ } else {
+   // display unselected totals
+   total.innerHTML = total.getAttribute("data-rating-count");
+   // adjust unselected bar widths
+   reverseBarChart[index].style.width = ((total.getAttribute("data-rating-count") / 20) * 100) + "%";
+ }
+ // count total number and value of ratings
+ numRatings += parseInt(total.innerHTML);
+ numRatingsValue += (parseInt(total.innerHTML) * (index + 1));
+});
+
+// display rating average and total
+ratingsAverage = (numRatingsValue / numRatings).toFixed(2);
+displaySummary[0].innerHTML = ratingsAverage + " average based on " + numRatings + " reviews.";
+}
+
+</script>
+
 </body>
 </html>

@@ -161,6 +161,15 @@ to {
 		<span class="dot" onclick="currentSlide(5)"></span>
 	</div>
 
+
+
+							<a id="3" onClick="goTo(this.id)">
+								<h2 class="TitleProduct">test nome </h2><hr>
+								<img src="" class="ImageProduct">
+							</a>
+						
+						
+						
 <script>
         let slideIndex = 1;
         showSlides(slideIndex);
@@ -189,5 +198,11 @@ to {
           dots[slideIndex-1].className += " active";
         }
 </script>
+<script>
+			function goTo(id){
+				var path="Prodotto.jsp?id="+id;
+				location.replace(path);
+			}
+		</script>
 </body>
 </html>
