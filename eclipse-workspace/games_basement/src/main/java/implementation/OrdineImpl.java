@@ -51,6 +51,27 @@ public class OrdineImpl implements OrdineDAO{
 		}
 	}
 
+	public ArrayList<OrdineBean> getAllUserOrdine(String uname){
+		ArrayList<OrdineBean> temp=new ArrayList<OrdineBean>();
+		
+		try(Statement s=c.createStatement()) {
+			ResultSet rs=s.executeQuery("select * from Ordine where Ordine.id_utente='"+uname+"'");
+			
+			while(rs.next()) {
+				String numOrdine=rs.getString("numero_ordine"),idU=rs.getString("id_utente");
+				double importo=rs.getDouble("importo_totale");
+				Date date=rs.getDate("data_ordine");
+				
+				temp.add(new OrdineBean(numOrdine,idU,importo,date));
+			}
+			
+		}catch(SQLException e) {
+			
+		}
+		
+		return temp;
+	}
+	
 	public ArrayList<OrdineBean> searchByDate(Date from, Date to) {
 		ArrayList<OrdineBean> ob=new ArrayList<OrdineBean>();
 		try(PreparedStatement ps=c.prepareStatement(SEARCH_BY_DATE)){

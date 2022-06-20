@@ -1,11 +1,13 @@
 package implementation;
 
+import java.nio.charset.Charset;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Random;
 
 import bean.ArticoliBean;
 import bean.CompongonoBean;
@@ -52,7 +54,7 @@ public class CompongonoImpl implements CompongonoDAO {
 	public CompongonoBean searchCart() {
 		CompongonoBean cb = new CompongonoBean();
 		try (Statement s = c.createStatement()) {
-			s.execute("select * from Compongono where Compongono.numero_ordine='not completed'");
+			s.execute("select * from Compongono where Compongono.numero_ordine LIKE '%not completed'");
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
@@ -61,13 +63,13 @@ public class CompongonoImpl implements CompongonoDAO {
 	}
 
 	public void completeOrder(OrdineBean ob, ArrayList<ArticoliBean> articoli) {
+		String temp="";
 		for (ArticoliBean ab : articoli) {
-
-			try (Statement s = c.createStatement()) {
-				s.execute("update Compongono set numero_ordine='" + ob.getNumOrdine()
-						+ "' where Compongono.codice_articoli='" + ab.getCodiceA() + "'");
-			} catch (SQLException e1) {
-				System.out.println(e1.getMessage());
+			temp=getRandomString(15);
+			try (Statement s=c.createStatement()){
+				s.executeUpdate("update table ORdine")
+			}catch(SQLException e) {
+				
 			}
 
 			try (PreparedStatement ps = c.prepareStatement(REMOVE_PRODOTTO)) {
@@ -94,16 +96,16 @@ public class CompongonoImpl implements CompongonoDAO {
 		ArticoliBean ab = new ArticoliBean();
 		try (Statement ordine = c.createStatement()) {
 			ResultSet rs = ordine.executeQuery("select * " + "from Articolo " + "where Ordine.id_utente='" + username
-					+ "'and Ordine.id_utente='prenotato' and Compongono.numero_ordine=Ordine.id_utente and Compongono.codice_articoli='"
+					+ "'and Ordine.id_utente LIKE '%prenotato' and Compongono.numero_ordine=Ordine.id_utente and Compongono.codice_articoli='"
 					+ codiceA + "'");
 			while (rs.next()) {
-				ab.setCodiceA(rs.getString("codice_articoloìi"));
+				ab.setCodiceA(rs.getString("codice_articoli"));
 				ab.setCodiceC(rs.getLong("codice_catalogo"));
 				ab.setDescrizione(rs.getString("descrizione"));
 				ab.setTipologia(rs.getString("tipologia_articoli"));
 				ab.setOfferta(rs.getBoolean("offerta"));
 				ab.setNome(rs.getString("nome"));
-				ab.setQuantita(rs.getInt("quantità"));
+				ab.setQuantita(rs.getInt("quantita�"));
 			}
 
 		} catch (SQLException e) {
@@ -120,13 +122,13 @@ public class CompongonoImpl implements CompongonoDAO {
 					+ "'and Ordine.id_utente='prenotato' and Compongono.numero_ordine=Ordine.id_utente and Compongono.codice_articoli='"
 					+ codiceA + "'");
 			while (rs.next()) {
-				ab.setCodiceA(rs.getString("codice_articoloìi"));
+				ab.setCodiceA(rs.getString("codice_articoli"));
 				ab.setCodiceC(rs.getLong("codice_catalogo"));
 				ab.setDescrizione(rs.getString("descrizione"));
 				ab.setTipologia(rs.getString("tipologia_articoli"));
 				ab.setOfferta(rs.getBoolean("offerta"));
 				ab.setNome(rs.getString("nome"));
-				ab.setQuantita(rs.getInt("quantità"));
+				ab.setQuantita(rs.getInt("quantita"));
 			}
 		} catch (SQLException e) {
 
@@ -137,7 +139,7 @@ public class CompongonoImpl implements CompongonoDAO {
 
 	public void removeFromCart(String codiceA) {
 		try(Statement s=c.createStatement()){
-			
+			s.executeUpdate("delete from Compongono where Compongono.codice_articoli='"+codiceA+"'");
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -158,17 +160,49 @@ public class CompongonoImpl implements CompongonoDAO {
 
 	public int addToCart(ArticoliBean ab, int quantita) {
 		int result = 0;
+		String generated=getRandomString(15);
 		try (PreparedStatement ps = c.prepareStatement(INSERT_COMPONGONO)) {
 			ps.setString(1, ab.getCodiceA());
 			ps.setInt(2, quantita);
 			ps.setFloat(3, (float) ab.getPrezzo());
-			ps.setString(4, "not completed");
+			ps.setString(4, generated+"not completed");
 			result = ps.executeUpdate();
 			return result;
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
 		return result;
+	}
+
+	private String getRandomString(int i) {
+		 byte[] bytearray;
+	        String mystring;
+	        StringBuffer thebuffer;
+	        
+	        bytearray = new byte[256]; 
+	        new Random().nextBytes(bytearray); 
+
+	        mystring 
+	            = new String(bytearray, Charset.forName("UTF-8")); 
+
+	        // Create the StringBuffer
+	        thebuffer = new StringBuffer(); 
+
+	        for (int m = 0; m < mystring.length(); m++) { 
+
+	            char n = mystring.charAt(m); 
+
+	            if (((n >= 'A' && n <= 'Z') 
+	                || (n >= '0' && n <= '9')) 
+	                && (i > 0)) { 
+
+	                thebuffer.append(n); 
+	                i--; 
+	            } 
+	        } 
+
+	        // resulting string 
+	        return thebuffer.toString(); 
 	}
 
 	
