@@ -281,3 +281,21 @@ insert into Articolo (codice_articoli, codice_catalogo, descrizione, prezzo, nom
     ('77','1','Rise of the Tomb Raider è un videogioco avventura dinamica del 2015 sviluppato dalla Crystal Dynamics, seguito di Tomb Raider del 2013.','30.00','Rise of the Tomb Raider Xbox 360','gioco',true,'10'),
     ('78','1','The Amazing Spider-Man 2 è il tie-in dell omonimo film prodotto da Sony con protagonista Spider-Man.','25.00','The Amazing Spider-Man 2 Xbox 360','gioco',true,'10'),
     ('79','1','The Crew è un rivoluzionario gioco di azione e guida sviluppato in esclusiva per console di nuova generazione. Con i tuoi amici, parteciperai a una folle corsa in un enorme ricreazione degli Stati Uniti liberamente esplorabile.','15.00','The Crew Xbox 360','gioco',false,'10');
+
+#Giochi Xbox One
+
+insert into Articolo (codice_articoli, codice_catalogo, descrizione, prezzo, nome, tipologia_articoli, offerta, quantità) values
+	('80','1','Batman: Arkham Collection è la versione definitiva della trilogia Arkham di Rocksteady ed è una collezione completa che include tutti i contenuti rilasciati dopo l uscita del gioco.','25.00','Batman Arkham Collection Xbox One','gioco',true,'10'),
+    ('81','1','Vivi una Campagna avvincente o crea una squadra e affronta le sfide delle Operazioni Speciali, un mix di mappe e modalità del Multigiocatore e prova il sistema Battle Pass, incluso per tutti i giocatori online.','50.00','Call Of Duty Moder Warfare Xbox One','gioco',true,'10'),
+    ('82','1','Car Mechanic Simulator 2021 è una nuova produzione con un folto gruppo di giocatori. Inizia la tua avventura come nuovo proprietario di un autofficina e fatti strada nel settore.','20.00','Car Mechanic Simulator Xbox One','gioco',false,'10'),
+    ('83','1','Control è un videogioco di genere sparatutto in terza persona, in stile avventura dinamica, sviluppato da Remedy Entertainment e pubblicato da 505 Games.','20.00','Control Xbox One','gioco',false,'10'),
+    ('84','1','It s About Time - il nuovissimo gioco di Crash Bandicoot™! Parti per un avventura oltre i confini del tempo in compagnia dei tuoi marsupiali preferiti.','40.00','Crash Bandicoot 4 It s About Time Xbox One','gioco',false,'10'),
+    ('85','1','Cyberpunk 2077 è un GDR a mondo aperto a tema azione e avventura ambientato nella megalopoli di Night City, in cui giochi nei panni di un mercenario cyberpunk coinvolto in una lotta per la sopravvivenza.','25.00','Cyberpunk 2077 Xbox One','gioco',true,'10'),
+    ('86','1',' DOOM Eternal ti fa vestire i panni dell inarrestabile DOOM Slayer mentre fai a pezzi demoni classici e nuovi con armi potentissime in mondi incredibili e mai visti prima.','30.00','Doom Eternal Xbox One','gioco',false,'10'),
+    ('87','1','Ogni storia ha il suo inizio in F1 2021, il gioco ufficiale del 2021 FIA FORMULA ONE WORLD CHAMPIONSHIP.','30.00','F1 2021 Xbox One','gioco',true,'10'),
+    ('88','1','Fallout 76 è ambientato in una storia alternativa e si svolge nel 2102, venticinque anni dopo una guerra nucleare che ha devastato la Terra. Il personaggio del giocatore è un residente del Vault 76.','25.00','Fallout 76 Wastelanders Xbox One','gioco',false,'10'),
+    ('89','1',' Diciassette anni dopo una catastrofe nucleare, la civiltà riemerge dal caos per trovare un mondo drasticamente cambiato. Ad Hope County, in Montana, la popolazione sopravvissuta si è riunita in due gruppi diversi.','25.00','Far Cry New Dawn Xbox One','gioco',false,'10'),
+    ('90','1','FIFA 22 è un videogioco di calcio sviluppato da EA Sports e pubblicato per PlayStation 4, PlayStation 5, Xbox One, Xbox Series X e Series S, Microsoft Windows.','30.00','Fifa 22 Xbox One','gioco',true,'10'),
+    ('91','1','Forza Horizon 5 è un videogioco open world di guida, sviluppato da Playground Games e pubblicato il 9 novembre 2021 da Xbox Game Studios in esclusiva per Xbox One, Xbox Series X/S.','40.00','Forza Horizon 5 Xbox One','gioco',true,'10'),
+    ('92','1',' Friday the 13th: The Game è un survival horror in terza persona in cui i giocatori impersoneranno un giovane assistente o, per la prima volta in assoluto, Jason Voorhees.','20.00','Friday The 13Th Xbox One','gioco',false,'10'),
+    ('93','1','GRID Legends è un racing game arcade, una babilonia d adrenaliniche corse per piloti solitari e pirati delle strade online.','30.00','Grid Legends Xbox One','gioco',false,'10');
