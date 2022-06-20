@@ -9,6 +9,9 @@
 <meta charset="UTF-8">
 <title>Header</title>
 <style><%@include file="css/Header.css" %></style>
+<script src="ajax/ajaxJSON.js"></script>
+<script src="jQuery/jquery.js"></script>
+<script src='jQuery/jquery-ui.min.js'></script>
 </head>
  <body>
  		<%UserBean ub=(UserBean)request.getSession().getAttribute("user"); %>
