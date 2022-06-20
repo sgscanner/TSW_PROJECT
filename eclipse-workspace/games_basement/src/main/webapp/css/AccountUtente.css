@@ -304,7 +304,7 @@ A:LINK{
 	border-radius:3 px;
 }
 
-#indirizzo1{
+#spedizione{
 	background-image:url(img/indirizzo.png);
 	position:left;
 	padding-left:20px;
@@ -313,7 +313,7 @@ A:LINK{
 	border-radius:3 px;
 }
 
-#indirizzo2{
+#fatturazione{
 	background-image:url(img/indirizzo.png);
 	position:left;
 	padding-left:20px;
@@ -322,7 +322,7 @@ A:LINK{
 	border-radius:3 px;
 }
 
-#città{
+#citta{
 	background-image:url(img/indirizzo.png);
 	position:left;
 	padding-left:20px;
