@@ -267,3 +267,17 @@ insert into Articolo (codice_articoli, codice_catalogo, descrizione, prezzo, nom
     ('67','1','The Sims 4 è un videogioco di simulazione di vita della serie The Sims, sviluppato da Maxis e pubblicato da Electronic Arts.','15.00','Sims 4 DG Xbox One','gioco',false,'10'),
     ('68','1','Stray è un action adventure in terza persona in cui vestiremo i panni di un gatto e ambientato tra le strade al neon di una cybercittà decadente.','40.00','Stray DG Ps5','gioco',false,'0'),
     ('69','1','Uncharted: Legacy of Thieves Collection è la versione rimasterizzata e aggiornata per PS5 di Uncharted 4 e del suo DLC The Lost Legacy.','30.00','Uncharted Legacy of Thieves DG Ps5','gioco',true,'10');
+
+#Giochi Xbox 360
+
+insert into Articolo (codice_articoli, codice_catalogo, descrizione, prezzo, nome, tipologia_articoli, offerta, quantità) values
+	('70','1','Assassin s Creed: Rogue è un videogioco sviluppato da Ubisoft Sofia e pubblicato da Ubisoft. Settimo capitolo principale della serie di Assassin s Creed e sequel di Assassin s Creed IV: Black Flag','20.00','Assasin s Creed Rogue Xbox 360','gioco',false,'10'),
+    ('71','1','La trama segue gli eventi di Call of Duty: Black Ops II nel 2065, 40 anni dopo, in un mondo di fronte a sconvolgimenti a causa dei conflitti, cambiamenti climatici e nuove tecnologie.','30.00','Call of Duty Black Ops 3 Xbox 360','gioco',false,'10'),
+    ('72','1','Destiny è un videogioco sviluppato da Bungie ed ambientato in un mondo, a detta degli sviluppatori, connesso e condiviso,il quale fa del gioco uno sparatutto in prima persona fantascientifico','15.00','Destiny Xbox 360','gioco',true,'10'),
+    ('73','1','Con una grafica e un motore fisico nuovi di zecca, Farming Simulator 15 offre un immenso mondo ricco di dettagli ed effetti visivi, in grado di trasportare il franchise Farming Simulator in una nuova era','20.00','Farming Simulator 2015 Xbox 360','gioco',false,'10'),
+    ('74','1','FIFA 19 ti permette di giocare ai più importanti tornei per club, grazie a una serie di modalità su licenza che comprendono la UEFA Champions League, la UEFA Europa League e la UEFA Super Cup','15.00','Fifa 19 Xbox 360','gioco',true,'10'),
+    ('75','1','MotoGP 15 è un videogioco sviluppato da Milestone, basato sul Motomondiale 2015 di MotoGP.','20.00','MotoGP 15 Xbox 360','gioco',false,'10'),
+    ('76','1','Rambo: The Videogame è uno sparatutto in prima persona basato sui personaggi e le storie dei primi tre film della saga di Rambo. ','30.00','Rambo The videogame Xbox 360','gioco',true,'10'),
+    ('77','1','Rise of the Tomb Raider è un videogioco avventura dinamica del 2015 sviluppato dalla Crystal Dynamics, seguito di Tomb Raider del 2013.','30.00','Rise of the Tomb Raider Xbox 360','gioco',true,'10'),
+    ('78','1','The Amazing Spider-Man 2 è il tie-in dell omonimo film prodotto da Sony con protagonista Spider-Man.','25.00','The Amazing Spider-Man 2 Xbox 360','gioco',true,'10'),
+    ('79','1','The Crew è un rivoluzionario gioco di azione e guida sviluppato in esclusiva per console di nuova generazione. Con i tuoi amici, parteciperai a una folle corsa in un enorme ricreazione degli Stati Uniti liberamente esplorabile.','15.00','The Crew Xbox 360','gioco',false,'10');
