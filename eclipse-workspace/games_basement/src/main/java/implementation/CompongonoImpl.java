@@ -95,9 +95,13 @@ public class CompongonoImpl implements CompongonoDAO {
 	public ArticoliBean searchPrenotazione(String username, String codiceA) {
 		ArticoliBean ab = new ArticoliBean();
 		try (Statement ordine = c.createStatement()) {
-			ResultSet rs = ordine.executeQuery("select * " + "from Articolo " + "where Ordine.id_utente='" + username
-					+ "'and Ordine.id_utente LIKE '%prenotato' and Compongono.numero_ordine=Ordine.id_utente and Compongono.codice_articoli='"
-					+ codiceA + "'");
+			ResultSet rs = ordine.executeQuery("select a.nome,a.codice_articoli,a.codice_catalogo,"
+											+ "a.descrizione,a.tipologia_articoli,a.offerta,a.quantita " 
+											+ "from Articolo as a,Ordine,Compongono" 
+											+ "where Ordine.id_utente='" + username+ "'"
+											+ "and Ordine.id_utente LIKE '%prenotato' "
+											+ "and Compongono.numero_ordine=Ordine.id_utente "
+											+ "and Compongono.codice_articoli='"+ codiceA + "'");
 			while (rs.next()) {
 				ab.setCodiceA(rs.getString("codice_articoli"));
 				ab.setCodiceC(rs.getLong("codice_catalogo"));
@@ -132,13 +136,16 @@ public class CompongonoImpl implements CompongonoDAO {
 		return temp;
 	}
 	
-	public ArrayList<ArticoliBean> getAllPrenotazioni(String codiceA,String username) {
+	public ArrayList<ArticoliBean> getAllPrenotazioni(String username) {
 		ArrayList<ArticoliBean> temp=new ArrayList<ArticoliBean>();
 		
 		try (Statement ordine = c.createStatement()) {
-			ResultSet rs = ordine.executeQuery("select * " + "from Articolo " + "where Ordine.id_utente='" + username
-					+ "'a nd Ordine.id_utente LIKE '%prenotato' and Compongono.numero_ordine=Ordine.id_utente and Compongono.codice_articoli='"
-					+ codiceA + "'");
+			ResultSet rs = ordine.executeQuery("select a.nome,a.codice_articoli,a.codice_catalogo,"
+											  +"a.descrizione,a.tipologia_articoli,a.offerta,a.quantita"
+											  +"from Articolo as a,Ordine,Compongono " 
+											  +"where Ordine.id_utente='" + username+"'"
+											  +"and Ordine.numero_ordine LIKE '%prenotato' "
+											  +"and Compongono.numero_ordine=Ordine.numero_ordine");
 			while (rs.next()) {
 				ArticoliBean ab=new ArticoliBean();
 				ab.setCodiceA(rs.getString("codice_articoli"));
@@ -169,7 +176,11 @@ public class CompongonoImpl implements CompongonoDAO {
 		int numPrenotazioni = 0;
 
 		try (Statement s = c.createStatement()) {
-			ResultSet rs = s.executeQuery("select * from Compongono where Compongono.numero_ordine='prenotato' and Ordine.numero_ordine=Compongono.numero_ordine and Ordine.id_utente='"+username+"'");
+			ResultSet rs = s.executeQuery("select Compongono.codice_articoli,Compongono.numero_ordine "
+										+ "from Compongono "
+										+ "where Compongono.numero_ordine LIKE '%prenotato' "
+										+ "and Ordine.numero_ordine=Compongono.numero_ordine "
+										+ "and Ordine.id_utente='"+username+"'");
 			rs.last();
 			numPrenotazioni = rs.getRow();
 		} catch (SQLException e) {
