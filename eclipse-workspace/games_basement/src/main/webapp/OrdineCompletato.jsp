@@ -8,7 +8,6 @@
 </head>
 <body>
 	<h1>Ordine completato con successo!</h1>
-	<h2>Arrivera il <%request.getParameter("day");%>/<%request.getParameter("month");%>/<%request.getAttribute("year"); %></h2>
 	<h3>Clicca qui per visualizzare la <a href="Fattura.jsp">fattura</a></h3>
 </body>
 </html>

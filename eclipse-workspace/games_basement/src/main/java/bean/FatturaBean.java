@@ -2,6 +2,7 @@ package bean;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class FatturaBean implements Serializable{
 
@@ -10,16 +11,16 @@ public class FatturaBean implements Serializable{
 	 */
 	private static final long serialVersionUID = 6288161538612218929L;
 	private int idFattura,idPagamento;
-	private Date data;
+	private LocalDate data;
 	
 	public FatturaBean() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public FatturaBean(int idFattura,int idPagamento,Date data) {
+	public FatturaBean(int idFattura,int idPagamento,LocalDate localDate) {
 		this.idFattura=idFattura;
 		this.idPagamento=idPagamento;
-		this.data=data;
+		this.data=localDate;
 	}
 	
 	public int getIdFattura() {
@@ -38,11 +39,11 @@ public class FatturaBean implements Serializable{
 		this.idPagamento = idPagamento;
 	}
 
-	public Date getData() {
+	public LocalDate getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(LocalDate data) {
 		this.data = data;
 	}
 

@@ -52,10 +52,17 @@ public class CompongonoImpl implements CompongonoDAO {
 		}
 	}
 
-	public CompongonoBean searchCart() {
-		CompongonoBean cb = new CompongonoBean();
+	public ArrayList<CompongonoBean> searchCart() {
+		
+		ArrayList<CompongonoBean> cb = new ArrayList<CompongonoBean>();
 		try (Statement s = c.createStatement()) {
-			s.execute("select * from Compongono where Compongono.numero_ordine LIKE '%not completed'");
+			ResultSet rs=s.executeQuery("select * from Compongono where Compongono.numero_ordine LIKE '%not completed'");
+			
+			while(rs.next()) {
+				cb.add(new CompongonoBean(rs.getString("codice_articoli"), rs.getString("numero_ordine"),
+						rs.getInt("quantita"), rs.getFloat("prezzo_storico")));
+			}
+			
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}

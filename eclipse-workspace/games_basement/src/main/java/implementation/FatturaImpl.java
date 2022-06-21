@@ -30,7 +30,7 @@ public class FatturaImpl implements FatturaDAO{
 				int idF=rs.getInt("id_fattura"),idP=rs.getInt("id_pagamento");
 				Date date=rs.getDate("data");
 				
-				al.add(new FatturaBean(idF,idP,date));
+				al.add(new FatturaBean(idF,idP,date.toLocalDate()));
 			}
 		}catch(SQLException e) {
 			System.out.println("messagge error: "+e.getMessage());
@@ -51,7 +51,7 @@ public class FatturaImpl implements FatturaDAO{
 		try(PreparedStatement ps=c.prepareStatement(INSERT_QUERY)){
 			ps.setLong(1,cb.getIdFattura());
 			ps.setLong(2, cb.getIdPagamento());
-			ps.setDate(3, cb.getData());
+			ps.setDate(3, java.sql.Date.valueOf(cb.getData()));
 			ps.executeUpdate();
 		}catch(SQLException e) {
 			System.out.println(e.getMessage());
