@@ -58,16 +58,18 @@ public class ArticoliImpl implements ArticoliDAO {
 		ArrayList<ArticoliBean> temp=new ArrayList<ArticoliBean>();
 		try {
 			Statement lista=c.createStatement();
-			ResultSet rs = lista.executeQuery("SELECT A.nome, A.prezzo, A.codice_articoli FROM Articolo AS A,Sono_forniti_da AS S,Fornitore AS F WHERE A.codice_articoli=S.codice_articoli AND S.partita_iva=F.partita_iva AND F.nome='"+nome+"'");
+			ResultSet rs = lista.executeQuery("SELECT A.nome, A.prezzo, A.codice_articoli, A.quantita "
+					   						+ "FROM Articolo AS A,Sono_forniti_da AS S,Fornitore AS F "
+											+ "WHERE A.codice_articoli=S.codice_articoli AND S.partita_iva=F.partita_iva AND F.nome='"+nome+"'");
 			while(rs.next()){
 				ArticoliBean ab = new ArticoliBean();
-				ab.setCodiceA(rs.getString("CodiceA"));
+				ab.setCodiceA(rs.getString("codice_articoli"));
 				ab.setNome(rs.getString("nome"));
 				ab.setPrezzo(rs.getInt("prezzo"));
 				ab.setCodiceC(0);
 				ab.setDescrizione("");
 				ab.setOfferta(false);
-				ab.setQuantita(rs.getInt("quantità"));
+				ab.setQuantita(rs.getInt("quantita"));
 				ab.setTipologia("");
 				temp.add(ab);
 			}
