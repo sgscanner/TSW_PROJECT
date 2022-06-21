@@ -45,46 +45,15 @@
 	</div>
 </div>
 <%}%>
-<p class="bottone1"> 
-<a href="#" id="loadMore">Load More</a>
-</p>
-<p class="bottone2"> 
-    <a href="#top">Back to top</a> 
-</p>
+<input type="button" class="bottone1" onclick="scrollToTop()" value="Vai all'inizio">
 </body>
 <script>
-$(function () {
-    $("prodotto").slice(0, 9).show();
-    $("#loadMore").on('click', function (e) {
-        e.preventDefault();
-        $("prodotto:hidden").slice(0, 9).slideDown();
-        if ($("prodotto:hidden").length == 0) {
-            $("#load").fadeOut('slow');
-        }
-        $('html,body').animate({
-            scrollTop: $(this).offset().top
-        }, 1500);
-    });
-});
-
-$('a[href=#top]').click(function () {
-    $('body,html').animate({
-        scrollTop: 0
-    }, 600);
-    return false;
-});
-
-$(window).scroll(function () {
-    if ($(this).scrollTop() > 50) {
-        $('.totop a').fadeIn();
-    } else {
-        $('.totop a').fadeOut();
-    }
-});
-
 function goTo(id){
 	var path="Prodotto.jsp?id="+id;
 	location.replace(path);
+}
+function scrollToTop() {
+    $(window).scrollTop(0);
 }
 </script>
 </html>
