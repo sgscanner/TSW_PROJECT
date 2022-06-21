@@ -18,7 +18,6 @@
 		UserBean user=(UserBean)request.getSession().getAttribute("user");
 		ArticoliImpl a=new ArticoliImpl();
 		ArticoliBean p = a.searchByCode(request.getParameter("id")); %>
-	<form action="RecensioneServlet" method="GET">
 		<input type="hidden" id="username" value=<%=user.getUsername() %>>
 		<input type="hidden" id="codice_articolo" value=<%=request.getParameter("id") %>>
 	<div class="container">
@@ -37,7 +36,7 @@
 		<div class="line"></div>
 		<div class="c4">
 			<div class="c5">
-				<p style="display:grid;justify-content:center;align-content:center;"><b>Valutazione complessiva</b></p>
+				<p ><b>Valutazione complessiva</b></p>
 			</div>
 			<div class="c6">
 				<input type="text" id="stelle" placeholder="numero stelle">
@@ -49,7 +48,7 @@
 				<p><b>Aggiungi un titolo</b></p>
 			</div>
 			<div class="c9">
-				<input id="titolo" class="t" style="border:2px solid black;border-radius:10px;" type="text" placeholder="inserisci un titolo...">
+				<input id="titolo" class="t" type="text" placeholder="inserisci un titolo...">
 			</div>
 		</div>
 		<div class="line"></div>
@@ -58,7 +57,7 @@
 				<p><b>Aggiungi recensione</b></p>
 			</div>
 			<div class="c12">
-				<textarea id="descrizione" class="area" style="border:2px solid black;border-radius:10px;" rows="8" cols="52" placeholder="Scrivi una recensione..."></textarea>
+				<textarea id="descrizione" class="area"  rows="8" cols="52" placeholder="Scrivi una recensione..."></textarea>
 			</div>
 		</div>
 		<div class="line"></div>
@@ -67,39 +66,23 @@
 				
 			</div>
 			<div class="c14">
-				<button id="button" type="submit" class="b" >Recensisci</button>
+				
+				<button id="button" class="b" onclick="myFunc()">Recensisci</button>
 			</div>
 		</div>
 	</div>
-	</form>
-	<script>
-	window.onload = function() {
-		  document.getElementById('a').value = '';
-		  document.getElementById('b').value = '';
-		  }
-	</script>
-	<script type="text/javascript">
-		const stelle=document.getElementById("stelle").value.trim();
-		const descrizione=document.getElementById("descrizione").value;
-		const titolo=document.getElementById("titolo").value.trim();
-		const codiceA=document.getElementById("codice_articolo").value.trim();
-		const username=document.getElementById("username").value.trim();
-		
-		$(document).on("click", "#button", function(){
-				console.log("stelle "+stelle);
-				console.log("descrizione "+descrizione);
-				console.log("titolo "+titolo);
-				console.log("codiceA "+codiceA);
-				console.log("username "+username);
-				console.log("stelle "+stelle);
-				$.get("RecensioneServlet",{
-					stelle:document.getElementById("stelle").value.trim(),
-					descrizione:,
-					titolo:,
-					articolo:,
-				});
-			});
-		});
-	</script>
+<script type="text/javascript">
+	const titolo=document.getElementById("titolo").value;
+	const stelle=document.getElementById("stelle").value;
+	const username=document.getElementById("username").value;
+	const articolo=document.getElementById("codice_articolo").value;
+	const descrizione=document.getElementById("descrizione").value;
+	
+	function myFunc(){
+		console.log("button clicked");
+		let path="RecensioneServlet?titolo="+titolo+"&stelle="+stelle+"&username="+username+"&articolo="+articolo+"&descrizione="+descrizione;
+		location.href=path;
+	}
+</script>
 </body>
 </html>

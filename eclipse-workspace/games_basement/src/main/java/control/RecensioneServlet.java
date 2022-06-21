@@ -35,8 +35,8 @@ public class RecensioneServlet extends HttpServlet {
 		String titolo=request.getParameter("titolo"),numStelle=request.getParameter("stelle"),
 				uName=request.getParameter("username"),codiceA=request.getParameter("articolo"),descrizione=request.getParameter("descrizione");
 		RecensioneImpl ri=new RecensioneImpl();
-		System.out.println("stelle"+numStelle);
-		System.out.println("titolo"+titolo);
+		System.out.println("stelle "+numStelle);
+		System.out.println("titolo "+titolo);
 		System.out.println("codice Articolo "+codiceA);
 		System.out.println("descrizione "+descrizione);
 		ri.addRecensione(new RecensioneBean(Integer.parseInt(numStelle),codiceA,uName,titolo,descrizione));

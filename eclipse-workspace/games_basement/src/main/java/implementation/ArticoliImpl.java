@@ -145,9 +145,7 @@ public class ArticoliImpl implements ArticoliDAO {
 		ArrayList<RecensioneBean> temp=new ArrayList<RecensioneBean>();
 		
 		try(Statement s=c.createStatement()){
-			ResultSet rs=s.executeQuery("select r.titolo,r.numeroStelle,r.descrizione,r.id_utente"
-					                  + "from Recensione as r"
-					                  + "where r.codice_articoli='"+ab.getCodiceA()+"'");
+			ResultSet rs=s.executeQuery("select r.titolo,r.numeroStelle,r.descrizione,r.id_utente from Recensione as r where r.codice_articoli='"+ab.getCodiceA()+"'");
 			while(rs.next()) {
 				RecensioneBean rb=new RecensioneBean();
 				rb.setIdUtente(rs.getString("id_utente"));
