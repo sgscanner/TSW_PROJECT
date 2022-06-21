@@ -4,10 +4,16 @@
  <%@page import="bean.DatiAnagraficiBean"%>
  <%@page import="bean.RubricaIndirizziBean"%>
  <%@page import="bean.ArticoliBean" %>
+ <%@page import="bean.OrdineBean" %>
+<%@page import="implementation.CompongonoImpl"%>
 <%@page import="implementation.ArticoliImpl" %>
 <%@page import="implementation.UserImpl" %>
 <%@page import="implementation.DatiAnagrificiImpl" %>
 <%@page import="implementation.RubricaIndirizziImpl" %>
+<%@page import="implementation.OrdineImpl" %>
+<%@page import="control.Encryption" %>
+<%@page import="javax.crypto.spec.SecretKeySpec" %>
+<%@page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,12 +28,21 @@
 <script src='jQuery/jquery-ui.min.js'></script>
 </head>
 <body>
-<%UserBean ub=(UserBean)request.getSession().getAttribute("user"); %>
-<%if(ub==null){
-	request.getRequestDispatcher("ErrorRole.jsp").forward(request,response);
-}
+<%UserBean ub=(UserBean)request.getSession().getAttribute("user");
+	if(ub==null){
+		request.getRequestDispatcher("ErrorRole.jsp").forward(request,response);
+	}
+	CompongonoImpl ci=new CompongonoImpl();
+	DatiAnagrificiImpl dai=new DatiAnagrificiImpl();
+	RubricaIndirizziImpl ri=new RubricaIndirizziImpl();
+	DatiAnagraficiBean dab=dai.searchDatiAnagrafici(ub.getUsername());
+	RubricaIndirizziBean fatturazione=ri.getIndirizzoFatturazione(ub.getUsername());
+	RubricaIndirizziBean spedizione=ri.getIndirizzoSpedizione(ub.getUsername());
+	Encryption e=new Encryption();
+	String pwd=ub.getPassword();
+	byte[] salt = new String("12345678").getBytes();
+	SecretKeySpec key = e.createSecretKey(pwd.toCharArray(), salt, 40000, 128);
 %>
-<form id="form" action="PersonalPageServlet" method="POST" onsubmit="event.preventDefault();">
 	<div class="contenitore">
 		<div class="container">
 			<div class="content">
@@ -89,6 +104,7 @@
 					</div>
 				</div>
 				<div class="testo">
+					<form action="PersonalPageServlet" method="POST">
 					<div id="Account" hidden="hidden">
 						<h2 class="titolo">Dati Account</h2><br>
 	    				<div class="inputContainer">
@@ -103,81 +119,114 @@
 	   					</div>
 	   					<div class="inputContainer">
 	    					<label for="password">Password:</label>
-	  						<input class="testo2" type="password" id="password" name="password" value="<%=ub.getPassword()%>" placeholder="Password" readonly/><br><br>
+	  						<input class="testo2" type="password" id="password" name="password" value="<%=e.decrypt(pwd, key) %>" placeholder="Password" readonly/><br><br>
 	   						<small></small>	
 	  					</div>
 	    				<div class="inputContainer">
 	    					<label for="checkPassword">Conferma password:</label>
-	    					<input class="testo2" type="password" id="checkPassword" name="checkPassword" value="<%=ub.getPassword()%>ub.getPassword()" placeholder="Confirm password" readonly />
+	    					<input class="testo2" type="password" id="checkPassword" name="checkPassword" value="<%=e.decrypt(pwd, key)%>ub.getPassword()" placeholder="Confirm password" readonly />
 	    					<br><br>
 	    					<small></small>
 	    				</div>
 	    				<input type="button" class="bottone" id="editClick1" value="Modifica">
 						<input type="submit" class="bottone" id="salvaInfo1" value="Salva" onclick="checkUsername()">
+						<input type="hidden" id="tipo" value="account">
 					</div>
+					</form>	
 				</div>
 				<div class="testo">
+					<form action="PersonalPageServlet" method="POST">
 					<div id="Anagrafici" hidden="hidden">
 						<h2 class="titolo">Dati Anagrafici</h2><br>
 						<div class="inputContainer">
 							<label for="nome">Nome:</label>
-		    				<input class="testo3" type="text" id="nome" name="nome" value="dab.getNome()" placeholder="nome" autocomplete="false" readonly/><br><br>
+		    				<input class="testo3" type="text" id="nome" name="nome" value=<%=dab.getNome()%>  placeholder="nome" autocomplete="false" readonly/><br><br>
 		    				<small></small>
 		    			</div>
 			    		<div class="inputContainer">
 			    			<label for="cognome">Cognome:</label>
-			    			<input class="testo3" type="text" class="testo3" id="cognome" name="cognome" value="dab.getCognome()" placeholder="cognome" autocomplete="false" readonly/><br><br>
+			    			<input class="testo3" type="text" class="testo3" id="cognome" name="cognome" value=<%=dab.getCognome()%> placeholder="cognome" autocomplete="false" readonly/><br><br>
 			    			<small></small>
 			   			</div>
 			    		<div class="inputContainer">
 			    			<label for="phone">Numero di telefono:</label>
-			    			<input class="testo3" type="text" id="phone" name="phone" value="dab.getTelefono()" placeholder="Numero di Telefono" readonly/><br><br>
+			    			<input class="testo3" type="text" id="phone" name="phone" value=<%=dab.getTelefono()%> placeholder="Numero di Telefono" readonly/><br><br>
 			    			<small></small>
 			    		</div>
 			    			<div class="inputContainer">
 			    			<label for="citta">Città:</label>
-			   				<input class="testo3" id="citta" type="text" name="citta" value="dab.getCitta()" placeholder="Città" readonly/><br><br>
+			   				<input class="testo3" id="citta" type="text" name="citta" value=<%=dab.getCitta()%> placeholder="Città" readonly/><br><br>
 			   				<small></small>
 			    		</div>
 			   			<div class="inputContainer"> 
 			   				<label for="cap">CAP:</label>
-			   				<input class="testo3" id="cap" type="text" name="cap" value="dab.getcap()" placeholder="Cap" readonly/><br><br>
+			   				<input class="testo3" id="cap" type="text" name="cap" value=<%=dab.getcap()%> placeholder="Cap" readonly/><br><br>
 			   				<small></small>
 		   	 			</div>
 		    			<div class="inputContainer">
 		    				<label for="data">Data di nascita:</label>
-		    				<input class="testo3" id="data" type="date" value="dab.getDataNascita()" name="bday" readonly/><br><br>
+		    				<input class="testo3" id="data" type="date" value=<%=dab.getDataNascita()%> name="bday" readonly/><br><br>
 		    				<small></small>
 		    			</div>
 		  				<input type="button" class="bottone" id="editClick3" value="Modifica">
 		   				<input type="submit" class="bottone" id="salvaInfo3" value="Salva" onclick="checkSecondField()">
+		 	 			<input type="hidden" id="tipo" value="dati_anagrafici">
 		 	 		</div>  
+		 	 		</form>
 				</div>
 				<div class="testo">
+					<form action="PersonalPageServlet" method="POST">
 					<div id="Spedizione"  hidden="hidden">
 		  				<h2 class="titolo">Dati spedizione</h2><br>
 			    		<div class="inputContainer">
 			    			<label for="spedizione">Indirizzo di spedizione:</label>
-			    			<input class="testo4" id="spedizione" type="text" name="indirizzo" value="rib.getIndirizzo()" placeholder="Indirizzo" readonly/><br><br>
+			    			<%if(spedizione==null){ %>
+			    				<input class="testo4" id="spedizione" type="text" name="indirizzo" value="Inserisci il tuo primo indirizzo di spedizione" placeholder="Indirizzo" readonly/><br><br>
+			    			<%}else{%>
+			    				<input class="testo4" id="spedizione" type="text" name="indirizzo" value=<%=spedizione.getIndirizzo() %> placeholder="Indirizzo" readonly/><br><br>
+			    			<%} %>
 			    			<small></small>
 			    		</div>
 			   			<div class="inputContainer">
 			   				<label for="fatturazione">Indirizzo di fatturazione:</label>
-			   				<input class="testo4" id="fatturazione" type="text" name="indirizzo" value="rib.getIndirizzo()" placeholder="Indirizzo" readonly/><br><br>
+			   				<%if(fatturazione==null){ %>
+			   					<input class="testo4" id="fatturazione" type="text" name="indirizzo" value="Inserisci il tuo primo indirizzo di fatturazione" placeholder="Indirizzo" readonly/><br><br>
+			   				<%}else{%>
+			   					<input class="testo4" id="fatturazione" type="text" name="indirizzo" value=<%=fatturazione.getIndirizzo() %> placeholder="Indirizzo" readonly/><br><br>
+			   				<%} %>
 			   				<small></small>
 			    		</div>
 			   			<input type="button" class="bottone" id="editClick4" value="Modifica">
 			   			<input type="submit" class="bottone" id="salvaInfo4" value="Salva" onclick="checkThirdField()">
+		 	 			<input type="hidden" id="tipo" value="rubrica_indirizzi">
 		 	 		</div>
+		 	 		</form>
 		 		 </div> 
 		 		 <div class="testo">
 		 		 	<div id="Ordini" hidden="hidden">
-		 		 		
+		 		 		<table>
+		 		 			<tr>
+		 		 				<th>Nome prodotto</th>
+		 		 				<th>Numero dell'ordine</th>
+		 		 				<th>Prezzo al momento dell'acquisto</th>
+		 		 			</tr>
+		 		 		<% OrdineImpl oi=new OrdineImpl();
+		 		 		   for(OrdineBean ob:oi.getAllUserOrdine(ub.getUsername())){%>
+		 		 			   <%ArrayList<ArticoliBean> al=ci.getCarrello(ob);
+		 		 			   for(ArticoliBean ab:al){%>
+		 		 			   <tr>
+		 		 				    <td><a id=<%=ab.getCodiceA()%> onclick="redirectProdotto(this.id)"><%=ab.getNome()%></a></td>
+		 		 			  		<td><%=ob.getNumOrdine() %></td>
+		 		 			  		<td><%=ci.getPrezzoStorico(ob, ab) %></td>
+		 		 			   </tr> 
+		 		 			   <%}
+		 		 		   }%>
+		 		 		</table>
 		 		 	</div>
 		 		 </div> 
 		 		  <div class="testo">
 		 		 	<div id="Preno" hidden="hidden">
-		 		 		
+		 		 		<% %>
 		 		 	</div>
 		 		 </div> 
 		 		 <div class="testo">
@@ -220,7 +269,6 @@
 		 		 </div>
           	</div>
 		</div>
-	</form>
 	
 <!-- Script per visualizzare solo il tab selezionato -->
 <script>
@@ -433,6 +481,11 @@ $(document).ready(function(){
 	const userNameField=document.querySelector("#username");
 	const spedField=document.getElementById("spedizione");
 	const fattField=document.getElementById("fatturazione");
+	
+	function redirectProdotto(id){
+		var path="Prodotto.jsp?id="+id;
+		location.replace(path);
+	}
 	
 	function checkFirstField(){
 		checkUsername();

@@ -28,7 +28,7 @@ public class RecensioneImpl implements RecensioneDAO {
 			ResultSet rs=s.executeQuery("select * from Recensione");
 			
 			while(rs.next()) {
-				al.add(new RecensioneBean(rs.getInt(1),rs.getString(2),rs.getString(3)));
+				al.add(new RecensioneBean(rs.getInt("numeroStelle"),rs.getString("codice_articoli"),rs.getString("id_utente"),rs.getString("titolo"),rs.getString("descrizione")));
 			}
 		}catch (SQLException e) {
 			// TODO: handle exception

@@ -1,10 +1,12 @@
 package control;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
+import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -52,8 +54,9 @@ public class AjaxPrenotazione extends HttpServlet {
 		try {
 			Statement compongono=c.createStatement(),ordine=c.createStatement();
 			ArticoliBean ab=ai.searchByCode(codiceA);
-			ordine.executeUpdate("insert into Ordine values('prenotato','"+username+"','"+ab.getPrezzo()+"','"+dateSql+"')");
-			compongono.executeUpdate("insert into Compongono values('"+codiceA+"','0','"+ab.getPrezzo()+"','prenotato')");
+			String codice=getRandomString(15)+"prenotato";
+			ordine.executeUpdate("insert into Ordine values('"+codice+"','"+username+"','"+ab.getPrezzo()+"','"+dateSql+"')");
+			compongono.executeUpdate("insert into Compongono values('"+codiceA+"','0','"+ab.getPrezzo()+"','"+codice+"')");
 			result="prenotazione effettuata.";
 			connessione.releaseConnection(c);
 		}catch(SQLException e) {
@@ -73,5 +76,35 @@ public class AjaxPrenotazione extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+	
+	private String getRandomString(int i) {
+		 byte[] bytearray;
+	        String mystring;
+	        StringBuffer thebuffer;
+	        
+	        bytearray = new byte[256]; 
+	        new Random().nextBytes(bytearray); 
 
+	        mystring 
+	            = new String(bytearray, Charset.forName("UTF-8")); 
+
+	        // Create the StringBuffer
+	        thebuffer = new StringBuffer(); 
+
+	        for (int m = 0; m < mystring.length(); m++) { 
+
+	            char n = mystring.charAt(m); 
+
+	            if (((n >= 'A' && n <= 'Z') 
+	                || (n >= '0' && n <= '9')) 
+	                && (i > 0)) { 
+
+	                thebuffer.append(n); 
+	                i--; 
+	            } 
+	        } 
+
+	        // resulting string 
+	        return thebuffer.toString(); 
+	}
 }

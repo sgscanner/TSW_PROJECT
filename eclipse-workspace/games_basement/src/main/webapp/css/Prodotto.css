@@ -246,3 +246,19 @@ input::-webkit-inner-spin-button {
 .pre{
 	text-align:center;
 }
+
+@media (max-width:532px){
+	.pd{
+		width:150px;
+		font-size:16px;
+	}
+	
+	.pnd{
+		width:150px;
+		font-size:16px;
+	}
+	
+	.pre{
+		font-size:16px;
+	}
+}
