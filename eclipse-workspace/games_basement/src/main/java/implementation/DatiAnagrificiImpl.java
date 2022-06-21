@@ -59,7 +59,7 @@ public class DatiAnagrificiImpl implements DatiAnagraficiDAO{
 			while(rs.next()) {
 				String idU=rs.getString("id_utente"),idC=rs.getString("cap"),nome=rs.getString("nome"),cognome=rs.getString("cognome"),
 						telefono=rs.getString("telefono"),citta=rs.getString("citta");
-				Date bDay=rs.getDate(3);
+				Date bDay=rs.getDate("data_nascita");
 				
 				dab.setIdUtente(idU);
 				dab.setcap(idC);

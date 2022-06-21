@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="ajax/ajaxJSON.js"></script>
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <%ArticoliImpl a=new ArticoliImpl();
@@ -24,7 +25,7 @@
 </head>
 <body>
 	<%@include file="Header2.jsp" %>
-	<input type="hidden" id="codiceA" value=<%=p.getCodiceA()%>/>
+	<input type="hidden" id="codiceA" value=<%=p.getCodiceA()%>>
 	<div id=tit-titpro>
 		<p><b><%=p.getNome() %></b></p>
 	</div>
@@ -126,7 +127,12 @@
 				<%} %>
 				</table>
 			<%} %>
-			<button class="f" form="feedback" type="submit">Scrivi una recensione</button>
+			<%UserBean usr=(UserBean)request.getSession().getAttribute("user"); 
+			  if(usr==null){%>
+				<a class="f" href="Register.jsp" id="feedLink">Scrivi una recensione</a>
+			<%}else{ %>
+				<a class="f" href="Feedback.jsp?id=<%=request.getParameter("id")%>" id="feedLink">Scrivi una recensione</a>
+			<%} %>
 		</div>
 		
 		<div style="margin-top: 25px;">
@@ -142,11 +148,16 @@
 	$("#carrello").click(function(){
 		var quantita=document.getElementById("quantita");
 		var codiceA=document.getElementById("codiceA");
+		
+		if(quantita.value.trim()<=0){
+			alert("Inserire una quantita desiderata");
+		}
+		
 		compra(codiceA.value.trim(),quantita.value.trim());
 	});
 
 	function readJson(listJson){
-		var json = JSON.parse(listJSON) 
+		var json = JSON.parse(listJson) 
 		var result=json.cartInfo;
 		
 		if(result=="prodotto aggiunto"){

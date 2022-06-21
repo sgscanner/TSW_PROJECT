@@ -54,6 +54,31 @@ public class ArticoliImpl implements ArticoliDAO {
 		}
 	}
 
+	public ArrayList<ArticoliBean> listaProdottiJSP(String nome){
+		ArrayList<ArticoliBean> temp=new ArrayList<ArticoliBean>();
+		try {
+			Statement lista=c.createStatement();
+			ResultSet rs = lista.executeQuery("SELECT A.nome, A.prezzo, A.codice_articoli FROM Articolo AS A,Sono_forniti_da AS S,Fornitore AS F WHERE A.codice_articoli=S.codice_articoli AND S.partita_iva=F.partita_iva AND F.nome='"+nome+"'");
+			while(rs.next()){
+				ArticoliBean ab = new ArticoliBean();
+				ab.setCodiceA(rs.getString("CodiceA"));
+				ab.setNome(rs.getString("nome"));
+				ab.setPrezzo(rs.getInt("prezzo"));
+				ab.setCodiceC(0);
+				ab.setDescrizione("");
+				ab.setOfferta(false);
+				ab.setQuantita(rs.getInt("quantità"));
+				ab.setTipologia("");
+				temp.add(ab);
+			}
+			return temp;
+		}catch(SQLException e) {
+			
+		}
+		return temp;
+	}
+	
+	
 	public ArticoliBean searchByCode(String codice) {
 		ArticoliBean ab=new ArticoliBean();
 		

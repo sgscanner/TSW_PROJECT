@@ -39,7 +39,7 @@
 	RubricaIndirizziBean fatturazione=ri.getIndirizzoFatturazione(ub.getUsername());
 	RubricaIndirizziBean spedizione=ri.getIndirizzoSpedizione(ub.getUsername());
 	String pwd=ub.getPassword();
-	byte[] salt = new String("12345678").getBytes();
+	System.out.println("dab citta"+dab.getCitta());
 %>
 	<div class="contenitore">
 		<div class="container">
@@ -57,39 +57,39 @@
       			<input type="radio" name="slider" id="Logout">
 				<div class="list">
 					<label for="Panoramica" class="Panoramica">
-						<span class="Topic">Panoramica</span>
+						<small class="Topic">Panoramica</small><br>
 					</label>
 					<label for="Dati_Account" class="Dati_Account">
-						<span class="Topic">Dati Account</span>
+						<small class="Topic">Dati Account</small><br>
 					</label>
 					<label for="Dati_personali" class="Dati_personali">
-						<span class="Topic">Dati anagrafici</span>
+						<small class="Topic">Dati anagrafici</small><br>
 					</label>
 					<label for="Dati_spedizione" class="Dati_spedizione">
-						<span class="Topic">Dati spedizione</span>
+						<small class="Topic">Dati spedizione</small><br>
 					</label>
 					<label for="Ordini_effettuati" class="Ordini_effettuati">
-						<span class="Topic">Ordini effettuati</span>
+						<small class="Topic">Ordini effettuati</small><br>
 					</label>
 					<label for="Prenotazioni" class="Prenotazioni">
-						<span class="Topic">Prodotti prenotati</span>
+						<small class="Topic">Prenotazioni</small><br>
 					</label>
 					<%if(ub.getRuolo().equals("admin")){ %>
 					<label for="Lista_Utenti" class="Lista_Utenti">
-						<span class="Topic">Lista utenti</span>
+						<small class="Topic">Utenti</small><br>
 					</label>
 					<label for="Lista_Prodotti" class="Lista_Prodotti">
-						<span class="Topic">Lista prodotti</span>
+						<small class="Topic">Prodotti</small><br>
 					</label>
 					<label for="Lista_Ordini" class="Lista_Ordini">
-						<span class="Topic">Lista ordini</span>
+						<small class="Topic">Lista ordini</small><br>
 					</label>
 					<label for="Lista_Prenotazioni" class="Lista_Prenotazioni">
-						<span class="Topic">Lista prenotazioni</span>
+						<small class="Topic">Lista prenotazioni</small><br>
 					</label>
 					<%} %>
 					<label for="Logout" class="Logout">
-						<span class="Topic"><a href="LogoutServlet">Logout</a></span>
+						<small class="Topic"><a href="LogoutServlet">Logout</a></small>
 					</label>
 					<div class="slider"></div>
 				</div>

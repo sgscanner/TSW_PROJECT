@@ -22,26 +22,10 @@
 <%@ include file="Header2.jsp" %>
 <%
 	ArrayList<ArticoliBean> articoli = new ArrayList<ArticoliBean>();
-	Connessione connessione = new Connessione();
-	Connection c = connessione.setConnection();
-	try {
-		Statement lista=c.createStatement();
-		ResultSet rs = lista.executeQuery("SELECT A.nome, A.prezzo, A.codiceA FROM Articoli AS A Sono_forniti_da AS S Fornitore AS F WHERE A.codice_articoli=S.codice_articoli AND S.partita_iva=F.partita_iva AND F.nome='"+request.getParameter("name")+"'");
-		while(rs.next()){
-			ArticoliBean ab = new ArticoliBean();
-			ab.setCodiceA(rs.getString("CodiceA"));
-			ab.setNome(rs.getString("nome"));
-			ab.setPrezzo(rs.getInt("prezzo"));
-			ab.setCodiceC(0);
-			ab.setDescrizione("");
-			ab.setOfferta(false);
-			ab.setQuantita(rs.getInt("quantità"));
-			ab.setTipologia("");
-			articoli.add(ab);
-		}
-	}catch(SQLException e) {
-		
-	}
+	ArticoliImpl impl=new ArticoliImpl();
+	articoli=impl.listaProdottiJSP(request.getParameter("nome"));
+	System.out.println("nome"+ request.getParameter("nome"));
+	System.out.println("size lista "+articoli.size());
 %>
 
 <%for(int i=0; i<articoli.size();){%>										
@@ -50,7 +34,8 @@
 		<div id="prodotto1">
 			<div class="image">
 				<a id=<%=articoli.get(i).getCodiceA()%> onclick="redirectProdotto(this.id)">
-				<img src="prodottiImg/<%=articoli.get(i).getNome()%>/rec.jpg" alt="Immagine non disponibile" width="150px" height="137px">
+					<img src="prodottiImg/<%=articoli.get(i).getNome()%>/rec.jpg" alt="Immagine non disponibile" width="150px" height="137px">
+				</a>
 			</div>
 			<div class="txt">
 				<h5><%=articoli.get(i).getNome()%></h5>
@@ -58,16 +43,15 @@
 				<h6><%=articoli.get(i).getPrezzo()%></h6>
 				</div>
 			</div>
-			
 		</div>
-		</a>
-		i++;
+		<% i++;%>
 	</div>
 	<div class="prodotto">
 		<div id="prodotto2">
 			<div class="image">
 			<a id=<%=articoli.get(i).getCodiceA()%> onclick="redirectProdotto(this.id)">
 				<img src="prodottiImg/<%=articoli.get(i).getNome()%>/rec.jpg" alt="Immagine non disponibile" width="150px" height="137px">
+			</a>
 			</div>
 			<div class="txt">
 				<h5><%=articoli.get(i).getNome()%></h5>
@@ -75,15 +59,15 @@
 				<h6><%=articoli.get(i).getPrezzo()%></h6>
 				</div>
 			</div>
-			</a>
 		</div>
-		i++;
+		<% i++;%>
 	</div>
 	<div class="prodotto">
 		<div id="prodotto3">
 			<div class="image">
 			<a id=<%=articoli.get(i).getCodiceA()%> onclick="redirectProdotto(this.id)">
 				<img src="prodottiImg/<%=articoli.get(i).getNome()%>/rec.jpg" alt="Immagine non disponibile" width="150px" height="137px">
+			</a>
 			</div>
 			<div class="txt">
 				<h5><%=articoli.get(i).getNome()%></h5>
@@ -91,15 +75,15 @@
 				<h6><%=articoli.get(i).getPrezzo()%></h6>
 				</div>
 			</div>
-			</a>
 		</div>
-		i++;
+		<% i++;%>
 	</div>
 	<div class="prodotto">
 		<div id="prodotto4">
 			<div class="image">
 			<a id=<%=articoli.get(i).getCodiceA()%> onclick="redirectProdotto(this.id)">
 				<img src="prodottiImg/<%=articoli.get(i).getNome()%>/rec.jpg" alt="Immagine non disponibile" width="150px" height="137px">
+			</a>
 			</div>
 			<div class="txt">
 				<h5><%=articoli.get(i).getNome()%></h5>
@@ -107,15 +91,15 @@
 				<h6><%=articoli.get(i).getPrezzo()%></h6>
 				</div>
 			</div>
-			</a>
 		</div>
-		i++;
+		<% i++;%>
 	</div>
 	<div class="prodotto">
 		<div id="prodotto5">
 			<div class="image">
 			<a id=<%=articoli.get(i).getCodiceA()%> onclick="redirectProdotto(this.id)">
 				<img src="prodottiImg/<%=articoli.get(i).getNome()%>/rec.jpg" alt="Immagine non disponibile" width="150px" height="137px">
+			</a>
 			</div>
 			<div class="txt">
 				<h5><%=articoli.get(i).getNome()%></h5>
@@ -123,15 +107,15 @@
 				<h6><%=articoli.get(i).getPrezzo()%></h6>
 				</div>
 			</div>
-			</a>
 		</div>
-		i++;
+		<% i++;%>
 	</div>
 	<div class="prodotto">
 		<div id="prodotto6">
 			<div class="image">
 			<a id=<%=articoli.get(i).getCodiceA()%> onclick="redirectProdotto(this.id)">
 				<img src="prodottiImg/<%=articoli.get(i).getNome()%>/rec.jpg" alt="Immagine non disponibile" width="150px" height="137px">
+			</a>
 			</div>
 			<div class="txt">
 				<h5><%=articoli.get(i).getNome()%></h5>
@@ -139,15 +123,15 @@
 				<h6><%=articoli.get(i).getPrezzo()%></h6>
 				</div>
 			</div>
-			</a>
 		</div>
-		i++;
+		<% i++;%><% i++;%><% i++;%>
 	</div>
 	<div class="prodotto">
 		<div id="prodotto7">
 			<div class="image">
 			<a id=<%=articoli.get(i).getCodiceA()%> onclick="redirectProdotto(this.id)">
 				<img src="prodottiImg/<%=articoli.get(i).getNome()%>/rec.jpg" alt="Immagine non disponibile" width="150px" height="137px">
+			</a>
 			</div>
 			<div class="txt">
 				<h5><%=articoli.get(i).getNome()%></h5>
@@ -155,15 +139,15 @@
 				<h6><%=articoli.get(i).getPrezzo()%></h6>
 				</div>
 			</div>
-			</a>
 		</div>
-		i++;
+		<% i++;%>
 	</div>
 	<div class="prodotto">
 		<div id="prodotto8">
 			<div class="image">
 			<a id=<%=articoli.get(i).getCodiceA()%> onclick="redirectProdotto(this.id)">
 				<img src="prodottiImg/<%=ai.getAllArticoli().get(i).getNome()%>/rec.jpg" alt="Immagine non disponibile" width="150px" height="137px">
+			</a>
 			</div>
 			<div class="txt">
 				<h5><%=articoli.get(i).getNome()%></h5>
@@ -171,15 +155,15 @@
 				<h6><%=articoli.get(i).getPrezzo()%></h6>
 				</div>
 			</div>
-			</a>
 		</div>
-		i++;
+		<% i++;%>
 	</div>
 	<div class="prodotto">
 		<div id="prodotto9">
 			<div class="image">
 			<a id=<%=articoli.get(i).getCodiceA()%> onclick="redirectProdotto(this.id)">
 				<img src="prodottiImg/<%=articoli.get(i).getNome()%>/rec.jpg" alt="Immagine non disponibile" width="150px" height="137px">
+			</a>
 			</div>
 			<div class="txt">
 				<h5><%=articoli.get(i).getNome()%></h5>
@@ -187,9 +171,8 @@
 				<h6><%=articoli.get(i).getPrezzo()%></h6>
 				</div>
 			</div>
-			</a>
 		</div>
-		i++;
+		<% i++;%>
 	</div>
 </div>
 <%}%>

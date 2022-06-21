@@ -2,7 +2,6 @@ package control;
 
 import java.io.IOException;
 
-import javax.print.attribute.standard.JobOriginatingUserName;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,10 +33,13 @@ public class RecensioneServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String titolo=request.getParameter("titolo"),numStelle=request.getParameter("stelle"),
-				uName=request.getParameter("username"),codiceA=request.getParameter("codice_articolo"),descrizione=request.getParameter("descrizione");
+				uName=request.getParameter("username"),codiceA=request.getParameter("articolo"),descrizione=request.getParameter("descrizione");
 		RecensioneImpl ri=new RecensioneImpl();
-		
-		ri.addRecensione(new RecensioneBean(Integer.parseInt("numStelle"),codiceA,uName,titolo,descrizione));
+		System.out.println("stelle"+numStelle);
+		System.out.println("titolo"+titolo);
+		System.out.println("codice Articolo "+codiceA);
+		System.out.println("descrizione "+descrizione);
+		ri.addRecensione(new RecensioneBean(Integer.parseInt(numStelle),codiceA,uName,titolo,descrizione));
 		
 		request.getRequestDispatcher("Prodotto.jsp?id="+codiceA).forward(request, response);
 	}

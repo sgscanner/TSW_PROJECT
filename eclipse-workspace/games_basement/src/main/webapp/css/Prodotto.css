@@ -7,6 +7,21 @@
 	border: 2px solid black;
 }
 
+.feedLink:hover{
+	text-decoration:none;
+}
+
+.feedLink:visited{
+	text-decoration:none;
+}
+
+.feedLink:link{
+	text-decoration:none;
+}
+
+.feed:active{
+	text-decoration:none;
+}
 .buttonleft {
 	margin-top: 10px;
 	width: 35px;

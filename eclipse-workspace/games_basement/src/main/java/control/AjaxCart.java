@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import bean.UserBean;
 import implementation.ArticoliImpl;
 import implementation.CompongonoImpl;
 
@@ -41,7 +42,9 @@ public class AjaxCart extends HttpServlet {
 		JSONObject result=new JSONObject();
 		ArticoliImpl ai=new ArticoliImpl();
 
-		if(ci.addToCart(ai.searchByCode(codiceA),Integer.parseInt(quantita))>0) {
+		System.out.println("codice articolo:"+codiceA);
+		System.out.println("quantità:"+quantita);
+		if(ci.addToCart(ai.searchByCode(codiceA),Integer.parseInt(quantita),((UserBean)request.getSession().getAttribute("user")).getUsername())>0) {
 			try {
 				result.put("cartInfo","prodotto aggiunto");
 

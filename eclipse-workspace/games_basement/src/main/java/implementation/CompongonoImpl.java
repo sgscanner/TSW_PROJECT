@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -62,7 +63,7 @@ public class CompongonoImpl implements CompongonoDAO {
 		return cb;
 	}
 
-	public void completeOrder(OrdineBean ob, ArrayList<ArticoliBean> articoli,String username) {
+	public void completeOrder(OrdineBean ob, ArrayList<ArticoliBean> articoli,String username,double prezzo) {
 		String temp=getRandomString(15);
 		try (Statement s=c.createStatement()){
 			s.executeUpdate("update Ordine set numero_ordine='"+temp+"' where numero_ordine like '%not completed'");
@@ -189,14 +190,24 @@ public class CompongonoImpl implements CompongonoDAO {
 		return numPrenotazioni;
 	}
 
-	public int addToCart(ArticoliBean ab, int quantita) {
+	public int addToCart(ArticoliBean ab, int quantita,String uname) {
 		int result = 0;
-		String generated=getRandomString(15);
+		String generated=getRandomString(15)+"not completed";
+		OrdineImpl oi=new OrdineImpl();
+		
+		if(oi.searchByUsername(uname).getNumOrdine()==null){
+			try (Statement s=c.createStatement()){
+				s.executeUpdate("insert into Ordine values('"+generated+"','"+uname+"','"+ab.getPrezzo()+"','"+LocalDate.now()+"')");
+			}catch(SQLException e) {
+				
+			}
+		}
+		
 		try (PreparedStatement ps = c.prepareStatement(INSERT_COMPONGONO)) {
 			ps.setString(1, ab.getCodiceA());
-			ps.setInt(2, quantita);
-			ps.setFloat(3, (float) ab.getPrezzo());
-			ps.setString(4, generated+"not completed");
+			ps.setString(2, generated);
+			ps.setInt(3, quantita);
+			ps.setFloat(4, (float) ab.getPrezzo());
 			result = ps.executeUpdate();
 			return result;
 		} catch (SQLException e) {
