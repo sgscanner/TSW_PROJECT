@@ -124,14 +124,18 @@ to {
 <body>
 <br>
 	<div class="slideshow-container">
+		<a id="34" onClick="goTo(this.id)">
+			<div class="mySlides fade">
+				<div class="numbertext"></div>
+				<img src="prodottiImg/Gran Turismo 7 Ps4/4.jpg" style="width: 100%">
+				<div class="text"></div>
+			</div>
+		</a>
+		
+		<a id="39" onClick="goTo(this.id)">
 		<div class="mySlides fade">
 			<div class="numbertext"></div>
-			<img src="img/banner3.jpg" style="width: 100%">
-			<div class="text"></div>
-		</div>
-		<div class="mySlides fade">
-			<div class="numbertext"></div>
-			<img src="img/banner2.jpg" style="width: 100%">
+			<img src="prodottiImg/Spider-Man Ps4.jpg" style="width: 100%">
 			<div class="text"></div>
 		</div>
 		<div class="mySlides fade">

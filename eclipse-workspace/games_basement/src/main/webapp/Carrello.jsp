@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Carrello</title>
 	<%@include file="Header.jsp"%>
+	<style><%@include file="css/Carrello.css"%></style>
 </head>
 <body>
 	<div>
