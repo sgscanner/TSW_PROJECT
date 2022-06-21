@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import bean.ArticoliBean;
+import bean.RecensioneBean;
 import dao.ArticoliDAO;
 
 public class ArticoliImpl implements ArticoliDAO {
@@ -113,6 +114,29 @@ public class ArticoliImpl implements ArticoliDAO {
 		return homepage;
 	}
 
+	public ArrayList<RecensioneBean> getRecensioni(ArticoliBean ab) {
+		ArrayList<RecensioneBean> temp=new ArrayList<RecensioneBean>();
+		
+		try(Statement s=c.createStatement()){
+			ResultSet rs=s.executeQuery("select r.titolo,r.numeroStelle,r.descrizione,r.id_utente"
+					                  + "from Recensione as r"
+					                  + "where r.codice_articoli='"+ab.getCodiceA()+"'");
+			while(rs.next()) {
+				RecensioneBean rb=new RecensioneBean();
+				rb.setIdUtente(rs.getString("id_utente"));
+				rb.setDescrizione(rs.getString("descrizione"));
+				rb.setNumeroStelle(rs.getInt("numeroStelle"));
+				rb.setTitolo(rs.getString("titolo"));
+				rb.setCodiceArticolo(ab.getCodiceA());
+				temp.add(rb);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return temp;
+	}
+	
 	/* metodi interface */
 	@Override
 	public void addArticolo(ArticoliBean ab) {

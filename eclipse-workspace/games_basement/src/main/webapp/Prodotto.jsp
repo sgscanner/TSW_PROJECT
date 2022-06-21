@@ -4,6 +4,8 @@
 <%@ page import="control.ProductServlet"%>
 <%@ page import="dao.ArticoliDAO"%>
 <%@ page import="implementation.ArticoliImpl"%>
+<%@ page import="bean.RecensioneBean"%>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <%ArticoliImpl a=new ArticoliImpl();
   ArticoliBean p=a.searchByCode(request.getParameter("id"));
+ ArrayList<RecensioneBean> rb=a.getRecensioni(p);
 %>
 <title><%=p.getNome() %></title>
 <script src="jQuery/jquery.js"></script>
@@ -22,7 +25,7 @@
 <body>
 	
 	<%@include file="Header2.jsp" %>
-	
+	<div style="font-size: 22px; font-family: 'Arial'; padding: 1rem">
 	<div class="titpro">
 		<p><b><%=p.getNome() %></b></p>
 	</div>
@@ -108,7 +111,26 @@
 		</div>
 		
 		<div>
-			<p><b>Inserisci una nuova recensione</b></p>
+			<%if(rb.size()==0){%>
+				<p><b>Non ci sono ancora recensioni,insersci la prima!</b></p>
+			<%}else{ %>
+				<table>
+					<tr>
+						<th>NumeroStelle</th>
+						<th>Titolo</th>
+						<th>Descrizione</th>
+						<th>Utente</th>
+					</tr>
+				<% for(RecensioneBean t:rb){%>
+					<tr>
+						<td><%=t.getNumeroStelle() %></td>
+						<td><%=t.getTitolo() %></td>
+						<td><%=t.getDescrizione() %></td>
+						<td><%=t.getIdUtente() %></td>						
+					</tr>
+				<%} %>
+				</table>
+			<%} %>
 			<button class="f" form="feedback" type="submit">Scrivi una recensione</button>
 		</div>
 		
@@ -127,7 +149,7 @@
 		<form action="Feedback.jsp" method="get" id="feedback">
 			
 		</form>
-		
+		</div>
 <script type="text/javascript">
 	const form = document.getElementById('carrello');
 		

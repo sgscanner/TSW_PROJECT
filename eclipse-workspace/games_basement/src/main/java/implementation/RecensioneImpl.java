@@ -43,7 +43,6 @@ public class RecensioneImpl implements RecensioneDAO {
 			e.printStackTrace();
 		}
 	}
-	
 	@Override
 	public void addRecensione(RecensioneBean rb) {
 		// TODO Auto-generated method stub
