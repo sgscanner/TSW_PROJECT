@@ -46,6 +46,7 @@ img {
 	transition: 0.6s ease;
 	border-radius: 0 3px 3px 0;
 	user-select: none;
+	background-color:red;
 }
 
 /* Position the "next button" to the right */
@@ -115,8 +116,8 @@ to {
 .prodotti {
   display: inline-block;
   gap: 2px;
-  margin-top:5%;
-  margin-bottom:5%;
+  margin-top:15%;
+  margin-bottom:10%;
 }
 
 .prodotto {
@@ -124,8 +125,8 @@ to {
   color: black;
   border: 1px black solid;
   padding: 1rem;
-  height: 17rem;
-  width:17rem;
+  height: 15rem;
+  width:15.5rem;
 }
 
 .image{
@@ -157,7 +158,7 @@ to {
 <%
 	ArrayList<ArticoliBean> articoli = new ArrayList<ArticoliBean>();
 	ArticoliImpl impl = new ArticoliImpl();
-	articoli = impl.queryGetProduct(4);
+	articoli = impl.queryGetProduct(5);
 %>
 
 <br>
@@ -182,8 +183,6 @@ to {
 			<img src="img/banner5.jpg" style="width: 100%">
 			<div class="text"></div>
 		</div>
-			<button class="prev" style="background-color: #c01c28;" onclick="plusSlides(-1)">&#10094;</button>
-			<button class="next" style="background-color: #c01c28;"onclick="plusSlides(1)">&#10095;</button>
 	</div><br>
 	
 	<div style="text-align: center">
@@ -211,36 +210,27 @@ to {
 		</div>		
 	</div>
 </div>
-<%}%>
-<%@include file="Footer2.jsp" %>				
+<%}%>				
 <script>
-        let slideIndex = 1;
-        showSlides(slideIndex);
-        
-        function plusSlides(n) {
-          showSlides(slideIndex += n);
-        }
-        
-        function currentSlide(n) {
-          showSlides(slideIndex = n);
-        }
-        
-        function showSlides(n) {
-          let i;
-          let slides = document.getElementsByClassName("mySlides");
-          let dots = document.getElementsByClassName("dot");
-          if (n > slides.length) {slideIndex = 1}    
-          if (n < 1) {slideIndex = slides.length}
-          for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";  
-          }
-          for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-          }
-          slides[slideIndex-1].style.display = "block";  
-          dots[slideIndex-1].className += " active";
-          setTimeout(showSlides, 3000); // Change image every 2 seconds
-        }
+	let slideIndex = 0;
+	showSlides();
+
+	function showSlides() {
+ 	let i;
+  	let slides = document.getElementsByClassName("mySlides");
+  	let dots = document.getElementsByClassName("dot");
+  	for (i = 0; i < slides.length; i++) {
+    	slides[i].style.display = "none";  
+  	}
+  	slideIndex++;
+  	if (slideIndex > slides.length) {slideIndex = 1}    
+  	for (i = 0; i < dots.length; i++) {
+   		 dots[i].className = dots[i].className.replace(" active", "");
+  	}
+  	slides[slideIndex-1].style.display = "block";  
+  	dots[slideIndex-1].className += " active";
+  	setTimeout(showSlides, 3000); //Cambia immagine ogni 3 secondi
+}
 </script>
 <script>
 			function goTo(id){
