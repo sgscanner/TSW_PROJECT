@@ -21,12 +21,13 @@
 <body>
 <%@ include file="Header2.jsp" %>
 <%
+	System.out.println(request.getParameter("name"));
 	ArrayList<ArticoliBean> articoli = new ArrayList<ArticoliBean>();
 	Connessione connessione = new Connessione();
 	Connection c = connessione.setConnection();
 	try {
 		Statement lista=c.createStatement();
-		ResultSet rs = lista.executeQuery("SELECT A.nome, A.prezzo, A.codiceA FROM Articoli AS A Sono_forniti_da AS S Fornitore AS F WHERE A.codice_articoli=S.codice_articoli AND S.partita_iva=F.partita_iva AND F.nome='"+request.getParameter("name")+"'");
+		ResultSet rs = lista.executeQuery("SELECT A.nome, A.prezzo, A.codice_articoli FROM Articolo AS A, Sono_forniti_da AS S, Fornitore AS F WHERE A.codice_articoli=S.codice_articoli AND S.partita_iva=F.partita_iva AND F.nome='"+request.getParameter("name")+"'");
 		while(rs.next()){
 			ArticoliBean ab = new ArticoliBean();
 			ab.setCodiceA(rs.getString("CodiceA"));
