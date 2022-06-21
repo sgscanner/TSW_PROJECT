@@ -10,7 +10,7 @@
  
  
       <div class="header">
-       <p class="p">Il tuo acquisto è stato effettuato correttamente</p>
+       <p class="p">Il tuo acquisto è stato effettuato correttamentee</p>
       </div>
       
       
