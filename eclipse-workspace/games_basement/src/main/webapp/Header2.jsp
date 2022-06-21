@@ -36,9 +36,9 @@
     <button class="dropbtn">Articoli 
     </button>
     <div class="dropdown-content">
-      <a href="Lista_prodotti.jsp">Nintendo</a>
-      <a href="Lista_prodotti.jsp">Microsoft</a>
-      <a href="Lista_prodotti.jsp">Sony</a>
+      <a href="Lista_Prodotti.jsp">Nintendo</a>
+      <a href="Lista_Prodotti.jsp">Microsoft</a>
+      <a href="Lista_Prodotti.jsp">Sony</a>
     </div>
   </div>
   
