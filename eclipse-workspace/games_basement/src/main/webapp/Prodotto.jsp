@@ -21,7 +21,7 @@
 </head>
 <body>
 	
-	<%@ include file="Header.jsp" %>
+	<%@ include file="Header2.jsp" %>
 	
 	<div class="titpro">
 		<p><b><%=p.getNome() %></b></p>
@@ -68,9 +68,7 @@
 			
 			<div class="shop1">
 				<div class="shop2">
-					<%if(p.getQuantita()>0){%>
-						<button type="button" class="pd">&#9745;&nbsp;Prodotto disponibile</button>
-					<%}else{ %>
+					<%if(p.getQuantita()<=0){%>
 						<button type="button" id="prenota" class="pnd">Prenota!</button>
 					<%} %>
 				</div>
