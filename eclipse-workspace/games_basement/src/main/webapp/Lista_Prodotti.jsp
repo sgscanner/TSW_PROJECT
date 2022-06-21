@@ -31,7 +31,7 @@
 	<div class="prodotto">
 		<div id="prodotto1">
 			<div class="image">
-				<a id=<%=articoli.get(i).getCodiceA()%> onclick="redirectProdotto(this.id)">
+				<a id=<%=articoli.get(i).getCodiceA()%> onclick="goTo(this.id)">
 					<img src="prodottiImg/<%=articoli.get(i).getNome()%>/rec.jpg" alt="Immagine non disponibile" width="150px" height="137px">
 				</a>
 			</div>
@@ -81,5 +81,10 @@ $(window).scroll(function () {
         $('.totop a').fadeOut();
     }
 });
+
+function goTo(id){
+	var path="Prodotto.jsp?id="+id;
+	location.replace(path);
+}
 </script>
 </html>

@@ -8,26 +8,26 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="container">
+	<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;background-color:#c01c28;">
 		<div>
 			<p><b>Servizi</b></p>
-				<p>Lavora con noi
-				<p>Sviluppo azienda
-				<p>Tutti i servizi
+				<p style="color:white">Lavora con noi
+				<p style="color:white">Sviluppo azienda
+				<p style="color:white">Tutti i servizi
 		</div>
 		<div>
 			<p><b>About</b></p>
-				<p>Chi siamo ?
-				<p>Team
+				<p style="color:white">Chi siamo ?
+				<p style="color:white">Team
 		</div>
 		<div>
 			<p><b>Note Legali</b></p>
-				<p>Condizioni di vendita
-				<p>Garanzia legale
-				<p>Recesso
+				<p style="color:white">Condizioni di vendita
+				<p style="color:white">Garanzia legale
+				<p style="color:white">Recesso
 		</div>
 		<div>
-        	<p>Game's Basament © 2022</p>
+        	<p style="color:white;">Game's Basament © 2022</p>
      	</div>
 	</div>
 </body>
