@@ -16,7 +16,7 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
 public class Encryption {
-	public static SecretKeySpec createSecretKey(char[] password, byte[] salt, int iterationCount, int keyLength)
+	public  SecretKeySpec createSecretKey(char[] password, byte[] salt, int iterationCount, int keyLength)
 			throws NoSuchAlgorithmException, InvalidKeySpecException {
 		SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA512");
 		PBEKeySpec keySpec = new PBEKeySpec(password, salt, iterationCount, keyLength);
@@ -24,7 +24,7 @@ public class Encryption {
 		return new SecretKeySpec(keyTmp.getEncoded(), "AES");
 	}
 
-	public static String encrypt(String dataToEncrypt, SecretKeySpec key)
+	public  String encrypt(String dataToEncrypt, SecretKeySpec key)
 			throws GeneralSecurityException, UnsupportedEncodingException {
 		Cipher pbeCipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
 		pbeCipher.init(Cipher.ENCRYPT_MODE, key);
@@ -35,11 +35,11 @@ public class Encryption {
 		return base64Encode(iv) + ":" + base64Encode(cryptoText);
 	}
 
-	private static String base64Encode(byte[] bytes) {
+	private  String base64Encode(byte[] bytes) {
 		return Base64.getEncoder().encodeToString(bytes);
 	}
 
-	public static String decrypt(String string, SecretKeySpec key) throws GeneralSecurityException, IOException {
+	public  String decrypt(String string, SecretKeySpec key) throws GeneralSecurityException, IOException {
 		String iv = string.split(":")[0];
 		String property = string.split(":")[1];
 		Cipher pbeCipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
@@ -47,7 +47,7 @@ public class Encryption {
 		return new String(pbeCipher.doFinal(base64Decode(property)), "UTF-8");
 	}
 
-	private static byte[] base64Decode(String property) throws IOException {
+	private  byte[] base64Decode(String property) throws IOException {
 		return Base64.getDecoder().decode(property);
 	}
 }

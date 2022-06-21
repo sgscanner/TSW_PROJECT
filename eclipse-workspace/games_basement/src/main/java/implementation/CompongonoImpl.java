@@ -62,16 +62,16 @@ public class CompongonoImpl implements CompongonoDAO {
 		return cb;
 	}
 
-	public void completeOrder(OrdineBean ob, ArrayList<ArticoliBean> articoli) {
-		String temp="";
-		for (ArticoliBean ab : articoli) {
-			temp=getRandomString(15);
-			try (Statement s=c.createStatement()){
-				s.executeUpdate("update table ORdine")
-			}catch(SQLException e) {
-				
-			}
+	public void completeOrder(OrdineBean ob, ArrayList<ArticoliBean> articoli,String username) {
+		String temp=getRandomString(15);
+		try (Statement s=c.createStatement()){
+			s.executeUpdate("update Ordine set numero_ordine='"+temp+"' where numero_ordine like '%not completed'");
+			ob.setNumOrdine(temp);
+		}catch(SQLException e) {
+			System.out.println("errore update order in completeOrder");
+		}
 
+		for (ArticoliBean ab : articoli) {
 			try (PreparedStatement ps = c.prepareStatement(REMOVE_PRODOTTO)) {
 				Statement s = c.createStatement();
 				ResultSet rs = s.executeQuery(
@@ -105,7 +105,7 @@ public class CompongonoImpl implements CompongonoDAO {
 				ab.setTipologia(rs.getString("tipologia_articoli"));
 				ab.setOfferta(rs.getBoolean("offerta"));
 				ab.setNome(rs.getString("nome"));
-				ab.setQuantita(rs.getInt("quantita "));
+				ab.setQuantita(rs.getInt("quantita"));
 			}
 
 		} catch (SQLException e) {
@@ -115,13 +115,32 @@ public class CompongonoImpl implements CompongonoDAO {
 		return ab;
 	}
 
-	public ArticoliBean getAllPrenotazioni(String codiceA,String username) {
-		ArticoliBean ab=new ArticoliBean();
+	public double getPrezzoStorico(OrdineBean ob,ArticoliBean ab){
+		double temp=0.0;
+		
+		try (Statement s=c.createStatement()){
+			ResultSet rs=s.executeQuery("select Compongono.prezzo_storico "
+									  + "from Compongono "
+									  + "where Compongono.numero_ordine='"+ob.getNumOrdine()+"' and Compongono.codice_articoli='"+ab.getCodiceA()+"'");
+			while(rs.next()) {
+				temp=(double)rs.getFloat(1);
+			}
+		}catch(SQLException e){
+			System.out.println(e.getMessage());
+		}
+		
+		return temp;
+	}
+	
+	public ArrayList<ArticoliBean> getAllPrenotazioni(String codiceA,String username) {
+		ArrayList<ArticoliBean> temp=new ArrayList<ArticoliBean>();
+		
 		try (Statement ordine = c.createStatement()) {
 			ResultSet rs = ordine.executeQuery("select * " + "from Articolo " + "where Ordine.id_utente='" + username
-					+ "'and Ordine.id_utente='prenotato' and Compongono.numero_ordine=Ordine.id_utente and Compongono.codice_articoli='"
+					+ "'a nd Ordine.id_utente LIKE '%prenotato' and Compongono.numero_ordine=Ordine.id_utente and Compongono.codice_articoli='"
 					+ codiceA + "'");
 			while (rs.next()) {
+				ArticoliBean ab=new ArticoliBean();
 				ab.setCodiceA(rs.getString("codice_articoli"));
 				ab.setCodiceC(rs.getLong("codice_catalogo"));
 				ab.setDescrizione(rs.getString("descrizione"));
@@ -129,12 +148,13 @@ public class CompongonoImpl implements CompongonoDAO {
 				ab.setOfferta(rs.getBoolean("offerta"));
 				ab.setNome(rs.getString("nome"));
 				ab.setQuantita(rs.getInt("quantita"));
+				temp.add(ab);
 			}
 		} catch (SQLException e) {
 
 		}
 		
-		return ab;
+		return temp;
 	}
 
 	public void removeFromCart(String codiceA) {
