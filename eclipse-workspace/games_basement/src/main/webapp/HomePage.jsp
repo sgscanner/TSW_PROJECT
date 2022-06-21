@@ -158,7 +158,7 @@ to {
 <%
 	ArrayList<ArticoliBean> articoli = new ArrayList<ArticoliBean>();
 	ArticoliImpl impl = new ArticoliImpl();
-	articoli = impl.queryGetProduct(4);
+	articoli = impl.queryGetProduct(5);
 %>
 
 <br>

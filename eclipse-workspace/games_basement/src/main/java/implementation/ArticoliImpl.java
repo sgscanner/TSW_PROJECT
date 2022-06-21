@@ -121,7 +121,7 @@ public class ArticoliImpl implements ArticoliDAO {
 
 		try {
 			Statement s = c.createStatement();
-			ResultSet rs = s.executeQuery("select * from Articolo order by rand() limit +'" + number + "'");
+			ResultSet rs = s.executeQuery("select * from Articolo order by rand() limit " + number + "");
 			while (rs.next()) {
 				String codiceA = rs.getString("codice_articoli"), descrizione = rs.getString("descrizione"),
 						tipologia = rs.getString("tipologia_articoli"),
