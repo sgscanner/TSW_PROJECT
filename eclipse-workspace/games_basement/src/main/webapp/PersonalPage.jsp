@@ -28,6 +28,7 @@
 <script src='jQuery/jquery-ui.min.js'></script>
 </head>
 <body>
+<%@ include file="Header2.jsp" %>
 <%UserBean ub=(UserBean)request.getSession().getAttribute("user");
 	if(ub==null){
 		request.getRequestDispatcher("ErrorRole.jsp").forward(request,response);
@@ -229,12 +230,12 @@
 		 		 		<table>
 		 		 			<tr>
 		 		 				<th>Articoli prenotati</th>
-		 		 			</tr>		
-			 		 		<%for(ArticoliBean ab:ci.getAllPrenotazioni(ub.getUsername())){%>
-			 		 			<tr>
-			 		 				<td><%=ab.getNome()%></td>
-			 		 			</tr>
-			 		 		<%}%>
+		 		 			</tr>
+		 		 			<%for(ArticoliBean ab:ci.getAllPrenotazioni(ub.getUsername())){ %>
+		 		 				<tr>
+		 		 					<td><%=ab.getNome()%></td>
+		 		 				</tr>
+		 		 			<%}%>
 		 		 		</table>
 		 		 	</div>
 		 		 </div> 
@@ -256,7 +257,7 @@
                     	<ul id="listP">
                     		<%ArticoliImpl aP=new ArticoliImpl();
                     		  for(ArticoliBean ab:aP.getAllArticoli()){%>
-                    				<li><%ab.getNome(); %></li>  
+                    				<li><%ab.getNome();%></li>  
                     		  <% }%>
                     	</ul>
 		 		 	</div>
@@ -272,9 +273,21 @@
 		 		  <div class="testo">
 		 		  <%if(ub.getRuolo().equals("admin")){%>
 		 		 	<div id="Lprenotazioni" hidden="hidden">
-                    	
+                    	<table>
+		 		 			<tr>
+		 		 				<th>Articoli prenotati dagli utenti</th>
+		 		 			</tr>
+		 		 			<%UserImpl ui=new UserImpl();
+                    		  for(UserBean use:ui.getAllUser()){
+		 		 				for(ArticoliBean ab:ci.getAllPrenotazioni(use.getUsername())){%>
+		 		 				<tr>
+		 		 					<td><%=use.getUsername() %>
+		 		 					<td><%=ab.getNome()%></td>
+		 		 				</tr>
+		 		 			<%}%>
+		 		 		</table>
 		 		 	</div>
-		 		 	<% }%>
+		 		 	<%}}%>
 		 		 </div>
           	</div>
 		</div>
@@ -430,7 +443,6 @@ $(document).ready(function(){
 		   $("#Lprenotazioni").show();
 		});
 });
-
 </script>
 <script>
 $(document).ready(function(){
