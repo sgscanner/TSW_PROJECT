@@ -1,5 +1,7 @@
 @charset "ISO-8859-1";
 
-table{
-	display:inline;
+table, tr{
+  border: 1px solid;
+  width:50%;
+  text-align:left;
 }

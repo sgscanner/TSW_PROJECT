@@ -41,9 +41,8 @@
 				<h6><%=articoli.get(i).getPrezzo()%></h6>
 				</div>
 			</div>
-		</div>
-	</div
-
+		</div>		
+	</div>
 </div>
 <%}%>
 <p class="bottone1"> 

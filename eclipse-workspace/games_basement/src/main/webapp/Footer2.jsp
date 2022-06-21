@@ -8,33 +8,27 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;">
-		<div style="display:grid;">
+	<div class="container">
+		<div>
 			<p><b>Servizi</b></p>
-			<blockquote>
 				<p>Lavora con noi
 				<p>Sviluppo azienda
 				<p>Tutti i servizi
-			</blockquote>
 		</div>
-		<div style="dispaly:grid;">
+		<div>
 			<p><b>About</b></p>
-			<blockquote>
 				<p>Chi siamo ?
 				<p>Team
-			</blockquote>
 		</div>
-		<div style="display:grid;">
+		<div>
 			<p><b>Note Legali</b></p>
-			<blockquote>
 				<p>Condizioni di vendita
 				<p>Garanzia legale
 				<p>Recesso
-			</blockquote>
 		</div>
-		<div class="col-lg-3 item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a>
-                        <p class="copyright">Game's Basament © 2022</p>
-                    </div>
+		<div>
+        	<p>Game's Basament © 2022</p>
+     	</div>
 	</div>
 </body>
 </html>

@@ -81,6 +81,7 @@ public class ArticoliImpl implements ArticoliDAO {
 	}
 	
 	
+	
 	public ArticoliBean searchByCode(String codice) {
 		ArticoliBean ab=new ArticoliBean();
 		
