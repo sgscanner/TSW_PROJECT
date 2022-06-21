@@ -83,10 +83,8 @@
 				</div>
 			</div>
 			
-			<div class="shop1">
-				<div class="shop2">
+			<div class="shop2">
 					<button id="carrello" class="bag" type="submit">Aggiungi al carrello</button>
-				</div>
 			</div>
 		</div>
 	</div>
@@ -100,10 +98,6 @@
 			<div class="des">
 				<p><%=p.getDescrizione() %></p>
 			</div>
-		</div>
-		
-		<div class="feed">
-			
 		</div>
 		
 		<div>
@@ -136,7 +130,7 @@
 		</div>
 		
 		<div style="margin-top: 25px;">
-			<%@include file="Footer.jsp"%>
+			<%@include file="Footer2.jsp"%>
 		</div>
 		
 		<form action="Feedback.jsp" method="get" id="feedback">
