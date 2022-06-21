@@ -38,7 +38,7 @@
 			<div class="txt">
 				<h5><%=articoli.get(i).getNome()%></h5>
 				<div class="prezzo">
-				<h6><%=articoli.get(i).getPrezzo()%></h6>
+				<h5><%=articoli.get(i).getPrezzo()%></h5>
 				</div>
 			</div>
 		</div>		
