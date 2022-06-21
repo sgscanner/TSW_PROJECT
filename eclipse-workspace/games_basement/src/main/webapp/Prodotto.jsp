@@ -23,13 +23,11 @@
 <style><%@include file="css/Prodotto.css"%></style>
 </head>
 <body>
-	
 	<%@include file="Header2.jsp" %>
-	<div style="font-size: 22px; font-family: 'Arial'; padding: 1rem">
-	<div class="titpro">
+	<input type="hidden" id="codiceA" value=<%=p.getCodiceA()%>/>
+	<div id=tit-titpro>
 		<p><b><%=p.getNome() %></b></p>
 	</div>
-	
 	<div class="prodotto">
 		<div class="prodotto1">
 			<img class="pitcure" src="prodottiImg/<%=p.getNome() %>/1.jpg" alt="1" style="max-width:100%">
@@ -65,7 +63,7 @@
 						<%} %>
 					</div>
 					<div class="shop2">
-						<p style="display:inline;">Quantit&agrave;&nbsp;<input class="n" type="number" min="1" max="99"></p>
+						<p style="display:inline;">Quantit&agrave;&nbsp;<input id="quantita" class="n" type="number" min="1" max="99"></p>
 					</div>
 			</div>
 			
@@ -86,10 +84,7 @@
 			
 			<div class="shop1">
 				<div class="shop2">
-					<button form="acquista" class="bao" type="submit">Acquista ora</button>
-				</div>
-				<div class="shop2">
-					<button form="carrello" id="carrello" class="bag" type="submit">Aggiungi al carrello</button>
+					<button id="carrello" class="bag" type="submit">Aggiungi al carrello</button>
 				</div>
 			</div>
 		</div>
@@ -138,18 +133,39 @@
 			<%@include file="Footer.jsp"%>
 		</div>
 		
-		<form action="" method="get" id="carrello">
-		
-		</form>
-		
-		<form action="" method="get" id="acquista">
-		
-		</form>
-		
 		<form action="Feedback.jsp" method="get" id="feedback">
 			
 		</form>
-		</div>
+
+<!-- ajax -->		
+<script>
+	$("#carrello").click(function(){
+		var quantita=document.getElementById("quantita");
+		var codiceA=document.getElementById("codiceA");
+		compra(codiceA.value.trim(),quantita.value.trim());
+	});
+
+	function readJson(listJson){
+		var json = JSON.parse(listJSON) 
+		var result=json.cartInfo;
+		
+		if(result=="prodotto aggiunto"){
+			alert("Prodotto inserito");
+		}else{
+			alert("Prodotto non inserito,riprovare");
+		}
+	}
+	
+	function compra(param,param2){
+		var id="quantita";
+		var url="/games_basement/AjaxCart";
+		var timeout=0;
+		
+		ajaxCall(id, url, readJson, param, param2, timeout);
+	}
+	
+</script>
+
 <script type="text/javascript">
 	const form = document.getElementById('carrello');
 		

@@ -43,7 +43,7 @@ public class AjaxCart extends HttpServlet {
 
 		if(ci.addToCart(ai.searchByCode(codiceA),Integer.parseInt(quantita))>0) {
 			try {
-				result.put("insertInfo","prodotto aggiunto");
+				result.put("cartInfo","prodotto aggiunto");
 
 				request.getSession().setAttribute("carrello", ci.searchCart());
 			} catch (JSONException e) {
@@ -52,7 +52,7 @@ public class AjaxCart extends HttpServlet {
 			}
 		}else {
 			try {
-				result.put("insertInfo","errore nel database");
+				result.put("cartInfo","errore nel database");
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

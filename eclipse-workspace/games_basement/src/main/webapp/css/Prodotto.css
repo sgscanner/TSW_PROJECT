@@ -52,12 +52,12 @@
 }
 
 .titpro{
-	display: grid;
+	display:flex;
 	margin-top:10px;
 }
 
 .prodotto{
-	display: grid;
+	display: flex;
 	grid-template-columns: 1fr 1fr;
 	margin-top: 10px;
 }
