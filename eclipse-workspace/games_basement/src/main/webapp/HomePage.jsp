@@ -46,7 +46,6 @@ img {
 	transition: 0.6s ease;
 	border-radius: 0 3px 3px 0;
 	user-select: none;
-	background-color:red;
 }
 
 /* Position the "next button" to the right */
@@ -116,8 +115,8 @@ to {
 .prodotti {
   display: inline-block;
   gap: 2px;
-  margin-top:15%;
-  margin-bottom:10%;
+  margin-top:5%;
+  margin-bottom:5%;
 }
 
 .prodotto {
@@ -125,8 +124,8 @@ to {
   color: black;
   border: 1px black solid;
   padding: 1rem;
-  height: 15rem;
-  width:15.5rem;
+  height: 17rem;
+  width:17rem;
 }
 
 .image{
@@ -158,7 +157,7 @@ to {
 <%
 	ArrayList<ArticoliBean> articoli = new ArrayList<ArticoliBean>();
 	ArticoliImpl impl = new ArticoliImpl();
-	articoli = impl.queryGetProduct(5);
+	articoli = impl.queryGetProduct(4);
 %>
 
 <br>
@@ -183,8 +182,8 @@ to {
 			<img src="img/banner5.jpg" style="width: 100%">
 			<div class="text"></div>
 		</div>
-			<button class="prev" onclick="plusSlides(-1)">&#10094;</button>
-			<button class="next" onclick="plusSlides(1)">&#10095;</button>
+			<button class="prev" style="background-color: #c01c28;" onclick="plusSlides(-1)">&#10094;</button>
+			<button class="next" style="background-color: #c01c28;"onclick="plusSlides(1)">&#10095;</button>
 	</div><br>
 	
 	<div style="text-align: center">
@@ -212,7 +211,8 @@ to {
 		</div>		
 	</div>
 </div>
-<%}%>				
+<%}%>
+<%@include file="Footer2.jsp" %>				
 <script>
         let slideIndex = 1;
         showSlides(slideIndex);

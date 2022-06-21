@@ -30,7 +30,7 @@
 <body>
 <%UserBean ub1=(UserBean)session.getAttribute("user"); %>
 <div class="topnav" id="myTopnav">
-  <a href="HomePage.jsp" class="si">Home</a>
+  <a href="HomePage.jsp" style="background-color:#c01c28">Home</a>
   
   <div class="dropdown">
     <button class="dropbtn">Articoli 

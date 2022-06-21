@@ -46,6 +46,7 @@
 </div>
 <%}%>
 <input type="button" class="bottone1" onclick="scrollToTop()" value="Vai all'inizio">
+<%@include file="Footer2.jsp" %>
 </body>
 <script>
 function goTo(id){
