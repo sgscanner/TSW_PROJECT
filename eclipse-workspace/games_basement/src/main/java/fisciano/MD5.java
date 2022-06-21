@@ -14,9 +14,9 @@ public class MD5 {
 		
 		System.out.println("Rand string:"+rand(15));
 		try {
-			String originalPassword = "password";
+			String originalPassword = "lebronjames";
 			 byte[] salt = new String("12345678").getBytes();
-			 SecretKeySpec key = e.createSecretKey("password".toCharArray(),salt, 40000, 128);
+			 SecretKeySpec key = e.createSecretKey(originalPassword.toCharArray(),salt, 40000, 128);
 			System.out.println("Original password: " + originalPassword);
 			String encryptedPassword = e.encrypt(originalPassword, key);
 			System.out.println("Encrypted password: " + encryptedPassword);

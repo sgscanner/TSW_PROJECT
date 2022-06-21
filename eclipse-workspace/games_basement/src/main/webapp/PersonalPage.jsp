@@ -226,7 +226,16 @@
 		 		 </div> 
 		 		  <div class="testo">
 		 		 	<div id="Preno" hidden="hidden">
-		 		 		<% %>
+		 		 		<table>
+		 		 			<tr>
+		 		 				<th>Articoli prenotati</th>
+		 		 			</tr>		
+			 		 		<%for(ArticoliBean ab:ci.getAllPrenotazioni(ub.getUsername())){%>
+			 		 			<tr>
+			 		 				<td><%=ab.getNome()%></td>
+			 		 			</tr>
+			 		 		<%}%>
+		 		 		</table>
 		 		 	</div>
 		 		 </div> 
 		 		 <div class="testo">

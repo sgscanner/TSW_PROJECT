@@ -1,10 +1,9 @@
 package control;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.security.GeneralSecurityException;
 
+import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,15 +33,16 @@ public class LoginServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@SuppressWarnings("unused")
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String uName=request.getParameter("username"),password=request.getParameter("password"),encrypted=encryptPwd(password);
 		UserImpl ui=new UserImpl();
 		UserBean ub=ui.searchUser(uName);
-			System.out.println("username"+uName);
-			System.out.println("Password"+password);
-			System.out.println("encrypted"+encrypted);
+		System.out.println("ub pass "+ub.getPassword());
+		System.out.println("ub uname "+ub.getUsername());
+		
 		if(ub==null) {
 			RequestDispatcher rd=request.getRequestDispatcher("Login.jsp");
 			rd.forward(request, response);
@@ -71,23 +71,16 @@ public class LoginServlet extends HttpServlet {
 		doGet(request, response);
 	}
 
-	private String encryptPwd(String toEncrypt) {
-		String generatedPassword=null;
-		String salt="gameshop";
-
+	private String encryptPwd(String pwd) {
+		Encryption e = new Encryption();
+		String crittografate="";
 		try {
-			MessageDigest md=MessageDigest.getInstance("SHA-1");
-			md.update(salt.getBytes(StandardCharsets.UTF_8));
-			byte[] bytes=md.digest(toEncrypt.getBytes(StandardCharsets.UTF_8));
-			StringBuilder sb=new StringBuilder();
-			for (byte element : bytes) {
-				sb.append(Integer.toString((element & 0xff)+0x100,16).substring(1));
-			}
-			generatedPassword=sb.toString();
-		}catch(NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
+			byte[] salt = new String("12345678").getBytes();
+			SecretKeySpec key = e.createSecretKey(pwd.toCharArray(), salt, 40000, 128);
+			crittografate = e.encrypt(pwd, key);
+		} catch (GeneralSecurityException | IOException e2) {
 
-		return generatedPassword;
+		}
+		return crittografate;
 	}
 }

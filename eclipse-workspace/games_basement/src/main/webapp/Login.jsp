@@ -24,7 +24,6 @@
 			    	<small id="smallPwd" ></small>
 			    </div>
 			    
-			    <button class="button" id="RegButton" >Registrati</button>
 			    <input type="submit"  class="button" value="Login" />
 			    
 			    <a href="HomePage.jsp"><img src="img/logo.png" width="150 px" height="100 px"></a>
@@ -35,12 +34,8 @@
 	const userNameField=document.querySelector("#username");
 	const passwordField=document.querySelector("#password");
 	const formField=document.getElementById("form");
-	boolean unameValid;
-	boolean pwdValid;
-	
-	document.getElementById("RegButton").onclick=function(){
-		location.href="Register.jsp";
-	}
+	const smallUname=document.getElementBydId("smallUname");
+	const smallPwd=document.getElementBydId("smallPwd");
 	
 	formField.addEventListener('submit',function(e){
 		//al submit della form lo prevengo per fare un check degli input che vanno controllati
@@ -49,21 +44,10 @@
 		checkUsername();
 		checkPwd();
 		
-		let formValid= unameValid && pwdValid;
-		
-		if(formValid){
+		if(isEmpty(smallUname.innerHTML) && isEmpty(smallPwd.innerHTML)){
 			formField.submit();
 		}
 	});
-	
-	function validPwd(bool){
-		pwdValid=bool;
-	}
-	
-	function validUname(bool){
-		unameValid=bool;
-	}
-	
 	
 	function unameJson(listJSON){
 		var json = JSON.parse(listJSON) 

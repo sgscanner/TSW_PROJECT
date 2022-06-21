@@ -69,17 +69,16 @@
 			<div class="shop1">
 				<div class="shop2">
 					<%if(p.getQuantita()>0){%>
-					<button type="button" class="pd">&#9745;&nbsp;Prodotto disponibile</button>
+						<button type="button" class="pd">&#9745;&nbsp;Prodotto disponibile</button>
 					<%}else{ %>
-					<button type="button" class="pnd">&#9940;&nbsp;Prodotto non disponibile</button>
-					<a class="pre" href="">Prenota Ora</a>
+						<button type="button" id="prenota" class="pnd">Prenota!</button>
 					<%} %>
 				</div>
 				<div class="shop2">
 					<% if(p.isOfferta() == true){%>
-					<button class="off" type="button">&#127918;&nbsp;Prodotto in offerta</button>
+						<button class="off" type="button">&#127918;&nbsp;Prodotto in offerta</button>
 					<%}else {%>
-					<button class="noff" type="button">&#9888;&nbsp;Prodotto non in offerta</button>
+						<button class="noff" type="button">&#9888;&nbsp;Prodotto non in offerta</button>
 					<%} %>
 				</div>
 			</div>
@@ -89,7 +88,7 @@
 					<button form="acquista" class="bao" type="submit">Acquista ora</button>
 				</div>
 				<div class="shop2">
-					<button form="carrello" class="bag" type="submit">Aggiungi al carrello</button>
+					<button form="carrello" id="carrello" class="bag" type="submit">Aggiungi al carrello</button>
 				</div>
 			</div>
 		</div>
@@ -147,6 +146,10 @@
 <script type="text/javascript">
 	const form = document.getElementById('acquista');
 		
+	document.getElementById("prenota").onclick(fucntion(){
+				
+	});
+	
 	form.addEventListener('submit',(event) => {
 			
 	});

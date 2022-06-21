@@ -2,9 +2,11 @@ package control;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.security.GeneralSecurityException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -89,24 +91,17 @@ public class AjaxPwd extends HttpServlet {
 		}
 	}
 
-	private String encryptPwd(String toEncrypt) {
-		String generatedPassword=null;
-		String salt="gameshop";
-
+	private String encryptPwd(String pwd) {
+		Encryption e = new Encryption();
+		String crittografate="";
 		try {
-			MessageDigest md=MessageDigest.getInstance("SHA-1");
-			md.update(salt.getBytes(StandardCharsets.UTF_8));
-			byte[] bytes=md.digest(toEncrypt.getBytes(StandardCharsets.UTF_8));
-			StringBuilder sb=new StringBuilder();
-			for (byte element : bytes) {
-				sb.append(Integer.toString((element & 0xff)+0x100,16).substring(1));
-			}
-			generatedPassword=sb.toString();
-		}catch(NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
+			byte[] salt = new String("12345678").getBytes();
+			SecretKeySpec key = e.createSecretKey(pwd.toCharArray(), salt, 40000, 128);
+			crittografate = e.encrypt(pwd, key);
+		} catch (GeneralSecurityException | IOException e2) {
 
-		return generatedPassword;
+		}
+		return crittografate;
 	}
 
 }
