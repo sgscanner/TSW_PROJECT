@@ -6,7 +6,7 @@ body { padding: 1rem; }
 .prodotti {
   max-width: 1200px;
   margin: 0 auto;
-  display: inline;
+  display: inline-block;
   gap: 2px;
   margin-top:15%;
   margin-bottom:10%;
