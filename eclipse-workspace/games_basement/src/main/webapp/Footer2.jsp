@@ -32,9 +32,9 @@
 				<p>Recesso
 			</blockquote>
 		</div>
-		<div class="col-lg-3 item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a>
-                        <p class="copyright">Game's Basament © 2022</p>
-                    </div>
+		<div>
+        	<p class="copyright">Game's Basament © 2022</p>
+     	</div>
 	</div>
 </body>
 </html>
