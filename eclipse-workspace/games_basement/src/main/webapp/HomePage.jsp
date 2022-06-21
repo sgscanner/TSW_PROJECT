@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -112,6 +113,37 @@ to {
 
 }
 
+.prodotti {
+  display: inline-block;
+  gap: 2px;
+  margin-top:15%;
+  margin-bottom:10%;
+}
+
+.prodotto {
+  background-color: white;
+  color: black;
+  border: 1px black solid;
+  padding: 1rem;
+  height: 15rem;
+  width:15.5rem;
+}
+
+.image{
+	border:solid black 1px;
+	width:150px;
+	height:150px;
+	margin:auto;
+	float:none;
+	text-align:center;
+	position:relative;
+}
+
+.prezzo{
+	float:left;
+}
+
+
 /* On smaller screens, decrease text size */
 @media only screen and (max-width: 300px) {
 	.prev, .next, .text {
@@ -123,10 +155,14 @@ to {
 	<%@include file="Header2.jsp"%>
 </head>
 <body>
+<%
+	ArrayList<ArticoliBean> articoli = new ArrayList<ArticoliBean>();
+	ArticoliImpl impl = new ArticoliImpl();
+	articoli = impl.queryGetProduct(4);
+%>
+
 <br>
 	<div class="slideshow-container">
-			
-		
 		<div class="mySlides fade">
 			<div class="numbertext"></div>
 			<img src="img/banner2.jpg" style="width: 100%">
@@ -152,22 +188,31 @@ to {
 	</div><br>
 	
 	<div style="text-align: center">
-		
 		<span class="dot" onclick="currentSlide(2)"></span> 
 		<span class="dot" onclick="currentSlide(3)"></span>
 		<span class="dot" onclick="currentSlide(4)"></span> 
 		<span class="dot" onclick="currentSlide(5)"></span>
 	</div>
 
-
-
-							<a id="3" onClick="goTo(this.id)">
-								<h2 class="TitleProduct">test nome </h2><hr>
-								<img src="" class="ImageProduct">
-							</a>
-						
-						
-				
+<%for(int i=0; i<articoli.size();i++){%>										
+<div class="prodotti">
+	<div class="prodotto">
+		<div id="prodotto1">
+			<div class="image">
+				<a id=<%=articoli.get(i).getCodiceA()%> onclick="goTo(this.id)">
+					<img src="prodottiImg/<%=articoli.get(i).getNome()%>/rec.jpg" alt="Immagine non disponibile" width="150px" height="137px">
+				</a>
+			</div>
+			<div class="txt">
+				<h5><%=articoli.get(i).getNome()%></h5>
+				<div class="prezzo">
+				<h5><%=articoli.get(i).getPrezzo()%></h5>
+				</div>
+			</div>
+		</div>		
+	</div>
+</div>
+<%}%>				
 <script>
         let slideIndex = 1;
         showSlides(slideIndex);
