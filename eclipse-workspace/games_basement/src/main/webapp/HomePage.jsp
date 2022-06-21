@@ -45,6 +45,7 @@ img {
 	transition: 0.6s ease;
 	border-radius: 0 3px 3px 0;
 	user-select: none;
+	background-color:red;
 }
 
 /* Position the "next button" to the right */
@@ -124,28 +125,16 @@ to {
 <body>
 <br>
 	<div class="slideshow-container">
-		<a id="34" onClick="goTo(this.id)">
-			<div class="mySlides fade">
-				<div class="numbertext"></div>
-				<img src="prodottiImg/Gran Turismo 7 Ps4/4.jpg" style="width: 100%">
-				<div class="text"></div>
-			</div>
-		</a>
+			
 		
-		<a id="39" onClick="goTo(this.id)">
 		<div class="mySlides fade">
 			<div class="numbertext"></div>
-			<img src="prodottiImg/Spider-Man Ps4.jpg" style="width: 100%">
+			<img src="img/banner2.jpg" style="width: 100%">
 			<div class="text"></div>
 		</div>
 		<div class="mySlides fade">
 			<div class="numbertext"></div>
-			<img src="img/banner1.jpg" style="width: 100%">
-			<div class="text"></div>
-		</div>
-		<div class="mySlides fade">
-			<div class="numbertext"></div>
-			<img src="img/banner5.jpg" style="width: 100%">
+			<img src="img/banner3.jpg" style="width: 100%">
 			<div class="text"></div>
 		</div>
 		<div class="mySlides fade">
@@ -153,14 +142,17 @@ to {
 			<img src="img/banner4.jpg" style="width: 100%">
 			<div class="text"></div>
 		</div>
-			<a class="prev" onclick="plusSlides(-1)">
-			<img src="img/left.png" width="15 px" height="15 px"></a> 
-			<a class="next" onclick="plusSlides(1)">
-			<img src="img/right.png" width="15 px" height="15 px"> </a>
+		<div class="mySlides fade">
+			<div class="numbertext"></div>
+			<img src="img/banner5.jpg" style="width: 100%">
+			<div class="text"></div>
+		</div>
+			<button class="prev" onclick="plusSlides(-1)">&#10094;</button>
+			<button class="next" onclick="plusSlides(1)">&#10095;</button>
 	</div><br>
 	
 	<div style="text-align: center">
-		<span class="dot" onclick="currentSlide(1)"></span> 
+		
 		<span class="dot" onclick="currentSlide(2)"></span> 
 		<span class="dot" onclick="currentSlide(3)"></span>
 		<span class="dot" onclick="currentSlide(4)"></span> 
@@ -175,7 +167,7 @@ to {
 							</a>
 						
 						
-						
+				
 <script>
         let slideIndex = 1;
         showSlides(slideIndex);
