@@ -116,8 +116,8 @@ to {
 .prodotti {
   display: inline-block;
   gap: 2px;
-  margin-top:15%;
-  margin-bottom:10%;
+  margin-top:5%;
+  margin-bottom:5%;
 }
 
 .prodotto {
@@ -125,8 +125,8 @@ to {
   color: black;
   border: 1px black solid;
   padding: 1rem;
-  height: 15rem;
-  width:15.5rem;
+  height: 17rem;
+  width:17rem;
 }
 
 .image{
@@ -158,7 +158,7 @@ to {
 <%
 	ArrayList<ArticoliBean> articoli = new ArrayList<ArticoliBean>();
 	ArticoliImpl impl = new ArticoliImpl();
-	articoli = impl.queryGetProduct(5);
+	articoli = impl.queryGetProduct(4);
 %>
 
 <br>
@@ -210,7 +210,8 @@ to {
 		</div>		
 	</div>
 </div>
-<%}%>				
+<%}%>
+<%@include file="Footer2.jsp" %>				
 <script>
 	let slideIndex = 0;
 	showSlides();
