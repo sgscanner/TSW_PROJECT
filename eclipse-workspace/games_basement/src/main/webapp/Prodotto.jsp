@@ -55,10 +55,10 @@
 							double s = 15;
 							ps = r * s / 100;
 							ps = r - ps;%>
-						<p style="margin-bottom:10px;text-decoration:line-through;"><%=p.getPrezzo() %>&euro;</p>
+						<p style="margin-bottom:10px;text-decoration:line-through;"><%=p.getPrezzo() %>0&euro;</p>
 						<p><%=ps %>&euro;</p>
 						<%}else{ %>
-						<p style="display:inline;"><%=p.getPrezzo() %>&euro;</p>
+						<p style="display:inline;"><%=p.getPrezzo() %>0&euro;</p>
 						<%} %>
 					</div>
 					<div class="shop2">
@@ -68,8 +68,6 @@
 			
 			<div class="shop1">
 				<div class="shop2">
-					&nbsp;
-					&nbsp;
 					<%if(p.getQuantita()>0){%>
 					<button type="button" class="pd">&#9745;&nbsp;Prodotto disponibile</button>
 					<%}else{ %>

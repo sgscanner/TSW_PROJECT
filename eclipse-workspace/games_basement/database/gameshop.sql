@@ -15,7 +15,7 @@ DROP TABLE IF EXISTS Utente;
 CREATE TABLE Utente (
 	id_utente varchar(25) not null ,
   	email varchar(30) not null ,
-  	password varchar(32) not null,
+  	password varchar(100) not null,
   	ruolo varchar(30 ) not null,
 	
     primary key (id_utente) 
@@ -44,7 +44,7 @@ DROP TABLE IF EXISTS Rubrica_indirizzi;
 CREATE TABLE Rubrica_indirizzi (
 	id_indirizzo smallint not null,
 	id_utente varchar(25) not null,
-	id_città varchar(30) not null,
+	id_citta varchar(30) not null,
 	indirizzo varchar(50) not null,
 	foreign key(id_utente) references Utente (id_utente),
 	primary key (id_indirizzo)
@@ -76,7 +76,7 @@ CREATE TABLE Articolo (
 	nome 		varchar(250) not null,
 	tipologia_articoli 	varchar(250) not null,
 	offerta boolean not null,
-	quantità int not null,
+	quantita int not null,
 	
     primary key(codice_articoli),
 	foreign key(codice_catalogo) REFERENCES Catalogo (codice_catalogo)
@@ -164,6 +164,8 @@ CREATE TABLE Recensione(
 	numeroStelle int not null,
 	id_utente varchar(250) not null,
 	codice_articoli varchar(250) not null,
+    titolo varchar(100) not null,
+    descrizione varchar(250) not null,
 	
     foreign key(codice_articoli) references Articolo(codice_articoli),
 	foreign  key(id_utente) references Utente(id_utente)
@@ -174,6 +176,7 @@ insert into Fornitore values('08106710158','Microsoft','Viale Pasubio 21');
 insert into Fornitore values('03359860966','Nintendo','Via Torri Bianche, 6');
 
 insert into Catalogo values('1');
+insert into Catalogo values('2');
 
 #Giochi Ps1
 
@@ -228,7 +231,7 @@ insert into Articolo values('39','1','Marvel s Spider-Man contiene tutte le acro
 
 #Giochi Ps5
 
-insert into Articolo (codice_articoli, codice_catalogo, descrizione, prezzo, nome, tipologia_articoli, offerta, quantità) values 
+insert into Articolo (codice_articoli, codice_catalogo, descrizione, prezzo, nome, tipologia_articoli, offerta, quantita) values 
 	('40','1','Call of Duty®: Modern Warfare® II è il seguito del popolare Modern Warfare® del 2019.i giocatori potranno scoprire cosa ha reso la Task Force 141 la squadra leggendaria che è oggi.','60.00','Call of Duty Modern Warfare II Ps5','gioco',false,'0'),
     ('41','1','Batman è morto e i criminali hanno invaso le strade di Gotham City. Proteggere la città, dare speranza ai suoi cittadini, mettere in riga le forze dell’ordine e incutere timore nei criminali è ora compito della Bat-famiglia.','60.00','Gotham Knights Ps5','gioco',false,'0'),
     ('42','1','HITMAN 3 è la drammatica conclusione della trilogia del mondo degli assassini e porta i giocatori in giro per il mondo in un’avventura attraverso vaste locations sandbox.','25.00','Hitman 3 Ps5','gioco',false,'10'),
@@ -242,7 +245,7 @@ insert into Articolo (codice_articoli, codice_catalogo, descrizione, prezzo, nom
 
 #Giochi PsVita
 
-insert into Articolo (codice_articoli, codice_catalogo, descrizione, prezzo, nome, tipologia_articoli, offerta, quantità) values
+insert into Articolo (codice_articoli, codice_catalogo, descrizione, prezzo, nome, tipologia_articoli, offerta, quantita) values
 	('50','1','Angry Birds Star Wars è l ennesimo episodio della serie Rovio che per l occasione si ispira alla saga di Star Wars.','20.00','Angry Birds Star Wars PsVita','gioco',false,'10'),
     ('51','1','Ambientato prima della rivolta dei più pericolosi criminali di Gotham City, il gioco presenta un giovane e rozzo Batman che affronta un momento chiave nei primi passi della sua carriera.','15.00','Batman Arkham Origins Blackgate PsVita','gioco',false,'10'),
     ('52','1','Nei panni di un intraprendente eroina di nome Kat, si verrà proiettati tra i grattacieli e le nuvole di una misteriosa città.','10.00','Gravity Rush PsVita','gioco',false,'10'),
@@ -256,7 +259,7 @@ insert into Articolo (codice_articoli, codice_catalogo, descrizione, prezzo, nom
 
 #Giochi digitali
 
-insert into Articolo (codice_articoli, codice_catalogo, descrizione, prezzo, nome, tipologia_articoli, offerta, quantità) values
+insert into Articolo (codice_articoli, codice_catalogo, descrizione, prezzo, nome, tipologia_articoli, offerta, quantita) values
 	('60','1','Immergiti in una visione inquieta della Detroit del futuro, dove umani e androidi conducono una fragile convivenza e le tue decisioni costruiscono la storia che ti circonda.','30.00','Detroit Become Human DG Ps4','gioco',true,'10'),
     ('61','1','Entra nella nuova era della Formula 1® in EA SPORTS™ F1® 22, il videogioco ufficiale del FIA Formula One World Championship™ 2022.','60.00','F1 22 DG Xbox One','gioco',false,'0'),
     ('62','1','Entra nella storia della Formula 1 con il gioco su licenza ufficiale F1 Manager 2022. Diventa il team principale della tua squadra preferita, poi scegli i piloti e il personale per la stagione 2022.','60.00','F1 22 Manager DG Ps5','gioco',false,'0'),
@@ -270,7 +273,7 @@ insert into Articolo (codice_articoli, codice_catalogo, descrizione, prezzo, nom
 
 #Giochi Xbox 360
 
-insert into Articolo (codice_articoli, codice_catalogo, descrizione, prezzo, nome, tipologia_articoli, offerta, quantità) values
+insert into Articolo (codice_articoli, codice_catalogo, descrizione, prezzo, nome, tipologia_articoli, offerta, quantita) values
 	('70','1','Assassin s Creed: Rogue è un videogioco sviluppato da Ubisoft Sofia e pubblicato da Ubisoft. Settimo capitolo principale della serie di Assassin s Creed e sequel di Assassin s Creed IV: Black Flag','20.00','Assasin s Creed Rogue Xbox 360','gioco',false,'10'),
     ('71','1','La trama segue gli eventi di Call of Duty: Black Ops II nel 2065, 40 anni dopo, in un mondo di fronte a sconvolgimenti a causa dei conflitti, cambiamenti climatici e nuove tecnologie.','30.00','Call of Duty Black Ops 3 Xbox 360','gioco',false,'10'),
     ('72','1','Destiny è un videogioco sviluppato da Bungie ed ambientato in un mondo, a detta degli sviluppatori, connesso e condiviso,il quale fa del gioco uno sparatutto in prima persona fantascientifico','15.00','Destiny Xbox 360','gioco',true,'10'),
@@ -284,7 +287,7 @@ insert into Articolo (codice_articoli, codice_catalogo, descrizione, prezzo, nom
 
 #Giochi Xbox One
 
-insert into Articolo (codice_articoli, codice_catalogo, descrizione, prezzo, nome, tipologia_articoli, offerta, quantità) values
+insert into Articolo (codice_articoli, codice_catalogo, descrizione, prezzo, nome, tipologia_articoli, offerta, quantita) values
 	('80','1','Batman: Arkham Collection è la versione definitiva della trilogia Arkham di Rocksteady ed è una collezione completa che include tutti i contenuti rilasciati dopo l uscita del gioco.','25.00','Batman Arkham Collection Xbox One','gioco',true,'10'),
     ('81','1','Vivi una Campagna avvincente o crea una squadra e affronta le sfide delle Operazioni Speciali, un mix di mappe e modalità del Multigiocatore e prova il sistema Battle Pass, incluso per tutti i giocatori online.','50.00','Call Of Duty Moder Warfare Xbox One','gioco',true,'10'),
     ('82','1','Car Mechanic Simulator 2021 è una nuova produzione con un folto gruppo di giocatori. Inizia la tua avventura come nuovo proprietario di un autofficina e fatti strada nel settore.','20.00','Car Mechanic Simulator Xbox One','gioco',false,'10'),
@@ -299,4 +302,66 @@ insert into Articolo (codice_articoli, codice_catalogo, descrizione, prezzo, nom
     ('91','1','Forza Horizon 5 è un videogioco open world di guida, sviluppato da Playground Games e pubblicato il 9 novembre 2021 da Xbox Game Studios in esclusiva per Xbox One, Xbox Series X/S.','40.00','Forza Horizon 5 Xbox One','gioco',true,'10'),
     ('92','1',' Friday the 13th: The Game è un survival horror in terza persona in cui i giocatori impersoneranno un giovane assistente o, per la prima volta in assoluto, Jason Voorhees.','20.00','Friday The 13Th Xbox One','gioco',false,'10'),
     ('93','1','GRID Legends è un racing game arcade, una babilonia d adrenaliniche corse per piloti solitari e pirati delle strade online.','30.00','Grid Legends Xbox One','gioco',false,'10'),
-    ('94','1','Halo Infinite è ambientato su Zeta Halo, un misterioso pianeta artificiale a forma di anello pensato per distruggere la vita della Galassia.','50.00','Halo Infinite Xbox One','gioco',true,'10');
+    ('94','1','Halo Infinite è ambientato su Zeta Halo, un misterioso pianeta artificiale a forma di anello pensato per distruggere la vita della Galassia.','50.00','Halo Infinite Xbox One','gioco',true,'10'),
+    ('95','1','John Wick Hex è un videogioco che mette insieme combattimenti coreografati e meccaniche degli scacchi.','10.00','John Wick Hex Xbox One','gioco',false,'10'),
+    ('96','1','Tuffati tra avventura e risate nell avventuroso gioco di Jumanji, la sfida definitiva che sa trasportar chi questo mondo vuol lasciar.','25.00','Jumanji Xbox One','gioco',false,'10'),
+    ('97','1','Just Dance® 2021 è il gioco di ballo definitivo, con 40 nuovi brani di successo tra cui "Don t Start Now" di Dua Lipa, "Feel Special" di TWICE, "Señorita" di Shawn Mendes e Camila Cabello e altri ancora!','30.00','Just Dance 2021 Xbox One','gioco',false,'10'),
+    ('98','1','Haven Springs è una piccola cittadina mineraria piena di bellezze e misteri nascosta tra le montagne del Colorado. Nei panni di Alex, scoprirai i segreti scioccanti dietro la morte di tuo fratello ','25.00','Life is Strange True Colors Xbox One','gioco',true,'10'),
+    ('99','1','MXGP 2019  è un titolo solido come il motore di una moto che lotta nel fango. Il gameplay divertente rende tutto molto piacevole, nonostante qualche piccola sbavatura che non rovina però l esperienza nella sua interezza','15.00','MXGP 2019 Xbox One','gioco',false,'10'),
+    ('100','1','Soddisfa il tuo bisogno di velocità sia come poliziotto che come fuorilegge mettendoti alla guida dei bolidi ad alte prestazioni più potenti del mondo. È ora di scaldare i motori.','20.00','Need for Speed Hot Pursuit Remastered Xbox One','gioco',false,'10'),
+    ('101','1','OUTRIDERS è uno shooter GdR cooperativo da 1 a 3 giocatori ambientato in un universo fantascientifico oscuro e spietato.','20.00','Outriders Xbox One','gioco',true,'10'),
+    ('102','1','America, 1899. Dopo un colpo andato storto nella città di Blackwater, Arthur Morgan e la banda di Van der Linde sono costretti alla fuga.','25.00','Red Dead Redemption II Xbox One','gioco',true,'10'),
+    ('103','1','Rust è, fondamentalmente, un survival game, cioè un gioco il cui obiettivo è sopravvivere.','30.00','Rust Xbox One','gioco',false,'0'),
+    ('104','1','SGW Contracts 2 è uno sparatutto tattico, ambientato in Medio Oriente. Vesti i panni di Raven, un cecchino mercenario ed elimina una serie di bersagli ','30.00','Sniper Ghost Warrior Contracts 2 Xbox One','gioco',true,'10'),
+    ('105','1','Cinque anni dopo l Epurazione e l ascesa dell Impero Galattico, l ex-Padawan Jedi Cal Kestis si nasconde sul pianeta Bracca, dove lavora come rottamatore smontando navi delle Guerre dei cloni e nascondendo le sue abilità nella Forza.','15.00','Star Wars Jedi Fallen Order Xbox One','gioco',false,'10'),
+    ('106','1','ambientata dopo la battaglia di Endor e la risultante distruzione della seconda Morte Nera, la storia segue le vicende alternate di Rao Highmoon','20.00','Star Wars Squadrons Xbox One','gioco',false,'10'),
+    ('107','1','The Elder Scrolls V: Skyrim è un videogioco GdR d azione a mondo aperto sviluppato da Bethesda Game Studios. Skyrim è il quinto capitolo della saga The Elder Scrolls, seguito di The Elder Scrolls IV: Oblivion.','25.00','The elder scrolls V Skyrim Xbox One','gioco',false,'10'),
+    ('108','1','Risvegliatosi dall ibernazione per mano di uno scienziato impazzito di nome Phineas Welles, questi inizia un viaggio esplorativo della colonia e dei suoi pericoli nascosti. ','20.00','The Outer Worlds Xbox One','gioco',false,'10'),
+    ('109','1','In UFC 4, troverai due scenari nuovi di zecca: preparati a menare le mani nel cortile o immergiti nella leggendaria tradizione del Kumite. ','30.00','UFC 4 Xbox One','gioco',true,'10');
+
+#Giochi Nintendo 3DS
+
+insert into Articolo (codice_articoli, codice_catalogo, descrizione, prezzo, nome, tipologia_articoli, offerta, quantita) values
+	('110','1','Si tratta di un gioco di corse dal carattere spiccatamente arcade e dal gameplay "turbocentrico", caratterizzato dalla presenza di numerose vetture realmente esistenti così come di una grande quantità di modalità.','10.00','Asphalt 3D 3DS','gioco',false,'10'),
+    ('111','1','Benjamin Kirby "Ben" Tennyson, anche conosciuto come Ben 10, è il protagonista della serie','15.00','Ben 10 3DS','gioco',false,'10'),
+    ('112','1','Esso consiste in un insieme di giochi ed attività che mirano ad allenare, potenziare e stimolare le differenti capacità cognitive collocate nelle diverse aree del nostro cervello,','20.00','Brain Training Infernale 3DS','gioco',false,'10'),
+    ('113','1','Cooking Mama: Sweet Shop propone circa 60 differenti ricette, in mini-giochi tutti diversi l uno con l altro','20.00','Cooking Mama Sweet Shop 3DS','gioco',false,'10'),
+    ('114','1','In Disney Art Academy, i personaggi Disney e Pixar possono essere disegnati o dipinti in vari modi. ','15.00','Disney Art Academy 3DS','gioco',false,'10'),
+    ('115','1','Dragon Ball Fusions è l ultimissima esperienza di Dragon Ball per Nintendo 3DS! è un RPG Action che combina la lotta, le personalizzazioni, e il collezionamento degli elementi','10.00','Dragon Ball Fusions 3DS','gioco',true,'10'),
+    ('116','1','Driver Renegade ti consente di provare tutta l intensità e la durezza dei veri inseguimenti urbani in 3D.','15.00','Driver Renegade 3D 3DS','gioco',false,'10'),
+    ('117','1','Il professor Layton e l eredità degli Aslant è l ultimo gioco uscito della serie del Professor Layton.','15.00','Il Professor Layton e l eredita degli Aslant 3DS','gioco',false,'0'),
+    ('118','1','Preparati ad andare a tutto vapore per Sodor con Thomas e amici! In questa avventura piena di giochi e divertenti rompicapi devi aiutare le locomotive a preparare l isola all arrivo di alcuni importanti ospiti!','20.00','Il Trenino Thomas A tutto vapore per Soder 3DS','gioco',true,'10'),
+    ('119','1','Mario Sports Superstars per console della famiglia Nintendo 3DS è una compilation che comprende cinque sport: calcio, baseball, tennis, golf ed equitazione','20.00','Mario Sports Superstars 3DS','gioco',false,'10'),
+    ('120','1','Nintendogs sfrutta la telecamera e la tecnologia di riconoscimento facciale integrate nella console Nintendo 3DS per consentire ai cagnolini e ai gattini di reagire ai movimenti','20.00','Nintendogs 3DS','gioco',true,'10'),
+    ('121','1','Dopo essere stato recapitato a casa tua, insieme a una chiave misteriosa, Orsetto prende vita e inizia a parlare','10.00','Orsetto Amichetto 3DS','gioco',true,'10'),
+    ('122','1','Pilotwings Resort è un videogioco di simulazione, sviluppato dalla Monster Games e pubblicato per la console Nintendo 3DS.','15.00','Pilotwings Resort 3DS','gioco',false,'10'),
+    ('123','1','A causa di tutte le chiamate di emergenza, questo lavoro è troppo impegnativo per essere gestito da un solo membro dell equipaggio e dovrete lavorare insieme come una squadra per mantenere il parco sicuro','20.00','Planes 2 Missione Antincendio 3DS','gioco',false,'10');
+    
+#Console
+
+insert into Articolo (codice_articoli, codice_catalogo, descrizione, prezzo, nome, tipologia_articoli, offerta, quantita) values
+	('138','2','La Console Sony PlayStation 1, completa di tutta la cavetteria originale sony, e di controller anch esso originale dual shock, ovviamente tutto testato e funzionante.','100.00','PlayStation 1','console',false,'2'),
+    ('139','2','La PlayStation 2 è la seconda console da tavolo per videogiochi prodotta da Sony Interactive Entertainment, presentata il 1º marzo 1999 e commercializzata il 4 marzo 2000 in Giappone','150.00','PlayStation 2','console',false,'5'),
+    ('140','2','La PlayStation 3 è una console per videogiochi prodotta da Sony Computer Entertainment, dotata di varie funzioni multimediali oltre a quelle di intrattenimento videoludico.','200.00','Playstation 3','console',false,'7'),
+    ('141','2','La PlayStation 4 è una console per videogiochi prodotta da Sony Interactive Entertainment, dotata di varie funzioni multimediali oltre a quelle di intrattenimento videoludico.','300.00','Playstation 4','console',true,'10'),
+    ('142','2','La PlayStation 5 è una console per videogiochi prodotta da Sony Interactive Entertainment','500.00','Playstation 5','console',true,'5'),
+    ('143','2','La PlayStation Vita , è una console portatile per videogiochi prodotta da Sony Interactive Entertainment, ','75.00','PsVita','console',false,'10'),
+    ('144','2','La Xbox 360 è una console per videogiochi prodotta da Microsoft con la collaborazione di IBM, ATI Technologies e Samsung ed è succeduta alla prima Xbox.','230.00','Xbox 360','console',false,'10'),
+    ('145','2','La Xbox One è una console per videogiochi prodotta da Microsoft. La macchina dispone di varie funzioni multimediali oltre a quelle di intrattenimento videoludico e fa parte dell ottava generazione di console, ','300.00','Xbox One','console',false,'10'),
+    ('146','2','La Xbox Serie S è una console per videogiochi prodotta da Microsoft.La console fa parte della quarta generazione della famiglia Xbox','350.00','Xbox Serie S','console',false,'10'),
+    ('147','2','La Xbox Serie X è una console per videogiochi prodotta da Microsoft.La console fa parte della quarta generazione della famiglia Xbox','500.00','Xbox Serie X','console',true,'5'),
+    ('148','2','Il Nintendo 2DS è una console portatile per videogiochi prodotta da Nintendo. È il secondo restyling di Nintendo 3DS ed appartiene all ottava generazione delle console.','100.00','Nintendo 2DS','console',false,'10'),
+    ('149','2','Il Nintendo 3DS è una console portatile per videogiochi prodotta da Nintendo e la prima ad appartenere all ottava generazione di console videoludiche. ','150.00','Nintendo 3DS','console',false,'10'),
+    ('150','2','Il Nintendo Switch, inizialmente conosciuto con il nome in codice di NX, è una console a 64 bit di natura ibrida sviluppata da Nintendo ','250.00','Nintendo Switch','console',true,'10');
+
+insert into Utente(id_utente,email,password,ruolo) values
+	('Christian','c.mascolo21@studenti.unisa.it','YBskI5eXlup7vN4R7N+QZg==:dioDBxFWC3NisY+M4i4tUw==','admin'),
+    ('AnnaLinda','a.brenga@studenti.unisa.it','uXnGxSffO+6UP3JE7bLBzA==:9MOByiJsC3yiN8S2bViDzg==','admin'),
+    ('Jess','j.zampetti@studenti.unisa.it','yhfzaHmxfMqvz1yemXV39A==:tLBOcrM0M4lD4vvqa7eZvw==','admin'),
+    ('Paolo','p.vitolo8@studenti.unisa.it','jAiG9ITZ+lASFBfmsUxJkQ==:+RsOccRtl/x+K1sBR1oeFQ==','admin');
+
+insert into Dati_Anagrafici(id_utente,cap,nome,cognome,telefono,data_nascita,città) values
+	('Christian','80045','Christian','Mascolo','3883909116','2001-09-24','Pompei'),
+    ('AnnaLinda','84047','Anna Linda','Brenga','3662174424','1999-03-28','Gromola'),
+    ('Jess','82018','Jessica','Zampetti','3402760091','2002-04-24','Calvi'),
+    ('Paolo','84047','Paolo','Vitolo','3393826684','2002-02-02','Capaccio Paestum');
