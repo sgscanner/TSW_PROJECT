@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
  <%@page import="bean.UserBean"%>
  <%@page import="bean.DatiAnagraficiBean"%>
  <%@page import="bean.RubricaIndirizziBean"%>
@@ -155,8 +155,8 @@
 			    			<small></small>
 			    		</div>
 			    			<div class="inputContainer">
-			    			<label for="citta">Citt√†:</label>
-			   				<input class="testo3" id="citta" type="text" name="citta" value=<%=dab.getCitta()%> placeholder="Citt√†" readonly/><br><br>
+			    			<label for="citta">Citt‡:</label>
+			   				<input class="testo3" id="citta" type="text" name="citta" value=<%=dab.getCitta()%> placeholder="Citt‡" readonly/><br><br>
 			   				<small></small>
 			    		</div>
 			   			<div class="inputContainer"> 
@@ -542,7 +542,7 @@ $(document).ready(function(){
 	
 	function checkSped(){
 		if(isEmpty(spedField.value.trim())){
-			showError(spedField,"Qual √® il tuo indirizzo di spedizione?");
+			showError(spedField,"Qual Ë il tuo indirizzo di spedizione?");
 			return false;
 		}else{
 			showSuccess(spedField);
@@ -552,7 +552,7 @@ $(document).ready(function(){
 	
 	function checkFatt(){
 		if(isEmpty(spedField.value.trim())){
-			showError(fattField,"Qual √® il tuo indirizzo di fatturazione?");
+			showError(fattField,"Qual Ë il tuo indirizzo di fatturazione?");
 			return false;
 		}else{
 			showSuccess(fattField);
@@ -564,7 +564,7 @@ $(document).ready(function(){
 		var json = JSON.parse(listJSON) 
 		var result=json.usernameInfo;
 		
-		if(result=="Username gi√† preso"){
+		if(result=="Username gi‡ preso"){
 			showError(userNameField,result);
 		}else if(result=="Username disponibile" ){
 			showSuccess(userNameField);
@@ -629,7 +629,7 @@ $(document).ready(function(){
 	    formField.classList.remove('success');
 	    formField.classList.add('error');
 	    
-	    var error = formField.querySelector('small');//accedo al field dove visualizzer√≤ il messagio
+	    var error = formField.querySelector('small');//accedo al field dove visualizzerÚ il messagio
 	    error.textContent = messageError; //aggiungo il messaggio
 		error.style.color="red";
 	}
@@ -661,7 +661,7 @@ $(document).ready(function(){
 	
 	function checkNome(){
 		if(isEmpty(nomeField.value.trim())){
-			showError(nomeField,"Qual √® il tuo nome?");
+			showError(nomeField,"Qual Ë il tuo nome?");
 			return false;
 		}else{
 			showSuccess(nomeField);
@@ -671,7 +671,7 @@ $(document).ready(function(){
 	
 	function checkCognome(){
 		if(isEmpty(cognomeField.value.trim())){
-			showError(cognomeField,"Qual √® il tuo cognome?");
+			showError(cognomeField,"Qual Ë il tuo cognome?");
 			return false;
 		}else{
 			showSuccess(cognomeField);

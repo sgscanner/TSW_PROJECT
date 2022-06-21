@@ -28,7 +28,7 @@
 </script> 
 </head>
 <body>
-<%UserBean ub=(UserBean)session.getAttribute("user"); %>
+<%UserBean ub1=(UserBean)session.getAttribute("user"); %>
 <div class="topnav" id="myTopnav">
   <a href="HomePage.jsp" class="active">Home</a>
   
@@ -43,7 +43,7 @@
   </div>
   
   <div class="dropdown">
-	  <% if(ub == null){ %>
+	  <% if(ub1 == null){ %>
     		<button class="dropbtn">Guest 
     		</button>
     		<div class="dropdown-content">
@@ -51,7 +51,7 @@
 	      		<a href="Register.jsp">Register</a>
    			 </div> 
       <%}else{%>
-			<button class="dropbtn"><%=ub.getUsername() %> 
+			<button class="dropbtn"><%=ub1.getUsername() %> 
     		</button>
     		<div class="dropdown-content">
 	      		<a href="PersonalPage.jsp">Area Personale</a>
