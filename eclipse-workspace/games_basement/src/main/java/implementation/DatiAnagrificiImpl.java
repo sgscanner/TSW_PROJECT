@@ -32,7 +32,7 @@ public class DatiAnagrificiImpl implements DatiAnagraficiDAO{
 				String idU=rs.getString("id_utente"),idC=rs.getString("cap"),nome=rs.getString("nome"),cognome=rs.getString("cognome"),
 						telefono=rs.getString("telefono"),citta=rs.getString("citta");
 				
-				Date bDay=rs.getDate(3);
+				Date bDay=rs.getDate("data_nascita");
 				
 				al.add(new DatiAnagraficiBean(idU,idC,nome,cognome,telefono,bDay,citta));
 			}
@@ -80,10 +80,10 @@ public class DatiAnagrificiImpl implements DatiAnagraficiDAO{
 	public void addDatiAnagrafici(DatiAnagraficiBean dab) {
 		// TODO Auto-generated method stub
 		try(PreparedStatement ps=c.prepareStatement(INSERT_QUERY)){
-			ps.setString(1, dab.getIdUtente()); ps.setString(2, dab.getTelefono());
-			ps.setDate(3, dab.getDataNascita()); ps.setString(4, dab.getNome());
-			ps.setString(5, dab.getCognome()); ps.setString(6, dab.getCitta());
-			ps.setString(7, dab.getcap());
+			ps.setString(1, dab.getIdUtente()); ps.setString(5, dab.getTelefono());
+			ps.setDate(6, dab.getDataNascita()); ps.setString(3, dab.getNome());
+			ps.setString(4, dab.getCognome()); ps.setString(7, dab.getCitta());
+			ps.setString(2, dab.getcap());
 			ps.executeUpdate();
 		}catch(SQLException e) {
 			System.out.println(e.getMessage());

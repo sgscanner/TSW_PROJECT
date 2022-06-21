@@ -1,12 +1,10 @@
 package control;
 
 import java.io.IOException;
-import java.security.GeneralSecurityException;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
