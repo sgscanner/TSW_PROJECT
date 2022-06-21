@@ -8,18 +8,19 @@
 <%@page import="bean.UserBean"%>
 <%@page import="bean.ArticoliBean"%>
 <script src="jQuery/jquery.js"></script>
-<script src="jQuery/jquery-ui.min.js"></script>
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="css/Header2.css">
  <script>
- $("#hiddenDiv tr").hide();
 	
 	$(document).ready(function(){
+	 	$("#hiddenDiv").hide();
 		$("#input").on("keyup", function() {
  		var value = $(this).val().toLowerCase();
  		$("#hiddenDiv tr").filter(function() {
- 			if(value.length>1)
-   				$(this).toggle($(this).text().toLowerCase().indexOf(value)>-1);
+ 			if(value.length>0){
+ 				$("#hiddenDiv").show();
+ 				$(this).toggle($(this).text().toLowerCase().indexOf(value)>-1);
+ 			}
    			else $(this).hide($(this).text().toLowerCase().indexOf(value)>-1)
  		});
 		});
@@ -63,10 +64,10 @@
   </div>
    <input type="text" id="input"></input>
 
-	  	<table id=hiddenDiv>
+	  	<table id="hiddenDiv">
                  <%	ArticoliImpl ai=new ArticoliImpl();
                  	for(ArticoliBean ab:ai.getAllArticoli()){%>
-               			<tr><td><a href="Prodotto.jsp?id=<%=ab.getCodiceA()%>"><%=ab.getNome() %></a></td></tr>
+               			<tr><td><a id="test" href="Prodotto.jsp?id=<%=ab.getCodiceA()%>"><%=ab.getNome() %></a></td></tr>
                	 <%} %>
           </table>
   <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
