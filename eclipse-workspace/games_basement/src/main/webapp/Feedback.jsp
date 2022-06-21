@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ page import="bean.ArticoliBean"%>
+    <%@ page import="dao.ArticoliDAO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +14,8 @@
 <body>
 	
 	<%@include file="Header.jsp" %>
-		
+	<% ArticoliImpl a=new ArticoliImpl();
+	ArticoliBean p = a.searchByCode(request.getParameter("id")); %>
 	<div class="container">
 		<div class="titolo">
 			<p><b>Crea Recensione</b></p>
@@ -20,10 +23,10 @@
 		<div class="line"></div>
 		<div class="c1">
 			<div class="c2">
-				<img class="pitcure" alt="img" src="img/rec.jpg">
+				<img class="pitcure" alt="img" src="prodottiImf/<%=p.getNome() %>/rec.jpg">
 			</div>
 			<div class="c3">
-				<p>Titolo prodotto</p>
+				<p><%=p.getNome() %></p>
 			</div>
 		</div>
 		<div class="line"></div>
@@ -68,7 +71,7 @@
 		<%@include file="Footer.jsp" %>
 	</div>
 	
-	<form method="get" action="Prodotto.jsp" id="feed"></form>
+	<form method="get" action="Prodotto.jsp?<%=p.getCodiceA() %>" id="feed"></form>
 	
 	<script>
 	window.onload = function() {

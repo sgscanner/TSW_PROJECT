@@ -34,7 +34,6 @@
   
   <div class="dropdown">
     <button class="dropbtn">Articoli 
-      <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
       <a href="#">Nintendo</a>
@@ -46,7 +45,6 @@
   <div class="dropdown">
 	  <% if(ub == null){ %>
     		<button class="dropbtn">Guest 
-      			<i class="fa fa-caret-down"></i>
     		</button>
     		<div class="dropdown-content">
 	      		<a href="Login.jsp">Login</a>
@@ -54,7 +52,6 @@
    			 </div> 
       <%}else{%>
 			<button class="dropbtn"><%=ub.getUsername() %> 
-      			<i class="fa fa-caret-down"></i>
     		</button>
     		<div class="dropdown-content">
 	      		<a href="PersonalPage.jsp">Area Personale</a>
