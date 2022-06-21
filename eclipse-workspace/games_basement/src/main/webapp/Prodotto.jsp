@@ -21,7 +21,7 @@
 </head>
 <body>
 	
-	<%@ include file="Header2.jsp" %>
+	<%@include file="Header2.jsp" %>
 	
 	<div class="titpro">
 		<p><b><%=p.getNome() %></b></p>
