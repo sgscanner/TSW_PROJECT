@@ -14,7 +14,7 @@
 <script src="ajax/ajaxJSON.js"></script>
 <script src="jQuery/jquery.js"></script>
 <script src="jQuery/jquery-ui.min.js"></script>
-<script>
+<!--  <script>
 	$("#search_option").hide();
 	
 	$(document).ready(function(){
@@ -26,41 +26,88 @@
 			});
 		});
 	});
-</script>
+</script> -->
 </head>
 <body>
-	<%UserBean ub=(UserBean)request.getSession().getAttribute("user"); %>
-	<div class="topnav" id="myTopnav">
-		<a href="#home" class="active">Home</a>
-		
-		<div class="dropdown">
-			<button class="dropbtn">Articoli<i class="fa fa-caret-down"></i></button>
+   <div class="navbar">
+   
+   
+   
+     <form class="form"></form>
+                  <img src="img/logo.png" class="logo">
+                        
+                    <input type="text" placeholder="Search..." id="input" list="languages" autocomplete="off">
+                    <input type="submit" value="Search">
+                    <datalist id="languages">
+						  
+					</datalist>
+					
+   
+   
+   
+   
+   
+   
+           
+       <div class="container">
+                    <a class="logobrand" href="/img/logo.png"></a>
+                   
+           <div class="coll" id="navColl">
+                <ul class="navEle">
+                     
+                        <li><a href="Login.jsp">Accedi</a></li>
+                        
+                        <li><a href="PersonalPage.jsp"></a></li>
+                        <li><a href="Register.jsp">Registrati</a></li>
+                    <li><a href="Carrello.jsp"> Carrello </a></li>
+                </ul>
+            <ul class="first">
+                <li><a href="HomePage.jsp">Home</a></li>
+                
+            </ul>
+            
+            
+          
+					
+					
+					
 			
-			<div class="dropdown-content">
-				<a href="#">Nintendo</a>
-				<a href="#">Playstation</a>
-				<a href="#">Xbox</a>
-			</div>
-		</div>
-		<div class="dropdown">
-			<%if(ub == null){ %>
-				<button class="dropbtn"> Guest <i class="fa fa-caret-down"></i></button>
-				<div class="dropdown-content">
-					<a href="Login.jsp">Login</a> 
-					<a href="Register.jsp">Register</a> 
-				</div>
-			<%}else{%>
-				<button class="dropbtn"> <%=ub.getUsername() %> <i class="fa fa-caret-down"></i></button>
-				<div class="dropdown-content">
-					<a href="PersonalPage.jsp">Area Personale</a> 
-					<a href="Carrello.jsp">Carrello</a>
-					<a href="LogoutServlet.java">Logout</a> 
-				</div>
-			<%} %>
-			
-		</div>
-	</div>
+			       
+                        
+                        
+                        
+                     
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                     
+                    
+                    
+                    
+                    
+                    
+                        </div>
+                    
+                    
+                    
+                    
+                    
+                    
+                    </div>
+                 
+           
 
-	<div style="height: 10px;"></div>
+
+
+
+           </div>
+
+
+
+	
 </body>
 </html>

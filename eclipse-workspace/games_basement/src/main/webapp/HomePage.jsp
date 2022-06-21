@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <title>HomePage</title>
-<link rel="icon" type="image/x-icon" href="/images/logo.ico">
+<!--<link rel="icon" type="image/x-icon" href="/images/logo.ico">
 <link rel="stylesheet" href="css/HomePage.css">
+  -->
 <style>
 * {
 	box-sizing: border-box
@@ -25,7 +26,7 @@ img {
 
 /* Slideshow container */
 .slideshow-container {
-	max-width: 1000px;
+	max-width: 95%;
 	position: relative;
 	margin: auto;
 }
@@ -117,9 +118,11 @@ to {
 	}
 }
 </style>
-	<%@include file="Header.jsp"%>
+
+	<%@include file="Header2.jsp"%>
 </head>
 <body>
+<br>
 	<div class="slideshow-container">
 		<div class="mySlides fade">
 			<div class="numbertext"></div>
