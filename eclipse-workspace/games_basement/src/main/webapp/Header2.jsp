@@ -55,6 +55,7 @@
     		</button>
     		<div class="dropdown-content">
 	      		<a href="PersonalPage.jsp">Area Personale</a>
+	      		<a href="Carrello.jsp">Carrello</a>
 	      		<a href="LogoutServlet">Logout</a>
 	      	</div>
     <%} %>
