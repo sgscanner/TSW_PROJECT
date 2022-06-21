@@ -35,7 +35,7 @@ CREATE TABLE Città (
 	cognome varchar(25) NOT NULL,
 	telefono varchar(15) DEFAULT NULL,
 	data_nascita date NOT NULL,
-	città varchar(30) not null,
+	citta varchar(30) not null,
 	
 	FOREIGN KEY (id_utente) REFERENCES Utente (id_utente)
 ); 
@@ -371,12 +371,12 @@ insert into Articolo (codice_articoli, codice_catalogo, descrizione, prezzo, nom
     ('152','2','Il Nintendo Switch, inizialmente conosciuto con il nome in codice di NX, è una console a 64 bit di natura ibrida sviluppata da Nintendo ','250.00','Nintendo Switch','console',true,'10');
 
 insert into Utente(id_utente,email,password,ruolo) values
-	('Christian','c.mascolo21@studenti.unisa.it','YBskI5eXlup7vN4R7N+QZg==:dioDBxFWC3NisY+M4i4tUw==','admin'),
-    ('AnnaLinda','a.brenga@studenti.unisa.it','uXnGxSffO+6UP3JE7bLBzA==:9MOByiJsC3yiN8S2bViDzg==','admin'),
-    ('Jess','j.zampetti@studenti.unisa.it','yhfzaHmxfMqvz1yemXV39A==:tLBOcrM0M4lD4vvqa7eZvw==','admin'),
-    ('Paolo','p.vitolo8@studenti.unisa.it','jAiG9ITZ+lASFBfmsUxJkQ==:+RsOccRtl/x+K1sBR1oeFQ==','admin');
+	('Christian','c.mascolo21@studenti.unisa.it','clown','admin'),
+    ('AnnaLinda','a.brenga@studenti.unisa.it','anna','admin'),
+    ('Jess','j.zampetti@studenti.unisa.it','fozzamilan','admin'),
+    ('Paolo','p.vitolo8@studenti.unisa.it','lebronjames','admin');
 
-insert into Dati_anagrafici(id_utente,cap,nome,cognome,telefono,data_nascita,città) values
+insert into Dati_anagrafici(id_utente,cap,nome,cognome,telefono,data_nascita,citta) values
 	('Christian','80045','Christian','Mascolo','3883909116','2001-09-24','Pompei'),
     ('AnnaLinda','84047','Anna Linda','Brenga','3662174424','1999-03-28','Gromola'),
     ('Jess','82018','Jessica','Zampetti','3402760091','2002-04-24','Calvi'),

@@ -33,7 +33,6 @@ public class LoginServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	@SuppressWarnings("unused")
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -45,7 +44,7 @@ public class LoginServlet extends HttpServlet {
 			RequestDispatcher rd=request.getRequestDispatcher("Login.jsp");
 			rd.forward(request, response);
 		}else {
-			if(ub.getUsername().equals(password)) {
+			if(ub.getPassword().equals(password)) {
 				HttpSession newSession=request.getSession();
 				RequestDispatcher rd=request.getRequestDispatcher("HomePage.jsp");
 				newSession.setAttribute("user", ub);
