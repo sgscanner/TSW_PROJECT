@@ -37,17 +37,15 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String uName=request.getParameter("username"),password=request.getParameter("password"),encrypted=encryptPwd(password);
+		String uName=request.getParameter("username"),password=request.getParameter("password");
 		UserImpl ui=new UserImpl();
 		UserBean ub=ui.searchUser(uName);
-		System.out.println("ub pass "+ub.getPassword());
-		System.out.println("ub uname "+ub.getUsername());
 		
 		if(ub==null) {
 			RequestDispatcher rd=request.getRequestDispatcher("Login.jsp");
 			rd.forward(request, response);
 		}else {
-			if(ub.getPassword().equals(encrypted)) {
+			if(ub.getUsername().equals(password)) {
 				HttpSession newSession=request.getSession();
 				RequestDispatcher rd=request.getRequestDispatcher("HomePage.jsp");
 				newSession.setAttribute("user", ub);
@@ -70,17 +68,5 @@ public class LoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
-	private String encryptPwd(String pwd) {
-		Encryption e = new Encryption();
-		String crittografate="";
-		try {
-			byte[] salt = new String("12345678").getBytes();
-			SecretKeySpec key = e.createSecretKey(pwd.toCharArray(), salt, 40000, 128);
-			crittografate = e.encrypt(pwd, key);
-		} catch (GeneralSecurityException | IOException e2) {
-
-		}
-		return crittografate;
-	}
+	
 }

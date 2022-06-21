@@ -55,12 +55,11 @@ public class AjaxPwd extends HttpServlet {
 			}
 			response.getWriter().print(json);
 		}else {
-			String pwd=encryptPwd(request.getParameter("param2"));
 			JSONObject json=new JSONObject();
 			UserImpl ui=new UserImpl();
 
 			try {
-				json.put("passwordInfo",checkPwd(ui, username,pwd));
+				json.put("passwordInfo",checkPwd(ui, username,request.getParameter("param2")));
 			}catch(JSONException e) {
 
 			}
@@ -90,18 +89,4 @@ public class AjaxPwd extends HttpServlet {
 			return null;
 		}
 	}
-
-	private String encryptPwd(String pwd) {
-		Encryption e = new Encryption();
-		String crittografate="";
-		try {
-			byte[] salt = new String("12345678").getBytes();
-			SecretKeySpec key = e.createSecretKey(pwd.toCharArray(), salt, 40000, 128);
-			crittografate = e.encrypt(pwd, key);
-		} catch (GeneralSecurityException | IOException e2) {
-
-		}
-		return crittografate;
-	}
-
 }

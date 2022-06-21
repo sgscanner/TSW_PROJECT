@@ -77,7 +77,7 @@ public class RegisterServlet extends HttpServlet {
 
 			// istanzio i Bean
 			DatiAnagraficiBean dab = new DatiAnagraficiBean(uName, cap, nome, cognome, telefono, d1, citta);
-			UserBean ub = new UserBean(uName, email, encryptPwd(password), "normale");
+			UserBean ub = new UserBean(uName, email, password, "normale");
 
 			// aggiuta al db dei Bean
 			ui.addUser(ub);
@@ -98,17 +98,4 @@ public class RegisterServlet extends HttpServlet {
 		}
 	}
 
-	@SuppressWarnings("static-access")
-	private String encryptPwd(String pwd) {
-		Encryption e = new Encryption();
-		String crittografate="";
-		try {
-			byte[] salt = new String("12345678").getBytes();
-			SecretKeySpec key = e.createSecretKey(pwd.toCharArray(), salt, 40000, 128);
-			crittografate = e.encrypt(pwd, key);
-		} catch (GeneralSecurityException | IOException e2) {
-
-		}
-		return crittografate;
-	}
 }

@@ -11,7 +11,6 @@
 <%@page import="implementation.DatiAnagrificiImpl" %>
 <%@page import="implementation.RubricaIndirizziImpl" %>
 <%@page import="implementation.OrdineImpl" %>
-<%@page import="control.Encryption" %>
 <%@page import="javax.crypto.spec.SecretKeySpec" %>
 <%@page import="java.util.ArrayList" %>
 <!DOCTYPE html>
@@ -39,10 +38,8 @@
 	DatiAnagraficiBean dab=dai.searchDatiAnagrafici(ub.getUsername());
 	RubricaIndirizziBean fatturazione=ri.getIndirizzoFatturazione(ub.getUsername());
 	RubricaIndirizziBean spedizione=ri.getIndirizzoSpedizione(ub.getUsername());
-	Encryption e=new Encryption();
 	String pwd=ub.getPassword();
 	byte[] salt = new String("12345678").getBytes();
-	SecretKeySpec key = e.createSecretKey(pwd.toCharArray(), salt, 40000, 128);
 %>
 	<div class="contenitore">
 		<div class="container">
@@ -120,12 +117,12 @@
 	   					</div>
 	   					<div class="inputContainer">
 	    					<label for="password">Password:</label>
-	  						<input class="testo2" type="password" id="password" name="password" value="<%=e.decrypt(pwd, key) %>" placeholder="Password" readonly/><br><br>
+	  						<input class="testo2" type="password" id="password" name="password" value="<%=ub.getPassword() %>" placeholder="Password" readonly/><br><br>
 	   						<small></small>	
 	  					</div>
 	    				<div class="inputContainer">
 	    					<label for="checkPassword">Conferma password:</label>
-	    					<input class="testo2" type="password" id="checkPassword" name="checkPassword" value="<%=e.decrypt(pwd, key)%>ub.getPassword()" placeholder="Confirm password" readonly />
+	    					<input class="testo2" type="password" id="checkPassword" name="checkPassword" value=<%=ub.getPassword()%> placeholder="Confirm password" readonly />
 	    					<br><br>
 	    					<small></small>
 	    				</div>
