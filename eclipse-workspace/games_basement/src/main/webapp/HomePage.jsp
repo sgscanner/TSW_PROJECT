@@ -118,6 +118,7 @@ to {
   gap: 2px;
   margin-top:5%;
   margin-bottom:5%;
+  margin-left:10%;
 }
 
 .prodotto {
@@ -158,7 +159,7 @@ to {
 <%
 	ArrayList<ArticoliBean> articoli = new ArrayList<ArticoliBean>();
 	ArticoliImpl impl = new ArticoliImpl();
-	articoli = impl.queryGetProduct(4);
+	articoli = impl.queryGetProduct(3);
 %>
 
 <br>
