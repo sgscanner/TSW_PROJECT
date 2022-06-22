@@ -75,18 +75,19 @@ ArticoliBean p=a.searchByCode(request.getParameter("id"));
 	<tr>
 		<td>Codice: <%= p.getCodiceA()%></td>
 		<td>Nome: <%=p.getNome()%></td>
-	</tr>
-	<tr>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
 		<td><%=p.getQuantita() %></td>
 		<td><%=p.getPrezzo() %></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		
 	</tr>
 	<tr>
 		<td></td>
