@@ -255,6 +255,7 @@
                     		<%ArticoliImpl aP=new ArticoliImpl();
                     		  for(ArticoliBean ab:aP.getAllArticoli()){%>
                     				<li><%ab.getNome();%></li>  
+                    				<input type="button" value="Rimuovi" onclick="aP.removeArticolo(ab)">
                     		  <% }%>
                     	</ul>
 		 		 	</div>
@@ -263,20 +264,40 @@
 		 		  <div class="testo">
 		 		  <%if(ub.getRuolo().equals("admin")){%>
 		 		 	<div id="Lordini" hidden="hidden">
-                    	
-		 		 	</div>
+                    	<table>
+		 		 			<tr>
+		 		 				<th>Nome prodotto</th>
+		 		 				<th>Numero dell'ordine</th>
+		 		 				<th>Prezzo al momento dell'acquisto</th>
+		 		 			</tr>
+		 		 		<% OrdineImpl or=new OrdineImpl();
+		 		 		UserBean use=ui.getAllUser();
+		 		 		for(Userbean us : use){
+		 		 		   for(OrdineBean ob:oi.getAllUserOrdine(us.getUsername())){%>
+		 		 			   <%ArrayList<ArticoliBean> al=ci.getCarrello(ob);
+		 		 			   for(ArticoliBean ab:al){%>
+		 		 			   <tr>
+		 		 				    <td><a id=<%=ab.getCodiceA()%> onclick="redirectProdotto(this.id)"><%=ab.getNome()%></a></td>
+		 		 			  		<td><%=ob.getNumOrdine() %></td>
+		 		 			  		<td><%=ci.getPrezzoStorico(ob, ab) %></td>
+		 		 			   </tr> 
+		 		 			   <%}
+		 		 		   }%>
 		 		 	<% }%>
 		 		 </div>
 		 		  <div class="testo">
 		 		  <%if(ub.getRuolo().equals("admin")){%>
 		 		 	<div id="Lprenotazioni" hidden="hidden">
+		 		 		<h3>Articoli prenotati dagli utenti</h3>
                     	<table>
 		 		 			<tr>
-		 		 				<th>Articoli prenotati dagli utenti</th>
+		 		 				<th>Nome username</th>
+		 		 				<th>Nome prodotto</th>
 		 		 			</tr>
 		 		 			<%UserImpl ui=new UserImpl();
-                    		  for(UserBean use:ui.getAllUser()){
-		 		 				for(ArticoliBean ab:ci.getAllPrenotazioni(use.getUsername())){%>
+		 		 			UserBean use=ui.getAllUser();
+			 		 		for(Userbean us : use){
+		 		 				for(ArticoliBean ab:ci.getAllPrenotazioni(us.getUsername())){%>
 		 		 				<tr>
 		 		 					<td><%=use.getUsername() %>
 		 		 					<td><%=ab.getNome()%></td>
@@ -284,7 +305,7 @@
 		 		 			<%}%>
 		 		 		</table>
 		 		 	</div>
-		 		 	<%}}%>
+		 		 	<%}%>
 		 		 </div>
           	</div>
 		</div>
@@ -480,6 +501,13 @@ $(document).ready(function(){
 		   $("#sezione").attr("name", "dati_shipment");
 		});
 });
+</script>
+
+<!-- Rimuovi prodotti -->
+<script>
+	function myFunction(){
+		document.getElementById('ab').style.display = 'none';
+	}
 </script>
 
 <!-- Check Form -->
