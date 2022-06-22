@@ -81,7 +81,7 @@
 	function myFunc(){
 		console.log("button clicked");
 		let path="RecensioneServlet?titolo="+titolo+"&stelle="+stelle+"&username="+username+"&articolo="+articolo+"&descrizione="+descrizione;
-		location.href=path;
+		location.replace(path);
 	}
 </script>
 </body>

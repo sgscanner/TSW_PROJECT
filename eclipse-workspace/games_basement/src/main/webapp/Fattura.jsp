@@ -38,7 +38,6 @@ DatiAnagraficiBean dab=dai.searchDatiAnagrafici(ub.getUsername());
 RubricaIndirizziBean fatturazione=ri.getIndirizzoFatturazione(ub.getUsername());
 RubricaIndirizziBean spedizione=ri.getIndirizzoSpedizione(ub.getUsername());
 String pwd=ub.getPassword();
-System.out.println("dab citta"+dab.getCitta());
 %>
 <h3>Ecco la tua fattura.</h3>
 <table>
@@ -80,7 +79,7 @@ System.out.println("dab citta"+dab.getCitta());
 	</tr>
 	<tr>
 		<td><%=fatturazione.getIndirizzo()%></td>
-		<td><%=fatturazione.getIndirizzo()%></td>
+		<td><%=spedizione.getIndirizzo()%></td>
 	</tr>
 	<tr>
 		<td>CAP: <%=dab.getcap()%></td>

@@ -255,7 +255,7 @@
                     		<%ArticoliImpl aP=new ArticoliImpl();
                     		  for(ArticoliBean ab:aP.getAllArticoli()){%>
                     				<li><%ab.getNome();%></li>  
-                    				<input type="button" value="Rimuovi" onclick="aP.removeArticolo(ab)">
+                    				<li type="button" value="Rimuovi" id="<%=ab.getCodiceA() %>" onclick="removeArticolo(this.id)" ></li>
                     		  <% }%>
                     	</ul>
 		 		 	</div>
@@ -271,9 +271,10 @@
 		 		 				<th>Prezzo al momento dell'acquisto</th>
 		 		 			</tr>
 		 		 		<% OrdineImpl or=new OrdineImpl();
-		 		 		UserBean use=ui.getAllUser();
-		 		 		for(Userbean us : use){
-		 		 		   for(OrdineBean ob:oi.getAllUserOrdine(us.getUsername())){%>
+						UserImpl ui=new UserImpl();
+		 		 		ArrayList<UserBean> list=ui.getAllUser();
+		 		 		for(UserBean temp : list){
+		 		 		   for(OrdineBean ob:oi.getAllUserOrdine(temp.getUsername())){%>
 		 		 			   <%ArrayList<ArticoliBean> al=ci.getCarrello(ob);
 		 		 			   for(ArticoliBean ab:al){%>
 		 		 			   <tr>
@@ -284,9 +285,10 @@
 		 		 			   <%}
 		 		 		   }%>
 		 		 	<% }%>
+		 		 	</table>
 		 		 </div>
 		 		  <div class="testo">
-		 		  <%if(ub.getRuolo().equals("admin")){%>
+		 		 <%if(ub.getRuolo().equals("admin")){%>
 		 		 	<div id="Lprenotazioni" hidden="hidden">
 		 		 		<h3>Articoli prenotati dagli utenti</h3>
                     	<table>
@@ -294,18 +296,20 @@
 		 		 				<th>Nome username</th>
 		 		 				<th>Nome prodotto</th>
 		 		 			</tr>
-		 		 			<%UserImpl ui=new UserImpl();
-		 		 			UserBean use=ui.getAllUser();
-			 		 		for(Userbean us : use){
-		 		 				for(ArticoliBean ab:ci.getAllPrenotazioni(us.getUsername())){%>
+		 		 			<%UserImpl ui1=new UserImpl();
+		 		 			ArrayList<UserBean> list1=ui1.getAllUser();
+			 		 		for(UserBean temp : list1){
+		 		 				for(ArticoliBean ab:ci.getAllPrenotazioni(temp.getUsername())){%>
 		 		 				<tr>
-		 		 					<td><%=use.getUsername() %>
+		 		 					<td><%=temp.getUsername() %>
 		 		 					<td><%=ab.getNome()%></td>
 		 		 				</tr>
+		 		 				<%}%>
+		 		 			<%}%>
 		 		 			<%}%>
 		 		 		</table>
 		 		 	</div>
-		 		 	<%}%>
+		 		  <%}%>
 		 		 </div>
           	</div>
 		</div>
@@ -505,9 +509,10 @@ $(document).ready(function(){
 
 <!-- Rimuovi prodotti -->
 <script>
-	function myFunction(){
-		document.getElementById('ab').style.display = 'none';
+	function removearticolo(id){
+		$(id).hide();
 	}
+
 </script>
 
 <!-- Check Form -->

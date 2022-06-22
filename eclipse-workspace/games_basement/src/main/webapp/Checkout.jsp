@@ -44,7 +44,7 @@
 		    	<small></small>
 		    	<div class="imagecontainer">
 		    	  <img src="img/carCredito.jpg" class="image" style="max-width:100%;height:auto;">
-		    	 <a href="Acquisto.jsp"><button class="bottone" onclick="complete()">Acquista</button></a> 
+		    	 <a href="CheckoutServlet"><button class="bottone" >Acquista</button></a> 
 		    	</div>
 		    </div>
 	</div>

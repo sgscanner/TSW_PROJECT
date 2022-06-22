@@ -1,6 +1,7 @@
 package control;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import bean.ArticoliBean;
 import bean.UserBean;
 import implementation.ArticoliImpl;
 import implementation.CompongonoImpl;
@@ -33,6 +35,7 @@ public class AjaxCart extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -41,25 +44,51 @@ public class AjaxCart extends HttpServlet {
 		CompongonoImpl ci=new CompongonoImpl();
 		JSONObject result=new JSONObject();
 		ArticoliImpl ai=new ArticoliImpl();
-
-		System.out.println("codice articolo:"+codiceA);
-		System.out.println("quantità:"+quantita);
-		if(ci.addToCart(ai.searchByCode(codiceA),Integer.parseInt(quantita),((UserBean)request.getSession().getAttribute("user")).getUsername())>0) {
-			try {
-				result.put("cartInfo","prodotto aggiunto");
-
-				request.getSession().setAttribute("carrello", ci.searchCart());
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		UserBean user=(UserBean)request.getSession().getAttribute("user");
+		
+		if(request.getSession().getAttribute("carrello")==null) {
+			ArrayList<ArticoliBean> carrello=new ArrayList<ArticoliBean>();
+			System.out.println("codice articolo:"+codiceA);
+			System.out.println("quantità:"+quantita);
+			if(ci.addToCart(ai.searchByCode(codiceA),Integer.parseInt(quantita),user.getUsername(),carrello)>0) {
+				try {
+					result.put("cartInfo","prodotto aggiunto");
+					
+					request.getSession().setAttribute("carrello", ci.searchCart());
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}else {
+				try {
+					result.put("cartInfo","errore nel database");
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}else {
-			try {
-				result.put("cartInfo","errore nel database");
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			ArrayList<ArticoliBean> carrello=(ArrayList<ArticoliBean>)request.getSession().getAttribute("carrello");
+			System.out.println("codice articolo:"+codiceA);
+			System.out.println("quantità:"+quantita);
+			if(ci.addToCart(ai.searchByCode(codiceA),Integer.parseInt(quantita),user.getUsername(),carrello)>0) {
+				try {
+					result.put("cartInfo","prodotto aggiunto");
+					
+					request.getSession().setAttribute("carrello", ci.searchCart());
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}else {
+				try {
+					result.put("cartInfo","errore nel database");
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
+			
 		}
 
 		ci.stopConnection();

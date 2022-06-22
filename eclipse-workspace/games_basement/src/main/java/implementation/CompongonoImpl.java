@@ -36,7 +36,7 @@ public class CompongonoImpl implements CompongonoDAO {
 
 			while (rs.next()) {
 				compongonoList.add(new CompongonoBean(rs.getString("codice_articoli"), rs.getString("numero_ordine"),
-						rs.getInt("quantita"), rs.getFloat("prezzo_storico")));
+						rs.getInt("quantità"), rs.getFloat("prezzo_storico")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -60,7 +60,7 @@ public class CompongonoImpl implements CompongonoDAO {
 			
 			while(rs.next()) {
 				cb.add(new CompongonoBean(rs.getString("codice_articoli"), rs.getString("numero_ordine"),
-						rs.getInt("quantita"), rs.getFloat("prezzo_storico")));
+						rs.getInt("quantità"), rs.getFloat("prezzo_storico")));
 			}
 			
 		} catch (SQLException e) {
@@ -83,7 +83,7 @@ public class CompongonoImpl implements CompongonoDAO {
 			try (PreparedStatement ps = c.prepareStatement(REMOVE_PRODOTTO)) {
 				Statement s = c.createStatement();
 				ResultSet rs = s.executeQuery(
-						"select Compongono.quantita " + "from Compongono " + "where Compongono.codice_articoli='"
+						"select Compongono.quantità " + "from Compongono " + "where Compongono.codice_articoli='"
 								+ ab.getCodiceA() + "' and Compongono.numero_ordine='" + ob.getNumOrdine() + "'");
 				while (rs.next()) {
 					ps.setInt(1, rs.getInt(1));
@@ -197,14 +197,13 @@ public class CompongonoImpl implements CompongonoDAO {
 		return numPrenotazioni;
 	}
 
-	public int addToCart(ArticoliBean ab, int quantita,String uname) {
+	public int addToCart(ArticoliBean ab, int quantita,String uname,ArrayList<ArticoliBean> carrello) {
 		int result = 0;
 		String generated=getRandomString(15)+"not completed";
-		OrdineImpl oi=new OrdineImpl();
 		
-		if(oi.searchByUsername(uname).getNumOrdine()==null){
+		if(carrello.size()==0){
 			try (Statement s=c.createStatement()){
-				s.executeUpdate("insert into Ordine values('"+generated+"','"+uname+"','"+ab.getPrezzo()+"','"+LocalDate.now()+"')");
+				s.executeUpdate("insert into Ordine values('"+generated+"','"+uname+"','"+ab.getPrezzo()+"','"+java.sql.Date.valueOf(LocalDate.now())+"')");
 			}catch(SQLException e) {
 				
 			}
@@ -300,7 +299,7 @@ public class CompongonoImpl implements CompongonoDAO {
 				long codiceC = rs.getLong("codice_catalogo");
 				double prezzo = rs.getDouble("prezzo");
 				boolean offerta = rs.getBoolean("offerta");
-				int quantita = rs.getInt("quantita");
+				int quantita = rs.getInt("quantità");
 
 				carrello.add(
 						new ArticoliBean(codiceA, codiceC, descrizione, prezzo, nome, tipologia, offerta, quantita));
