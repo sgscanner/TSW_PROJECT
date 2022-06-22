@@ -25,7 +25,7 @@ public class RubricaIndirizziImpl implements RubricaIndirizziDAO {
 	private void fillList() {
 		try {
 			Statement s = c.createStatement();
-			ResultSet rs = s.executeQuery("select * from Cap");
+			ResultSet rs = s.executeQuery("select * from Rubrica_indirizzi");
 
 			while (rs.next()) {
 				al.add(new RubricaIndirizziBean(rs.getInt(4), rs.getString(1), rs.getString(2), rs.getString(3)));

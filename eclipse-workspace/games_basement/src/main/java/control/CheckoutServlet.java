@@ -20,7 +20,9 @@ import bean.PagamentoBean;
 import bean.UserBean;
 import implementation.ArticoliImpl;
 import implementation.CompongonoImpl;
+import implementation.FatturaImpl;
 import implementation.OrdineImpl;
+import implementation.PagamentoImpl;
 
 /**
  * Servlet implementation class CheckoutServlet
@@ -55,6 +57,8 @@ public class CheckoutServlet extends HttpServlet {
 		ci.completeOrder(ob, articoli, ub.getUsername(), tot);
 		PagamentoBean pb=new PagamentoBean(numPagamento,oi.searchByUsername(ub.getUsername()).getNumOrdine(),tot);
 		FatturaBean fb=new FatturaBean(numFattura,numPagamento,LocalDate.now());
+		FatturaImpl fi=new FatturaImpl(); fi.addFattura(fb);
+		PagamentoImpl pi=new PagamentoImpl(); pi.addPagamento(pb);
 		request.getRequestDispatcher("OrdineCompletato.jsp").forward(request, response);
 	}
 
