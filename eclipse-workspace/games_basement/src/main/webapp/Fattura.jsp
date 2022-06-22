@@ -38,7 +38,10 @@ DatiAnagraficiBean dab=dai.searchDatiAnagrafici(ub.getUsername());
 RubricaIndirizziBean fatturazione=ri.getIndirizzoFatturazione(ub.getUsername());
 RubricaIndirizziBean spedizione=ri.getIndirizzoSpedizione(ub.getUsername());
 String pwd=ub.getPassword();
+ArticoliImpl a=new ArticoliImpl();
+ArticoliBean p=a.searchByCode(request.getParameter("id"));
 %>
+<%@include file="Header2.jsp" %>
 <h3>Ecco la tua fattura.</h3>
 <table>
 	<tr>
@@ -70,21 +73,27 @@ String pwd=ub.getPassword();
 		<th>QUANTITA'</th>
 	</tr>
 	<tr>
-		<td>Nome: <%= dab.getNome()%></td>
-		<td>Nome: <%=dab.getNome()%></td>
+		<td>Codice: <%= p.getCodiceA()%></td>
+		<td>Nome: <%=p.getNome()%></td>
 	</tr>
 	<tr>
-		<td>Cognome: <%=dab.getCognome()%></td>
-		<td>Cognome: <%=dab.getCognome()%></td>
+		<td></td>
+		<td></td>
 	</tr>
 	<tr>
-		<td><%=fatturazione.getIndirizzo()%></td>
-		<td><%=spedizione.getIndirizzo()%></td>
+		<td></td>
+		<td></td>
 	</tr>
 	<tr>
-		<td>CAP: <%=dab.getcap()%></td>
-		<td>CAP: <%=dab.getcap()%></td>
+		<td><%=p.getQuantita() %></td>
+		<td><%=p.getPrezzo() %></td>
+	</tr>
+	<tr>
+		<td></td>
 	</tr>
 </table>
+<div style="margin-top:25px;">
+<%@include file="Footer2.jsp" %>
+</div>
 </body>
 </html>

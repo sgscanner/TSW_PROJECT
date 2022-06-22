@@ -27,7 +27,7 @@
 				<p style="color:white">Recesso
 		</div>
 		<div>
-        	<p style="color:white;">Game's Basament © 2022</p>
+        	<p style="color:white;">Game's Basement © 2022</p>
      	</div>
 	</div>
 </body>
