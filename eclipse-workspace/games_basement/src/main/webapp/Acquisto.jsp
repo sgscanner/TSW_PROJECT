@@ -1,18 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Acquisto</title>
-<style><%@include file="css/Header.css" %></style>
-</head>
- <body>
- 
- 
- 
-      <div class="header">
-       <p class="p">Il tuo acquisto è stato effettuato correttamentee</p>
-      </div>
-      
-      
-  </body>
-</html>    
+password = lol123ok!
+
+
+hello_password = lol123ok!
+
+
+password_hello = lol123ok!
+
+pwd = lol123ok!
+
+pwd_user = lol123ok!
+
