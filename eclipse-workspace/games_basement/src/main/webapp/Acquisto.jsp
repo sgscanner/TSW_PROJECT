@@ -1,6 +1,3 @@
-password = lol123ok!
-
-
 hello_password = lol1234ok!
 
 
