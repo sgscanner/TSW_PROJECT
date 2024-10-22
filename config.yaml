@@ -35,4 +35,5 @@ mysql:
     port : 3306
     user : "root"
     passwd : "admin"
+    passwd1 : "admin!@#21312321"
     db : "mydatabase"
